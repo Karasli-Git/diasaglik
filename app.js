@@ -1,282 +1,486 @@
-// Diacora Health - Professional Web Application with Real-time DateTime
-// Diasağlık - Profesyonel Web Uygulaması
+// Diasağlık - Diyabet ve Hipertansiyon Yönetimi
+// Professional Health Management Application
 
-// Helper function to get current datetime in ISO format for input
-function getCurrentDateTime() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-}
+let currentUser = null;
+let isLoggedIn = false;
+let currentPage = 'landing';
 
-// Mock user data - TÜRKÇE
-const mockUser = {
-    id: '123',
-    name: 'Ahmet Yılmaz',
-    email: 'ahmet@example.com',
-    age: 45,
-    gender: 'Erkek',
-    diagnosticYear: 2020,
-    phone: '+90 (555) 123-4567',
-    glucoseTarget: '80-130',
-    bpTarget: '<130/80'
-};
-
-// Mock health data - TÜRKÇE
-const mockHealthData = {
-    glucose: {
-        current: 105,
-        unit: 'mg/dL',
-        target: '80-130',
-        status: 'normal',
-        trend: 'stable',
-        lastRecorded: new Date().toLocaleString('tr-TR')
-    },
-    bloodPressure: {
-        systolic: 128,
-        diastolic: 82,
-        pulse: 74,
-        unit: 'mmHg',
-        target: '<130/80',
-        status: 'normal',
-        trend: 'stable'
-    },
-    weight: {
-        current: 75,
-        unit: 'kg',
-        bmi: 24.9,
-        target: '70-75',
-        status: 'normal',
-        trend: 'stable'
-    }
-};
-
-// Initialize app
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
 
 function initApp() {
-    // Render main content
+    if (isLoggedIn && currentUser) {
+        showDashboard();
+    } else {
+        showLandingPage();
+    }
+}
+
+// ================== LANDING PAGE ==================
+function showLandingPage() {
+    currentPage = 'landing';
     const app = document.getElementById('app');
     
-    // Header
-    let html = `
-    <header class="header">
-        <div class="header-content">
-            <div class="logo-section">
-                <img src="/logo.png" alt="Diasağlık" class="logo">
-                <div class="logo-text">
-                    <h1>Diasağlık</h1>
-                    <p>Diyabet ve Hipertansiyon Yönetimi</p>
+    app.innerHTML = `
+    <div class="landing-container">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo-brand">
+                    <img src="/logo.png" alt="Diasağlık" class="nav-logo">
+                    <span class="brand-name">Diasağlık</span>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-link" onclick="showLoginPage()">Giriş Yap</button>
+                    <button class="nav-link-primary" onclick="showRegisterPage()">Kayıt Ol</button>
                 </div>
             </div>
-            <nav class="nav">
-                <button id="home-btn" class="nav-btn active" onclick="showDashboard()">Ana Sayfa</button>
-                <button id="measurements-btn" class="nav-btn" onclick="showMeasurements()">Ölçümler</button>
-                <button id="profile-btn" class="nav-btn" onclick="showProfile()">Profil</button>
-                <button id="logout-btn" class="nav-btn logout" onclick="logout()">Çıkış</button>
-            </nav>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Diyabet ve Hipertansiyonu Kontrol Edin</h1>
+                <p class="hero-subtitle">Sağlığınızı günlük olarak takip edin, verilerinizi analiz edin ve doktorunuzla paylaşın</p>
+                <button class="btn-primary btn-lg" onclick="showRegisterPage()">Ücretsiz Başla</button>
+                <p class="hero-secondary">Kredi kartı gerekmez • 30 saniye sürer</p>
+            </div>
+            <div class="hero-image">
+                <div class="hero-graphic">
+                    <div class="graphic-icon">📊</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section class="features">
+            <div class="section-header">
+                <h2>Temel Özellikler</h2>
+                <p>Sağlığınızı kontrol altında tutmak için gereken her şey</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🩸</div>
+                    <h3>Kan Şekeri Takibi</h3>
+                    <p>Günlük kan şekeri ölçümlerinizi kaydedin ve eğilimleri görün</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💓</div>
+                    <h3>Kan Basıncı Monitoring</h3>
+                    <p>Kan basıncınızı takip edin ve normal aralıklarını koruyun</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Kilo Yönetimi</h3>
+                    <p>Kilo değişikliklerinizi takip edin ve sağlıklı hedefinize ulaşın</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Detaylı Grafikler</h3>
+                    <p>Verilerinizi görsel grafiklerle analiz edin ve ilerleyişi görün</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>İlaç Hatırlatıcıları</h3>
+                    <p>İlaçlarınızı zamanında almayı unutmayın, otomatik bildirimler alın</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobil Uyumlu</h3>
+                    <p>Her yerden, her zaman erişin - telefon, tablet, bilgisayar</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS SECTION -->
+        <section class="how-it-works">
+            <div class="section-header">
+                <h2>Nasıl Çalışır?</h2>
+                <p>3 adımda başlayın</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Üye Ol</h3>
+                    <p>E-posta ve şifresiyle ücretsiz hesap oluşturun</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Verilerinizi Girin</h3>
+                    <p>Sağlık ölçümlerinizi kaydedin - 30 saniye gibi az zaman sürer</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Takip Edin</h3>
+                    <p>Raporlarınızı görün ve hedeflerinize doğru ilerleyin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFITS SECTION -->
+        <section class="benefits">
+            <div class="section-header">
+                <h2>Neden Diasağlık?</h2>
+                <p>Sağlık yönetiminizi dönüştürün</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-number">1</div>
+                    <h3>Kontrol Altında</h3>
+                    <p>Sağlığınızı tam olarak kontrol edin ve destek alın</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-number">2</div>
+                    <h3>Bilimsel Takip</h3>
+                    <p>Veriler ve raporlar sayesinde daha iyi kararlar alın</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-number">3</div>
+                    <h3>Doktor Konsultasyonu</h3>
+                    <p>Verilerinizi doktorunuzla paylaşın ve ortak kararlar verin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section class="testimonials">
+            <div class="section-header">
+                <h2>Kullanıcı Yorumları</h2>
+                <p>Diasağlık'ı kullananlar neler söylüyor</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Diasağlık benim hayatımı değiştirdi. Sağlığımı daha iyi kontrol edebiliyorum ve doktorum verilerime çok memnun."</p>
+                    <div class="testimonial-author">
+                        <strong>Ahmet Yılmaz</strong>
+                        <span>İstanbul</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Kolay kullanımı, güzel arayüzü ve hızlı raporları çok sevdim. Kan şekerim çok daha stabil oldu."</p>
+                    <div class="testimonial-author">
+                        <strong>Fatma Kaya</strong>
+                        <span>Ankara</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Mobil uygulaması süper. İşte, evde, yolda her yerden kullanabiliyorum. Çok rahat."</p>
+                    <div class="testimonial-author">
+                        <strong>Mehmet Sözer</strong>
+                        <span>Smyrna</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Sağlığınızı Kontrol Edin</h2>
+                <p>Diasağlık ile diyabet ve hipertansiyon yönetimi hiç bu kadar kolay olmamıştı</p>
+                <button class="btn-primary btn-lg" onclick="showRegisterPage()">Ücretsiz Hesap Oluştur</button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Diasağlık</h4>
+                    <p>Diyabet ve Hipertansiyon Yönetimi Platformu</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Bağlantılar</h4>
+                    <ul>
+                        <li><a href="#">Hakkında</a></li>
+                        <li><a href="#">Gizlilik</a></li>
+                        <li><a href="#">Şartlar</a></li>
+                        <li><a href="#">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sosyal Medya</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Diasağlık - Tüm Hakları Saklıdır</p>
+            </div>
+        </footer>
+    </div>
+    `;
+}
+
+// ================== LOGIN PAGE ==================
+function showLoginPage() {
+    currentPage = 'login';
+    const app = document.getElementById('app');
+    app.innerHTML = `
+    <div class="auth-container">
+        <div class="auth-left">
+            <div class="auth-header">
+                <img src="/logo.png" alt="Diasağlık" class="auth-logo">
+                <h1>Diasağlık</h1>
+                <p class="auth-subtitle">Diyabet ve Hipertansiyon Yönetimi</p>
+            </div>
+            <div class="auth-info">
+                <div class="info-item">
+                    <div class="info-icon">📊</div>
+                    <h3>Sağlık Verilerinizi Takip Edin</h3>
+                    <p>Kan şekeri, kan basıncı ve kilonuzu günlük olarak takip edin</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📈</div>
+                    <h3>İlerlemenizi Görün</h3>
+                    <p>Detaylı grafikler ve raporlarla ilerleyişinizi takip edin</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">💊</div>
+                    <h3>İlaç Hatırlatıcısı</h3>
+                    <p>Verilen ilaçlar için otomatik hatırlatıcılar alın</p>
+                </div>
+            </div>
         </div>
-    </header>
+        
+        <div class="auth-right">
+            <div class="auth-form-container">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchTab('login')">Giriş Yap</button>
+                    <button class="tab-btn" onclick="switchTab('register')">Kayıt Ol</button>
+                </div>
+                
+                <div id="login-tab" class="auth-tab active">
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-email">E-posta Adresi</label>
+                            <input type="email" id="login-email" placeholder="ornek@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Şifre</label>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                <span>Beni Hatırla</span>
+                            </label>
+                            <a href="#" class="forgot-password">Şifremi Unuttum?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                    </form>
+                </div>
+                
+                <div id="register-tab" class="auth-tab">
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="register-name">Ad Soyad</label>
+                            <input type="text" id="register-name" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">E-posta Adresi</label>
+                            <input type="email" id="register-email" placeholder="ornek@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-age">Yaş</label>
+                            <input type="number" id="register-age" placeholder="45" min="1" max="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Şifre</label>
+                            <input type="password" id="register-password" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">Şifreyi Onayla</label>
+                            <input type="password" id="register-confirm" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-check">
+                            <label class="checkbox">
+                                <input type="checkbox" required>
+                                <span>Kullanım Koşullarını Kabul Ediyorum</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Kayıt Ol</button>
+                    </form>
+                </div>
+            </div>
+            <div class="back-link">
+                <a href="#" onclick="showLandingPage(); return false;">← Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </div>
     `;
+}
+
+function showRegisterPage() {
+    showLoginPage();
+    switchTab('register');
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     
-    // Main content container
-    html += `<main class="main-content"><div id="content-area"></div></main>`;
+    document.getElementById(tab + '-tab').classList.add('active');
+    event.target.classList.add('active');
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('login-email').value;
     
-    // Footer
-    html += `
-    <footer class="footer">
-        <p>&copy; 2024 Diasağlık - Diyabet ve Hipertansiyon Yönetimi Platformu</p>
-    </footer>
-    `;
-    
-    app.innerHTML = html;
-    
-    // Show dashboard
+    currentUser = {
+        id: '123',
+        name: 'Ahmet Yılmaz',
+        email: email,
+        age: 45
+    };
+    isLoggedIn = true;
     showDashboard();
 }
 
+function handleRegister(event) {
+    event.preventDefault();
+    const name = document.getElementById('register-name').value;
+    const email = document.getElementById('register-email').value;
+    const age = document.getElementById('register-age').value;
+    
+    currentUser = {
+        id: Math.random().toString(36).substr(2, 9),
+        name: name,
+        email: email,
+        age: age
+    };
+    isLoggedIn = true;
+    showDashboard();
+}
+
+// ================== DASHBOARD ==================
 function showDashboard() {
-    updateActiveBtn('home-btn');
-    const contentArea = document.getElementById('content-area');
+    currentPage = 'dashboard';
+    const app = document.getElementById('app');
     
-    contentArea.innerHTML = `
+    app.innerHTML = `
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="/logo.png" alt="Diasağlık" class="logo">
+                    <h1>Diasağlık</h1>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" onclick="goToSection('dashboard')">Ana Sayfa</button>
+                    <button class="nav-btn" onclick="goToSection('measurements')">Ölçümler</button>
+                    <button class="nav-btn" onclick="goToSection('profile')">Profil</button>
+                    <button class="nav-btn" onclick="logout()">Çıkış</button>
+                </nav>
+            </div>
+        </header>
+        
+        <main class="main-content" id="main-content">
+            ${getDashboardContent()}
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2024 Diasağlık - Diyabet ve Hipertansiyon Yönetimi</p>
+        </footer>
+    </div>
+    `;
+}
+
+function getDashboardContent() {
+    return `
     <div class="dashboard">
-        <h2>Merhaba, ${mockUser.name}!</h2>
-        <p class="subtitle">Sağlık Özeti</p>
+        <div class="welcome-section">
+            <h2>Merhaba, ${currentUser.name}! 👋</h2>
+            <p class="subtitle">Bugünkü Sağlık Özeti</p>
+        </div>
         
-        <div class="cards-grid">
-            <div class="card glucose-card">
-                <h3>Kan Şekeri</h3>
-                <div class="value">${mockHealthData.glucose.current}</div>
-                <div class="unit">${mockHealthData.glucose.unit}</div>
-                <div class="target">Hedef: ${mockHealthData.glucose.target}</div>
-                <div class="status status-${mockHealthData.glucose.status}">
-                    ${mockHealthData.glucose.status === 'normal' ? '✓ Normal' : '⚠ Dikkat'}
+        <div class="stats-grid">
+            <div class="stat-card glucose">
+                <div class="stat-header">
+                    <span class="stat-icon">🩸</span>
+                    <span class="stat-title">Kan Şekeri</span>
                 </div>
+                <div class="stat-value">105</div>
+                <div class="stat-unit">mg/dL</div>
+                <div class="stat-status good">✓ Normal</div>
+                <div class="stat-trend">Hedef: 80-130</div>
             </div>
             
-            <div class="card blood-pressure-card">
-                <h3>Kan Basıncı</h3>
-                <div class="value">${mockHealthData.bloodPressure.systolic}/${mockHealthData.bloodPressure.diastolic}</div>
-                <div class="unit">${mockHealthData.bloodPressure.unit}</div>
-                <div class="target">Hedef: ${mockHealthData.bloodPressure.target}</div>
-                <div class="status status-${mockHealthData.bloodPressure.status}">
-                    ${mockHealthData.bloodPressure.status === 'normal' ? '✓ Normal' : '⚠ Dikkat'}
+            <div class="stat-card blood-pressure">
+                <div class="stat-header">
+                    <span class="stat-icon">💓</span>
+                    <span class="stat-title">Kan Basıncı</span>
                 </div>
+                <div class="stat-value">128/82</div>
+                <div class="stat-unit">mmHg</div>
+                <div class="stat-status good">✓ Normal</div>
+                <div class="stat-trend">Hedef: <130/80</div>
             </div>
             
-            <div class="card weight-card">
-                <h3>Kilo</h3>
-                <div class="value">${mockHealthData.weight.current}</div>
-                <div class="unit">${mockHealthData.weight.unit}</div>
-                <div class="target">BMI: ${mockHealthData.weight.bmi}</div>
-                <div class="status status-${mockHealthData.weight.status}">
-                    ${mockHealthData.weight.status === 'normal' ? '✓ Normal' : '⚠ Dikkat'}
+            <div class="stat-card weight">
+                <div class="stat-header">
+                    <span class="stat-icon">⚖️</span>
+                    <span class="stat-title">Kilo</span>
                 </div>
+                <div class="stat-value">75</div>
+                <div class="stat-unit">kg (BMI: 24.9)</div>
+                <div class="stat-status good">✓ Normal</div>
+                <div class="stat-trend">Sağlıklı Aralık</div>
+            </div>
+            
+            <div class="stat-card mood">
+                <div class="stat-header">
+                    <span class="stat-icon">😊</span>
+                    <span class="stat-title">Ruh Hali</span>
+                </div>
+                <div class="stat-value">İyi</div>
+                <div class="stat-unit">Bugün</div>
+                <div class="stat-status good">✓ Pozitif</div>
+                <div class="stat-trend">Son 7 gün: İyi</div>
             </div>
         </div>
         
-        <div class="action-buttons">
-            <button onclick="showMeasurements()" class="btn btn-primary">Ölçüm Ekle</button>
-            <button onclick="showProfile()" class="btn btn-secondary">Profili Düzenle</button>
-        </div>
-    </div>
-    `;
-}
-
-function showMeasurements() {
-    updateActiveBtn('measurements-btn');
-    const contentArea = document.getElementById('content-area');
-    
-    const now = getCurrentDateTime();
-    
-    contentArea.innerHTML = `
-    <div class="measurements">
-        <h2>Sağlık Ölçümleri</h2>
-        
-        <form class="measurement-form" onsubmit="addMeasurement(event)">
-            <div class="form-group">
-                <label>Tarih ve Saat</label>
-                <input type="datetime-local" id="measurementDate" value="${now}" required>
+        <div class="action-section">
+            <h3>Hızlı İşlemler</h3>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="goToSection('measurements')">
+                    <span class="action-icon">➕</span>
+                    <span>Ölçüm Ekle</span>
+                </button>
+                <button class="action-btn" onclick="goToSection('profile')">
+                    <span class="action-icon">✏️</span>
+                    <span>Profili Düzenle</span>
+                </button>
+                <button class="action-btn">
+                    <span class="action-icon">📋</span>
+                    <span>Raporlar</span>
+                </button>
+                <button class="action-btn">
+                    <span class="action-icon">💊</span>
+                    <span>İlaçlar</span>
+                </button>
             </div>
-            
-            <div class="form-group">
-                <label>Kan Şekeri (mg/dL)</label>
-                <input type="number" id="glucose" placeholder="Örn: 105" step="0.1">
-            </div>
-            
-            <div class="form-group">
-                <label>Sistolik Kan Basıncı (mmHg)</label>
-                <input type="number" id="bpSystolic" placeholder="Örn: 128">
-            </div>
-            
-            <div class="form-group">
-                <label>Diyastolik Kan Basıncı (mmHg)</label>
-                <input type="number" id="bpDiastolic" placeholder="Örn: 82">
-            </div>
-            
-            <div class="form-group">
-                <label>Kilo (kg)</label>
-                <input type="number" id="weight" placeholder="Örn: 75" step="0.1">
-            </div>
-            
-            <div class="form-group">
-                <label>Notlar</label>
-                <textarea id="notes" placeholder="Ekstra notlar..."></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Ölçümü Kaydet</button>
-        </form>
-        
-        <div class="measurements-list">
-            <h3>Geçmiş Ölçümler</h3>
-            <p class="info-text">Ölçüm geçmişi buraya gösterilecektir</p>
         </div>
     </div>
     `;
 }
 
-function showProfile() {
-    updateActiveBtn('profile-btn');
-    const contentArea = document.getElementById('content-area');
-    
-    contentArea.innerHTML = `
-    <div class="profile">
-        <h2>Profil Bilgileri</h2>
-        
-        <form class="profile-form" onsubmit="updateProfile(event)">
-            <div class="form-group">
-                <label>Ad Soyad</label>
-                <input type="text" value="${mockUser.name}" required>
-            </div>
-            
-            <div class="form-group">
-                <label>E-posta</label>
-                <input type="email" value="${mockUser.email}" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Yaş</label>
-                <input type="number" value="${mockUser.age}" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Cinsiyeti</label>
-                <select required>
-                    <option value="Erkek" selected>Erkek</option>
-                    <option value="Kadın">Kadın</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label>Telefon</label>
-                <input type="tel" value="${mockUser.phone}" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Diyabet Tipi</label>
-                <select required>
-                    <option value="type1">Tip 1</option>
-                    <option value="type2" selected>Tip 2</option>
-                </select>
-            </div>
-            
-            <div class="form-group checkbox">
-                <input type="checkbox" id="hypertension" checked>
-                <label for="hypertension">Hipertansiyonum var</label>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
-        </form>
-    </div>
-    `;
-}
-
-function updateActiveBtn(btnId) {
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.getElementById(btnId).classList.add('active');
-}
-
-function addMeasurement(event) {
-    event.preventDefault();
-    alert('Ölçüm kaydedildi!');
-    showMeasurements();
-}
-
-function updateProfile(event) {
-    event.preventDefault();
-    alert('Profil güncellendi!');
-    showProfile();
+function goToSection(section) {
+    if (section === 'dashboard') {
+        showDashboard();
+    }
 }
 
 function logout() {
-    alert('Çıkış yapıldı. Hoşça kalın!');
-    location.reload();
+    isLoggedIn = false;
+    currentUser = null;
+    showLandingPage();
 }
