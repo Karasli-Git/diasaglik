@@ -6,4 +6,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["python3", "-m", "http.server", "8080"]
+CMD sh -c "python3 -m http.server ${PORT:-8080}"
