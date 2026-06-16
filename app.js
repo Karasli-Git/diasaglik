@@ -11,6 +11,7 @@ function renderPage() {
         <nav class="navbar">
             <div class="nav-content">
                 <div class="logo-section">
+                    <span class="logo-icon">⚕️</span>
                     <span class="logo-text">Diasağlık</span>
                 </div>
                 <ul class="nav-menu">
@@ -26,8 +27,6 @@ function renderPage() {
 
         <!-- HERO SECTION -->
         <section class="hero-section">
-            <div class="hero-background"></div>
-            
             <div class="hero-content">
                 <h1 class="hero-title">Diyabet ve Hipertansiyonu Kontrol Edin</h1>
                 <button class="play-video-btn" onclick="alert('Video oynatılacak!')">
@@ -42,14 +41,10 @@ function renderPage() {
                     <div class="device-screen">
                         <svg viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
                             <rect width="400" height="800" fill="#f8f9fa"/>
-                            
-                            <!-- Header -->
                             <circle cx="50" cy="50" r="30" fill="#0066cc"/>
                             <text x="100" y="35" font-size="18" font-weight="bold" fill="#2c3e50">Merhaba,</text>
                             <text x="100" y="58" font-size="16" font-weight="bold" fill="#2c3e50">Abdulkadir Bey</text>
                             <circle cx="350" cy="50" r="30" fill="#FFD700"/>
-                            
-                            <!-- Card 1 -->
                             <rect x="20" y="100" width="360" height="100" fill="white" rx="12" stroke="#e0e0e0" stroke-width="1"/>
                             <circle cx="45" cy="125" r="12" fill="#ff6b6b"/>
                             <text x="70" y="120" font-size="14" fill="#999">Son Şeker Ölçümü</text>
@@ -57,15 +52,6 @@ function renderPage() {
                             <text x="70" y="165" font-size="12" fill="#999">mg/dL - Normal</text>
                             <circle cx="350" cy="150" r="20" fill="#0066cc"/>
                             <text x="344" y="158" font-size="18" fill="white" font-weight="bold">+</text>
-                            
-                            <!-- Card 2 -->
-                            <rect x="20" y="220" width="360" height="100" fill="white" rx="12" stroke="#e0e0e0" stroke-width="1"/>
-                            <circle cx="45" cy="245" r="12" fill="#ff6b6b"/>
-                            <text x="70" y="240" font-size="14" fill="#999">Son Tansiyon Ölçümü</text>
-                            <text x="70" y="265" font-size="28" font-weight="bold" fill="#2c3e50">140/65</text>
-                            <text x="70" y="285" font-size="12" fill="#999">mmHg - Normal</text>
-                            <circle cx="350" cy="270" r="20" fill="#0066cc"/>
-                            <text x="344" y="278" font-size="18" fill="white" font-weight="bold">+</text>
                         </svg>
                     </div>
                     <div class="device-home"></div>
@@ -73,37 +59,114 @@ function renderPage() {
             </div>
         </section>
 
-        <!-- DESCRIPTION SECTION -->
-        <section class="description-section">
-            <h2>Uzman Diyabet Eğitimi. Güçlü Öz-Yönetim Araçları. Kişiselleştirilmiş Hedefler.</h2>
-            <p>Diasağlık, diyabet kontrolünde uzmanlar tarafından tasarlanmış, NICE-uyumlu, kapsamlı bir platformdur. Uzman tavsiye, yapılandırılmış eğitim, beslenme rehberi ve egzersiz programları sunarak, bluetooth ile bağlı kan şekeri ölçüm cihazları ve kişiselleştirilmiş hedefler seti ile Diasağlık, hastalarının durumlarını kontrol etmesine yardımcı olur.</p>
-            <a href="#" class="learn-more-btn">Daha Fazlasını Öğren</a>
+        <!-- SECTION 1: TEMEL BİLGİ -->
+        <section class="info-section white-bg">
+            <div class="section-content">
+                <h2>Uzman Diyabet Eğitimi. Güçlü Öz-Yönetim Araçları. Kişiselleştirilmiş Hedefler.</h2>
+                <p>Diasağlık, diyabet kontrolünde uzmanlar tarafından tasarlanmış, NICE-uyumlu, kapsamlı bir platformdur. Uzman tavsiye, yapılandırılmış eğitim, beslenme rehberi ve egzersiz programları sunarak, bluetooth ile bağlı kan şekeri ölçüm cihazları ve kişiselleştirilmiş hedefler seti ile Diasağlık, hastalarının durumlarını kontrol etmesine yardımcı olur.</p>
+                <a href="#" class="btn-learn-more">Daha Fazlasını Öğren</a>
+            </div>
         </section>
 
-        <!-- FEATURES SECTION -->
-        <section class="features-section">
-            <h2>Temel Özellikler</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Veri Takibi</h3>
-                    <p>Sağlık verilerinizi günlük olarak takip edin ve grafikleri görüntüleyin</p>
+        <!-- SECTION 2: HASTALAR İÇİN -->
+        <section class="patients-section gray-bg">
+            <div class="section-content">
+                <h2>Hastalar İçin</h2>
+                <p>Diasağlık, diyabet yönetiminde komprehensif, kullanıcı dostu ve sezgisel bir uygulama sunar. Diyabet uzmanları tarafından tasarlanmış, Diasağlık kullanıcılarına hiç olmadığı kadar kontrol sağlar. Verilerinizi girerek ve klinik ekibiniz ile daha yakın çalışarak, Diasağlık, özel ve bireyselleştirilmiş bir tedavi planı oluşturmanıza, kontrolünüzü optimize etmenize ve diyabet ile ilişkili komplikasyonlar geliştirme riskini azaltmanıza olanak tanır.</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <h3>📊 Aktivite Günlüğü</h3>
+                        <p>Hastalar ve klinik ekipleri uygulama içi aktiviteleri otomatik olarak takip edebilir</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>💊 İlaç Takibi</h3>
+                        <p>İlaçlarınızı kaydedin, hatırlatmalar alın ve uyum sağlayın</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>🩺 Sağlık Verisi Entegrasyonu</h3>
+                        <p>Bluetooth cihazlarıyla otomatik veri senkronizasyonu</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>📈 Detaylı Raporlar</h3>
+                        <p>Doktorlarınızla paylaşabilecek kapsamlı sağlık raporları</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💊</div>
-                    <h3>İlaç Yönetimi</h3>
-                    <p>İlaçlarınızı takip edin ve hatırlatmalar alın</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: DOKTORLAR İÇİN -->
+        <section class="doctors-section white-bg">
+            <div class="section-content">
+                <h2>Doktorlar İçin</h2>
+                <p>Klinikçiler, uzaktan bakım, hasta yönetimi, raporlar ve izleme araçlarına erişim sağlayarak hastalarına daha hızlı, kolay, uygun maliyetli ve nihayetinde daha ödüllendirici bir şekilde bakım sunabilirler. Diasağlık, doktorların hasta yönetimini basitleştirerek, hastaların sağlıklarını daha iyi kontrol etmelerine yardımcı olur.</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <h3>👥 Hasta Yönetimi</h3>
+                        <p>Tüm hastalarınızı merkezi bir panelde yönetin</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>📊 Veri Analizi</h3>
+                        <p>Hastaların sağlık verilerini analiz edin ve raporlar oluşturun</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>💬 İletişim Araçları</h3>
+                        <p>Hastalarınızla güvenli şekilde iletişim kurun</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>⏰ Uzaktan İzleme</h3>
+                        <p>Hastaları uzaktan izleyin ve müdahale edin</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🩺</div>
-                    <h3>Doktor İletişimi</h3>
-                    <p>Verilerinizi doktorunuzla paylaşın</p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: NEDEN DİASAĞLIK -->
+        <section class="why-section gray-bg">
+            <div class="section-content">
+                <h2>Neden Diasağlık?</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <div class="reason-icon">🎓</div>
+                        <h3>Uzman Tarafından Tasarlanmış</h3>
+                        <p>Diyabet uzmanları tarafından geliştirilen ve doğrulanan platform</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">✅</div>
+                        <h3>Kanıt Temelli</h3>
+                        <p>NICE kılavuzlarına uygun, bilimsel araştırmalara dayalı</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">🔒</div>
+                        <h3>Güvenli ve Gizli</h3>
+                        <p>En yüksek güvenlik standartlarına uygun veri koruması</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">📱</div>
+                        <h3>Kolay Kullanım</h3>
+                        <p>Tüm yaşlar için tasarlanmış basit ve sezgisel arayüz</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">🌍</div>
+                        <h3>Erişilebilir</h3>
+                        <p>Her yerden, her zaman erişim sağlayın</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">💪</div>
+                        <h3>Destekleyici</h3>
+                        <p>24/7 müşteri destek ve yardım merkezi</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobil Uygulama</h3>
-                    <p>Her yerden erişim sağlayın</p>
-                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: BAŞLAYIN -->
+        <section class="cta-section white-bg">
+            <div class="section-content">
+                <h2>Bugün Başlayın</h2>
+                <p>Diasağlık ile diyabet yönetimini kontrol altına alın. Ücretsiz olarak başlayın, hiçbir kredi kartı gerekmez.</p>
+                <button class="btn-primary-large">Ücretsiz Hesap Oluştur</button>
             </div>
         </section>
 
@@ -114,16 +177,27 @@ function renderPage() {
                     <h4>Diasağlık</h4>
                     <ul>
                         <li><a href="#">Hakkında</a></li>
-                        <li><a href="#">Gizlilik</a></li>
-                        <li><a href="#">Şartlar</a></li>
+                        <li><a href="#">Gizlilik Politikası</a></li>
+                        <li><a href="#">Kullanım Şartları</a></li>
+                        <li><a href="#">İletişim</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Ürünler</h4>
                     <ul>
-                        <li><a href="#">Diasağlık App</a></li>
+                        <li><a href="#">Diasağlık Uygulaması</a></li>
                         <li><a href="#">Doktor Paneli</a></li>
-                        <li><a href="#">Eğitim</a></li>
+                        <li><a href="#">API Belgeleri</a></li>
+                        <li><a href="#">Fiyatlandırma</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kaynaklar</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Eğitim Merkezi</a></li>
+                        <li><a href="#">SSS</a></li>
+                        <li><a href="#">Destek</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -132,11 +206,12 @@ function renderPage() {
                         <li><a href="#">Facebook</a></li>
                         <li><a href="#">Twitter</a></li>
                         <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Diasağlık - Tüm Hakları Saklıdır</p>
+                <p>&copy; 2024 Diasağlık - Tüm Hakları Saklıdır | <a href="#">Gizlilik</a> | <a href="#">Şartlar</a></p>
             </div>
         </footer>
     </div>
