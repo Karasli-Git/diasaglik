@@ -1,340 +1,144 @@
-// Diasağlık - Diyabet ve Hipertansiyon Yönetimi
-// Professional Health Management Application
-
-let currentUser = null;
-let isLoggedIn = false;
-let currentPage = 'landing';
-
 document.addEventListener('DOMContentLoaded', function() {
-    initApp();
+    renderPage();
 });
 
-function initApp() {
-    if (isLoggedIn && currentUser) {
-        showDashboard();
-    } else {
-        showLandingPage();
-    }
-}
-
-// ================== LANDING PAGE ==================
-function showLandingPage() {
-    currentPage = 'landing';
+function renderPage() {
     const app = document.getElementById('app');
     
     app.innerHTML = `
-    <div class="landing-container">
+    <div class="page-container">
         <!-- NAVBAR -->
         <nav class="navbar">
             <div class="nav-content">
-                <div class="logo-brand">
-                    <span class="brand-name">Diasağlık</span>
+                <div class="logo-section">
+                    <span class="logo-text">Diasağlık</span>
                 </div>
-                <div class="nav-buttons">
-                    <button class="nav-link" onclick="showLoginPage()">Giriş Yap</button>
-                    <button class="nav-link-primary" onclick="showRegisterPage()">Kayıt Ol</button>
-                </div>
+                <ul class="nav-menu">
+                    <li><a href="#urunler">Ürünler</a></li>
+                    <li><a href="#bilgiler">Bilgi Merkezi</a></li>
+                    <li><a href="#kaynaklar">Kaynaklar</a></li>
+                    <li><a href="#hakkimiz">Hakkımızda</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+                <button class="login-btn">Giriş Yap</button>
             </div>
         </nav>
 
-        <!-- HERO SECTION - mymhealth STYLE -->
+        <!-- HERO SECTION -->
         <section class="hero-section">
+            <div class="hero-background"></div>
+            
             <div class="hero-content">
                 <h1 class="hero-title">Diyabet ve Hipertansiyonu Kontrol Edin</h1>
-                <button class="play-video-btn" onclick="alert('Demo video oynatılacak!')">▶ VİDEO İZLE</button>
+                <button class="play-video-btn" onclick="alert('Video oynatılacak!')">
+                    <span class="play-icon">▶</span>
+                    <span class="play-text">VİDEO İZLE</span>
+                </button>
             </div>
-            <div class="hero-visual">
+
+            <div class="device-showcase">
                 <div class="device-mockup">
+                    <div class="device-notch"></div>
                     <div class="device-screen">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800'%3E%3Crect fill='%23f8f9fa' width='400' height='800'/%3E%3Ctext x='20' y='60' font-size='24' font-weight='bold' fill='%232c3e50'%3EMerhaba,%3C/text%3E%3Ctext x='20' y='90' font-size='20' font-weight='bold' fill='%232c3e50'%3EAbdulkadir%3C/text%3E%3Ccircle cx='360' cy='50' r='35' fill='%23FFD700'/%3E%3C/svg%3E" alt="Dashboard">
+                        <svg viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                            <rect width="400" height="800" fill="#f8f9fa"/>
+                            
+                            <!-- Header -->
+                            <circle cx="50" cy="50" r="30" fill="#0066cc"/>
+                            <text x="100" y="35" font-size="18" font-weight="bold" fill="#2c3e50">Merhaba,</text>
+                            <text x="100" y="58" font-size="16" font-weight="bold" fill="#2c3e50">Abdulkadir Bey</text>
+                            <circle cx="350" cy="50" r="30" fill="#FFD700"/>
+                            
+                            <!-- Card 1 -->
+                            <rect x="20" y="100" width="360" height="100" fill="white" rx="12" stroke="#e0e0e0" stroke-width="1"/>
+                            <circle cx="45" cy="125" r="12" fill="#ff6b6b"/>
+                            <text x="70" y="120" font-size="14" fill="#999">Son Şeker Ölçümü</text>
+                            <text x="70" y="145" font-size="28" font-weight="bold" fill="#2c3e50">140</text>
+                            <text x="70" y="165" font-size="12" fill="#999">mg/dL - Normal</text>
+                            <circle cx="350" cy="150" r="20" fill="#0066cc"/>
+                            <text x="344" y="158" font-size="18" fill="white" font-weight="bold">+</text>
+                            
+                            <!-- Card 2 -->
+                            <rect x="20" y="220" width="360" height="100" fill="white" rx="12" stroke="#e0e0e0" stroke-width="1"/>
+                            <circle cx="45" cy="245" r="12" fill="#ff6b6b"/>
+                            <text x="70" y="240" font-size="14" fill="#999">Son Tansiyon Ölçümü</text>
+                            <text x="70" y="265" font-size="28" font-weight="bold" fill="#2c3e50">140/65</text>
+                            <text x="70" y="285" font-size="12" fill="#999">mmHg - Normal</text>
+                            <circle cx="350" cy="270" r="20" fill="#0066cc"/>
+                            <text x="344" y="278" font-size="18" fill="white" font-weight="bold">+</text>
+                        </svg>
                     </div>
+                    <div class="device-home"></div>
                 </div>
             </div>
+        </section>
+
+        <!-- DESCRIPTION SECTION -->
+        <section class="description-section">
+            <h2>Uzman Diyabet Eğitimi. Güçlü Öz-Yönetim Araçları. Kişiselleştirilmiş Hedefler.</h2>
+            <p>Diasağlık, diyabet kontrolünde uzmanlar tarafından tasarlanmış, NICE-uyumlu, kapsamlı bir platformdur. Uzman tavsiye, yapılandırılmış eğitim, beslenme rehberi ve egzersiz programları sunarak, bluetooth ile bağlı kan şekeri ölçüm cihazları ve kişiselleştirilmiş hedefler seti ile Diasağlık, hastalarının durumlarını kontrol etmesine yardımcı olur.</p>
+            <a href="#" class="learn-more-btn">Daha Fazlasını Öğren</a>
         </section>
 
         <!-- FEATURES SECTION -->
-        <section class="features">
-            <div class="section-header">
-                <h2>Temel Özellikler</h2>
-                <p>Sağlığınızı kontrol altında tutmak için gereken her şey</p>
-            </div>
+        <section class="features-section">
+            <h2>Temel Özellikler</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🩸</div>
-                    <h3>Kan Şekeri Takibi</h3>
-                    <p>Günlük ölçümlerinizi kaydedin ve eğilimleri görün</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💓</div>
-                    <h3>Kan Basıncı Monitoring</h3>
-                    <p>Kan basıncınızı takip edin ve normal aralıklarını koruyun</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚖️</div>
-                    <h3>Kilo Yönetimi</h3>
-                    <p>Kilo değişikliklerinizi takip edin</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📸</div>
-                    <h3>Kamera ile Ölçüm</h3>
-                    <p>Kameranızla şeker cihazını tarayın</p>
+                    <div class="feature-icon">📊</div>
+                    <h3>Veri Takibi</h3>
+                    <p>Sağlık verilerinizi günlük olarak takip edin ve grafikleri görüntüleyin</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💊</div>
-                    <h3>İlaç Hatırlatıcısı</h3>
-                    <p>Otomatik bildirimler alın</p>
+                    <h3>İlaç Yönetimi</h3>
+                    <p>İlaçlarınızı takip edin ve hatırlatmalar alın</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🩺</div>
+                    <h3>Doktor İletişimi</h3>
+                    <p>Verilerinizi doktorunuzla paylaşın</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <h3>Mobil Uyumlu</h3>
-                    <p>Her yerden, her zaman erişin</p>
+                    <h3>Mobil Uygulama</h3>
+                    <p>Her yerden erişim sağlayın</p>
                 </div>
             </div>
-        </section>
-
-        <!-- HOW IT WORKS -->
-        <section class="how-it-works">
-            <div class="section-header">
-                <h2>Nasıl Çalışır?</h2>
-            </div>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Üye Ol</h3>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Ölçüm Ekle</h3>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Takip Et</h3>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA SECTION -->
-        <section class="cta-section">
-            <button class="btn-primary btn-lg" onclick="showRegisterPage()">Ücretsiz Hesap Oluştur</button>
         </section>
 
         <!-- FOOTER -->
         <footer class="footer">
-            <p>&copy; 2024 Diasağlık - Diyabet ve Hipertansiyon Yönetimi</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Diasağlık</h4>
+                    <ul>
+                        <li><a href="#">Hakkında</a></li>
+                        <li><a href="#">Gizlilik</a></li>
+                        <li><a href="#">Şartlar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünler</h4>
+                    <ul>
+                        <li><a href="#">Diasağlık App</a></li>
+                        <li><a href="#">Doktor Paneli</a></li>
+                        <li><a href="#">Eğitim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sosyal Medya</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Diasağlık - Tüm Hakları Saklıdır</p>
+            </div>
         </footer>
     </div>
     `;
-}
-
-// ================== LOGIN PAGE ==================
-function showLoginPage() {
-    currentPage = 'login';
-    const app = document.getElementById('app');
-    app.innerHTML = `
-    <div class="auth-container">
-        <div class="auth-left">
-            <div class="auth-header">
-                <h1>Diasağlık</h1>
-                <p class="auth-subtitle">Diyabet ve Hipertansiyon Yönetimi</p>
-            </div>
-            <div class="auth-info">
-                <div class="info-item">
-                    <div class="info-icon">📊</div>
-                    <h3>Sağlık Verilerinizi Takip Edin</h3>
-                    <p>Kan şekeri, kan basıncı ve kilonuzu günlük olarak takip edin</p>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">📸</div>
-                    <h3>Kamera ile Ölçün</h3>
-                    <p>Şeker cihazını kamerayla tarayın</p>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">💊</div>
-                    <h3>İlaç Hatırlatıcısı</h3>
-                    <p>Otomatik bildirimler alın</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="auth-right">
-            <div class="auth-form-container">
-                <div class="auth-tabs">
-                    <button class="tab-btn active" onclick="switchTab('login')">Giriş Yap</button>
-                    <button class="tab-btn" onclick="switchTab('register')">Kayıt Ol</button>
-                </div>
-                
-                <div id="login-tab" class="auth-tab active">
-                    <form onsubmit="handleLogin(event)">
-                        <div class="form-group">
-                            <label>E-posta</label>
-                            <input type="email" placeholder="ornek@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Şifre</label>
-                            <input type="password" placeholder="••••••••" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
-                    </form>
-                </div>
-                
-                <div id="register-tab" class="auth-tab">
-                    <form onsubmit="handleRegister(event)">
-                        <div class="form-group">
-                            <label>Ad Soyad</label>
-                            <input type="text" placeholder="Adınız" required>
-                        </div>
-                        <div class="form-group">
-                            <label>E-posta</label>
-                            <input type="email" placeholder="ornek@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Yaş</label>
-                            <input type="number" placeholder="45" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Şifre</label>
-                            <input type="password" placeholder="••••••••" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Kayıt Ol</button>
-                    </form>
-                </div>
-            </div>
-            <div class="back-link">
-                <a href="#" onclick="showLandingPage(); return false;">← Ana Sayfaya Dön</a>
-            </div>
-        </div>
-    </div>
-    `;
-}
-
-function showRegisterPage() {
-    showLoginPage();
-    setTimeout(() => switchTab('register'), 0);
-}
-
-function switchTab(tab) {
-    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    
-    const tabEl = document.getElementById(tab + '-tab');
-    const btnEl = document.querySelector(`[onclick="switchTab('${tab}')"]`);
-    
-    if (tabEl) tabEl.classList.add('active');
-    if (btnEl) btnEl.classList.add('active');
-}
-
-function handleLogin(event) {
-    event.preventDefault();
-    currentUser = { id: '123', name: 'Abdulkadir Bey', email: 'test@example.com', age: 45 };
-    isLoggedIn = true;
-    showDashboard();
-}
-
-function handleRegister(event) {
-    event.preventDefault();
-    const name = event.target.querySelector('input[type="text"]').value;
-    currentUser = { id: Math.random().toString(36).substr(2, 9), name: name, email: 'test@example.com', age: 45 };
-    isLoggedIn = true;
-    showDashboard();
-}
-
-// ================== DASHBOARD ==================
-function showDashboard() {
-    currentPage = 'dashboard';
-    const app = document.getElementById('app');
-    
-    app.innerHTML = `
-    <div class="app-container">
-        <header class="header">
-            <div class="header-content">
-                <h1>Diasağlık</h1>
-                <nav class="nav">
-                    <button class="nav-btn active" onclick="goToSection('dashboard')">Ana Sayfa</button>
-                    <button class="nav-btn" onclick="goToSection('measurements')">Ölçümler</button>
-                    <button class="nav-btn" onclick="goToSection('profile')">Profil</button>
-                    <button class="nav-btn" onclick="logout()">Çıkış</button>
-                </nav>
-            </div>
-        </header>
-        
-        <main class="main-content">
-            <div class="welcome-header">
-                <div class="welcome-left">
-                    <div class="user-avatar">👤</div>
-                    <div class="welcome-text">
-                        <h2>Merhaba, ${currentUser.name}</h2>
-                        <p>Bugün sağlığınız kontrol altında.</p>
-                    </div>
-                </div>
-                <div class="mood-emoji">😊</div>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">
-                        <span class="stat-icon">🩸</span>
-                        <span>Son Şeker Ölçümü</span>
-                    </div>
-                    <div class="stat-value">140</div>
-                    <div class="stat-unit">mg/dL</div>
-                    <div class="stat-status">Normal</div>
-                    <button class="stat-btn">➕</button>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-label">
-                        <span class="stat-icon">💓</span>
-                        <span>Son Tansiyon Ölçümü</span>
-                    </div>
-                    <div class="stat-value">140/65</div>
-                    <div class="stat-unit">mmHg</div>
-                    <div class="stat-status">Normal</div>
-                    <button class="stat-btn">➕</button>
-                </div>
-
-                <div class="stat-card medication">
-                    <div class="stat-label">
-                        <span class="stat-icon">💊</span>
-                        <span>Günlük İlaçlar</span>
-                    </div>
-                    <div class="stat-value">0 / 0</div>
-                    <div class="stat-unit">Doz Alındı</div>
-                    <div class="medication-pills">
-                        <span class="pill">💊</span>
-                        <span class="pill">💊</span>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-label">
-                        <span class="stat-icon">🩺</span>
-                        <span>İnsülin Takibi</span>
-                    </div>
-                    <div class="insulin-section">
-                        <div class="insulin-type">
-                            <span class="insulin-label">B</span>
-                            <span class="insulin-name">Bolus İnsülin</span>
-                        </div>
-                        <div class="insulin-type">
-                            <span class="insulin-label">L</span>
-                            <span class="insulin-name">Bazal İnsülin</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    `;
-}
-
-function goToSection(section) {
-    if (section === 'dashboard') {
-        showDashboard();
-    }
-}
-
-function logout() {
-    isLoggedIn = false;
-    currentUser = null;
-    showLandingPage();
 }
