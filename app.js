@@ -38,17 +38,21 @@ function showLandingPage() {
             </div>
         </nav>
 
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Diyabet ve Hipertansiyonu Kontrol Edin</h1>
-                <p class="hero-subtitle">Sağlığınızı günlük olarak takip edin, verilerinizi analiz edin ve doktorunuzla paylaşın</p>
-                <button class="btn-primary btn-lg" onclick="showRegisterPage()">Ücretsiz Başla</button>
-                <p class="hero-secondary">Kredi kartı gerekmez • 30 saniye sürer</p>
+        <!-- HERO SECTION - PROFESSIONAL DESIGN -->
+        <section class="hero-professional">
+            <div class="hero-left">
+                <h1 class="hero-title">Diyabet ve Hipertansiyonu Kontrol Edin</h1>
+                <p class="hero-description">Sağlığınızı günlük olarak takip edin, verilerinizi analiz edin ve doktorunuzla paylaşın</p>
+                <button class="btn-hero" onclick="showRegisterPage()">Ücretsiz Başla</button>
+                <p class="hero-trust">Kredi kartı gerekmez • 30 saniye sürer</p>
             </div>
-            <div class="hero-image">
-                <div class="hero-graphic">
-                    <div class="graphic-icon">📊</div>
+            <div class="hero-right">
+                <div class="gradient-card">
+                    <div class="chart-visual">
+                        <div class="chart-bar blue"></div>
+                        <div class="chart-bar green"></div>
+                        <div class="chart-bar red"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -114,31 +118,6 @@ function showLandingPage() {
                     <div class="step-number">3</div>
                     <h3>Takip Edin</h3>
                     <p>Raporlarınızı görün ve hedeflerinize doğru ilerleyin</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- BENEFITS SECTION -->
-        <section class="benefits">
-            <div class="section-header">
-                <h2>Neden Diasağlık?</h2>
-                <p>Sağlık yönetiminizi dönüştürün</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-number">1</div>
-                    <h3>Kontrol Altında</h3>
-                    <p>Sağlığınızı tam olarak kontrol edin ve destek alın</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-number">2</div>
-                    <h3>Bilimsel Takip</h3>
-                    <p>Veriler ve raporlar sayesinde daha iyi kararlar alın</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-number">3</div>
-                    <h3>Doktor Konsultasyonu</h3>
-                    <p>Verilerinizi doktorunuzla paylaşın ve ortak kararlar verin</p>
                 </div>
             </div>
         </section>
@@ -320,15 +299,18 @@ function showLoginPage() {
 
 function showRegisterPage() {
     showLoginPage();
-    switchTab('register');
+    setTimeout(() => switchTab('register'), 0);
 }
 
 function switchTab(tab) {
     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     
-    document.getElementById(tab + '-tab').classList.add('active');
-    event.target.classList.add('active');
+    const tabEl = document.getElementById(tab + '-tab');
+    const btnEl = document.querySelector(`[onclick="switchTab('${tab}')"]`);
+    
+    if (tabEl) tabEl.classList.add('active');
+    if (btnEl) btnEl.classList.add('active');
 }
 
 function handleLogin(event) {
