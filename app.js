@@ -39,20 +39,7 @@ function renderPage() {
                 <div class="device-mockup">
                     <div class="device-notch"></div>
                     <div class="device-screen">
-                        <svg viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                            <rect width="400" height="800" fill="#f8f9fa"/>
-                            <circle cx="50" cy="50" r="30" fill="#0066cc"/>
-                            <text x="100" y="35" font-size="18" font-weight="bold" fill="#2c3e50">Merhaba,</text>
-                            <text x="100" y="58" font-size="16" font-weight="bold" fill="#2c3e50">Abdulkadir Bey</text>
-                            <circle cx="350" cy="50" r="30" fill="#FFD700"/>
-                            <rect x="20" y="100" width="360" height="100" fill="white" rx="12" stroke="#e0e0e0" stroke-width="1"/>
-                            <circle cx="45" cy="125" r="12" fill="#ff6b6b"/>
-                            <text x="70" y="120" font-size="14" fill="#999">Son Şeker Ölçümü</text>
-                            <text x="70" y="145" font-size="28" font-weight="bold" fill="#2c3e50">140</text>
-                            <text x="70" y="165" font-size="12" fill="#999">mg/dL - Normal</text>
-                            <circle cx="350" cy="150" r="20" fill="#0066cc"/>
-                            <text x="344" y="158" font-size="18" fill="white" font-weight="bold">+</text>
-                        </svg>
+                        <img src="/dashboard.png" alt="Diasağlık Dashboard" class="device-image">
                     </div>
                     <div class="device-home"></div>
                 </div>
