@@ -1,1 +1,1 @@
-web: python3 -m http.server ${PORT:-3001}
+web: python3 -m http.server ${PORT:-8080}
