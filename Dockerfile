@@ -1,9 +1,11 @@
-FROM python:3.11-slim
+FROM node:18-alpine
 
 WORKDIR /app
 
 COPY . .
 
+RUN npm install -g http-server
+
 EXPOSE 8080
 
-CMD ["python3", "-m", "http.server", "8080"]
+CMD ["http-server", "-p", "8080", "-c-1"]
