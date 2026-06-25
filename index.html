@@ -4,304 +4,334 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diacora Health</title>
-    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="icon" href="/public/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         :root {
-            --teal: #0ea5c9;
-            --teal2: #06b6d4;
-            --teal3: #38bdf8;
-            --teal-dark: #0369a1;
-            --navy: #0f2942;
-            --navy2: #1e3a5f;
-            --white: #ffffff;
-            --gray1: #f8fafc;
-            --gray2: #f1f5f9;
-            --gray3: #e2e8f0;
-            --gray4: #94a3b8;
-            --gray5: #64748b;
-            --text: #1e293b;
-            --green: #16a34a;
-            --red: #dc2626;
-            --orange: #d97706;
+            --teal:#0ea5c9; --teal2:#06b6d4; --teal3:#22d3ee;
+            --blue:#0369a1; --blue2:#0284c7;
+            --navy:#0f2942; --navy2:#1e3a5f;
+            --white:#fff; --gray1:#f8fafc; --gray2:#f1f5f9;
+            --gray3:#e2e8f0; --gray4:#94a3b8; --gray5:#64748b;
+            --text:#1e293b;
+            --green:#16a34a; --red:#dc2626; --orange:#d97706;
         }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--text); background: white; }
-        a { text-decoration: none; color: inherit; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Inter',sans-serif; color:var(--text); background:#fff; overflow-x:hidden; }
+        a { text-decoration:none; color:inherit; }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity:0;
+            transform:translateY(40px);
+            transition:opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity:1;
+            transform:translateY(0);
+        }
+        .reveal-left {
+            opacity:0;
+            transform:translateX(-40px);
+            transition:opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-left.visible { opacity:1; transform:translateX(0); }
+        .reveal-right {
+            opacity:0;
+            transform:translateX(40px);
+            transition:opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-right.visible { opacity:1; transform:translateX(0); }
+        .reveal-delay-1 { transition-delay:0.1s; }
+        .reveal-delay-2 { transition-delay:0.2s; }
+        .reveal-delay-3 { transition-delay:0.3s; }
+        .reveal-delay-4 { transition-delay:0.4s; }
+        .reveal-delay-5 { transition-delay:0.5s; }
+        .reveal-delay-6 { transition-delay:0.6s; }
+        .reveal-delay-7 { transition-delay:0.7s; }
 
         /* ===== NAVBAR ===== */
         .navbar {
-            background: white;
-            border-bottom: 1px solid var(--gray3);
-            padding: 14px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 999;
+            background:#fff;
+            border-bottom:1px solid var(--gray3);
+            padding:14px 48px;
+            display:flex; align-items:center; justify-content:space-between;
+            position:sticky; top:0; z-index:999;
+            transition:box-shadow .3s;
         }
-        .nav-links { display: flex; gap: 32px; }
-        .nav-links a { font-size: 0.9em; color: var(--gray5); font-weight: 500; transition: color .2s; }
-        .nav-links a:hover { color: var(--teal); }
-        .nav-btns { display: flex; gap: 12px; align-items: center; }
+        .navbar.scrolled { box-shadow:0 2px 16px rgba(0,0,0,0.08); }
+        .nav-links { display:flex; gap:32px; }
+        .nav-links a { font-size:0.9em; color:var(--gray5); font-weight:500; transition:color .2s; }
+        .nav-links a:hover { color:var(--teal); }
+        .nav-btns { display:flex; gap:10px; }
         .btn-login {
-            border: 1.5px solid var(--gray3); color: var(--text); padding: 8px 20px;
-            border-radius: 8px; font-size: 0.88em; font-weight: 600; cursor: pointer;
-            background: white; transition: all .2s;
+            border:1.5px solid var(--gray3); color:var(--text); padding:8px 20px;
+            border-radius:8px; font-size:0.88em; font-weight:600;
+            background:#fff; cursor:pointer; transition:all .2s;
         }
-        .btn-login:hover { border-color: var(--teal); color: var(--teal); }
-        .btn-register {
-            background: var(--teal); color: white; padding: 8px 20px;
-            border-radius: 8px; font-size: 0.88em; font-weight: 600; cursor: pointer;
-            border: none; transition: all .2s;
+        .btn-login:hover { border-color:var(--teal); color:var(--teal); }
+        .btn-kayit {
+            background:var(--teal2); color:#fff; padding:8px 20px;
+            border-radius:8px; font-size:0.88em; font-weight:600;
+            border:none; cursor:pointer; transition:all .2s;
         }
-        .btn-register:hover { background: var(--teal-dark); }
+        .btn-kayit:hover { background:var(--blue); }
 
         /* ===== HERO BANNER ===== */
         .hero-banner {
-            background: linear-gradient(135deg, #0369a1 0%, #0ea5c9 40%, #06b6d4 70%, #22d3ee 100%);
-            padding: 40px 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 180px;
+            background:linear-gradient(135deg, #0369a1 0%, #0ea5c9 45%, #06b6d4 75%, #22d3ee 100%);
+            padding:36px 48px;
+            display:flex; align-items:center; justify-content:space-between;
         }
-        .hero-brand { display: flex; align-items: center; gap: 24px; }
-        .hero-logo { width: 110px; height: 110px; border-radius: 16px; object-fit: cover; }
-        .hero-brand-text {}
-        .hero-brand-name { font-size: 3.2em; font-weight: 900; color: white; letter-spacing: -1px; line-height: 1; }
-        .hero-brand-sub { font-size: 1.4em; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 4px; }
-        .hero-brand-tag { font-size: 0.85em; color: rgba(255,255,255,0.7); margin-top: 6px; font-weight: 400; }
-        .hero-ai-text { font-size: 1.4em; font-weight: 700; color: white; letter-spacing: 1px; opacity: 0.9; }
+        .hero-left-brand { display:flex; align-items:center; gap:20px; }
+        .hero-logo {
+            width:100px; height:100px; border-radius:14px;
+            object-fit:cover; background:#fff;
+        }
+        .brand-name { font-size:3em; font-weight:900; color:#fff; letter-spacing:-1px; line-height:1; }
+        .brand-health { font-size:1.3em; font-weight:700; color:rgba(255,255,255,0.9); letter-spacing:6px; margin-top:2px; }
+        .brand-tag { font-size:0.8em; color:rgba(255,255,255,0.7); margin-top:6px; letter-spacing:1px; }
+        .hero-right-text { font-size:1.4em; font-weight:700; color:#fff; letter-spacing:1px; opacity:0.9; }
 
-        /* ===== MAIN CONTENT ===== */
-        .main-section {
-            background: white;
-            padding: 60px 60px 40px;
-        }
+        /* ===== MAIN WHITE SECTION ===== */
+        .main-section { background:#fff; padding:56px 48px 0; }
+
+        .quote-wrap { text-align:center; margin-bottom:56px; }
         .quote-text {
-            font-size: 1.7em;
-            font-weight: 700;
-            font-style: italic;
-            color: var(--text);
-            text-align: center;
-            margin-bottom: 60px;
-            line-height: 1.4;
+            font-size:1.75em; font-weight:700; font-style:italic;
+            color:var(--text); line-height:1.45;
         }
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-        .intro-left {}
-        .intro-left p {
-            font-size: 0.95em;
-            color: var(--gray5);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .intro-left p strong { color: var(--text); }
-        .intro-left p a { color: var(--teal); font-weight: 500; }
-        .intro-btns { display: flex; gap: 12px; margin-top: 28px; }
-        .btn-start {
-            background: var(--teal); color: white; padding: 12px 28px;
-            border-radius: 50px; font-weight: 600; font-size: 0.95em; transition: all .2s;
-        }
-        .btn-start:hover { background: var(--teal-dark); transform: translateY(-1px); }
-        .btn-explore {
-            border: 1.5px solid var(--gray3); color: var(--text); padding: 12px 28px;
-            border-radius: 50px; font-weight: 500; font-size: 0.95em; transition: all .2s;
-        }
-        .btn-explore:hover { border-color: var(--teal); color: var(--teal); }
 
-        /* Phone mockup */
-        .phone-wrap { display: flex; justify-content: center; }
+        .intro-grid {
+            display:grid; grid-template-columns:1fr 1fr;
+            gap:64px; align-items:center; margin-bottom:0;
+        }
+        .intro-text p {
+            font-size:0.95em; color:var(--gray5);
+            line-height:1.8; margin-bottom:0;
+        }
+        .intro-text p strong { color:var(--text); }
+        .intro-text p a { color:var(--teal2); font-weight:500; text-decoration:underline; }
+        .intro-btns { display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+        .btn-basla {
+            background:var(--teal2); color:#fff; padding:12px 28px;
+            border-radius:50px; font-weight:600; font-size:0.95em;
+            transition:all .25s; display:inline-flex; align-items:center; gap:6px;
+        }
+        .btn-basla:hover { background:var(--blue); transform:translateY(-2px); box-shadow:0 6px 20px rgba(6,182,212,.35); }
+        .btn-kesfet {
+            border:1.5px solid var(--gray3); color:var(--text); padding:12px 28px;
+            border-radius:50px; font-weight:500; font-size:0.95em; transition:all .25s;
+        }
+        .btn-kesfet:hover { border-color:var(--teal2); color:var(--teal2); }
+
+        /* Phone */
+        .phone-wrap { display:flex; justify-content:center; position:relative; }
+        .phone-shadow {
+            position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
+            width:200px; height:20px;
+            background:radial-gradient(ellipse, rgba(0,0,0,0.2), transparent 70%);
+        }
+        .phone-float { animation:phoneFloat 4s ease-in-out infinite; }
+        @keyframes phoneFloat {
+            0%,100% { transform:translateY(0); }
+            50% { transform:translateY(-10px); }
+        }
         .phone-outer {
-            width: 260px;
-            background: #1e3a5f;
-            border-radius: 36px;
-            padding: 16px 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            width:268px; background:#1e3a5f;
+            border-radius:36px; padding:14px 10px;
+            box-shadow:0 24px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.06);
         }
         .phone-inner {
-            background: #0f2942;
-            border-radius: 26px;
-            overflow: hidden;
-            padding: 16px;
+            background:#0f2942; border-radius:28px;
+            overflow:hidden; padding:14px;
         }
-        .phone-header {
-            display: flex; align-items: center; gap: 8px;
-            background: #1a3a5c; border-radius: 10px; padding: 8px 12px; margin-bottom: 12px;
+        .phone-top {
+            display:flex; align-items:center; gap:8px;
+            background:#1a3a5c; border-radius:10px;
+            padding:8px 12px; margin-bottom:12px;
         }
-        .phone-logo-mini { width: 24px; height: 24px; border-radius: 4px; object-fit: cover; }
-        .phone-header span { color: white; font-size: 0.8em; font-weight: 600; }
-        .metric-card {
-            background: #0ea5c9;
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 10px;
+        .phone-checkbox {
+            width:18px; height:18px; border:2px solid rgba(255,255,255,0.5);
+            border-radius:4px; background:rgba(255,255,255,0.1);
         }
-        .metric-label { font-size: 0.72em; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
-        .metric-value { font-size: 1.8em; font-weight: 800; color: white; }
-        .metric-value span { font-size: 0.5em; font-weight: 400; }
-        .metric-sub { font-size: 0.7em; color: rgba(255,255,255,0.7); }
-        .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-        .metric-small {
-            background: #1e3a5f; border-radius: 10px; padding: 10px;
+        .phone-top-label { color:#fff; font-size:0.82em; font-weight:600; }
+        .ph-card-main {
+            background:var(--teal2); border-radius:14px; padding:14px 16px; margin-bottom:10px;
         }
-        .metric-small .metric-label { font-size: 0.65em; }
-        .metric-small .metric-value { font-size: 1.1em; }
-        .progress-card {
-            background: #1e3a5f; border-radius: 10px; padding: 10px; margin-bottom: 10px;
+        .ph-card-label { font-size:0.72em; color:rgba(255,255,255,0.85); margin-bottom:6px; }
+        .ph-card-value { font-size:1.9em; font-weight:900; color:#fff; line-height:1; }
+        .ph-card-value small { font-size:0.4em; font-weight:400; }
+        .ph-card-sub { font-size:0.72em; color:rgba(255,255,255,0.8); margin-top:4px; }
+        .ph-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+        .ph-card-small {
+            background:#1e3a5f; border-radius:12px; padding:10px 12px;
         }
-        .progress-bar-bg { background: rgba(255,255,255,0.2); border-radius: 4px; height: 6px; margin: 6px 0; }
-        .progress-bar-fill { background: var(--teal3); height: 6px; border-radius: 4px; width: 62%; }
-        .phone-cta {
-            background: var(--teal); border-radius: 10px; padding: 10px;
-            text-align: center; color: white; font-size: 0.78em; font-weight: 600;
+        .ph-card-small .ph-card-label {
+            display:flex; align-items:center; gap:4px; font-size:0.68em;
+            color:rgba(255,255,255,0.6);
         }
+        .ph-card-small .ph-card-label svg { width:12px; height:12px; stroke:var(--teal3); fill:none; }
+        .ph-card-small .ph-card-value { font-size:1.1em; font-weight:800; }
+        .ph-progress-card {
+            background:#1e3a5f; border-radius:12px; padding:10px 12px; margin-bottom:10px;
+        }
+        .ph-progress-label { font-size:0.7em; color:rgba(255,255,255,0.6); margin-bottom:6px; }
+        .ph-bar-bg { background:rgba(255,255,255,0.15); border-radius:4px; height:6px; }
+        .ph-bar-fill {
+            background:linear-gradient(90deg,var(--teal2),var(--teal3));
+            height:6px; border-radius:4px; width:0%;
+            transition:width 1.5s ease 0.5s;
+        }
+        .ph-progress-val { font-size:0.68em; color:rgba(255,255,255,0.6); text-align:right; margin-top:4px; }
+        .ph-cta {
+            background:var(--teal2); border-radius:10px; padding:10px 14px;
+            text-align:center; color:#fff; font-size:0.8em; font-weight:600;
+            display:flex; align-items:center; justify-content:center; gap:6px;
+            cursor:pointer; transition:background .2s;
+        }
+        .ph-cta:hover { background:var(--blue); }
 
-        /* ===== STATS BAR ===== */
-        .stats-bar {
-            border-top: 1px solid var(--gray3);
-            padding: 28px 60px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+        /* ===== STATS ===== */
+        .stats-row {
+            display:grid; grid-template-columns:repeat(4,1fr);
+            border-top:1px solid var(--gray3);
+            padding:28px 0 0;
+            margin-top:48px;
         }
-        .stat-col { text-align: center; }
-        .stat-num { font-size: 2em; font-weight: 900; color: var(--teal); }
-        .stat-label { font-size: 0.82em; color: var(--gray4); margin-top: 4px; }
+        .stat-col { text-align:center; padding:20px; }
+        .stat-num {
+            font-size:2em; font-weight:900; color:var(--teal2);
+            display:block; line-height:1;
+        }
+        .stat-lbl { font-size:0.82em; color:var(--gray4); margin-top:6px; display:block; }
 
-        /* ===== MODULES SECTION ===== */
+        /* ===== MODULES ===== */
         .modules-section {
-            background: linear-gradient(135deg, #0369a1, #0ea5c9, #06b6d4);
-            padding: 60px;
+            background:linear-gradient(135deg,#0369a1 0%,#0ea5c9 50%,#22d3ee 100%);
+            padding:64px 48px;
         }
-        .modules-title { text-align: center; font-size: 2em; font-weight: 800; color: white; margin-bottom: 8px; }
-        .modules-sub { text-align: center; font-size: 0.95em; color: rgba(255,255,255,0.8); margin-bottom: 40px; }
+        .modules-header { text-align:center; margin-bottom:40px; }
+        .modules-title { font-size:2em; font-weight:800; color:#fff; margin-bottom:8px; }
+        .modules-sub { font-size:0.95em; color:rgba(255,255,255,0.8); }
         .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:16px;
         }
         .mod-card {
-            background: white;
-            border-radius: 14px;
-            padding: 20px;
-            transition: all .2s;
+            background:#fff; border-radius:16px; padding:22px 20px;
+            transition:transform .25s, box-shadow .25s;
+            cursor:default;
         }
-        .mod-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
-        .mod-tag { font-size: 0.68em; color: var(--gray4); font-weight: 600; letter-spacing: 1px; margin-bottom: 10px; }
+        .mod-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.18); }
+        .mod-tag { font-size:0.68em; color:var(--gray4); font-weight:700; letter-spacing:1px; margin-bottom:12px; }
         .mod-icon {
-            width: 40px; height: 40px; border-radius: 10px;
-            background: linear-gradient(135deg, #0ea5c9, #06b6d4);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 12px;
+            width:40px; height:40px; border-radius:10px;
+            background:linear-gradient(135deg,var(--teal),var(--teal2));
+            display:flex; align-items:center; justify-content:center; margin-bottom:14px;
         }
-        .mod-icon svg { width: 20px; height: 20px; stroke: white; fill: none; stroke-width: 2; }
-        .mod-card h3 { font-size: 0.95em; font-weight: 700; margin-bottom: 6px; color: var(--text); }
-        .mod-card p { font-size: 0.78em; color: var(--gray5); line-height: 1.5; }
-        .mod-card.rapor { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); }
-        .mod-card.rapor .mod-tag { color: rgba(255,255,255,0.6); }
-        .mod-card.rapor h3 { color: white; }
-        .mod-card.rapor p { color: rgba(255,255,255,0.7); }
-        .mod-card.rapor .mod-icon { background: rgba(255,255,255,0.2); }
+        .mod-icon svg { width:20px; height:20px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+        .mod-card h3 { font-size:0.95em; font-weight:700; margin-bottom:8px; color:var(--text); }
+        .mod-card p { font-size:0.78em; color:var(--gray5); line-height:1.55; }
+        .mod-card.rapor {
+            background:rgba(255,255,255,0.15);
+            border:1px solid rgba(255,255,255,0.3);
+        }
+        .mod-card.rapor .mod-tag { color:rgba(255,255,255,0.6); }
+        .mod-card.rapor h3 { color:#fff; }
+        .mod-card.rapor p { color:rgba(255,255,255,0.75); }
+        .mod-card.rapor .mod-icon { background:rgba(255,255,255,0.2); }
 
         /* ===== DATA SECTIONS ===== */
-        .data-section { padding: 60px; background: white; }
-        .data-section:nth-child(even) { background: var(--gray1); }
-        .data-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-            max-width: 1100px;
-            margin: 0 auto;
+        .ds { padding:64px 48px; }
+        .ds.alt { background:var(--gray1); }
+        .ds-grid {
+            display:grid; grid-template-columns:1fr 1fr;
+            gap:60px; align-items:start;
+            max-width:1100px; margin:0 auto;
         }
-        .data-grid.reverse { direction: rtl; }
-        .data-grid.reverse > * { direction: ltr; }
+        .ds-text h2 { font-size:1.65em; font-weight:800; color:var(--text); margin-bottom:14px; line-height:1.3; }
+        .ds-text > p { font-size:0.92em; color:var(--gray5); line-height:1.8; margin-bottom:20px; }
+        .ds-bullets { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .ds-bullets li { display:flex; align-items:center; gap:10px; font-size:0.88em; color:var(--gray5); }
+        .ds-bullets li::before { content:'●'; color:var(--teal2); font-size:0.55em; }
 
-        .data-text h2 { font-size: 1.6em; font-weight: 800; color: var(--text); margin-bottom: 14px; line-height: 1.3; }
-        .data-text > p { font-size: 0.9em; color: var(--gray5); line-height: 1.8; margin-bottom: 20px; }
-        .data-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .data-bullets li { display: flex; align-items: center; gap: 10px; font-size: 0.88em; color: var(--gray5); }
-        .data-bullets li::before { content: '●'; color: var(--teal); font-size: 0.6em; }
-
-        /* Data Tables */
-        .data-table-wrap { border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .dt-header {
-            padding: 12px 16px;
-            display: flex; align-items: center; gap: 8px;
-            font-size: 0.85em; font-weight: 700; color: white;
+        /* Table card */
+        .tbl-card { border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.09); }
+        .tbl-head {
+            padding:12px 18px; display:flex; align-items:center; gap:10px;
+            font-size:0.88em; font-weight:700; color:#fff;
         }
-        .dt-header.sugar   { background: linear-gradient(135deg, #ef4444, #dc2626); }
-        .dt-header.insulin { background: linear-gradient(135deg, #06b6d4, #0ea5c9); }
-        .dt-header.bp      { background: linear-gradient(135deg, #10b981, #059669); }
-        .dt-header.exercise{ background: linear-gradient(135deg, #f59e0b, #d97706); }
-
-        .dt-icon { width: 22px; height: 22px; background: rgba(255,255,255,0.25); border-radius: 6px; display:flex;align-items:center;justify-content:center; font-size:0.85em; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        thead th { background: #f8fafc; padding: 10px 14px; text-align: left; font-size: 0.78em; font-weight: 700; color: var(--gray5); border-bottom: 1px solid var(--gray3); }
-        tbody td { padding: 10px 14px; font-size: 0.82em; color: var(--text); border-bottom: 1px solid var(--gray3); }
-        tbody tr:last-child td { border-bottom: none; }
-        tbody tr:hover td { background: var(--gray1); }
-        .st-normal { color: var(--green); font-weight: 600; }
-        .st-high   { color: var(--orange); font-weight: 600; }
-        .st-low    { color: var(--red); font-weight: 600; }
+        .tbl-head.red    { background:linear-gradient(135deg,#ef4444,#dc2626); }
+        .tbl-head.blue   { background:linear-gradient(135deg,#0ea5c9,#0369a1); }
+        .tbl-head.green  { background:linear-gradient(135deg,#10b981,#059669); }
+        .tbl-head.orange { background:linear-gradient(135deg,#f59e0b,#d97706); }
+        .tbl-head-icon { font-size:1.1em; }
+        table { width:100%; border-collapse:collapse; background:#fff; }
+        thead th {
+            background:#f8fafc; padding:10px 14px; text-align:left;
+            font-size:0.78em; font-weight:700; color:var(--gray5);
+            border-bottom:1px solid var(--gray3);
+        }
+        tbody td {
+            padding:10px 14px; font-size:0.83em; color:var(--text);
+            border-bottom:1px solid var(--gray3);
+        }
+        tbody tr:last-child td { border-bottom:none; }
+        tbody tr { transition:background .15s; }
+        tbody tr:hover td { background:var(--gray1); }
+        .st-ok  { color:var(--green); font-weight:600; }
+        .st-hi  { color:var(--orange); font-weight:600; }
+        .st-lo  { color:var(--red); font-weight:600; }
+        .st-skip{ color:var(--orange); font-weight:600; }
 
         /* ===== CTA ===== */
-        .cta-section {
-            padding: 80px 60px;
-            text-align: center;
-            background: white;
-        }
-        .cta-logo { width: 64px; height: 64px; border-radius: 12px; object-fit: cover; margin: 0 auto 24px; }
-        .cta-title { font-size: 2em; font-weight: 800; color: var(--text); margin-bottom: 14px; }
-        .cta-title span { color: var(--teal); }
-        .cta-sub { font-size: 0.95em; color: var(--gray5); margin-bottom: 32px; }
+        .cta-section { padding:80px 48px; text-align:center; background:#fff; }
+        .cta-logo { width:60px; height:60px; border-radius:12px; object-fit:cover; margin:0 auto 24px; }
+        .cta-title { font-size:2.1em; font-weight:800; color:var(--text); margin-bottom:14px; }
+        .cta-title span { color:var(--teal2); }
+        .cta-sub { font-size:0.95em; color:var(--gray5); margin-bottom:32px; }
         .btn-cta {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--teal); color: white; padding: 14px 36px;
-            border-radius: 50px; font-weight: 700; font-size: 1em;
-            transition: all .3s; margin-bottom: 20px;
+            display:inline-flex; align-items:center; gap:8px;
+            background:var(--teal2); color:#fff; padding:14px 36px;
+            border-radius:50px; font-weight:700; font-size:1em;
+            transition:all .3s; margin-bottom:20px;
         }
-        .btn-cta:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,201,0.4); }
-        .cta-tag { font-size: 0.85em; color: var(--gray4); font-style: italic; }
+        .btn-cta:hover { background:var(--blue); transform:translateY(-2px); box-shadow:0 8px 24px rgba(14,165,201,.4); }
+        .cta-italic { font-size:0.88em; color:var(--gray4); font-style:italic; }
 
         /* ===== FOOTER ===== */
-        .footer { background: #0f172a; padding: 24px 60px; text-align: center; }
-        .footer p { font-size: 0.85em; color: rgba(255,255,255,0.4); }
+        .footer { background:#0f172a; padding:22px 48px; text-align:center; }
+        .footer p { font-size:0.85em; color:rgba(255,255,255,0.35); }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .hero-banner { flex-direction: column; gap: 20px; padding: 30px; }
-            .intro-grid { grid-template-columns: 1fr; }
-            .modules-grid { grid-template-columns: repeat(2,1fr); }
-            .data-grid { grid-template-columns: 1fr; }
-            .data-grid.reverse { direction: ltr; }
-            .stats-bar { grid-template-columns: repeat(2,1fr); }
-            .main-section { padding: 40px 24px 20px; }
-            .modules-section, .data-section, .cta-section { padding: 40px 24px; }
-            .navbar { padding: 12px 20px; }
+        @media (max-width:1024px) {
+            .modules-grid { grid-template-columns:repeat(2,1fr); }
+            .intro-grid, .ds-grid { gap:40px; }
         }
-        @media (max-width: 600px) {
-            .modules-grid { grid-template-columns: 1fr; }
-            .hero-brand-name { font-size: 2.2em; }
-            .quote-text { font-size: 1.2em; }
-            .stats-bar { grid-template-columns: repeat(2,1fr); padding: 20px; }
+        @media (max-width:768px) {
+            .navbar, .hero-banner, .main-section, .modules-section, .ds, .cta-section, .footer { padding-left:20px; padding-right:20px; }
+            .intro-grid, .ds-grid { grid-template-columns:1fr; }
+            .hero-banner { flex-direction:column; gap:20px; text-align:center; }
+            .modules-grid { grid-template-columns:1fr 1fr; }
+            .stats-row { grid-template-columns:1fr 1fr; }
+            .brand-name { font-size:2.2em; }
+            .quote-text { font-size:1.3em; }
+        }
+        @media (max-width:480px) {
+            .modules-grid { grid-template-columns:1fr; }
+            .stats-row { grid-template-columns:1fr 1fr; }
+            .intro-btns { flex-direction:column; }
         }
     </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-links">
         <a href="#hakkinda">Hakkında</a>
         <a href="#ozellikler">Özellikler</a>
@@ -309,99 +339,111 @@
     </div>
     <div class="nav-btns">
         <button class="btn-login">Giriş Yap</button>
-        <button class="btn-register">Kayıt Ol</button>
+        <button class="btn-kayit">Kayıt Ol</button>
     </div>
 </nav>
 
 <!-- HERO BANNER -->
-<div class="hero-banner">
-    <div class="hero-brand">
-        <img src="/logo.png" alt="Diacora Logo" class="hero-logo">
-        <div class="hero-brand-text">
-            <div class="hero-brand-name">Diacora</div>
-            <div class="hero-brand-sub">HEALTH</div>
-            <div class="hero-brand-tag">CARING TODAY. SHAPING TOMORROWS.</div>
+<div class="hero-banner" id="hakkinda">
+    <div class="hero-left-brand reveal">
+        <img src="/public/logo.png" alt="Diacora Logo" class="hero-logo">
+        <div>
+            <div class="brand-name">Diacora</div>
+            <div class="brand-health">HEALTH</div>
+            <div class="brand-tag">CARING TODAY. SHAPING TOMORROWS.</div>
         </div>
     </div>
-    <div class="hero-ai-text">Ai.Sağlık İzleme Sistemi</div>
+    <div class="hero-right-text reveal reveal-right">Ai.Sağlık İzleme Sistemi</div>
 </div>
 
 <!-- MAIN SECTION -->
-<div class="main-section" id="hakkinda">
-    <div class="quote-text">
-        Sağlık, sayılardan ibaret değildir. Ama doğru sayılar yaşamı değiştirir.
+<div class="main-section">
+    <div class="quote-wrap reveal">
+        <p class="quote-text">Sağlık, sayılardan ibaret değildir. Ama doğru sayılar yaşamı değiştirir.</p>
     </div>
 
     <div class="intro-grid">
-        <div class="intro-left">
+        <div class="intro-text reveal-left">
             <p>
                 Diacora Health; HbA1c dinamiklerini, postprandiyal glisemik yanıtı, kardiyovasküler biyometrileri ve farmakolojik tedavi uyumunu tek platformda izler. <strong>Tip 1, Tip 2 Diyabet</strong> ve <strong>hipertansiyon</strong> hastalarına özel algoritmalar; günlük ölçümlerinizi klinisyenin anlayacağı <a href="#">kanıta dayalı raporlara</a> dönüştürür.
             </p>
             <div class="intro-btns">
-                <a href="#" class="btn-start">Hemen Başla →</a>
-                <a href="#ozellikler" class="btn-explore">Özellikleri Keşfet</a>
+                <a href="#" class="btn-basla">Hemen Başla →</a>
+                <a href="#ozellikler" class="btn-kesfet">Özellikleri Keşfet</a>
             </div>
         </div>
-        <div class="phone-wrap">
-            <div class="phone-outer">
-                <div class="phone-inner">
-                    <div class="phone-header">
-                        <img src="/logo.png" alt="" class="phone-logo-mini">
-                        <span>Diacora</span>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Kan Şekeri</div>
-                        <div class="metric-value">112 <span>mg/dL</span></div>
-                        <div class="metric-sub">→ Normal aralık</div>
-                    </div>
-                    <div class="metric-row">
-                        <div class="metric-small">
-                            <div class="metric-label">Nabız</div>
-                            <div class="metric-value">72 <span>bpm</span></div>
+
+        <div class="phone-wrap reveal-right">
+            <div class="phone-float">
+                <div class="phone-outer">
+                    <div class="phone-inner">
+                        <div class="phone-top">
+                            <div class="phone-checkbox"></div>
+                            <span class="phone-top-label">Diacora</span>
                         </div>
-                        <div class="metric-small">
-                            <div class="metric-label">Tansiyon</div>
-                            <div class="metric-value">120/80</div>
+                        <div class="ph-card-main">
+                            <div class="ph-card-label">Kan Şekeri</div>
+                            <div class="ph-card-value">112 <small>mg/dL</small></div>
+                            <div class="ph-card-sub">→ Normal aralık</div>
                         </div>
+                        <div class="ph-row">
+                            <div class="ph-card-small">
+                                <div class="ph-card-label">
+                                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                    Nabız
+                                </div>
+                                <div class="ph-card-value">72 <small style="font-size:0.5em;color:rgba(255,255,255,0.6)">bpm</small></div>
+                            </div>
+                            <div class="ph-card-small">
+                                <div class="ph-card-label">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    Tansiyon
+                                </div>
+                                <div class="ph-card-value" style="font-size:1em">120/80</div>
+                            </div>
+                        </div>
+                        <div class="ph-progress-card">
+                            <div class="ph-progress-label">Glisemik İndeks Takibi</div>
+                            <div class="ph-bar-bg"><div class="ph-bar-fill" id="progressBar"></div></div>
+                            <div class="ph-progress-val">62 / 100</div>
+                        </div>
+                        <div class="ph-cta">📋 Veri Gir &amp; Rapor Al</div>
                     </div>
-                    <div class="progress-card">
-                        <div class="metric-label">Glisemik İndeks Takibi</div>
-                        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
-                        <div class="metric-sub" style="text-align:right">62 / 100</div>
-                    </div>
-                    <div class="phone-cta">🗂 Veri Gir &amp; Rapor Al</div>
                 </div>
             </div>
+            <div class="phone-shadow"></div>
         </div>
     </div>
 
-    <!-- STATS BAR -->
-    <div class="stats-bar">
-        <div class="stat-col">
-            <div class="stat-num">7</div>
-            <div class="stat-label">Takip Modülü</div>
+    <!-- STATS -->
+    <div class="stats-row" id="statsRow">
+        <div class="stat-col reveal reveal-delay-1">
+            <span class="stat-num" data-target="7" data-suffix="">0</span>
+            <span class="stat-lbl">Takip Modülü</span>
         </div>
-        <div class="stat-col">
-            <div class="stat-num">7/24</div>
-            <div class="stat-label">Anlık İzleme</div>
+        <div class="stat-col reveal reveal-delay-2">
+            <span class="stat-num" style="color:var(--teal2)">7/24</span>
+            <span class="stat-lbl">Anlık İzleme</span>
         </div>
-        <div class="stat-col">
-            <div class="stat-num">Hekim+</div>
-            <div class="stat-label">Sağlık Personeli</div>
+        <div class="stat-col reveal reveal-delay-3">
+            <span class="stat-num" style="color:var(--teal2)">Hekim+</span>
+            <span class="stat-lbl">Sağlık Personeli</span>
         </div>
-        <div class="stat-col">
-            <div class="stat-num">Otomatik</div>
-            <div class="stat-label">Rapor Üretimi</div>
+        <div class="stat-col reveal reveal-delay-4">
+            <span class="stat-num" style="color:var(--teal2)">Otomatik</span>
+            <span class="stat-lbl">Rapor Üretimi</span>
         </div>
     </div>
 </div>
 
-<!-- MODULES SECTION -->
+<!-- MODULES -->
 <div class="modules-section" id="ozellikler">
-    <div class="modules-title">Diacora Health Modülleri</div>
-    <div class="modules-sub">Hasta odaklı, tıp standartlarında 7 entegre takip sistemi</div>
+    <div class="modules-header reveal">
+        <div class="modules-title">Diacora Health Modülleri</div>
+        <div class="modules-sub">Hasta odaklı, tıp standartlarında 7 entegre takip sistemi</div>
+    </div>
     <div class="modules-grid">
-        <div class="mod-card">
+        <div class="mod-card reveal reveal-delay-1">
             <div class="mod-tag">MODÜL 1</div>
             <div class="mod-icon">
                 <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -409,7 +451,7 @@
             <h3>Şeker Takibi</h3>
             <p>Tip 1 & Tip 2 Diyabet için anlık kan şekeri izleme, glisemik indeks ve dalgalanma analizi</p>
         </div>
-        <div class="mod-card">
+        <div class="mod-card reveal reveal-delay-2">
             <div class="mod-tag">MODÜL 2</div>
             <div class="mod-icon">
                 <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -417,7 +459,7 @@
             <h3>Tansiyon Takibi</h3>
             <p>Sistolik / diastolik basınç ölçümü, nabız takibi, hipertansiyon trend grafikleri</p>
         </div>
-        <div class="mod-card">
+        <div class="mod-card reveal reveal-delay-3">
             <div class="mod-tag">MODÜL 3</div>
             <div class="mod-icon">
                 <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
@@ -425,7 +467,7 @@
             <h3>Diyet & Kalori</h3>
             <p>Yiyecek & içecek takibi, kalori hesabı, glisemik yük, günlük besin öğesi analizi</p>
         </div>
-        <div class="mod-card">
+        <div class="mod-card reveal reveal-delay-4">
             <div class="mod-tag">MODÜL 4</div>
             <div class="mod-icon">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -433,23 +475,23 @@
             <h3>Egzersiz Takibi</h3>
             <p>Koşu, yürüyüş, fitness, step ve diğer aktivitelerin süresi, kalori & adım takibi</p>
         </div>
-        <div class="mod-card">
+        <div class="mod-card reveal reveal-delay-1">
             <div class="mod-tag">MODÜL 5</div>
             <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             </div>
             <h3>İlaç Takibi</h3>
             <p>Düzenli ilaç saatleri, doz hatırlatıcıları, ilaç uyum analizi ve değişken dozlar</p>
         </div>
-        <div class="mod-card">
+        <div class="mod-card reveal reveal-delay-2">
             <div class="mod-tag">MODÜL 6</div>
             <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
             </div>
             <h3>İnsülin & Değişken Doz</h3>
             <p>Bazal ve bolus insülin dozlarınızı kan şekerinize göre kaydedin ve analiz edin</p>
         </div>
-        <div class="mod-card">
+        <div class="mod-card reveal reveal-delay-3">
             <div class="mod-tag">MODÜL 7</div>
             <div class="mod-icon">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -457,7 +499,7 @@
             <h3>Sağlık Personeli Ekranı</h3>
             <p>Hekim ve sağlık personeli için özel panel, hasta verileri ve raporlama</p>
         </div>
-        <div class="mod-card rapor">
+        <div class="mod-card rapor reveal reveal-delay-4">
             <div class="mod-tag">RAPOR</div>
             <div class="mod-icon">
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -468,32 +510,29 @@
     </div>
 </div>
 
-<!-- DATA SECTION 1: KAN ŞEKERİ -->
-<div class="data-section">
-    <div class="data-grid">
-        <div class="data-text">
+<!-- KAN ŞEKERİ -->
+<div class="ds">
+    <div class="ds-grid">
+        <div class="ds-text reveal-left">
             <h2>Kan Şekeri Takip Tablosu</h2>
             <p>Günlük kan şekeri ölçümlerinizi anlık olarak kaydedin. Açlık, tokluk ve düzeltme ölçümlerini takip edin; kritik değerleri anında fark edin.</p>
-            <ul class="data-bullets">
+            <ul class="ds-bullets">
                 <li>Açlık & tokluk ölçümleri</li>
                 <li>Glisemik dalgalanma analizi</li>
                 <li>Yüksek/düşük uyarı sistemi</li>
             </ul>
         </div>
-        <div>
-            <div class="data-table-wrap">
-                <div class="dt-header sugar">
-                    <div class="dt-icon">🩸</div>
-                    Kan Şekeri Takip Tablosu
-                </div>
+        <div class="reveal-right">
+            <div class="tbl-card">
+                <div class="tbl-head red"><span class="tbl-head-icon">🩸</span> Kan Şekeri Takip Tablosu</div>
                 <table>
                     <thead><tr><th>Tarih/Saat</th><th>Ölçüm (mg/dL)</th><th>Durum</th><th>Notlar</th></tr></thead>
                     <tbody>
-                        <tr><td>18.06 — 08:00</td><td><strong>95</strong></td><td><span class="st-normal">Normal</span></td><td>Açlık ölçümü</td></tr>
-                        <tr><td>18.06 — 10:30</td><td><strong>152</strong></td><td><span class="st-high">Yüksek ▲</span></td><td>Kahvaltı sonrası</td></tr>
-                        <tr><td>18.06 — 13:00</td><td><strong>118</strong></td><td><span class="st-normal">Normal</span></td><td>Öğle öncesi</td></tr>
-                        <tr><td>18.06 — 15:00</td><td><strong>78</strong></td><td><span class="st-low">Düşük ▼</span></td><td>İnsülin sonrası</td></tr>
-                        <tr><td>18.06 — 19:00</td><td><strong>134</strong></td><td><span class="st-normal">Normal</span></td><td>Akşam yemeği öncesi</td></tr>
+                        <tr><td>18.06 — 08:00</td><td><b>95</b></td><td><span class="st-ok">Normal</span></td><td>Açlık ölçümü</td></tr>
+                        <tr><td>18.06 — 10:30</td><td><b>152</b></td><td><span class="st-hi">Yüksek ▲</span></td><td>Kahvaltı sonrası</td></tr>
+                        <tr><td>18.06 — 13:00</td><td><b>118</b></td><td><span class="st-ok">Normal</span></td><td>Öğle öncesi</td></tr>
+                        <tr><td>18.06 — 15:00</td><td><b>78</b></td><td><span class="st-lo">Düşük ▼</span></td><td>İnsülin sonrası</td></tr>
+                        <tr><td>18.06 — 19:00</td><td><b>134</b></td><td><span class="st-ok">Normal</span></td><td>Akşam yemeği öncesi</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -501,31 +540,28 @@
     </div>
 </div>
 
-<!-- DATA SECTION 2: İNSÜLİN -->
-<div class="data-section">
-    <div class="data-grid reverse">
-        <div>
-            <div class="data-table-wrap">
-                <div class="dt-header insulin">
-                    <div class="dt-icon">💉</div>
-                    İnsülin & Değişken Doz Takibi
-                </div>
+<!-- İNSÜLİN -->
+<div class="ds alt">
+    <div class="ds-grid">
+        <div class="reveal-left">
+            <div class="tbl-card">
+                <div class="tbl-head blue"><span class="tbl-head-icon">💉</span> İnsülin & Değişken Doz Takibi</div>
                 <table>
                     <thead><tr><th>Saat</th><th>Kan Şekeri</th><th>İnsülin Tipi</th><th>Doz</th><th>Uygulama</th></tr></thead>
                     <tbody>
-                        <tr><td>07:30</td><td>95 mg/dL</td><td>Bazal (Lantus)</td><td><strong>18 Ü</strong></td><td>Karın</td></tr>
-                        <tr><td>08:00</td><td>95 mg/dL</td><td>Bolus (Humalog)</td><td><strong>4 Ü</strong></td><td>Kol</td></tr>
-                        <tr><td>13:00</td><td>152 mg/dL</td><td>Bolus (Humalog)</td><td><strong>6 Ü</strong></td><td>Karın</td></tr>
-                        <tr><td>15:00</td><td>78 mg/dL</td><td>Düzeltme</td><td><strong>0 Ü</strong></td><td><span class="st-high">Atlandı</span></td></tr>
-                        <tr><td>19:00</td><td>134 mg/dL</td><td>Bolus (Humalog)</td><td><strong>5 Ü</strong></td><td>Bacak</td></tr>
+                        <tr><td>07:30</td><td>95 mg/dL</td><td>Bazal (Lantus)</td><td><b>18 Ü</b></td><td>Karın</td></tr>
+                        <tr><td>08:00</td><td>95 mg/dL</td><td>Bolus (Humalog)</td><td><b>4 Ü</b></td><td>Kol</td></tr>
+                        <tr><td>13:00</td><td>152 mg/dL</td><td>Bolus (Humalog)</td><td><b>6 Ü</b></td><td>Karın</td></tr>
+                        <tr><td>15:00</td><td>78 mg/dL</td><td>Düzeltme</td><td><b>0 Ü</b></td><td><span class="st-skip">Atlandı</span></td></tr>
+                        <tr><td>19:00</td><td>134 mg/dL</td><td>Bolus (Humalog)</td><td><b>5 Ü</b></td><td>Bacak</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="data-text">
+        <div class="ds-text reveal-right">
             <h2>İnsülin & Değişken Doz Takibi</h2>
             <p>Bazal ve bolus insülin dozlarınızı kan şekerinize göre kaydedin. Her enjeksiyonun saatini, tipini ve uygulama bölgesini takip edin.</p>
-            <ul class="data-bullets">
+            <ul class="ds-bullets">
                 <li>Bazal / bolus ayrımı</li>
                 <li>Doz & uygulama bölgesi kaydı</li>
                 <li>Kan şekerine bağlı doz takibi</li>
@@ -534,32 +570,29 @@
     </div>
 </div>
 
-<!-- DATA SECTION 3: TANSİYON -->
-<div class="data-section">
-    <div class="data-grid">
-        <div class="data-text">
+<!-- TANSİYON -->
+<div class="ds">
+    <div class="ds-grid">
+        <div class="ds-text reveal-left">
             <h2>Tansiyon & Nabız Takip Tablosu</h2>
             <p>Günlük tansiyon ve nabız ölçümlerinizi kaydedin. Hipertansiyon trendlerini görselleştirin ve anormal değerleri anında tespit edin.</p>
-            <ul class="data-bullets">
+            <ul class="ds-bullets">
                 <li>Sistolik / diastolik takip</li>
                 <li>Nabız izleme</li>
                 <li>Trend grafikleri</li>
             </ul>
         </div>
-        <div>
-            <div class="data-table-wrap">
-                <div class="dt-header bp">
-                    <div class="dt-icon">❤️</div>
-                    Tansiyon & Nabız Takip Tablosu
-                </div>
+        <div class="reveal-right">
+            <div class="tbl-card">
+                <div class="tbl-head green"><span class="tbl-head-icon">❤️</span> Tansiyon & Nabız Takip Tablosu</div>
                 <table>
                     <thead><tr><th>Tarih/Saat</th><th>Sistolik</th><th>Diastolik</th><th>Nabız (bpm)</th><th>Durum</th></tr></thead>
                     <tbody>
-                        <tr><td>18.06 — 08:00</td><td>118</td><td>76</td><td>72</td><td><span class="st-normal">Normal</span></td></tr>
-                        <tr><td>18.06 — 12:00</td><td><strong>135</strong></td><td><strong>88</strong></td><td>80</td><td><span class="st-high">Yüksek ▲</span></td></tr>
-                        <tr><td>18.06 — 16:00</td><td>122</td><td>80</td><td>75</td><td><span class="st-normal">Normal</span></td></tr>
-                        <tr><td>18.06 — 20:00</td><td>128</td><td>82</td><td>78</td><td><span class="st-normal">Normal</span></td></tr>
-                        <tr><td>17.06 — Ort.</td><td>126</td><td>82</td><td>76</td><td><span class="st-normal">Normal</span></td></tr>
+                        <tr><td>18.06 — 08:00</td><td>118</td><td>76</td><td>72</td><td><span class="st-ok">Normal</span></td></tr>
+                        <tr><td>18.06 — 12:00</td><td><b>135</b></td><td><b>88</b></td><td>80</td><td><span class="st-hi">Yüksek ▲</span></td></tr>
+                        <tr><td>18.06 — 16:00</td><td>122</td><td>80</td><td>75</td><td><span class="st-ok">Normal</span></td></tr>
+                        <tr><td>18.06 — 20:00</td><td>128</td><td>82</td><td>78</td><td><span class="st-ok">Normal</span></td></tr>
+                        <tr><td>17.06 — Ort.</td><td>126</td><td>82</td><td>76</td><td><span class="st-ok">Normal</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -567,31 +600,28 @@
     </div>
 </div>
 
-<!-- DATA SECTION 4: EGZERSİZ -->
-<div class="data-section">
-    <div class="data-grid reverse">
-        <div>
-            <div class="data-table-wrap">
-                <div class="dt-header exercise">
-                    <div class="dt-icon">🏃</div>
-                    Egzersiz Takip Tablosu
-                </div>
+<!-- EGZERSİZ -->
+<div class="ds alt">
+    <div class="ds-grid">
+        <div class="reveal-left">
+            <div class="tbl-card">
+                <div class="tbl-head orange"><span class="tbl-head-icon">🏃</span> Egzersiz Takip Tablosu</div>
                 <table>
                     <thead><tr><th>Tarih</th><th>Aktivite</th><th>Süre</th><th>Mesafe/Adım</th><th>Kalori</th></tr></thead>
                     <tbody>
-                        <tr><td>18.06</td><td>Yürüyüş</td><td>35 dk</td><td>3.2 km / 4.800 adım</td><td><strong class="st-normal">142 kcal</strong></td></tr>
-                        <tr><td>18.06</td><td>Fitness</td><td>45 dk</td><td>— / —</td><td><strong class="st-normal">310 kcal</strong></td></tr>
-                        <tr><td>17.06</td><td>Koşu</td><td>28 dk</td><td>4.5 km / 6.200 adım</td><td><strong class="st-normal">280 kcal</strong></td></tr>
-                        <tr><td>17.06</td><td>Step</td><td>20 dk</td><td>— / 2.400 adım</td><td><strong class="st-normal">95 kcal</strong></td></tr>
-                        <tr><td>16.06</td><td>Yürüyüş</td><td>50 dk</td><td>4.8 km / 7.100 adım</td><td><strong class="st-normal">210 kcal</strong></td></tr>
+                        <tr><td>18.06</td><td>Yürüyüş</td><td>35 dk</td><td>3.2 km / 4.800 adım</td><td><b class="st-ok">142 kcal</b></td></tr>
+                        <tr><td>18.06</td><td>Fitness</td><td>45 dk</td><td>— / —</td><td><b class="st-ok">310 kcal</b></td></tr>
+                        <tr><td>17.06</td><td>Koşu</td><td>28 dk</td><td>4.5 km / 6.200 adım</td><td><b class="st-ok">280 kcal</b></td></tr>
+                        <tr><td>17.06</td><td>Step</td><td>20 dk</td><td>— / 2.400 adım</td><td><b class="st-ok">95 kcal</b></td></tr>
+                        <tr><td>16.06</td><td>Yürüyüş</td><td>50 dk</td><td>4.8 km / 7.100 adım</td><td><b class="st-ok">210 kcal</b></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="data-text">
+        <div class="ds-text reveal-right">
             <h2>Egzersiz Takip Tablosu</h2>
             <p>Yürüyüş, koşu, fitness ve diğer aktivitelerinizi kaydedin. Harcanan kalori, adım sayısı ve mesafeyi otomatik olarak hesaplayın.</p>
-            <ul class="data-bullets">
+            <ul class="ds-bullets">
                 <li>Aktivite türü & süresi</li>
                 <li>Kalori & adım hesabı</li>
                 <li>Haftalık egzersiz özeti</li>
@@ -600,13 +630,15 @@
     </div>
 </div>
 
-<!-- CTA SECTION -->
+<!-- CTA -->
 <div class="cta-section" id="iletisim">
-    <img src="/logo.png" alt="Diacora" class="cta-logo">
-    <div class="cta-title">Sağlığınızın kontrolü <span>sizin elinizde.</span></div>
-    <div class="cta-sub">Hemen kaydolun, verilerinizi girin ve hekiminizle anlamlı verilerle buluşun.</div>
-    <a href="#" class="btn-cta">Ücretsiz Başla →</a>
-    <div class="cta-tag">"Caring Today. Shaping Tomorrows."</div>
+    <img src="/public/logo.png" alt="Diacora" class="cta-logo reveal">
+    <div class="cta-title reveal">Sağlığınızın kontrolü <span>sizin elinizde.</span></div>
+    <div class="cta-sub reveal">Hemen kaydolun, verilerinizi girin ve hekiminizle anlamlı verilerle buluşun.</div>
+    <div class="reveal">
+        <a href="#" class="btn-cta">Ücretsiz Başla →</a>
+    </div>
+    <div class="cta-italic reveal">"Caring Today. Shaping Tomorrows."</div>
 </div>
 
 <!-- FOOTER -->
@@ -614,5 +646,66 @@
     <p>© 2025 Diacora Health. Tüm hakları saklıdır.</p>
 </footer>
 
+<script>
+// ===== SCROLL REVEAL =====
+const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+// ===== COUNTER ANIMATION =====
+function animateCounter(el, target) {
+    let start = 0;
+    const duration = 1500;
+    const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('[data-target]');
+            counters.forEach(c => animateCounter(c, parseInt(c.dataset.target)));
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+const statsRow = document.getElementById('statsRow');
+if (statsRow) statsObserver.observe(statsRow);
+
+// ===== PROGRESS BAR ANIMATION =====
+const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            document.getElementById('progressBar').style.width = '62%';
+            progressObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+const pb = document.getElementById('progressBar');
+if (pb) progressObserver.observe(pb);
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// Hero banner öğeleri hemen görünür yap
+document.querySelectorAll('.hero-banner .reveal, .hero-banner .reveal-right').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 100);
+});
+</script>
 </body>
 </html>
