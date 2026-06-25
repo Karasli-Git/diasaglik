@@ -210,40 +210,37 @@
 
         /* ===== MODULES ===== */
         .modules-section {
-            background:linear-gradient(135deg,#0369a1 0%,#0ea5c9 50%,#22d3ee 100%);
+            background: #2785C0;
             padding:64px 48px;
         }
         .modules-header { text-align:center; margin-bottom:40px; }
         .modules-title { font-size:2em; font-weight:800; color:#fff; margin-bottom:8px; }
-        .modules-sub { font-size:0.95em; color:rgba(255,255,255,0.8); }
+        .modules-sub { font-size:0.95em; color:rgba(255,255,255,0.85); }
         .modules-grid {
             display:grid;
             grid-template-columns:repeat(4,1fr);
-            gap:16px;
+            gap:18px;
         }
         .mod-card {
-            background:#fff; border-radius:16px; padding:22px 20px;
-            transition:transform .25s, box-shadow .25s;
+            background:rgba(0,0,0,0.18);
+            border-radius:20px;
+            padding:22px 20px;
+            transition:transform .25s, background .25s;
             cursor:default;
+            position:relative;
         }
-        .mod-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.18); }
-        .mod-tag { font-size:0.68em; color:var(--gray4); font-weight:700; letter-spacing:1px; margin-bottom:12px; }
+        .mod-card:hover { transform:translateY(-4px); background:rgba(0,0,0,0.28); }
+        .mod-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+        .mod-tag { font-size:0.68em; color:rgba(255,255,255,0.55); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
         .mod-icon {
-            width:40px; height:40px; border-radius:10px;
-            background:linear-gradient(135deg,var(--teal),var(--teal2));
-            display:flex; align-items:center; justify-content:center; margin-bottom:14px;
-        }
-        .mod-icon svg { width:20px; height:20px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-        .mod-card h3 { font-size:0.95em; font-weight:700; margin-bottom:8px; color:var(--text); }
-        .mod-card p { font-size:0.78em; color:var(--gray5); line-height:1.55; }
-        .mod-card.rapor {
+            width:38px; height:38px; border-radius:50%;
             background:rgba(255,255,255,0.15);
-            border:1px solid rgba(255,255,255,0.3);
+            display:flex; align-items:center; justify-content:center;
         }
-        .mod-card.rapor .mod-tag { color:rgba(255,255,255,0.6); }
-        .mod-card.rapor h3 { color:#fff; }
-        .mod-card.rapor p { color:rgba(255,255,255,0.75); }
-        .mod-card.rapor .mod-icon { background:rgba(255,255,255,0.2); }
+        .mod-icon svg { width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+        .mod-card h3 { font-size:1em; font-weight:700; margin-bottom:8px; color:#fff; }
+        .mod-card p { font-size:0.8em; color:rgba(255,255,255,0.75); line-height:1.55; }
+        /* rapor kartı aynı stilde, tümü zaten aynı */
 
         /* ===== DATA SECTIONS ===== */
         .ds { padding:64px 48px; }
@@ -443,70 +440,79 @@
         <div class="modules-sub">Hasta odaklı, tıp standartlarında 7 entegre takip sistemi</div>
     </div>
     <div class="modules-grid">
+
         <div class="mod-card reveal reveal-delay-1">
-            <div class="mod-tag">MODÜL 1</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                <div class="mod-tag">MODÜL 1</div>
             </div>
             <h3>Şeker Takibi</h3>
             <p>Tip 1 & Tip 2 Diyabet için anlık kan şekeri izleme, glisemik indeks ve dalgalanma analizi</p>
         </div>
+
         <div class="mod-card reveal reveal-delay-2">
-            <div class="mod-tag">MODÜL 2</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div class="mod-tag">MODÜL 2</div>
             </div>
             <h3>Tansiyon Takibi</h3>
             <p>Sistolik / diastolik basınç ölçümü, nabız takibi, hipertansiyon trend grafikleri</p>
         </div>
+
         <div class="mod-card reveal reveal-delay-3">
-            <div class="mod-tag">MODÜL 3</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+                <div class="mod-tag">MODÜL 3</div>
             </div>
             <h3>Diyet & Kalori</h3>
             <p>Yiyecek & içecek takibi, kalori hesabı, glisemik yük, günlük besin öğesi analizi</p>
         </div>
+
         <div class="mod-card reveal reveal-delay-4">
-            <div class="mod-tag">MODÜL 4</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="mod-tag">MODÜL 4</div>
             </div>
             <h3>Egzersiz Takibi</h3>
             <p>Koşu, yürüyüş, fitness, step ve diğer aktivitelerin süresi, kalori & adım takibi</p>
         </div>
+
         <div class="mod-card reveal reveal-delay-1">
-            <div class="mod-tag">MODÜL 5</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div class="mod-tag">MODÜL 5</div>
             </div>
             <h3>İlaç Takibi</h3>
             <p>Düzenli ilaç saatleri, doz hatırlatıcıları, ilaç uyum analizi ve değişken dozlar</p>
         </div>
+
         <div class="mod-card reveal reveal-delay-2">
-            <div class="mod-tag">MODÜL 6</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+                <div class="mod-tag">MODÜL 6</div>
             </div>
             <h3>İnsülin & Değişken Doz</h3>
             <p>Bazal ve bolus insülin dozlarınızı kan şekerinize göre kaydedin ve analiz edin</p>
         </div>
+
         <div class="mod-card reveal reveal-delay-3">
-            <div class="mod-tag">MODÜL 7</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <div class="mod-tag">MODÜL 7</div>
             </div>
             <h3>Sağlık Personeli Ekranı</h3>
-            <p>Hekim ve sağlık personeli için özel panel, hasta verileri ve raporlama</p>
+            <p>Hekim & hemşire paneli: hasta verilerini inceleme, notlar ekleme ve takip tabloları</p>
         </div>
-        <div class="mod-card rapor reveal reveal-delay-4">
-            <div class="mod-tag">RAPOR</div>
-            <div class="mod-icon">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+
+        <div class="mod-card reveal reveal-delay-4">
+            <div class="mod-card-top">
+                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                <div class="mod-tag">RAPOR</div>
             </div>
             <h3>Otomatik Raporlama</h3>
-            <p>Tüm modüllerin verilerinden hekim entegre PDF raporları ve takip tabloları</p>
+            <p>Tüm modüllerin verilerinden hekim entegre PDF raporu ve takip tablolarının üretimi</p>
         </div>
+
     </div>
 </div>
 
