@@ -3,729 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Diasağlık - Diyabet ve Hipertansiyon Yönetimi">
-    <title>Diasağlık | Caring Today. Shaping Tomorrows.</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Diacora Health</title>
+    <link rel="icon" href="/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --teal: #0ea5c9;
+            --teal2: #06b6d4;
+            --teal3: #38bdf8;
+            --teal-dark: #0369a1;
+            --navy: #0f2942;
+            --navy2: #1e3a5f;
+            --white: #ffffff;
+            --gray1: #f8fafc;
+            --gray2: #f1f5f9;
+            --gray3: #e2e8f0;
+            --gray4: #94a3b8;
+            --gray5: #64748b;
+            --text: #1e293b;
+            --green: #16a34a;
+            --red: #dc2626;
+            --orange: #d97706;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: white; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: white;
+            border-bottom: 1px solid var(--gray3);
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { font-size: 0.9em; color: var(--gray5); font-weight: 500; transition: color .2s; }
+        .nav-links a:hover { color: var(--teal); }
+        .nav-btns { display: flex; gap: 12px; align-items: center; }
+        .btn-login {
+            border: 1.5px solid var(--gray3); color: var(--text); padding: 8px 20px;
+            border-radius: 8px; font-size: 0.88em; font-weight: 600; cursor: pointer;
+            background: white; transition: all .2s;
+        }
+        .btn-login:hover { border-color: var(--teal); color: var(--teal); }
+        .btn-register {
+            background: var(--teal); color: white; padding: 8px 20px;
+            border-radius: 8px; font-size: 0.88em; font-weight: 600; cursor: pointer;
+            border: none; transition: all .2s;
+        }
+        .btn-register:hover { background: var(--teal-dark); }
+
+        /* ===== HERO BANNER ===== */
+        .hero-banner {
+            background: linear-gradient(135deg, #0369a1 0%, #0ea5c9 40%, #06b6d4 70%, #22d3ee 100%);
+            padding: 40px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 180px;
+        }
+        .hero-brand { display: flex; align-items: center; gap: 24px; }
+        .hero-logo { width: 110px; height: 110px; border-radius: 16px; object-fit: cover; }
+        .hero-brand-text {}
+        .hero-brand-name { font-size: 3.2em; font-weight: 900; color: white; letter-spacing: -1px; line-height: 1; }
+        .hero-brand-sub { font-size: 1.4em; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 4px; }
+        .hero-brand-tag { font-size: 0.85em; color: rgba(255,255,255,0.7); margin-top: 6px; font-weight: 400; }
+        .hero-ai-text { font-size: 1.4em; font-weight: 700; color: white; letter-spacing: 1px; opacity: 0.9; }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-section {
+            background: white;
+            padding: 60px 60px 40px;
+        }
+        .quote-text {
+            font-size: 1.7em;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--text);
+            text-align: center;
+            margin-bottom: 60px;
+            line-height: 1.4;
+        }
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .intro-left {}
+        .intro-left p {
+            font-size: 0.95em;
+            color: var(--gray5);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .intro-left p strong { color: var(--text); }
+        .intro-left p a { color: var(--teal); font-weight: 500; }
+        .intro-btns { display: flex; gap: 12px; margin-top: 28px; }
+        .btn-start {
+            background: var(--teal); color: white; padding: 12px 28px;
+            border-radius: 50px; font-weight: 600; font-size: 0.95em; transition: all .2s;
+        }
+        .btn-start:hover { background: var(--teal-dark); transform: translateY(-1px); }
+        .btn-explore {
+            border: 1.5px solid var(--gray3); color: var(--text); padding: 12px 28px;
+            border-radius: 50px; font-weight: 500; font-size: 0.95em; transition: all .2s;
+        }
+        .btn-explore:hover { border-color: var(--teal); color: var(--teal); }
+
+        /* Phone mockup */
+        .phone-wrap { display: flex; justify-content: center; }
+        .phone-outer {
+            width: 260px;
+            background: #1e3a5f;
+            border-radius: 36px;
+            padding: 16px 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .phone-inner {
+            background: #0f2942;
+            border-radius: 26px;
+            overflow: hidden;
+            padding: 16px;
+        }
+        .phone-header {
+            display: flex; align-items: center; gap: 8px;
+            background: #1a3a5c; border-radius: 10px; padding: 8px 12px; margin-bottom: 12px;
+        }
+        .phone-logo-mini { width: 24px; height: 24px; border-radius: 4px; object-fit: cover; }
+        .phone-header span { color: white; font-size: 0.8em; font-weight: 600; }
+        .metric-card {
+            background: #0ea5c9;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+        .metric-label { font-size: 0.72em; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+        .metric-value { font-size: 1.8em; font-weight: 800; color: white; }
+        .metric-value span { font-size: 0.5em; font-weight: 400; }
+        .metric-sub { font-size: 0.7em; color: rgba(255,255,255,0.7); }
+        .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+        .metric-small {
+            background: #1e3a5f; border-radius: 10px; padding: 10px;
+        }
+        .metric-small .metric-label { font-size: 0.65em; }
+        .metric-small .metric-value { font-size: 1.1em; }
+        .progress-card {
+            background: #1e3a5f; border-radius: 10px; padding: 10px; margin-bottom: 10px;
+        }
+        .progress-bar-bg { background: rgba(255,255,255,0.2); border-radius: 4px; height: 6px; margin: 6px 0; }
+        .progress-bar-fill { background: var(--teal3); height: 6px; border-radius: 4px; width: 62%; }
+        .phone-cta {
+            background: var(--teal); border-radius: 10px; padding: 10px;
+            text-align: center; color: white; font-size: 0.78em; font-weight: 600;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            border-top: 1px solid var(--gray3);
+            padding: 28px 60px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .stat-col { text-align: center; }
+        .stat-num { font-size: 2em; font-weight: 900; color: var(--teal); }
+        .stat-label { font-size: 0.82em; color: var(--gray4); margin-top: 4px; }
+
+        /* ===== MODULES SECTION ===== */
+        .modules-section {
+            background: linear-gradient(135deg, #0369a1, #0ea5c9, #06b6d4);
+            padding: 60px;
+        }
+        .modules-title { text-align: center; font-size: 2em; font-weight: 800; color: white; margin-bottom: 8px; }
+        .modules-sub { text-align: center; font-size: 0.95em; color: rgba(255,255,255,0.8); margin-bottom: 40px; }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .mod-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            transition: all .2s;
+        }
+        .mod-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .mod-tag { font-size: 0.68em; color: var(--gray4); font-weight: 600; letter-spacing: 1px; margin-bottom: 10px; }
+        .mod-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: linear-gradient(135deg, #0ea5c9, #06b6d4);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 12px;
+        }
+        .mod-icon svg { width: 20px; height: 20px; stroke: white; fill: none; stroke-width: 2; }
+        .mod-card h3 { font-size: 0.95em; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+        .mod-card p { font-size: 0.78em; color: var(--gray5); line-height: 1.5; }
+        .mod-card.rapor { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); }
+        .mod-card.rapor .mod-tag { color: rgba(255,255,255,0.6); }
+        .mod-card.rapor h3 { color: white; }
+        .mod-card.rapor p { color: rgba(255,255,255,0.7); }
+        .mod-card.rapor .mod-icon { background: rgba(255,255,255,0.2); }
+
+        /* ===== DATA SECTIONS ===== */
+        .data-section { padding: 60px; background: white; }
+        .data-section:nth-child(even) { background: var(--gray1); }
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .data-grid.reverse { direction: rtl; }
+        .data-grid.reverse > * { direction: ltr; }
+
+        .data-text h2 { font-size: 1.6em; font-weight: 800; color: var(--text); margin-bottom: 14px; line-height: 1.3; }
+        .data-text > p { font-size: 0.9em; color: var(--gray5); line-height: 1.8; margin-bottom: 20px; }
+        .data-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .data-bullets li { display: flex; align-items: center; gap: 10px; font-size: 0.88em; color: var(--gray5); }
+        .data-bullets li::before { content: '●'; color: var(--teal); font-size: 0.6em; }
+
+        /* Data Tables */
+        .data-table-wrap { border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .dt-header {
+            padding: 12px 16px;
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.85em; font-weight: 700; color: white;
+        }
+        .dt-header.sugar   { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .dt-header.insulin { background: linear-gradient(135deg, #06b6d4, #0ea5c9); }
+        .dt-header.bp      { background: linear-gradient(135deg, #10b981, #059669); }
+        .dt-header.exercise{ background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+        .dt-icon { width: 22px; height: 22px; background: rgba(255,255,255,0.25); border-radius: 6px; display:flex;align-items:center;justify-content:center; font-size:0.85em; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        thead th { background: #f8fafc; padding: 10px 14px; text-align: left; font-size: 0.78em; font-weight: 700; color: var(--gray5); border-bottom: 1px solid var(--gray3); }
+        tbody td { padding: 10px 14px; font-size: 0.82em; color: var(--text); border-bottom: 1px solid var(--gray3); }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover td { background: var(--gray1); }
+        .st-normal { color: var(--green); font-weight: 600; }
+        .st-high   { color: var(--orange); font-weight: 600; }
+        .st-low    { color: var(--red); font-weight: 600; }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            padding: 80px 60px;
+            text-align: center;
+            background: white;
+        }
+        .cta-logo { width: 64px; height: 64px; border-radius: 12px; object-fit: cover; margin: 0 auto 24px; }
+        .cta-title { font-size: 2em; font-weight: 800; color: var(--text); margin-bottom: 14px; }
+        .cta-title span { color: var(--teal); }
+        .cta-sub { font-size: 0.95em; color: var(--gray5); margin-bottom: 32px; }
+        .btn-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--teal); color: white; padding: 14px 36px;
+            border-radius: 50px; font-weight: 700; font-size: 1em;
+            transition: all .3s; margin-bottom: 20px;
+        }
+        .btn-cta:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,201,0.4); }
+        .cta-tag { font-size: 0.85em; color: var(--gray4); font-style: italic; }
+
+        /* ===== FOOTER ===== */
+        .footer { background: #0f172a; padding: 24px 60px; text-align: center; }
+        .footer p { font-size: 0.85em; color: rgba(255,255,255,0.4); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero-banner { flex-direction: column; gap: 20px; padding: 30px; }
+            .intro-grid { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: repeat(2,1fr); }
+            .data-grid { grid-template-columns: 1fr; }
+            .data-grid.reverse { direction: ltr; }
+            .stats-bar { grid-template-columns: repeat(2,1fr); }
+            .main-section { padding: 40px 24px 20px; }
+            .modules-section, .data-section, .cta-section { padding: 40px 24px; }
+            .navbar { padding: 12px 20px; }
+        }
+        @media (max-width: 600px) {
+            .modules-grid { grid-template-columns: 1fr; }
+            .hero-brand-name { font-size: 2.2em; }
+            .quote-text { font-size: 1.2em; }
+            .stats-bar { grid-template-columns: repeat(2,1fr); padding: 20px; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ==================== NAVBAR ==================== -->
-<nav class="navbar" id="navbar">
-    <div class="nav-container">
-        <div class="nav-logo">
-            <div class="logo-mark">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                    <circle cx="18" cy="18" r="18" fill="#0066cc"/>
-                    <path d="M18 8 L22 14 L28 14 L23 19 L25 26 L18 22 L11 26 L13 19 L8 14 L14 14 Z" fill="white" opacity="0.9"/>
-                    <circle cx="18" cy="18" r="4" fill="#00d4aa"/>
-                </svg>
-            </div>
-            <div class="logo-text-group">
-                <span class="logo-main">Diasağlık</span>
-                <span class="logo-sub">by Diacora Health</span>
-            </div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#moduller">Modüller</a></li>
-            <li><a href="#nasil-calisir">Nasıl Çalışır</a></li>
-            <li><a href="#raporlar">Raporlama</a></li>
-            <li><a href="#hakkimizda">Hakkımızda</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
-        </ul>
-        <div class="nav-actions">
-            <a href="#" class="btn-outline">Giriş Yap</a>
-            <a href="#" class="btn-primary">Ücretsiz Başla</a>
-        </div>
-        <button class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </button>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-links">
+        <a href="#hakkinda">Hakkında</a>
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#iletisim">İletişim</a>
+    </div>
+    <div class="nav-btns">
+        <button class="btn-login">Giriş Yap</button>
+        <button class="btn-register">Kayıt Ol</button>
     </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
-<section class="hero">
-    <div class="hero-bg">
-        <div class="hero-grid"></div>
+<!-- HERO BANNER -->
+<div class="hero-banner">
+    <div class="hero-brand">
+        <img src="/logo.png" alt="Diacora Logo" class="hero-logo">
+        <div class="hero-brand-text">
+            <div class="hero-brand-name">Diacora</div>
+            <div class="hero-brand-sub">HEALTH</div>
+            <div class="hero-brand-tag">CARING TODAY. SHAPING TOMORROWS.</div>
+        </div>
     </div>
-    <div class="hero-container">
-        <div class="hero-left">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Yapay Zeka Destekli Sağlık Platformu
-            </div>
-            <h1 class="hero-title">
-                <span class="title-line">Sağlığınızın</span>
-                <span class="title-line gradient-text">Kontrolü</span>
-                <span class="title-line">Sizin Elinizde</span>
-            </h1>
-            <p class="hero-subtitle">
-                Diacora Health; HbA1c dinamiklerini, postprandiyal glisemik yanıtı, kardiyovasküler biyometrileri ve farmakolojik tedavi uyumunu tek platformda izler.
+    <div class="hero-ai-text">Ai.Sağlık İzleme Sistemi</div>
+</div>
+
+<!-- MAIN SECTION -->
+<div class="main-section" id="hakkinda">
+    <div class="quote-text">
+        Sağlık, sayılardan ibaret değildir. Ama doğru sayılar yaşamı değiştirir.
+    </div>
+
+    <div class="intro-grid">
+        <div class="intro-left">
+            <p>
+                Diacora Health; HbA1c dinamiklerini, postprandiyal glisemik yanıtı, kardiyovasküler biyometrileri ve farmakolojik tedavi uyumunu tek platformda izler. <strong>Tip 1, Tip 2 Diyabet</strong> ve <strong>hipertansiyon</strong> hastalarına özel algoritmalar; günlük ölçümlerinizi klinisyenin anlayacağı <a href="#">kanıta dayalı raporlara</a> dönüştürür.
             </p>
-            <div class="hero-cta">
-                <a href="#" class="btn-hero-primary">Ücretsiz Başla</a>
-                <a href="#moduller" class="btn-hero-outline">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
-                    </svg>
-                    Modülleri Keşfet
-                </a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">7</span>
-                    <span class="stat-label">Takip Modülü</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">7/24</span>
-                    <span class="stat-label">Anlık İzleme</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Güvenli</span>
-                </div>
+            <div class="intro-btns">
+                <a href="#" class="btn-start">Hemen Başla →</a>
+                <a href="#ozellikler" class="btn-explore">Özellikleri Keşfet</a>
             </div>
         </div>
-        <div class="hero-right">
-            <div class="hero-phone-wrap">
-                <div class="phone-glow"></div>
-                <div class="phone-mockup">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                        <img src="/dashboard.png" alt="Diasağlık Dashboard" class="phone-img">
+        <div class="phone-wrap">
+            <div class="phone-outer">
+                <div class="phone-inner">
+                    <div class="phone-header">
+                        <img src="/logo.png" alt="" class="phone-logo-mini">
+                        <span>Diacora</span>
                     </div>
-                    <div class="phone-bar"></div>
-                </div>
-                <!-- Floating cards -->
-                <div class="float-card card-sugar">
-                    <div class="fc-icon">🩸</div>
-                    <div class="fc-info">
-                        <span class="fc-val">112 <small>mg/dL</small></span>
-                        <span class="fc-label">Kan Şekeri</span>
+                    <div class="metric-card">
+                        <div class="metric-label">Kan Şekeri</div>
+                        <div class="metric-value">112 <span>mg/dL</span></div>
+                        <div class="metric-sub">→ Normal aralık</div>
                     </div>
-                    <span class="fc-badge normal">Normal</span>
-                </div>
-                <div class="float-card card-bp">
-                    <div class="fc-icon">❤️</div>
-                    <div class="fc-info">
-                        <span class="fc-val">120/80</span>
-                        <span class="fc-label">Tansiyon</span>
+                    <div class="metric-row">
+                        <div class="metric-small">
+                            <div class="metric-label">Nabız</div>
+                            <div class="metric-value">72 <span>bpm</span></div>
+                        </div>
+                        <div class="metric-small">
+                            <div class="metric-label">Tansiyon</div>
+                            <div class="metric-value">120/80</div>
+                        </div>
                     </div>
-                    <span class="fc-badge normal">Normal</span>
-                </div>
-                <div class="float-card card-pulse">
-                    <div class="fc-icon">💓</div>
-                    <div class="fc-info">
-                        <span class="fc-val">72 <small>bpm</small></span>
-                        <span class="fc-label">Nabız</span>
+                    <div class="progress-card">
+                        <div class="metric-label">Glisemik İndeks Takibi</div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+                        <div class="metric-sub" style="text-align:right">62 / 100</div>
                     </div>
-                    <span class="fc-badge normal">Normal</span>
+                    <div class="phone-cta">🗂 Veri Gir &amp; Rapor Al</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="hero-tagline">
-        <p>Caring Today. <strong>Shaping Tomorrows.</strong></p>
-    </div>
-</section>
 
-<!-- ==================== ÖZELLIKLER BAR ==================== -->
-<section class="features-bar">
-    <div class="container">
-        <div class="features-bar-grid">
-            <div class="fb-item">
-                <span class="fb-icon">🎯</span>
-                <span>Tip 1 & Tip 2 Diyabet</span>
-            </div>
-            <div class="fb-item">
-                <span class="fb-icon">💊</span>
-                <span>İlaç & İnsülin Takibi</span>
-            </div>
-            <div class="fb-item">
-                <span class="fb-icon">📊</span>
-                <span>Otomatik PDF Rapor</span>
-            </div>
-            <div class="fb-item">
-                <span class="fb-icon">👨‍⚕️</span>
-                <span>Hekim Entegrasyonu</span>
-            </div>
-            <div class="fb-item">
-                <span class="fb-icon">📱</span>
-                <span>iOS Senkronizasyon</span>
-            </div>
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stat-col">
+            <div class="stat-num">7</div>
+            <div class="stat-label">Takip Modülü</div>
+        </div>
+        <div class="stat-col">
+            <div class="stat-num">7/24</div>
+            <div class="stat-label">Anlık İzleme</div>
+        </div>
+        <div class="stat-col">
+            <div class="stat-num">Hekim+</div>
+            <div class="stat-label">Sağlık Personeli</div>
+        </div>
+        <div class="stat-col">
+            <div class="stat-num">Otomatik</div>
+            <div class="stat-label">Rapor Üretimi</div>
         </div>
     </div>
-</section>
+</div>
 
-<!-- ==================== 7 MODÜL ==================== -->
-<section class="modules-section" id="moduller">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">7 Entegre Modül</span>
-            <h2>Hasta Odaklı, Tıp Standartlarında<br>Takip Sistemi</h2>
-            <p>Her modül birbirine entegre çalışır, bütüncül bir sağlık tablosu oluşturur.</p>
+<!-- MODULES SECTION -->
+<div class="modules-section" id="ozellikler">
+    <div class="modules-title">Diacora Health Modülleri</div>
+    <div class="modules-sub">Hasta odaklı, tıp standartlarında 7 entegre takip sistemi</div>
+    <div class="modules-grid">
+        <div class="mod-card">
+            <div class="mod-tag">MODÜL 1</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Şeker Takibi</h3>
+            <p>Tip 1 & Tip 2 Diyabet için anlık kan şekeri izleme, glisemik indeks ve dalgalanma analizi</p>
         </div>
-        <div class="modules-grid">
-
-            <div class="module-card featured">
-                <div class="module-num">01</div>
-                <div class="module-icon-wrap sugar">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-                        <path d="M8 12h8M12 8v8"/>
-                    </svg>
-                </div>
-                <h3>Şeker Takibi</h3>
-                <p>HbA1c dinamikleri, açlık & tokluk kan şekeri, postprandiyal glisemik yanıt takibi</p>
-                <div class="module-metric">
-                    <span class="metric-val">112</span>
-                    <span class="metric-unit">mg/dL</span>
-                    <span class="metric-status good">● Normal</span>
-                </div>
+        <div class="mod-card">
+            <div class="mod-tag">MODÜL 2</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
-
-            <div class="module-card">
-                <div class="module-num">02</div>
-                <div class="module-icon-wrap bp">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                    </svg>
-                </div>
-                <h3>Tansiyon Takibi</h3>
-                <p>Sistolik/diastolik izleme, kardiyovasküler biyometri analizi, risk değerlendirmesi</p>
-                <div class="module-metric">
-                    <span class="metric-val">120/80</span>
-                    <span class="metric-unit">mmHg</span>
-                    <span class="metric-status good">● Normal</span>
-                </div>
+            <h3>Tansiyon Takibi</h3>
+            <p>Sistolik / diastolik basınç ölçümü, nabız takibi, hipertansiyon trend grafikleri</p>
+        </div>
+        <div class="mod-card">
+            <div class="mod-tag">MODÜL 3</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
             </div>
-
-            <div class="module-card">
-                <div class="module-num">03</div>
-                <div class="module-icon-wrap diet">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-                        <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-                    </svg>
-                </div>
-                <h3>Diyet & Kalori</h3>
-                <p>Glisemik indeks takibi, öğün bazlı kalori hesabı, beslenme önerileri</p>
-                <div class="module-metric">
-                    <span class="metric-val">62</span>
-                    <span class="metric-unit">/ 100 GI</span>
-                    <span class="metric-status warn">● Orta</span>
-                </div>
+            <h3>Diyet & Kalori</h3>
+            <p>Yiyecek & içecek takibi, kalori hesabı, glisemik yük, günlük besin öğesi analizi</p>
+        </div>
+        <div class="mod-card">
+            <div class="mod-tag">MODÜL 4</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
-
-            <div class="module-card">
-                <div class="module-num">04</div>
-                <div class="module-icon-wrap exercise">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                    </svg>
-                </div>
-                <h3>Egzersiz Takibi</h3>
-                <p>Adım sayısı, mesafe, kalori yakımı, aktivite türü ve kan şekerine etkisi</p>
-                <div class="module-metric">
-                    <span class="metric-val">4.800</span>
-                    <span class="metric-unit">adım</span>
-                    <span class="metric-status good">● Aktif</span>
-                </div>
+            <h3>Egzersiz Takibi</h3>
+            <p>Koşu, yürüyüş, fitness, step ve diğer aktivitelerin süresi, kalori & adım takibi</p>
+        </div>
+        <div class="mod-card">
+            <div class="mod-tag">MODÜL 5</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
             </div>
-
-            <div class="module-card">
-                <div class="module-num">05</div>
-                <div class="module-icon-wrap meds">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                    </svg>
-                </div>
-                <h3>İlaç Takibi</h3>
-                <p>Farmakolojik tedavi uyumu, hatırlatıcılar, ilaç etkileşim uyarıları</p>
-                <div class="module-metric">
-                    <span class="metric-val">%94</span>
-                    <span class="metric-unit">uyum</span>
-                    <span class="metric-status good">● İyi</span>
-                </div>
+            <h3>İlaç Takibi</h3>
+            <p>Düzenli ilaç saatleri, doz hatırlatıcıları, ilaç uyum analizi ve değişken dozlar</p>
+        </div>
+        <div class="mod-card">
+            <div class="mod-tag">MODÜL 6</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
             </div>
-
-            <div class="module-card">
-                <div class="module-num">06</div>
-                <div class="module-icon-wrap insulin">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
-                    </svg>
-                </div>
-                <h3>İnsülin & Değişken Doz</h3>
-                <p>Bazal/bolus doz takibi, düzeltme dozları, Lantus & Humalog yönetimi</p>
-                <div class="module-metric">
-                    <span class="metric-val">18+4</span>
-                    <span class="metric-unit">Ünite</span>
-                    <span class="metric-status good">● Planlandı</span>
-                </div>
+            <h3>İnsülin & Değişken Doz</h3>
+            <p>Bazal ve bolus insülin dozlarınızı kan şekerinize göre kaydedin ve analiz edin</p>
+        </div>
+        <div class="mod-card">
+            <div class="mod-tag">MODÜL 7</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-
-            <div class="module-card full-width-card">
-                <div class="module-num">07</div>
-                <div class="module-icon-wrap doctor">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                </div>
-                <h3>Sağlık Personeli Ekranı</h3>
-                <p>Hekim ve sağlık personeline özel panel — tüm hastaların verilerini merkezi görüntüleme, otomatik rapor üretimi, risk skorlaması ve tedavi uyum analizi</p>
-                <div class="doctor-features">
-                    <span class="df-tag">👁️ Merkezi İzleme</span>
-                    <span class="df-tag">📋 Otomatik Rapor</span>
-                    <span class="df-tag">⚠️ Risk Skoru</span>
-                    <span class="df-tag">📞 Hasta İletişimi</span>
-                </div>
+            <h3>Sağlık Personeli Ekranı</h3>
+            <p>Hekim ve sağlık personeli için özel panel, hasta verileri ve raporlama</p>
+        </div>
+        <div class="mod-card rapor">
+            <div class="mod-tag">RAPOR</div>
+            <div class="mod-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
             </div>
-
+            <h3>Otomatik Raporlama</h3>
+            <p>Tüm modüllerin verilerinden hekim entegre PDF raporları ve takip tabloları</p>
         </div>
     </div>
-</section>
+</div>
 
-<!-- ==================== VERİ TABLOLARI ==================== -->
-<section class="tables-section" id="raporlar">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Örnek Veriler</span>
-            <h2>Gerçek Zamanlı Takip Tabloları</h2>
-            <p>Tüm modüllerin verileri otomatik raporlara dönüşür ve hekiminizle paylaşılır.</p>
+<!-- DATA SECTION 1: KAN ŞEKERİ -->
+<div class="data-section">
+    <div class="data-grid">
+        <div class="data-text">
+            <h2>Kan Şekeri Takip Tablosu</h2>
+            <p>Günlük kan şekeri ölçümlerinizi anlık olarak kaydedin. Açlık, tokluk ve düzeltme ölçümlerini takip edin; kritik değerleri anında fark edin.</p>
+            <ul class="data-bullets">
+                <li>Açlık & tokluk ölçümleri</li>
+                <li>Glisemik dalgalanma analizi</li>
+                <li>Yüksek/düşük uyarı sistemi</li>
+            </ul>
         </div>
-
-        <!-- Tab Buttons -->
-        <div class="tab-buttons">
-            <button class="tab-btn active" onclick="showTab('sugar')">🩸 Kan Şekeri</button>
-            <button class="tab-btn" onclick="showTab('insulin')">💉 İnsülin & Doz</button>
-            <button class="tab-btn" onclick="showTab('bp')">❤️ Tansiyon</button>
-            <button class="tab-btn" onclick="showTab('exercise')">🏃 Egzersiz</button>
-        </div>
-
-        <!-- Kan Şekeri Tablosu -->
-        <div class="tab-content active" id="tab-sugar">
-            <div class="table-header-info">
-                <h3>Kan Şekeri Takip Tablosu</h3>
-                <span class="table-date">18 Haziran 2026</span>
-            </div>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Tarih / Saat</th>
-                            <th>Ölçüm (mg/dL)</th>
-                            <th>Durum</th>
-                            <th>Notlar</th>
-                        </tr>
-                    </thead>
+        <div>
+            <div class="data-table-wrap">
+                <div class="dt-header sugar">
+                    <div class="dt-icon">🩸</div>
+                    Kan Şekeri Takip Tablosu
+                </div>
+                <table>
+                    <thead><tr><th>Tarih/Saat</th><th>Ölçüm (mg/dL)</th><th>Durum</th><th>Notlar</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td>18.06 — 08:00</td>
-                            <td><strong>95</strong></td>
-                            <td><span class="status-badge good">Normal</span></td>
-                            <td>Açlık ölçümü</td>
-                        </tr>
-                        <tr>
-                            <td>18.06 — 10:30</td>
-                            <td><strong>152</strong></td>
-                            <td><span class="status-badge warn">Yüksek ⚠</span></td>
-                            <td>Kahvaltı sonrası</td>
-                        </tr>
-                        <tr>
-                            <td>18.06 — 13:00</td>
-                            <td><strong>118</strong></td>
-                            <td><span class="status-badge good">Normal</span></td>
-                            <td>Öğle öncesi</td>
-                        </tr>
-                        <tr>
-                            <td>18.06 — 15:00</td>
-                            <td><strong>78</strong></td>
-                            <td><span class="status-badge low">Düşük ⬇</span></td>
-                            <td>İnsülin sonrası</td>
-                        </tr>
-                        <tr>
-                            <td>18.06 — 19:00</td>
-                            <td><strong>134</strong></td>
-                            <td><span class="status-badge good">Normal</span></td>
-                            <td>Akşam yemeği öncesi</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- İnsülin Tablosu -->
-        <div class="tab-content" id="tab-insulin">
-            <div class="table-header-info">
-                <h3>İnsülin & Değişken Doz Takibi</h3>
-                <span class="table-date">18 Haziran 2026</span>
-            </div>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Saat</th>
-                            <th>Kan Şekeri</th>
-                            <th>İnsülin Tipi</th>
-                            <th>Doz</th>
-                            <th>Uygulama</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>07:30</td>
-                            <td><strong>95 mg/dL</strong></td>
-                            <td>Bazal (Lantus)</td>
-                            <td><strong>18 Ü</strong></td>
-                            <td>Karın</td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td><strong>95 mg/dL</strong></td>
-                            <td>Bolus (Humalog)</td>
-                            <td><strong>4 Ü</strong></td>
-                            <td>Kol</td>
-                        </tr>
-                        <tr>
-                            <td>13:00</td>
-                            <td><strong>152 mg/dL</strong></td>
-                            <td>Bolus (Humalog)</td>
-                            <td><strong>6 Ü</strong></td>
-                            <td>Karın</td>
-                        </tr>
-                        <tr>
-                            <td>15:00</td>
-                            <td><strong>78 mg/dL</strong></td>
-                            <td>Düzeltme</td>
-                            <td><strong>0 Ü</strong></td>
-                            <td><span class="status-badge warn">Atlandı</span></td>
-                        </tr>
-                        <tr>
-                            <td>19:00</td>
-                            <td><strong>134 mg/dL</strong></td>
-                            <td>Bolus (Humalog)</td>
-                            <td><strong>5 Ü</strong></td>
-                            <td>Bacak</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Tansiyon Tablosu -->
-        <div class="tab-content" id="tab-bp">
-            <div class="table-header-info">
-                <h3>Tansiyon & Nabız Takip Tablosu</h3>
-                <span class="table-date">18 Haziran 2026</span>
-            </div>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Tarih / Saat</th>
-                            <th>Sistolik</th>
-                            <th>Diastolik</th>
-                            <th>Nabız (bpm)</th>
-                            <th>Durum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>18.06 — 08:00</td>
-                            <td><strong>118</strong></td>
-                            <td><strong>76</strong></td>
-                            <td>72</td>
-                            <td><span class="status-badge good">Normal</span></td>
-                        </tr>
-                        <tr>
-                            <td>18.06 — 12:00</td>
-                            <td><strong>135</strong></td>
-                            <td><strong>88</strong></td>
-                            <td>80</td>
-                            <td><span class="status-badge warn">Yüksek ⚠</span></td>
-                        </tr>
-                        <tr>
-                            <td>18.06 — 16:00</td>
-                            <td><strong>122</strong></td>
-                            <td><strong>80</strong></td>
-                            <td>75</td>
-                            <td><span class="status-badge good">Normal</span></td>
-                        </tr>
-                        <tr>
-                            <td>18.06 — 20:00</td>
-                            <td><strong>128</strong></td>
-                            <td><strong>82</strong></td>
-                            <td>78</td>
-                            <td><span class="status-badge good">Normal</span></td>
-                        </tr>
-                        <tr class="avg-row">
-                            <td>17.06 — Ort.</td>
-                            <td><strong>126</strong></td>
-                            <td><strong>82</strong></td>
-                            <td>76</td>
-                            <td><span class="status-badge good">Normal</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Egzersiz Tablosu -->
-        <div class="tab-content" id="tab-exercise">
-            <div class="table-header-info">
-                <h3>Egzersiz Takip Tablosu</h3>
-                <span class="table-date">16–18 Haziran 2026</span>
-            </div>
-            <div class="table-wrap">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Tarih</th>
-                            <th>Aktivite</th>
-                            <th>Süre</th>
-                            <th>Mesafe / Adım</th>
-                            <th>Kalori</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>18.06</td>
-                            <td>🚶 Yürüyüş</td>
-                            <td>35 dk</td>
-                            <td>3.2 km / 4.800 adım</td>
-                            <td><strong>142 kcal</strong></td>
-                        </tr>
-                        <tr>
-                            <td>18.06</td>
-                            <td>🏋️ Fitness</td>
-                            <td>45 dk</td>
-                            <td>— / —</td>
-                            <td><strong>310 kcal</strong></td>
-                        </tr>
-                        <tr>
-                            <td>17.06</td>
-                            <td>🏃 Koşu</td>
-                            <td>28 dk</td>
-                            <td>4.5 km / 6.200 adım</td>
-                            <td><strong>280 kcal</strong></td>
-                        </tr>
-                        <tr>
-                            <td>17.06</td>
-                            <td>🪜 Step</td>
-                            <td>20 dk</td>
-                            <td>— / 2.400 adım</td>
-                            <td><strong>95 kcal</strong></td>
-                        </tr>
-                        <tr>
-                            <td>16.06</td>
-                            <td>🚶 Yürüyüş</td>
-                            <td>50 dk</td>
-                            <td>4.8 km / 7.100 adım</td>
-                            <td><strong>210 kcal</strong></td>
-                        </tr>
+                        <tr><td>18.06 — 08:00</td><td><strong>95</strong></td><td><span class="st-normal">Normal</span></td><td>Açlık ölçümü</td></tr>
+                        <tr><td>18.06 — 10:30</td><td><strong>152</strong></td><td><span class="st-high">Yüksek ▲</span></td><td>Kahvaltı sonrası</td></tr>
+                        <tr><td>18.06 — 13:00</td><td><strong>118</strong></td><td><span class="st-normal">Normal</span></td><td>Öğle öncesi</td></tr>
+                        <tr><td>18.06 — 15:00</td><td><strong>78</strong></td><td><span class="st-low">Düşük ▼</span></td><td>İnsülin sonrası</td></tr>
+                        <tr><td>18.06 — 19:00</td><td><strong>134</strong></td><td><span class="st-normal">Normal</span></td><td>Akşam yemeği öncesi</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<!-- ==================== RAPOR BÖLÜMÜ ==================== -->
-<section class="report-section" id="nasil-calisir">
-    <div class="container">
-        <div class="report-grid">
-            <div class="report-left">
-                <span class="section-tag">Otomatik Raporlama</span>
-                <h2>Hekiminiz İçin<br>Hazır Raporlar</h2>
-                <p>Tüm modüllerin verileri otomatik olarak birleşir. Hekim entegre PDF raporları ve takip tabloları, doktorunuzla anlamlı verilerle buluşmanızı sağlar.</p>
-                <ul class="report-features">
-                    <li>
-                        <span class="rf-icon">📄</span>
-                        <div>
-                            <strong>PDF Rapor Üretimi</strong>
-                            <p>Tüm modüllerin özeti tek raporda</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="rf-icon">📊</span>
-                        <div>
-                            <strong>Trend Analizi</strong>
-                            <p>Haftalık/aylık değişim grafikleri</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="rf-icon">⚠️</span>
-                        <div>
-                            <strong>Risk Uyarıları</strong>
-                            <p>Kritik değerlerde otomatik bildirim</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="rf-icon">🔗</span>
-                        <div>
-                            <strong>Hekim Paylaşımı</strong>
-                            <p>Güvenli link ile anlık paylaşım</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="report-right">
-                <div class="report-mockup">
-                    <div class="rm-header">
-                        <div class="rm-logo">📋</div>
-                        <div>
-                            <strong>Diasağlık Raporu</strong>
-                            <span>Haziran 2026</span>
-                        </div>
-                        <button class="rm-download">PDF İndir</button>
-                    </div>
-                    <div class="rm-body">
-                        <div class="rm-stat">
-                            <span>Ortalama Kan Şekeri</span>
-                            <strong>118 mg/dL</strong>
-                            <span class="rm-status good">Normal</span>
-                        </div>
-                        <div class="rm-stat">
-                            <span>HbA1c Tahmini</span>
-                            <strong>%6.2</strong>
-                            <span class="rm-status good">Hedef</span>
-                        </div>
-                        <div class="rm-stat">
-                            <span>İlaç Uyumu</span>
-                            <strong>%94</strong>
-                            <span class="rm-status good">İyi</span>
-                        </div>
-                        <div class="rm-stat">
-                            <span>Tansiyon Ort.</span>
-                            <strong>124/81</strong>
-                            <span class="rm-status good">Normal</span>
-                        </div>
-                        <div class="rm-chart">
-                            <div class="chart-bars">
-                                <div class="bar" style="height:60%"><span>95</span></div>
-                                <div class="bar high" style="height:90%"><span>152</span></div>
-                                <div class="bar" style="height:70%"><span>118</span></div>
-                                <div class="bar low" style="height:40%"><span>78</span></div>
-                                <div class="bar" style="height:80%"><span>134</span></div>
-                            </div>
-                            <div class="chart-label">Günlük Kan Şekeri (mg/dL)</div>
-                        </div>
-                    </div>
+<!-- DATA SECTION 2: İNSÜLİN -->
+<div class="data-section">
+    <div class="data-grid reverse">
+        <div>
+            <div class="data-table-wrap">
+                <div class="dt-header insulin">
+                    <div class="dt-icon">💉</div>
+                    İnsülin & Değişken Doz Takibi
                 </div>
+                <table>
+                    <thead><tr><th>Saat</th><th>Kan Şekeri</th><th>İnsülin Tipi</th><th>Doz</th><th>Uygulama</th></tr></thead>
+                    <tbody>
+                        <tr><td>07:30</td><td>95 mg/dL</td><td>Bazal (Lantus)</td><td><strong>18 Ü</strong></td><td>Karın</td></tr>
+                        <tr><td>08:00</td><td>95 mg/dL</td><td>Bolus (Humalog)</td><td><strong>4 Ü</strong></td><td>Kol</td></tr>
+                        <tr><td>13:00</td><td>152 mg/dL</td><td>Bolus (Humalog)</td><td><strong>6 Ü</strong></td><td>Karın</td></tr>
+                        <tr><td>15:00</td><td>78 mg/dL</td><td>Düzeltme</td><td><strong>0 Ü</strong></td><td><span class="st-high">Atlandı</span></td></tr>
+                        <tr><td>19:00</td><td>134 mg/dL</td><td>Bolus (Humalog)</td><td><strong>5 Ü</strong></td><td>Bacak</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="data-text">
+            <h2>İnsülin & Değişken Doz Takibi</h2>
+            <p>Bazal ve bolus insülin dozlarınızı kan şekerinize göre kaydedin. Her enjeksiyonun saatini, tipini ve uygulama bölgesini takip edin.</p>
+            <ul class="data-bullets">
+                <li>Bazal / bolus ayrımı</li>
+                <li>Doz & uygulama bölgesi kaydı</li>
+                <li>Kan şekerine bağlı doz takibi</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- DATA SECTION 3: TANSİYON -->
+<div class="data-section">
+    <div class="data-grid">
+        <div class="data-text">
+            <h2>Tansiyon & Nabız Takip Tablosu</h2>
+            <p>Günlük tansiyon ve nabız ölçümlerinizi kaydedin. Hipertansiyon trendlerini görselleştirin ve anormal değerleri anında tespit edin.</p>
+            <ul class="data-bullets">
+                <li>Sistolik / diastolik takip</li>
+                <li>Nabız izleme</li>
+                <li>Trend grafikleri</li>
+            </ul>
+        </div>
+        <div>
+            <div class="data-table-wrap">
+                <div class="dt-header bp">
+                    <div class="dt-icon">❤️</div>
+                    Tansiyon & Nabız Takip Tablosu
+                </div>
+                <table>
+                    <thead><tr><th>Tarih/Saat</th><th>Sistolik</th><th>Diastolik</th><th>Nabız (bpm)</th><th>Durum</th></tr></thead>
+                    <tbody>
+                        <tr><td>18.06 — 08:00</td><td>118</td><td>76</td><td>72</td><td><span class="st-normal">Normal</span></td></tr>
+                        <tr><td>18.06 — 12:00</td><td><strong>135</strong></td><td><strong>88</strong></td><td>80</td><td><span class="st-high">Yüksek ▲</span></td></tr>
+                        <tr><td>18.06 — 16:00</td><td>122</td><td>80</td><td>75</td><td><span class="st-normal">Normal</span></td></tr>
+                        <tr><td>18.06 — 20:00</td><td>128</td><td>82</td><td>78</td><td><span class="st-normal">Normal</span></td></tr>
+                        <tr><td>17.06 — Ort.</td><td>126</td><td>82</td><td>76</td><td><span class="st-normal">Normal</span></td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<!-- ==================== CTA ==================== -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-box">
-            <div class="cta-content">
-                <h2>Sağlığınızın kontrolü sizin elinizde.</h2>
-                <p>Hemen kaydolun, verilerinizi girin ve hekiminizle anlamlı verilerle buluşun.</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn-cta-primary">Ücretsiz Başla</a>
-                    <a href="#" class="btn-cta-outline">Demo İste</a>
+<!-- DATA SECTION 4: EGZERSİZ -->
+<div class="data-section">
+    <div class="data-grid reverse">
+        <div>
+            <div class="data-table-wrap">
+                <div class="dt-header exercise">
+                    <div class="dt-icon">🏃</div>
+                    Egzersiz Takip Tablosu
                 </div>
+                <table>
+                    <thead><tr><th>Tarih</th><th>Aktivite</th><th>Süre</th><th>Mesafe/Adım</th><th>Kalori</th></tr></thead>
+                    <tbody>
+                        <tr><td>18.06</td><td>Yürüyüş</td><td>35 dk</td><td>3.2 km / 4.800 adım</td><td><strong class="st-normal">142 kcal</strong></td></tr>
+                        <tr><td>18.06</td><td>Fitness</td><td>45 dk</td><td>— / —</td><td><strong class="st-normal">310 kcal</strong></td></tr>
+                        <tr><td>17.06</td><td>Koşu</td><td>28 dk</td><td>4.5 km / 6.200 adım</td><td><strong class="st-normal">280 kcal</strong></td></tr>
+                        <tr><td>17.06</td><td>Step</td><td>20 dk</td><td>— / 2.400 adım</td><td><strong class="st-normal">95 kcal</strong></td></tr>
+                        <tr><td>16.06</td><td>Yürüyüş</td><td>50 dk</td><td>4.8 km / 7.100 adım</td><td><strong class="st-normal">210 kcal</strong></td></tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="cta-tagline">
-                <p>Caring Today.</p>
-                <p><strong>Shaping Tomorrows.</strong></p>
-            </div>
+        </div>
+        <div class="data-text">
+            <h2>Egzersiz Takip Tablosu</h2>
+            <p>Yürüyüş, koşu, fitness ve diğer aktivitelerinizi kaydedin. Harcanan kalori, adım sayısı ve mesafeyi otomatik olarak hesaplayın.</p>
+            <ul class="data-bullets">
+                <li>Aktivite türü & süresi</li>
+                <li>Kalori & adım hesabı</li>
+                <li>Haftalık egzersiz özeti</li>
+            </ul>
         </div>
     </div>
-</section>
+</div>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="footer" id="iletisim">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="nav-logo" style="margin-bottom:16px">
-                    <div class="logo-mark">
-                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                            <circle cx="18" cy="18" r="18" fill="#0066cc"/>
-                            <path d="M18 8 L22 14 L28 14 L23 19 L25 26 L18 22 L11 26 L13 19 L8 14 L14 14 Z" fill="white" opacity="0.9"/>
-                            <circle cx="18" cy="18" r="4" fill="#00d4aa"/>
-                        </svg>
-                    </div>
-                    <div class="logo-text-group">
-                        <span class="logo-main" style="color:white">Diasağlık</span>
-                        <span class="logo-sub" style="color:rgba(255,255,255,0.5)">by Diacora Health</span>
-                    </div>
-                </div>
-                <p>Diyabet ve hipertansiyon yönetiminde yapay zeka destekli sağlık platformu.</p>
-                <p style="margin-top:12px;font-size:0.85em;opacity:0.5">Caring Today. Shaping Tomorrows.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Platform</h4>
-                <ul>
-                    <li><a href="#">Şeker Takibi</a></li>
-                    <li><a href="#">Tansiyon Takibi</a></li>
-                    <li><a href="#">İlaç Yönetimi</a></li>
-                    <li><a href="#">İnsülin Takibi</a></li>
-                    <li><a href="#">Raporlama</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Kurumsal</h4>
-                <ul>
-                    <li><a href="#">Hakkımızda</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Basın</a></li>
-                    <li><a href="#">Kariyer</a></li>
-                    <li><a href="#">İletişim</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Destek</h4>
-                <ul>
-                    <li><a href="#">Yardım Merkezi</a></li>
-                    <li><a href="#">Gizlilik Politikası</a></li>
-                    <li><a href="#">Kullanım Şartları</a></li>
-                    <li><a href="#">KVKK</a></li>
-                    <li><a href="#">API Docs</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Diasağlık / Diacora Health — Tüm Hakları Saklıdır</p>
-            <div class="footer-social">
-                <a href="#">𝕏</a>
-                <a href="#">in</a>
-                <a href="#">f</a>
-                <a href="#">📱</a>
-            </div>
-        </div>
-    </div>
+<!-- CTA SECTION -->
+<div class="cta-section" id="iletisim">
+    <img src="/logo.png" alt="Diacora" class="cta-logo">
+    <div class="cta-title">Sağlığınızın kontrolü <span>sizin elinizde.</span></div>
+    <div class="cta-sub">Hemen kaydolun, verilerinizi girin ve hekiminizle anlamlı verilerle buluşun.</div>
+    <a href="#" class="btn-cta">Ücretsiz Başla →</a>
+    <div class="cta-tag">"Caring Today. Shaping Tomorrows."</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 Diacora Health. Tüm hakları saklıdır.</p>
 </footer>
 
-<script>
-function showTab(name) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    event.target.classList.add('active');
-}
-
-function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('open');
-    document.querySelector('.nav-actions').classList.toggle('open');
-}
-
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 50) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-});
-</script>
 </body>
 </html>
