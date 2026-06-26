@@ -295,6 +295,10 @@
             display:flex; align-items:center; justify-content:center;
         }
         .mod-icon svg { width:22px; height:22px; stroke:#fff; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+        .mod-icon--glucose {
+            background:linear-gradient(135deg, rgba(30,90,160,0.6) 0%, rgba(126,202,197,0.35) 100%);
+            box-shadow:0 0 0 2px rgba(126,202,197,0.35);
+        }
         .mod-card h3 { font-size:1.02em; font-weight:700; margin-bottom:8px; color:#fff; line-height:1.3; }
         .mod-card p { font-size:0.8em; color:rgba(255,255,255,0.78); line-height:1.6; margin-bottom:12px; }
         .mod-card-disclaimer {
@@ -533,14 +537,21 @@
         <!-- MODÜL 1 -->
         <div class="mod-card reveal reveal-delay-1">
             <div class="mod-card-top">
-                <div class="mod-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5c0 2-1 3.5-2.5 4.5M7 7a5 5 0 0 0 5 5"/><circle cx="12" cy="7" r="3"/><path d="M8 21l1-4h6l1 4"/><path d="M5 21h14"/><path d="M12 12v3"/></svg>
+                <div class="mod-icon mod-icon--glucose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="6" width="11" height="14" rx="2"/>
+                        <line x1="5.5" y1="10" x2="11.5" y2="10"/>
+                        <line x1="5.5" y1="13" x2="11.5" y2="13" stroke="rgba(255,255,255,0.3)"/>
+                        <line x1="5.5" y1="12" x2="9" y2="12" stroke="#7ecac5" stroke-width="2.2"/>
+                        <path d="M18 4 C18 4 21 7.5 21 9.5 A3 3 0 0 1 15 9.5 C15 7.5 18 4 18 4Z"/>
+                        <polyline points="14,9 16,7 18,7" stroke="rgba(255,255,255,0.55)" stroke-width="1.3"/>
+                    </svg>
                 </div>
                 <div class="mod-tag">MODÜL 01</div>
             </div>
-            <h3>Şeker Takibi — Glikoz Dinamikleri</h3>
-            <p>Tip 1, Tip 2 Diyabet ve Pre-diyabet için sürekli ve anlık glikoz verisi kaydı. Glikozilasyon dinamiklerini, postprandiyal glisemik yanıtları ve glisemik varyabilite analizini inceleyin.</p>
-            <div class="mod-card-disclaimer">*Tüm ölçüm ve trend analizleri, yalnızca klinisyeninizin tedavi planlamasına destek sunmak amacıyla kayıt altına alınmaktadır. Doz ayarları hekim kontrolünde yapılmalıdır.*</div>
+            <h3>Şeker Takibi — Glikoz Dinamikleri ve Hedef Aralık Yönetimi</h3>
+            <p>Günlük kan şekeri ölçümlerinizi dijital günlük altyapımızla kolayca takip edin. Sistemimiz, öğün sonrası (postprandiyal) şeker yanıtlarınızı ve metabolik döngülerinizi analiz ederek "Hedef Aralıkta Kalma" (Time-in-Range) eğilimlerinizi görselleştirir. Böylece karmaşık biyometrik veriler, doktorunuzla birlikte inceleyebileceğiniz anlaşılır raporlara dönüşür.</p>
+            <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Diacora Health aktif bir tıbbi yönlendirme, tanı veya tedavi sunmaz. Sistemdeki glikoz trend analizleri, yaşam tarzınızın etkilerini görmeniz ve klinisyeninizle güçlü bir iletişim kurmanız amacıyla tasarlanmış bir klinik karar destek aracıdır. Tüm tedavi kararları doktorunuza aittir.</div>
         </div>
 
         <!-- MODÜL 2 -->
