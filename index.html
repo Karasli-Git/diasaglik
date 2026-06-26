@@ -101,10 +101,11 @@
         /* ===== MAIN WHITE SECTION ===== */
         .main-section { background:#fff; padding:56px 48px 0; }
 
-        .quote-wrap { text-align:center; margin-bottom:56px; }
+        .quote-wrap { text-align:center; margin-bottom:52px; }
         .quote-text {
-            font-size:1.75em; font-weight:700; font-style:italic;
-            color:var(--text); line-height:1.45;
+            font-size:2em; font-weight:700; font-style:normal;
+            color:var(--text); line-height:1.4;
+            font-family:Georgia, 'Times New Roman', serif;
         }
 
         .intro-grid {
@@ -210,6 +211,30 @@
             display:block; line-height:1;
         }
         .stat-lbl { font-size:0.82em; color:var(--gray4); margin-top:6px; display:block; }
+
+        /* ===== DISCLAIMER BOX ===== */
+        .disclaimer-box {
+            display:flex; align-items:flex-start; gap:16px;
+            background:#f0f7ff;
+            border:1.5px solid #b8d8f0;
+            border-left:5px solid #2980b9;
+            border-radius:12px;
+            padding:20px 28px;
+            margin:48px 0 0 0;
+        }
+        .disclaimer-icon {
+            color:#2980b9; flex-shrink:0; margin-top:2px;
+        }
+        .disclaimer-title {
+            font-size:0.82em; font-weight:700; color:#1a3a5c;
+            text-transform:uppercase; letter-spacing:1px;
+            margin:0 0 6px 0;
+        }
+        .disclaimer-text {
+            font-size:0.88em; color:#4a5568; line-height:1.65;
+            margin:0;
+        }
+        .disclaimer-text strong { color:#1a3a5c; }
 
         /* ===== MODULES ===== */
         .modules-section {
@@ -359,13 +384,13 @@
 <!-- MAIN SECTION -->
 <div class="main-section">
     <div class="quote-wrap reveal">
-        <p class="quote-text">Sağlık, sayılardan ibaret değildir. Ama doğru sayılar yaşamı değiştirir.</p>
+        <p class="quote-text">Metabolik Verilerinizi Anlamlandırın,<br><span style="color:var(--teal2);">Hekiminizle Güçlü İletişim Kurun</span></p>
     </div>
 
     <div class="intro-grid">
         <div class="intro-text reveal-left">
             <p>
-                Diacora Health; HbA1c dinamiklerini, postprandiyal glisemik yanıtı, kardiyovasküler biyometrileri ve farmakolojik tedavi uyumunu tek platformda izler. <strong>Tip 1, Tip 2 Diyabet</strong> ve <strong>hipertansiyon</strong> hastalarına özel algoritmalar; günlük ölçümlerinizi klinisyenin anlayacağı <a href="#">kanıta dayalı raporlara</a> dönüştürür.
+                Diacora Health; şeker, tansiyon, insülin ve egzersiz döngülerinizi yapay zeka destekli analitik filtrelerden geçirerek karmaşık biyometrik verileri düzenli raporlar haline getirir. Platformumuz, <strong>tedavi planınızı belirlemez veya değiştirmez;</strong> ancak klinisyeninizin (hekiminizin) takibini kolaylaştıracak, <strong>kanıta dayalı veri eğilimleri</strong> sunar. Sağlığınızı yönetirken en doğru kararların her zaman doktorunuzun kontrolünde alınması gerektiği bilinciyle, verilerinizi güvenle takip edin.
             </p>
             <div class="intro-btns">
                 <a href="#" class="btn-basla">Hemen Başla →</a>
@@ -432,6 +457,17 @@
         <div class="stat-col reveal reveal-delay-4">
             <span class="stat-num" style="color:var(--teal2)">Otomatik</span>
             <span class="stat-lbl">Rapor Üretimi</span>
+        </div>
+    </div>
+
+    <!-- DISCLAIMER BOX -->
+    <div class="disclaimer-box reveal">
+        <div class="disclaimer-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="disclaimer-content">
+            <p class="disclaimer-title">Önemli Bilgilendirme / Medical Disclaimer</p>
+            <p class="disclaimer-text">Diacora Health bir <strong>veri analiz ve raporlama platformudur</strong>; tıbbi tanı, tedavi veya ilaç reçetesi işlevleri içermez. Platform tarafından sunulan tüm veriler, eğilimler ve raporlar yalnızca <strong>hekim gözetiminde</strong> değerlendirilmek üzere tasarlanmıştır. Sağlık kararlarınız her zaman lisanslı bir sağlık profesyoneli tarafından alınmalıdır. Bu platform, bir doktora veya tıbbi cihaza alternatif değildir.</p>
         </div>
     </div>
 </div>
