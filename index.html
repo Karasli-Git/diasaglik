@@ -262,37 +262,62 @@
 
         /* ===== MODULES ===== */
         .modules-section {
-            background: #2785C0;
+            background:linear-gradient(160deg, #1a3a5c 0%, #2785C0 100%);
             padding:64px 48px;
         }
-        .modules-header { text-align:center; margin-bottom:40px; }
+        .modules-header { text-align:center; margin-bottom:44px; }
         .modules-title { font-size:2em; font-weight:800; color:#fff; margin-bottom:8px; }
-        .modules-sub { font-size:0.95em; color:rgba(255,255,255,0.85); }
+        .modules-sub { font-size:0.95em; color:rgba(255,255,255,0.8); }
         .modules-grid {
             display:grid;
-            grid-template-columns:repeat(4,1fr);
-            gap:18px;
+            grid-template-columns:repeat(2,1fr);
+            gap:22px;
         }
         .mod-card {
-            background:rgba(0,0,0,0.18);
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.14);
             border-radius:20px;
-            padding:22px 20px;
-            transition:transform .25s, background .25s;
+            padding:26px 24px;
+            transition:all 0.3s ease-in-out;
             cursor:default;
             position:relative;
         }
-        .mod-card:hover { transform:translateY(-4px); background:rgba(0,0,0,0.28); }
-        .mod-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
-        .mod-tag { font-size:0.68em; color:rgba(255,255,255,0.55); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
+        .mod-card:hover {
+            transform:scale(1.05);
+            background:rgba(255,255,255,0.15);
+            box-shadow:0 12px 40px rgba(0,0,0,0.3);
+        }
+        .mod-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+        .mod-tag { font-size:0.66em; color:rgba(255,255,255,0.5); font-weight:700; letter-spacing:2px; text-transform:uppercase; }
         .mod-icon {
-            width:38px; height:38px; border-radius:50%;
+            width:44px; height:44px; border-radius:12px;
             background:rgba(255,255,255,0.15);
             display:flex; align-items:center; justify-content:center;
         }
-        .mod-icon svg { width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-        .mod-card h3 { font-size:1em; font-weight:700; margin-bottom:8px; color:#fff; }
-        .mod-card p { font-size:0.8em; color:rgba(255,255,255,0.75); line-height:1.55; }
-        /* rapor kartı aynı stilde, tümü zaten aynı */
+        .mod-icon svg { width:22px; height:22px; stroke:#fff; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+        .mod-card h3 { font-size:1.02em; font-weight:700; margin-bottom:8px; color:#fff; line-height:1.3; }
+        .mod-card p { font-size:0.8em; color:rgba(255,255,255,0.78); line-height:1.6; margin-bottom:12px; }
+        .mod-card-disclaimer {
+            font-size:0.73em; color:rgba(255,255,255,0.55);
+            font-style:italic; line-height:1.5;
+            border-top:1px solid rgba(255,255,255,0.12);
+            padding-top:10px; margin-top:4px;
+        }
+        .modules-master-disclaimer {
+            margin-top:40px;
+            background:rgba(0,0,0,0.22);
+            border:1px solid rgba(255,255,255,0.15);
+            border-left:5px solid #7ecac5;
+            border-radius:12px;
+            padding:18px 24px;
+            display:flex; gap:14px; align-items:flex-start;
+        }
+        .modules-master-disclaimer-icon { color:#7ecac5; font-size:1.2em; flex-shrink:0; margin-top:1px; }
+        .modules-master-disclaimer p {
+            font-size:0.78em; color:rgba(255,255,255,0.7);
+            line-height:1.65; margin:0;
+        }
+        .modules-master-disclaimer strong { color:#fff; }
 
         /* ===== DATA SECTIONS ===== */
         .ds { padding:64px 48px; }
@@ -358,7 +383,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width:1024px) {
-            .modules-grid { grid-template-columns:repeat(2,1fr); }
+            .modules-grid { grid-template-columns:1fr 1fr; }
             .intro-grid, .ds-grid { gap:40px; }
         }
         @media (max-width:768px) {
@@ -501,82 +526,146 @@
 <div class="modules-section" id="ozellikler">
     <div class="modules-header reveal">
         <div class="modules-title">Diacora Health Modülleri</div>
-        <div class="modules-sub">Hasta odaklı, tıp standartlarında 7 entegre takip sistemi</div>
+        <div class="modules-sub">Hasta odaklı, tıp standartlarında 10 entegre klinik takip sistemi</div>
     </div>
     <div class="modules-grid">
 
+        <!-- MODÜL 1 -->
         <div class="mod-card reveal reveal-delay-1">
             <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-                <div class="mod-tag">MODÜL 1</div>
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5c0 2-1 3.5-2.5 4.5M7 7a5 5 0 0 0 5 5"/><circle cx="12" cy="7" r="3"/><path d="M8 21l1-4h6l1 4"/><path d="M5 21h14"/><path d="M12 12v3"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 01</div>
             </div>
-            <h3>Şeker Takibi</h3>
-            <p>Tip 1 & Tip 2 Diyabet için anlık kan şekeri izleme, glisemik indeks ve dalgalanma analizi</p>
+            <h3>Şeker Takibi — Glikoz Dinamikleri</h3>
+            <p>Tip 1, Tip 2 Diyabet ve Pre-diyabet için sürekli ve anlık glikoz verisi kaydı. Glikozilasyon dinamiklerini, postprandiyal glisemik yanıtları ve glisemik varyabilite analizini inceleyin.</p>
+            <div class="mod-card-disclaimer">*Tüm ölçüm ve trend analizleri, yalnızca klinisyeninizin tedavi planlamasına destek sunmak amacıyla kayıt altına alınmaktadır. Doz ayarları hekim kontrolünde yapılmalıdır.*</div>
         </div>
 
+        <!-- MODÜL 2 -->
         <div class="mod-card reveal reveal-delay-2">
             <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-                <div class="mod-tag">MODÜL 2</div>
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><line x1="4" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="20" y2="12"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 02</div>
             </div>
-            <h3>Tansiyon Takibi</h3>
-            <p>Sistolik / diastolik basınç ölçümü, nabız takibi, hipertansiyon trend grafikleri</p>
+            <h3>Tansiyon Takibi — Kardiyovasküler Biyometri</h3>
+            <p>Arteriyel kan basıncı (sistolik/diyastolik) ve nabız verilerinin takibi. Kardiyovasküler biyometrilerinizi ve hipertansiyon trend eğrilerini zaman damgalı grafiklerle görselleştirin.</p>
+            <div class="mod-card-disclaimer">*Bu platform bir tansiyon ölçüm cihazı veya teşhis mekanizması değildir. Tedavi değişikliği ve hedef değerler klinisyen tarafından belirlenmelidir.*</div>
         </div>
 
-        <div class="mod-card reveal reveal-delay-3">
-            <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
-                <div class="mod-tag">MODÜL 3</div>
-            </div>
-            <h3>Diyet & Kalori</h3>
-            <p>Yiyecek & içecek takibi, kalori hesabı, glisemik yük, günlük besin öğesi analizi</p>
-        </div>
-
-        <div class="mod-card reveal reveal-delay-4">
-            <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                <div class="mod-tag">MODÜL 4</div>
-            </div>
-            <h3>Egzersiz Takibi</h3>
-            <p>Koşu, yürüyüş, fitness, step ve diğer aktivitelerin süresi, kalori & adım takibi</p>
-        </div>
-
+        <!-- MODÜL 3 -->
         <div class="mod-card reveal reveal-delay-1">
             <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <div class="mod-tag">MODÜL 5</div>
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19"/><circle cx="12" cy="12" r="2"/><path d="M5 12C5 8.13 8.13 5 12 5"/><path d="M19 12c0 3.87-3.13 7-7 7"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 03</div>
             </div>
-            <h3>İlaç Takibi</h3>
-            <p>Düzenli ilaç saatleri, doz hatırlatıcıları, ilaç uyum analizi ve değişken dozlar</p>
+            <h3>İnsülin & Değişken Doz Yönetimi</h3>
+            <p>Hekiminizin reçete ettiği bazal ve bolus insülin dozlarının, enjeksiyon saatlerinin ve uygulama bölgelerinin tam kaydı. İnsülin/karbonhidrat oranlarını klinik karar destek amaçlı izleyin.</p>
+            <div class="mod-card-disclaimer">*Diacora Health aktif bir doz hesabı yapmaz; sistem yalnızca geriye dönük doz uyumunu izlemek için bir dijital günlüktür. Dozlar hekim sorumluluğundadır.*</div>
         </div>
 
+        <!-- MODÜL 4 -->
         <div class="mod-card reveal reveal-delay-2">
             <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-                <div class="mod-tag">MODÜL 6</div>
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 7v5l3 3"/><path d="M7 20l2-5 3 2 3-2 2 5"/><path d="M5 12c0 0 2-2 7-2s7 2 7 2"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 04</div>
             </div>
-            <h3>İnsülin & Değişken Doz</h3>
-            <p>Bazal ve bolus insülin dozlarınızı kan şekerinize göre kaydedin ve analiz edin</p>
+            <h3>Egzersiz, Metabolik Aktivite & Glikoz Korelasyonu</h3>
+            <p>Fiziksel aktivite, egzersiz süresi, türü ve şiddeti verilerini kayıt altına alın. Metabolik aktivitenin kan şekeri ve kan basıncı dinamikleriniz üzerindeki dolaylı etkilerini (glisemik yanıt korelasyonlarını) gözlemleyin.</p>
+            <div class="mod-card-disclaimer">*Tıbbi egzersiz reçetesi sunmaz. Her türlü yaşam tarzı değişikliği hekim ve diyetisyen kontrolünde yürütülmelidir.*</div>
         </div>
 
-        <div class="mod-card reveal reveal-delay-3">
+        <!-- MODÜL 5 -->
+        <div class="mod-card reveal reveal-delay-1">
             <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                <div class="mod-tag">MODÜL 7</div>
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><line x1="12" y1="15" x2="12" y2="17"/><circle cx="12" cy="14" r="1"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 05</div>
             </div>
-            <h3>Sağlık Personeli Ekranı</h3>
-            <p>Hekim & hemşire paneli: hasta verilerini inceleme, notlar ekleme ve takip tabloları</p>
+            <h3>İlaç Takibi & Farmakolojik Uyum</h3>
+            <p>Oral antidiyabetikler, antihipertansifler ve diğer farmakolojik tedaviler için düzenli ilaç saatleri ve dozaj kayıtları. Tedavi uyum analizi ile klinisyen vizitlerinizi optimize edin.</p>
+            <div class="mod-card-disclaimer">*Diacora Health reçete yazmaz; sistem yalnızca ilaç uyumunuzu izlemek ve hekiminize veri sunmak içindir. Tedavi doktor sorumluluğundadır.*</div>
         </div>
 
-        <div class="mod-card reveal reveal-delay-4">
+        <!-- MODÜL 6 -->
+        <div class="mod-card reveal reveal-delay-2">
             <div class="mod-card-top">
-                <div class="mod-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-                <div class="mod-tag">RAPOR</div>
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 1 9 9c0 4-2.5 7.5-6 9l-3-4-3 4c-3.5-1.5-6-5-6-9a9 9 0 0 1 9-9z"/><circle cx="12" cy="11" r="3"/><path d="M9 14l1.5 4M15 14l-1.5 4"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 06</div>
             </div>
-            <h3>Otomatik Raporlama</h3>
-            <p>Tüm modüllerin verilerinden hekim entegre PDF raporu ve takip tablolarının üretimi</p>
+            <h3>Diyet, Glisemik Yük & Nutrasötik Takip</h3>
+            <p>Beslenme eğilimleri, besin öğeleri ve glisemik yük analizi. Günlük beslenme verilerinizi kayıt altına alarak metabolik parametreleriniz üzerindeki etkilerini klinisyeninizle birlikte inceleyin.</p>
+            <div class="mod-card-disclaimer">*Kişiye özel bir diyet programı sunmaz. Tüm beslenme planlamaları uzman bir hekim ve diyetisyen kontrolünde yürütülmelidir.*</div>
         </div>
 
+        <!-- MODÜL 7 — YENİ -->
+        <div class="mod-card reveal reveal-delay-1">
+            <div class="mod-card-top">
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2c0 0-2 4-2 8s2 8 2 8"/><path d="M12 2c0 0 2 4 2 8s-2 8-2 8"/><ellipse cx="12" cy="10" rx="4" ry="2"/><ellipse cx="12" cy="14" rx="4" ry="2"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="16" y1="10" x2="16" y2="14"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 07 — YENİ</div>
+            </div>
+            <h3>HbA1c ve Metabolik Profil İzleme</h3>
+            <p>Aylık lab verilerinizi ve uzun dönem HbA1c (glikozillenmiş hemoglobin) trendlerini tek platformda konsolide edin. Metabolik profilinizi ve lipid paneli verilerini hekiminizle birlikte takip edin.</p>
+            <div class="mod-card-disclaimer">*Diacora Health teşhis ve tedavi sunmayan bir veri yönetim asistanıdır. Tüm klinik değerlendirmeler doktor tarafından yapılmalıdır.*</div>
+        </div>
+
+        <!-- MODÜL 8 — YENİ -->
+        <div class="mod-card reveal reveal-delay-2">
+            <div class="mod-card-top">
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h10M7 11h6"/><circle cx="17" cy="11" r="1" fill="#fff"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 08 — YENİ</div>
+            </div>
+            <h3>Klinik Veri Paylaşımı & Uzaktan İzleme Portalı</h3>
+            <p>Tüm takip verilerinizi, klinisyeninizin (hekiminizin) analizine sunan güvenli veri paylaşım portalı. Verilerinizi kanıta dayalı analizlere dönüştürerek klinik karar destek sürecini hızlandırın.</p>
+            <div class="mod-card-disclaimer">*Tüm veri değerlendirmeleri hekim gözetiminde yapılmalıdır. Diacora Health bir acil tıbbi iletişim aracı değildir.*</div>
+        </div>
+
+        <!-- MODÜL 9 — YENİ -->
+        <div class="mod-card reveal reveal-delay-1">
+            <div class="mod-card-top">
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="22 17 13 17 11 21 9 17 2 17"/><polyline points="6 9 12 3 18 9"/><line x1="12" y1="3" x2="12" y2="17"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 09 — YENİ</div>
+            </div>
+            <h3>Hipoglisemi Riski Analizi & Veri Eğilimleri</h3>
+            <p>Verilerinizi analiz ederek hipoglisemi eğilimlerini ve risk profillerini (örn: gece hipoglisemisi) geriye dönük olarak görselleştirin. Bu verileri hekim vizitlerinizde klinik değerlendirme için kullanın.</p>
+            <div class="mod-card-disclaimer">*Aktif bir teşhis veya acil uyarı sistemi değildir. Tüm klinik risk değerlendirmeleri ve tedavi planı değişiklikleri doktor sorumluluğundadır.*</div>
+        </div>
+
+        <!-- MODÜL 10 — YENİ -->
+        <div class="mod-card reveal reveal-delay-2">
+            <div class="mod-card-top">
+                <div class="mod-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="8 13 10 15 16 9"/></svg>
+                </div>
+                <div class="mod-tag">MODÜL 10 — YENİ</div>
+            </div>
+            <h3>Otomatik Raporlama & Klinik Vizit Çıktıları</h3>
+            <p>Tüm modüllerden gelen kanıta dayalı takip verilerini, hekim vizitlerinizde kullanılmak üzere profesyonel, standart tıbbi raporlara dönüştürün. Trend analizlerini ve tabloları tek tuşla PDF olarak çıktı alın.</p>
+            <div class="mod-card-disclaimer">*Raporlar yalnızca klinik karar destek amaçlıdır. Nihai tedavi planı doktor kontrolünde alınmalıdır.*</div>
+        </div>
+
+    </div>
+
+    <!-- MASTER LEGAL DISCLAIMER -->
+    <div class="modules-master-disclaimer reveal">
+        <span class="modules-master-disclaimer-icon">⚖️</span>
+        <p><strong>Yasal Bilgilendirme (Master Disclaimer):</strong> Diacora Health platformu, bir tıbbi tanı, tedavi veya ilaç reçetesi aracı değildir. Yukarıda yer alan tüm modüller; veri kayıt, analiz ve klinisyen iletişim desteği amacıyla tasarlanmış olup, sunulan hiçbir veri, grafik veya trend analizi tıbbi tavsiye niteliği taşımaz. Tüm klinik kararlar, tedavi değişiklikleri ve doz ayarlamaları yalnızca lisanslı bir sağlık profesyoneli (hekim) tarafından alınmalıdır. Platform, acil tıbbi durumlarda kullanılamaz; acil bir durumda lütfen derhal yetkili sağlık hizmetlerine başvurun.</p>
     </div>
 </div>
 
