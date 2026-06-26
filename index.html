@@ -242,6 +242,24 @@
         }
         .disclaimer-text strong { color:#1a3a5c; }
 
+        /* ===== MODULE DISCLAIMER BOXES ===== */
+        .mod-disclaimer {
+            display:flex; align-items:flex-start; gap:10px;
+            border-radius:10px; padding:14px 16px;
+            margin-top:20px;
+            border-left:4px solid;
+            font-size:0.82em; line-height:1.6;
+        }
+        .mod-disclaimer--amber {
+            background:#fffbeb; border-color:#f59e0b; color:#78350f;
+        }
+        .mod-disclaimer--amber strong { color:#92400e; }
+        .mod-disclaimer--gray {
+            background:#f3f4f6; border-color:#6b7280; color:#374151;
+        }
+        .mod-disclaimer--gray strong { color:#1f2937; }
+        .mod-disclaimer-icon { font-size:1em; flex-shrink:0; margin-top:1px; }
+
         /* ===== MODULES ===== */
         .modules-section {
             background: #2785C0;
@@ -566,13 +584,20 @@
 <div class="ds">
     <div class="ds-grid">
         <div class="ds-text reveal-left">
-            <h2>Kan Şekeri Takip Tablosu</h2>
-            <p>Günlük kan şekeri ölçümlerinizi anlık olarak kaydedin. Açlık, tokluk ve düzeltme ölçümlerini takip edin; kritik değerleri anında fark edin.</p>
+            <h2>Glikoz Dinamikleri ve Glisemik Varyabilite Analizi</h2>
+            <p>Günlük kan şekeri ölçümlerinizi (açlık, tokluk ve düzeltme) anlık olarak kayıt altına alın. Diacora Health algoritmaları, postprandiyal (öğün sonrası) glisemik yanıtlarınızı ve gün içindeki glukoz dalgalanmalarınızı analiz ederek anlamlı veri trendleri oluşturur.</p>
             <ul class="ds-bullets">
-                <li>Açlık & tokluk ölçümleri</li>
-                <li>Glisemik dalgalanma analizi</li>
-                <li>Yüksek/düşük uyarı sistemi</li>
+                <li>Açlık & tokluk & düzeltme ölçümleri</li>
+                <li>Postprandiyal glisemik yanıt analizi</li>
+                <li>Glukoz varyabilite trend grafikleri</li>
             </ul>
+            <div class="mod-disclaimer mod-disclaimer--amber">
+                <span class="mod-disclaimer-icon">⚠️</span>
+                <div>
+                    <strong>Kritik Uyarı:</strong>
+                    <em>Bu tablodaki veriler, grafikler ve otomatik analizler yalnızca tıbbi geçmişinizi kayıt altında tutmak ve farkındalığı artırmak içindir. Hipoglisemi veya hiperglisemi sınır değerleriniz ile insülin/ilaç hassasiyet faktörleriniz kişiye özeldir; bu nedenle verilerin klinik değerlendirmesi ve tedavi değişiklikleri kesinlikle uzman bir hekim tarafından yapılmalıdır.</em>
+                </div>
+            </div>
         </div>
         <div class="reveal-right">
             <div class="tbl-card">
@@ -611,13 +636,20 @@
             </div>
         </div>
         <div class="ds-text reveal-right">
-            <h2>İnsülin & Değişken Doz Takibi</h2>
-            <p>Bazal ve bolus insülin dozlarınızı kan şekerinize göre kaydedin. Her enjeksiyonun saatini, tipini ve uygulama bölgesini takip edin.</p>
+            <h2>Bazal, Bolus ve Karbonhidrat/İnsülin Oranı Yönetimi</h2>
+            <p>Hekiminizin size özel reçete ettiği bazal ve bolus insülin dozlarını, enjeksiyon saatlerini ve uygulama bölgelerini eksiksiz takip edin. Sistemimiz, insülin doz döngülerinizi kan şekeri trendlerinizle ilişkilendirerek hekim vizitlerinizde klinik karar destek sürecini hızlandırır.</p>
             <ul class="ds-bullets">
-                <li>Bazal / bolus ayrımı</li>
-                <li>Doz & uygulama bölgesi kaydı</li>
-                <li>Kan şekerine bağlı doz takibi</li>
+                <li>Bazal / bolus ayrımı ve doz kaydı</li>
+                <li>Enjeksiyon saati & uygulama bölgesi takibi</li>
+                <li>Kan şekeri — doz korelasyon analizi</li>
             </ul>
+            <div class="mod-disclaimer mod-disclaimer--gray">
+                <span class="mod-disclaimer-icon">⚠️</span>
+                <div>
+                    <strong>Kritik Uyarı:</strong>
+                    <em>Diacora Health, karbonhidrat sayımı veya değişken doz hesabı yaparak size aktif bir insülin dozu önermez. Sistem, yalnızca sizin ve klinisyeninizin geriye dönük doz uyumunu inceleyebilmesi amacıyla bir dijital günlük işlevi görür. Doz ayarlamaları, ek doz (düzeltme) uygulamaları ve tedavi protokolleri tamamen doktorunuzun sorumluluğundadır.</em>
+                </div>
+            </div>
         </div>
     </div>
 </div>
