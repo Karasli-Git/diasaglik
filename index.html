@@ -54,49 +54,48 @@
 
         /* ===== NAVBAR ===== */
         .navbar {
-            background:#1d334a;
-            border-bottom:1px solid #3a5975;
-            padding:14px 48px;
+            background:#ffffff;
+            border-bottom:1px solid #e5e7eb;
+            padding:12px 48px;
             display:flex; align-items:center; justify-content:space-between;
             position:sticky; top:0; z-index:999;
             transition:box-shadow .3s;
         }
-        .navbar.scrolled { box-shadow:0 2px 16px rgba(0,0,0,0.18); }
+        .navbar.scrolled { box-shadow:0 2px 16px rgba(0,0,0,0.08); }
         .nav-links { display:flex; gap:32px; }
-        .nav-links a { font-size:0.9em; color:#ffffff; font-weight:500; transition:color .2s; }
-        .nav-links a:hover { color:#8ccec2; }
+        .nav-links a { font-size:0.9em; color:#374151; font-weight:500; transition:color .2s; }
+        .nav-links a:hover { color:var(--teal); }
         .nav-btns { display:flex; gap:10px; }
         .btn-login {
-            border:1.5px solid rgba(255,255,255,0.4); color:#fff; padding:8px 20px;
-            border-radius:8px; font-size:0.88em; font-weight:600;
-            background:transparent; cursor:pointer; transition:all .2s;
+            border:1.5px solid #d1d5db; color:#374151; padding:8px 22px;
+            border-radius:20px; font-size:0.88em; font-weight:600;
+            background:#fff; cursor:pointer; transition:all .2s;
         }
-        .btn-login:hover { border-color:#8ccec2; color:#8ccec2; }
+        .btn-login:hover { border-color:var(--teal); color:var(--teal); }
         .btn-kayit {
-            background:var(--teal2); color:#fff; padding:8px 20px;
-            border-radius:8px; font-size:0.88em; font-weight:600;
+            background:var(--teal2); color:#fff; padding:8px 22px;
+            border-radius:20px; font-size:0.88em; font-weight:600;
             border:none; cursor:pointer; transition:all .2s;
         }
         .btn-kayit:hover { background:var(--blue); }
 
         /* ===== HERO BANNER ===== */
         .hero-banner {
-            background:linear-gradient(to right, #20405C 0%, #1C77B0 100%);
-            padding:40px 56px;
+            background:linear-gradient(to right, #1d3a5c 0%, #2a7cb8 100%);
+            padding:32px 56px;
             display:flex; align-items:center; justify-content:space-between;
-            min-height:200px;
         }
-        .hero-left-brand { display:flex; align-items:center; gap:32px; }
+        .hero-left-brand { display:flex; align-items:center; gap:28px; }
         .hero-logo {
-            width:160px; height:160px; border-radius:16px;
-            object-fit:contain; background:#1b3c8f; padding:14px;
-            box-shadow:0 6px 24px rgba(0,0,0,0.3);
+            width:155px; height:155px; border-radius:18px;
+            object-fit:cover; background:transparent;
+            box-shadow:0 4px 20px rgba(0,0,0,0.35);
             flex-shrink:0;
         }
-        .brand-name { font-size:3.8em; font-weight:900; color:#ffffff; letter-spacing:-1px; line-height:1; }
-        .brand-health { font-size:1.5em; font-weight:500; color:#8ccec2; letter-spacing:10px; margin-top:6px; }
-        .brand-tag { font-size:0.78em; color:#ffffff; margin-top:8px; letter-spacing:2px; text-transform:uppercase; opacity:0.80; }
-        .hero-right-text { font-size:1.4em; font-weight:700; color:#fff; letter-spacing:1px; opacity:0.9; }
+        .brand-name { font-size:3.2em; font-weight:800; color:#ffffff; letter-spacing:0px; line-height:1.05; font-family:Georgia, 'Times New Roman', serif; }
+        .brand-health { font-size:1.35em; font-weight:500; color:#8ecdc8; letter-spacing:10px; margin-top:4px; font-family:'Segoe UI', sans-serif; }
+        .brand-tag { font-size:0.76em; color:rgba(255,255,255,0.85); margin-top:8px; letter-spacing:2px; text-transform:uppercase; font-family:'Segoe UI', sans-serif; }
+        .hero-right-text { font-size:1.4em; font-weight:700; color:#fff; letter-spacing:1px; opacity:0.95; }
 
         /* ===== MAIN WHITE SECTION ===== */
         .main-section { background:#fff; padding:56px 48px 0; }
