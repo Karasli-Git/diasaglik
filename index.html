@@ -3,251 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diacora Health — Klinik Karar Destek Sistemi</title>
+<title>Diacora Health — Sağlık Takip Sistemi</title>
 <link rel="icon" href="/public/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --navy:#1a3a5c;--navy2:#0f2942;
-  --blue:#2980b9;--blue2:#3498db;--blue3:#5dade2;
-  --teal:#7ecac5;--teal2:#06b6d4;--teal3:#22d3ee;
-  --white:#fff;--gray1:#f8fafc;--gray2:#f0f4f8;--gray3:#e2e8f0;--gray4:#94a3b8;--gray5:#64748b;
-  --text:#1e293b;--amber:#f59e0b;--amberDark:#92400e;--amberBg:#fffbeb;
+  --navy:#1a3a5c; --navy2:#0f2942;
+  --blue:#2980b9; --blue2:#3498db; --blue3:#5dade2;
+  --teal:#7ecac5; --teal2:#06b6d4;
+  --white:#fff; --gray1:#f8fafc; --gray2:#f0f4f8;
+  --gray3:#e2e8f0; --gray4:#94a3b8; --gray5:#64748b;
+  --text:#1e293b; --amber:#f59e0b; --amberDk:#92400e; --amberBg:#fffbeb;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
-code{font-family:'Courier New',monospace;font-size:0.88em;}
 
-/* SCROLL ANIMATIONS */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+/* ---- SCROLL REVEAL ---- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease;}
 .reveal-left.visible{opacity:1;transform:translateX(0);}
-.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease;}
 .reveal-right.visible{opacity:1;transform:translateX(0);}
 .reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}
 .reveal-delay-3{transition-delay:.3s;}.reveal-delay-4{transition-delay:.4s;}
 
-/* NAVBAR */
+/* ---- NAVBAR ---- */
 .navbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:12px 48px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:1000;transition:box-shadow .3s;}
 .navbar.scrolled{box-shadow:0 2px 16px rgba(0,0,0,0.09);}
-.nav-links{display:flex;gap:32px;}
-.nav-links a{font-size:0.9em;color:#374151;font-weight:500;transition:color .2s;}
-.nav-links a:hover{color:var(--teal);}
+.nav-brand{display:flex;align-items:center;gap:10px;}
+.nav-logo{width:34px;height:34px;border-radius:8px;object-fit:cover;}
+.nav-brand-name{font-size:1.05em;font-weight:800;color:var(--navy);font-family:Georgia,serif;}
+.nav-brand-health{font-size:0.7em;color:var(--teal2);letter-spacing:3px;font-weight:600;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:0.88em;color:#374151;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
 .nav-btns{display:flex;gap:10px;}
-.btn-login{border:1.5px solid #d1d5db;color:#374151;padding:8px 22px;border-radius:20px;
-  font-size:0.88em;font-weight:600;background:#fff;cursor:pointer;transition:all .2s;}
-.btn-login:hover{border-color:var(--teal);color:var(--teal);}
-.btn-kayit{background:var(--blue);color:#fff;padding:8px 22px;border-radius:20px;
-  font-size:0.88em;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
+.btn-login{border:1.5px solid #d1d5db;color:#374151;padding:7px 20px;border-radius:20px;
+  font-size:0.86em;font-weight:600;background:#fff;cursor:pointer;transition:all .2s;}
+.btn-login:hover{border-color:var(--blue);color:var(--blue);}
+.btn-kayit{background:var(--blue);color:#fff;padding:7px 20px;border-radius:20px;
+  font-size:0.86em;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
 .btn-kayit:hover{background:var(--navy);}
 
-/* HERO */
+/* ---- HERO ---- */
 .hero-banner{background:linear-gradient(135deg,#1a3a5c 0%,#2980b9 60%,#5dade2 100%);
-  padding:40px 56px;display:flex;align-items:center;justify-content:space-between;min-height:220px;}
+  padding:40px 56px;display:flex;align-items:center;justify-content:space-between;min-height:210px;}
 .hero-left-brand{display:flex;align-items:center;gap:36px;}
-.hero-logo{width:220px;height:220px;border-radius:22px;object-fit:cover;
+.hero-logo{width:200px;height:200px;border-radius:22px;object-fit:cover;
   box-shadow:0 6px 28px rgba(0,0,0,0.4);flex-shrink:0;}
-.brand-name{font-size:4.2em;font-weight:800;color:#fff;line-height:1.05;font-family:Georgia,serif;}
-.brand-health{font-size:1.6em;font-weight:400;color:#7ecac5;letter-spacing:12px;margin-top:6px;}
-.brand-tag{font-size:0.78em;color:rgba(255,255,255,0.80);margin-top:10px;letter-spacing:2.5px;text-transform:uppercase;}
-.hero-right-text{font-size:1.5em;font-weight:600;color:#fff;letter-spacing:1px;opacity:.95;}
+.brand-name{font-size:3.8em;font-weight:800;color:#fff;line-height:1.05;font-family:Georgia,serif;}
+.brand-health{font-size:1.5em;font-weight:400;color:#7ecac5;letter-spacing:12px;margin-top:6px;}
+.brand-tag{font-size:0.76em;color:rgba(255,255,255,0.78);margin-top:8px;letter-spacing:2px;text-transform:uppercase;}
+.hero-right-text{font-size:1.4em;font-weight:600;color:#fff;letter-spacing:1px;opacity:.95;}
 
-/* MAIN SECTION */
-.main-section{background:#fff;padding:56px 48px 0;}
-.quote-wrap{text-align:center;margin-bottom:52px;}
-.quote-text{font-size:2em;font-weight:700;color:var(--text);line-height:1.4;font-family:Georgia,serif;margin-bottom:14px;}
-.intro-heading{font-size:1.45em;font-weight:700;color:var(--text);line-height:1.4;margin:0 0 16px;font-family:Georgia,serif;}
-.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
-.intro-text p{font-size:0.95em;color:var(--gray5);line-height:1.8;}
+/* ---- MAIN SECTION ---- */
+.main-section{background:#fff;padding:52px 48px 0;}
+.quote-wrap{text-align:center;margin-bottom:48px;}
+.quote-text{font-size:1.85em;font-weight:700;color:var(--text);line-height:1.4;font-family:Georgia,serif;}
+.intro-heading{font-size:1.35em;font-weight:700;color:var(--text);line-height:1.4;margin:0 0 14px;font-family:Georgia,serif;}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.intro-text p{font-size:0.93em;color:var(--gray5);line-height:1.8;}
 .intro-text p strong{color:var(--text);}
-.intro-btns{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
-.btn-basla{background:var(--blue);color:#fff;padding:12px 28px;border-radius:50px;
-  font-weight:600;font-size:0.95em;transition:all .25s;display:inline-flex;align-items:center;gap:6px;}
+.intro-btns{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;}
+.btn-basla{background:var(--blue);color:#fff;padding:11px 26px;border-radius:50px;
+  font-weight:600;font-size:0.93em;transition:all .25s;display:inline-flex;align-items:center;gap:6px;}
 .btn-basla:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 6px 20px rgba(41,128,185,.35);}
-.btn-kesfet{border:1.5px solid var(--gray3);color:var(--text);padding:12px 28px;
-  border-radius:50px;font-weight:500;font-size:0.95em;transition:all .25s;}
+.btn-kesfet{border:1.5px solid var(--gray3);color:var(--text);padding:11px 26px;
+  border-radius:50px;font-weight:500;font-size:0.93em;transition:all .25s;}
 .btn-kesfet:hover{border-color:var(--blue);color:var(--blue);}
 
-/* PHONE */
+/* Phone mockup */
 .phone-wrap{display:flex;justify-content:center;position:relative;}
 .phone-shadow{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
-  width:200px;height:20px;background:radial-gradient(ellipse,rgba(0,0,0,0.2),transparent 70%);}
+  width:200px;height:20px;background:radial-gradient(ellipse,rgba(0,0,0,0.18),transparent 70%);}
 .phone-float{animation:phoneFloat 4s ease-in-out infinite;}
 @keyframes phoneFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-.phone-outer{width:268px;background:#1e3a5f;border-radius:36px;padding:14px 10px;
+.phone-outer{width:258px;background:#1e3a5f;border-radius:36px;padding:13px 10px;
   box-shadow:0 24px 60px rgba(0,0,0,0.22),0 0 0 1px rgba(255,255,255,0.06);}
 .phone-inner{background:#0f2942;border-radius:28px;overflow:hidden;padding:14px;}
 .phone-top{display:flex;align-items:center;gap:8px;background:#1a3a5c;border-radius:10px;padding:8px 12px;margin-bottom:12px;}
-.phone-checkbox{width:18px;height:18px;border:2px solid rgba(255,255,255,0.5);border-radius:4px;background:rgba(255,255,255,0.1);}
-.phone-top-label{color:#fff;font-size:0.82em;font-weight:600;}
-.ph-card-main{background:var(--blue);border-radius:14px;padding:14px 16px;margin-bottom:10px;}
-.ph-card-label{font-size:0.72em;color:rgba(255,255,255,0.85);margin-bottom:6px;}
-.ph-card-value{font-size:1.9em;font-weight:900;color:#fff;line-height:1;}
-.ph-card-value small{font-size:0.4em;font-weight:400;}
-.ph-card-sub{font-size:0.72em;color:rgba(255,255,255,0.8);margin-top:4px;}
+.phone-checkbox{width:16px;height:16px;border:2px solid rgba(255,255,255,0.45);border-radius:3px;background:rgba(255,255,255,0.1);}
+.phone-top-label{color:#fff;font-size:0.8em;font-weight:600;}
+.ph-card-main{background:var(--blue);border-radius:14px;padding:13px 15px;margin-bottom:10px;}
+.ph-card-label{font-size:0.7em;color:rgba(255,255,255,0.82);margin-bottom:5px;}
+.ph-card-value{font-size:1.8em;font-weight:900;color:#fff;line-height:1;}
+.ph-card-value small{font-size:0.38em;font-weight:400;}
+.ph-card-sub{font-size:0.7em;color:rgba(255,255,255,0.78);margin-top:4px;}
 .ph-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
 .ph-card-small{background:#1e3a5f;border-radius:12px;padding:10px 12px;}
-.ph-card-small .ph-card-label{display:flex;align-items:center;gap:4px;font-size:0.68em;color:rgba(255,255,255,0.6);}
-.ph-card-small .ph-card-label svg{width:12px;height:12px;stroke:var(--teal);fill:none;}
-.ph-card-small .ph-card-value{font-size:1.1em;font-weight:800;}
+.ph-card-small .ph-card-label{display:flex;align-items:center;gap:4px;font-size:0.67em;color:rgba(255,255,255,0.58);}
+.ph-card-small .ph-card-label svg{width:11px;height:11px;stroke:var(--teal);fill:none;}
+.ph-card-small .ph-card-value{font-size:1.05em;font-weight:800;}
 .ph-progress-card{background:#1e3a5f;border-radius:12px;padding:10px 12px;margin-bottom:10px;}
-.ph-progress-label{font-size:0.7em;color:rgba(255,255,255,0.6);margin-bottom:6px;}
-.ph-bar-bg{background:rgba(255,255,255,0.15);border-radius:4px;height:6px;}
-.ph-bar-fill{background:linear-gradient(90deg,var(--blue),var(--teal));height:6px;border-radius:4px;width:0%;transition:width 1.5s ease 0.5s;}
-.ph-progress-val{font-size:0.68em;color:rgba(255,255,255,0.6);text-align:right;margin-top:4px;}
-.ph-cta{background:var(--blue);border-radius:10px;padding:10px 14px;text-align:center;
-  color:#fff;font-size:0.8em;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
+.ph-progress-label{font-size:0.68em;color:rgba(255,255,255,0.58);margin-bottom:6px;}
+.ph-bar-bg{background:rgba(255,255,255,0.14);border-radius:4px;height:5px;}
+.ph-bar-fill{background:linear-gradient(90deg,var(--blue),var(--teal));height:5px;border-radius:4px;width:0%;transition:width 1.5s ease .5s;}
+.ph-progress-val{font-size:0.66em;color:rgba(255,255,255,0.58);text-align:right;margin-top:4px;}
+.ph-cta{background:var(--blue);border-radius:10px;padding:10px 13px;text-align:center;
+  color:#fff;font-size:0.78em;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
 
-/* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gray3);padding:28px 0 0;margin-top:48px;}
-.stat-col{text-align:center;padding:20px;}
-.stat-num{font-size:2em;font-weight:900;color:var(--blue);display:block;line-height:1;}
-.stat-lbl{font-size:0.82em;color:var(--gray4);margin-top:6px;display:block;}
-
-/* DISCLAIMER BOX */
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gray3);padding:28px 0 0;margin-top:44px;}
+.stat-col{text-align:center;padding:18px;}
+.stat-num{font-size:1.9em;font-weight:900;color:var(--blue);display:block;line-height:1;}
+.stat-lbl{font-size:0.8em;color:var(--gray4);margin-top:6px;display:block;}
 .disclaimer-box{display:flex;align-items:flex-start;gap:16px;background:#f0f7ff;
   border:1.5px solid #b8d8f0;border-left:5px solid var(--blue);border-radius:12px;
-  padding:20px 28px;margin:48px 0 0;}
+  padding:18px 26px;margin:44px 0 0;}
 .disclaimer-icon{color:var(--blue);flex-shrink:0;margin-top:2px;}
-.disclaimer-title{font-size:0.82em;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin:0 0 6px;}
-.disclaimer-text{font-size:0.88em;color:#4a5568;line-height:1.65;margin:0;}
+.disclaimer-title{font-size:0.8em;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin:0 0 5px;}
+.disclaimer-text{font-size:0.86em;color:#4a5568;line-height:1.62;margin:0;}
 .disclaimer-text strong{color:var(--navy);}
 
-/* MODULES OVERVIEW */
-.modules-section{background:linear-gradient(160deg,#1a3a5c 0%,#2785C0 100%);padding:64px 48px;}
-.modules-header{text-align:center;margin-bottom:44px;}
-.modules-title{font-size:2em;font-weight:800;color:#fff;margin-bottom:8px;}
-.modules-sub{font-size:0.95em;color:rgba(255,255,255,0.8);}
-.modules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
-.mod-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
-  border-radius:20px;padding:26px 24px;transition:all 0.3s ease-in-out;cursor:default;position:relative;}
-.mod-card:hover{transform:scale(1.05);background:rgba(255,255,255,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.3);}
-.mod-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
-.mod-tag{font-size:0.66em;color:rgba(255,255,255,0.5);font-weight:700;letter-spacing:2px;text-transform:uppercase;}
-.mod-icon{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.15);
-  display:flex;align-items:center;justify-content:center;}
-.mod-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.mod-card h3{font-size:1em;font-weight:700;margin-bottom:8px;color:#fff;line-height:1.3;}
-.mod-card p{font-size:0.79em;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:12px;}
-.mod-card-disclaimer{font-size:0.71em;color:rgba(255,255,255,0.52);font-style:italic;line-height:1.5;
-  border-top:1px solid rgba(255,255,255,0.12);padding-top:10px;margin-top:4px;}
-.mod-explore-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.18);
-  border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:0.75em;font-weight:600;
-  padding:6px 14px;border-radius:14px;cursor:pointer;transition:all 0.2s;margin-top:10px;text-decoration:none;}
-.mod-explore-btn:hover{background:rgba(255,255,255,0.3);transform:translateY(-1px);}
-.modules-master-disclaimer{margin-top:40px;background:rgba(0,0,0,0.22);
-  border:1px solid rgba(255,255,255,0.15);border-left:5px solid var(--teal);
-  border-radius:12px;padding:18px 24px;display:flex;gap:14px;align-items:flex-start;}
-.modules-master-disclaimer-icon{color:var(--teal);font-size:1.2em;flex-shrink:0;margin-top:1px;}
-.modules-master-disclaimer p{font-size:0.78em;color:rgba(255,255,255,0.7);line-height:1.65;margin:0;}
-.modules-master-disclaimer strong{color:#fff;}
+/* Modules overview grid */
+.modules-section{background:linear-gradient(160deg,#1a3a5c 0%,#2785C0 100%);padding:60px 48px;}
+.modules-header{text-align:center;margin-bottom:42px;}
+.modules-title{font-size:1.9em;font-weight:800;color:#fff;margin-bottom:8px;}
+.modules-sub{font-size:0.92em;color:rgba(255,255,255,0.78);}
+.modules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.mod-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.13);
+  border-radius:20px;padding:24px 22px;transition:all 0.3s ease-in-out;cursor:default;}
+.mod-card:hover{transform:scale(1.05);background:rgba(255,255,255,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.28);}
+.mod-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.mod-tag{font-size:0.65em;color:rgba(255,255,255,0.48);font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.mod-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.14);
+  display:flex;align-items:center;justify-content:center;font-size:1.2em;}
+.mod-card h3{font-size:0.97em;font-weight:700;margin-bottom:7px;color:#fff;line-height:1.3;}
+.mod-card p{font-size:0.78em;color:rgba(255,255,255,0.72);line-height:1.58;margin-bottom:10px;}
+.mod-explore-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.16);
+  border:1px solid rgba(255,255,255,0.22);color:#fff;font-size:0.74em;font-weight:600;
+  padding:5px 13px;border-radius:12px;cursor:pointer;transition:all 0.2s;margin-top:8px;text-decoration:none;}
+.mod-explore-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-1px);}
+.mod-master-disc{margin-top:36px;background:rgba(0,0,0,0.2);
+  border:1px solid rgba(255,255,255,0.14);border-left:5px solid var(--teal);
+  border-radius:12px;padding:16px 22px;display:flex;gap:13px;align-items:flex-start;}
+.mod-master-disc-icon{color:var(--teal);font-size:1.1em;flex-shrink:0;margin-top:1px;}
+.mod-master-disc p{font-size:0.76em;color:rgba(255,255,255,0.68);line-height:1.62;margin:0;}
+.mod-master-disc strong{color:#fff;}
 
-/* ============================================================
-   CDSS DETAIL SECTION
-   ============================================================ */
-.cdss-section{background:var(--gray2);}
+/* ==================================================
+   CDSS WRAPPER — Left Sidebar + Content
+================================================== */
+.cdss-section-intro{background:var(--gray2);padding:48px 48px 0;text-align:center;}
+.cdss-pre-tag{display:inline-block;background:var(--navy);color:var(--teal);
+  font-size:0.7em;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 15px;border-radius:20px;margin-bottom:16px;}
+.cdss-section-intro h2{font-size:1.9em;font-weight:800;color:var(--navy);
+  margin-bottom:10px;font-family:Georgia,serif;line-height:1.3;}
+.cdss-section-intro p{font-size:0.91em;color:var(--gray5);max-width:600px;margin:0 auto 32px;}
 
-.cdss-section-hdr{text-align:center;padding:64px 48px 0;}
-.cdss-section-hdr .cdss-pretag{display:inline-block;background:var(--navy);color:var(--teal);
-  font-size:0.72em;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  padding:5px 16px;border-radius:20px;margin-bottom:18px;}
-.cdss-section-hdr h2{font-size:2em;font-weight:800;color:var(--navy);margin-bottom:10px;font-family:Georgia,serif;}
-.cdss-section-hdr p{font-size:0.93em;color:var(--gray5);max-width:640px;margin:0 auto 0;}
+.cdss-wrapper{display:flex;align-items:stretch;background:var(--gray2);min-height:calc(100vh - 61px);}
 
-/* Tab Navigation */
-.cdss-nav-wrap{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);
-  padding:18px 48px;position:sticky;top:61px;z-index:90;
-  box-shadow:0 4px 20px rgba(0,0,0,0.18);}
-.cdss-tab-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;}
-.cdss-tab-scroll::-webkit-scrollbar{height:3px;}
-.cdss-tab-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,0.1);border-radius:2px;}
-.cdss-tab-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:2px;}
-.cdss-tab{flex-shrink:0;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
-  color:rgba(255,255,255,0.75);padding:8px 16px;border-radius:20px;font-size:0.81em;
-  font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;outline:none;}
-.cdss-tab:hover{background:rgba(255,255,255,0.22);color:#fff;}
-.cdss-tab.active{background:#fff;color:var(--navy);border-color:#fff;}
+/* ---- LEFT SIDEBAR ---- */
+.cdss-sidebar{
+  width:258px;flex-shrink:0;
+  background:linear-gradient(180deg,#1a3a5c 0%,#0f2942 100%);
+  position:sticky;top:61px;height:calc(100vh - 61px);
+  overflow-y:auto;display:flex;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.2) transparent;
+}
+.cdss-sidebar::-webkit-scrollbar{width:4px;}
+.cdss-sidebar::-webkit-scrollbar-track{background:transparent;}
+.cdss-sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:2px;}
+.sidebar-hdr{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.sidebar-hdr-tag{font-size:0.66em;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+  color:rgba(255,255,255,0.42);margin-bottom:3px;}
+.sidebar-hdr-title{font-size:0.9em;font-weight:700;color:#fff;}
+.sidebar-hdr-sub{font-size:0.74em;color:rgba(255,255,255,0.55);margin-top:3px;}
+.sidebar-nav{padding:10px 0;flex:1;}
+.sidebar-group-lbl{font-size:0.62em;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  color:rgba(255,255,255,0.32);padding:12px 16px 5px;}
+.sidebar-link{display:flex;align-items:center;gap:9px;width:100%;padding:9px 14px 9px 16px;
+  background:none;border:none;border-left:3px solid transparent;color:rgba(255,255,255,0.62);
+  cursor:pointer;transition:all 0.2s;text-align:left;font-family:'Inter',sans-serif;}
+.sidebar-link:hover{background:rgba(255,255,255,0.08);color:#fff;border-left-color:rgba(255,255,255,0.28);}
+.sidebar-link.active{background:rgba(255,255,255,0.14);color:#fff;border-left-color:#7ecac5;}
+.sb-num{font-size:0.67em;font-weight:700;color:rgba(255,255,255,0.38);width:18px;flex-shrink:0;font-family:monospace;}
+.sidebar-link.active .sb-num{color:#7ecac5;}
+.sb-icon{font-size:1.05em;flex-shrink:0;line-height:1;}
+.sb-label{font-size:0.82em;font-weight:500;line-height:1.3;flex:1;}
+.sb-arrow{font-size:0.7em;color:rgba(255,255,255,0.28);flex-shrink:0;transition:transform .2s;}
+.sidebar-link.active .sb-arrow{color:var(--teal);transform:translateX(2px);}
+.sidebar-footer{padding:14px 16px;border-top:1px solid rgba(255,255,255,0.1);margin-top:auto;}
+.sidebar-footer-text{font-size:0.7em;color:rgba(255,255,255,0.3);line-height:1.5;}
 
-/* Panels */
-.cdss-panels{padding:0 48px 80px;max-width:1340px;margin:0 auto;}
+/* ---- CDSS CONTENT AREA ---- */
+.cdss-content{flex:1;min-width:0;padding:36px 44px 64px;background:var(--gray2);}
 .cdss-panel{display:none;}
 .cdss-panel.active{display:block;}
 
-/* Split screen */
-.cdss-split{display:grid;grid-template-columns:42% 58%;gap:48px;align-items:start;padding-top:48px;}
+/* ---- SPLIT SCREEN ---- */
+.cdss-split{display:grid;grid-template-columns:44% 1fr;gap:36px;align-items:start;}
 
-/* Left clinical copy */
-.cdss-left-tag{font-size:0.7em;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--blue);margin-bottom:12px;display:block;}
-.cdss-left h3{font-size:1.38em;font-weight:800;color:var(--navy);line-height:1.35;
-  margin-bottom:16px;font-family:Georgia,serif;}
-.cdss-left>p{font-size:0.89em;color:#4a5568;line-height:1.82;margin-bottom:22px;}
-.cdss-bullet-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px;}
-.cdss-bullet-list li{display:flex;align-items:flex-start;gap:10px;font-size:0.87em;color:#374151;line-height:1.6;}
-.cdss-bullet-icon{color:var(--teal);font-size:1.1em;flex-shrink:0;margin-top:1px;font-weight:900;}
-.cdss-amber-box{background:var(--amberBg);border:1px solid #fde68a;border-left:5px solid var(--amber);
-  border-radius:10px;padding:16px 18px;display:flex;gap:10px;align-items:flex-start;}
-.cdss-amber-icon{font-size:1.1em;flex-shrink:0;margin-top:1px;}
-.cdss-amber-text{font-size:0.83em;color:#78350f;line-height:1.6;}
-.cdss-amber-text strong{color:var(--amberDark);}
+/* ---- LEFT COLUMN (Text) ---- */
+.cdss-col-left{
+  background:#fff;border-radius:18px;padding:30px 28px;
+  box-shadow:0 2px 16px rgba(0,0,0,0.07);
+  transform:translateX(0);opacity:1;
+  transition:transform 0.5s ease-out,opacity 0.5s ease-out;
+}
+.cdss-col-left.slide-init{transform:translateX(-40px);opacity:0;}
+.cdss-part-tag{display:inline-block;background:var(--navy);color:var(--teal);
+  font-size:0.68em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:12px;margin-bottom:14px;}
+.cdss-module-num{font-size:0.72em;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:4px;}
+.cdss-col-left h2{font-size:1.28em;font-weight:800;color:var(--navy);line-height:1.35;
+  margin-bottom:13px;font-family:Georgia,serif;}
+.cdss-desc{font-size:0.875em;color:#4a5568;line-height:1.82;margin-bottom:20px;}
+.cdss-bullets{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
+.cdss-bullets li{display:flex;align-items:flex-start;gap:8px;font-size:0.855em;color:#374151;line-height:1.55;}
+.cb-dot{color:var(--blue);font-weight:900;flex-shrink:0;margin-top:3px;font-size:0.9em;}
+/* Warning box */
+.cdss-warn-box{background:var(--amberBg);border:1px solid #fde68a;border-left:5px solid var(--amber);
+  border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;margin-top:4px;}
+.warn-icon{font-size:1.05em;flex-shrink:0;margin-top:1px;}
+.warn-body{font-size:0.82em;color:#78350f;line-height:1.62;}
+.warn-title{font-weight:700;color:var(--amberDk);display:block;margin-bottom:3px;}
+
+/* ---- RIGHT COLUMN (Tables) ---- */
+.cdss-col-right{
+  display:flex;flex-direction:column;gap:18px;
+  transform:translateX(0);opacity:1;
+  transition:transform 0.5s ease-out,opacity 0.5s ease-out;
+}
+.cdss-col-right.slide-init{transform:translateX(40px);opacity:0;}
 
 /* Schema card */
 .schema-card{background:#fff;border-radius:16px;overflow:hidden;
-  box-shadow:0 4px 24px rgba(0,0,0,0.09);margin-bottom:20px;
-  transition:all 0.3s ease-in-out;}
-.schema-card:hover{transform:scale(1.02);box-shadow:0 10px 36px rgba(0,0,0,0.13);}
-.schema-card-hdr{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);
-  padding:13px 20px;display:flex;align-items:center;gap:12px;}
-.schema-hdr-icon{font-size:1.2em;}
-.schema-hdr-title{font-size:0.88em;font-weight:700;color:#fff;flex:1;}
+  box-shadow:0 2px 16px rgba(0,0,0,0.07);transition:all 0.3s ease-in-out;}
+.schema-card:hover{transform:scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.12);}
+.schema-hdr{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);
+  padding:12px 18px;display:flex;align-items:center;gap:10px;}
+.schema-hdr-icon{font-size:1.1em;}
+.schema-hdr-title{font-size:0.86em;font-weight:700;color:#fff;flex:1;}
 .schema-hdr-badge{background:rgba(255,255,255,0.2);color:#fff;font-size:0.68em;font-weight:700;
-  letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:10px;white-space:nowrap;}
+  letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:9px;white-space:nowrap;}
+table.s-def{width:100%;border-collapse:collapse;}
+table.s-def thead th{background:var(--navy);color:rgba(255,255,255,0.88);padding:8px 13px;
+  text-align:left;font-size:0.73em;font-weight:700;letter-spacing:.3px;}
+table.s-def tbody td{padding:8px 13px;font-size:0.78em;color:#374151;border-bottom:1px solid #edf2f7;vertical-align:top;line-height:1.42;}
+table.s-def tbody tr:last-child td{border-bottom:none;}
+table.s-def tbody tr{transition:background .14s;}
+table.s-def tbody tr:hover td{background:#f0f7ff;}
+.stype{display:inline-block;padding:1px 7px;border-radius:4px;font-size:0.78em;font-weight:700;font-family:monospace;white-space:nowrap;}
+.stype.TIMESTAMP{background:#f0fdf4;color:#166534;}
+.stype.FLOAT{background:#fef9c3;color:#854d0e;}
+.stype.ENUM{background:#fdf2f8;color:#9d174d;}
+.stype.INTEGER{background:#eff6ff;color:#1d4ed8;}
+.stype.TEXT{background:#f5f3ff;color:#5b21b6;}
+.stype.UUID{background:#f8f8f8;color:#374151;}
+.stype.JSON{background:#ecfdf5;color:#065f46;}
+.stype.BOOLEAN{background:#f0fdf4;color:#166534;}
 
-table.schema-def{width:100%;border-collapse:collapse;background:#fff;}
-table.schema-def thead th{background:var(--navy);color:rgba(255,255,255,0.9);
-  padding:9px 14px;text-align:left;font-size:0.74em;font-weight:700;letter-spacing:.4px;}
-table.schema-def tbody td{padding:9px 14px;font-size:0.79em;color:#374151;
-  border-bottom:1px solid #e8edf3;vertical-align:top;line-height:1.45;}
-table.schema-def tbody tr:last-child td{border-bottom:none;}
-table.schema-def tbody tr{transition:background .15s;}
-table.schema-def tbody tr:hover td{background:#f0f7ff;}
-
-.stype{display:inline-block;padding:1px 7px;border-radius:4px;font-size:0.78em;font-weight:600;font-family:monospace;}
-.stype.ts{background:#f0fdf4;color:#166534;}
-.stype.float{background:#fef9c3;color:#854d0e;}
-.stype.en{background:#fdf2f8;color:#9d174d;}
-.stype.int{background:#eff6ff;color:#1d4ed8;}
-.stype.txt{background:#f5f3ff;color:#5b21b6;}
-.stype.fk{background:#fff7ed;color:#9a3412;}
-.stype.json{background:#ecfdf5;color:#065f46;}
-.stype.bool{background:#f0fdf4;color:#166534;}
-.stype.uuid{background:#f8f8f8;color:#374151;}
-
-/* Data grid */
+/* Data grid card */
 .data-grid-card{background:#fff;border-radius:16px;overflow:hidden;
-  box-shadow:0 4px 24px rgba(0,0,0,0.09);transition:all 0.3s ease-in-out;}
-.data-grid-card:hover{transform:scale(1.02);box-shadow:0 10px 36px rgba(0,0,0,0.13);}
-.data-grid-hdr{background:linear-gradient(135deg,var(--blue) 0%,var(--blue3) 100%);
-  padding:11px 18px;display:flex;align-items:center;gap:10px;}
-.data-grid-hdr>span{font-size:0.86em;font-weight:700;color:#fff;flex:1;}
-.dg-hdr-badge{background:rgba(255,255,255,0.25);color:#fff;font-size:0.7em;font-weight:600;padding:2px 8px;border-radius:8px;white-space:nowrap;}
-
-table.data-grid{width:100%;border-collapse:collapse;}
-table.data-grid thead th{background:#f8fafc;padding:8px 12px;text-align:left;
-  font-size:0.73em;font-weight:700;color:#475569;border-bottom:1px solid var(--gray3);white-space:nowrap;}
-table.data-grid tbody td{padding:9px 12px;font-size:0.79em;color:var(--text);
-  border-bottom:1px solid #f1f5f9;}
-table.data-grid tbody tr:last-child td{border-bottom:none;}
-table.data-grid tbody tr{transition:background .15s;}
-table.data-grid tbody tr:hover td{background:#f0f7ff;}
-
-.dg{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.78em;font-weight:600;}
+  box-shadow:0 2px 16px rgba(0,0,0,0.07);transition:all 0.3s ease-in-out;}
+.data-grid-card:hover{transform:scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.12);}
+.dg-hdr{background:linear-gradient(135deg,var(--blue) 0%,var(--blue3) 100%);
+  padding:11px 17px;display:flex;align-items:center;gap:9px;}
+.dg-hdr>span:first-child{font-size:0.85em;font-weight:700;color:#fff;flex:1;}
+.dg-badge{background:rgba(255,255,255,0.24);color:#fff;font-size:0.68em;font-weight:700;padding:2px 8px;border-radius:8px;white-space:nowrap;}
+table.d-grid{width:100%;border-collapse:collapse;}
+table.d-grid thead th{background:#f8fafc;padding:8px 12px;text-align:left;font-size:0.72em;
+  font-weight:700;color:#475569;border-bottom:1px solid var(--gray3);white-space:nowrap;}
+table.d-grid tbody td{padding:8px 12px;font-size:0.78em;color:var(--text);border-bottom:1px solid #f1f5f9;}
+table.d-grid tbody tr:last-child td{border-bottom:none;}
+table.d-grid tbody tr{transition:background .14s;}
+table.d-grid tbody tr:hover td{background:#f0f7ff;}
+.dg{display:inline-block;padding:2px 8px;border-radius:9px;font-size:0.78em;font-weight:600;white-space:nowrap;}
 .dg.ok{background:#dcfce7;color:#166534;}
 .dg.hi{background:#fef9c3;color:#854d0e;}
 .dg.lo{background:#fef2f2;color:#991b1b;}
@@ -258,51 +287,68 @@ table.data-grid tbody tr:hover td{background:#f0f7ff;}
 .dg.purple{background:#f5f3ff;color:#5b21b6;}
 
 /* CTA */
-.cta-section{padding:80px 48px;text-align:center;background:#fff;}
-.cta-logo{width:60px;height:60px;border-radius:12px;object-fit:cover;margin:0 auto 24px;}
-.cta-title{font-size:2.1em;font-weight:800;color:var(--text);margin-bottom:14px;}
+.cta-section{padding:72px 48px;text-align:center;background:#fff;}
+.cta-logo{width:56px;height:56px;border-radius:12px;object-fit:cover;margin:0 auto 22px;}
+.cta-title{font-size:2em;font-weight:800;color:var(--text);margin-bottom:12px;}
 .cta-title span{color:var(--blue);}
-.cta-sub{font-size:0.95em;color:var(--gray5);margin-bottom:32px;}
+.cta-sub{font-size:0.92em;color:var(--gray5);margin-bottom:28px;}
 .btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;
-  padding:14px 36px;border-radius:50px;font-weight:700;font-size:1em;transition:all .3s;margin-bottom:20px;}
+  padding:13px 34px;border-radius:50px;font-weight:700;font-size:0.97em;transition:all .3s;margin-bottom:18px;}
 .btn-cta:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 8px 24px rgba(41,128,185,.4);}
-.cta-italic{font-size:0.88em;color:var(--gray4);font-style:italic;}
+.cta-italic{font-size:0.86em;color:var(--gray4);font-style:italic;}
 
-/* FOOTER */
-.footer{background:#0f172a;padding:22px 48px;text-align:center;}
-.footer p{font-size:0.85em;color:rgba(255,255,255,0.35);}
+/* Footer */
+.footer{background:#0f172a;padding:20px 48px;text-align:center;}
+.footer p{font-size:0.83em;color:rgba(255,255,255,0.33);}
 
 /* RESPONSIVE */
-@media(max-width:1100px){.cdss-split{grid-template-columns:1fr;}}
+@media(max-width:1100px){
+  .cdss-split{grid-template-columns:1fr;}
+  .cdss-sidebar{width:220px;}
+}
 @media(max-width:900px){
+  .cdss-wrapper{flex-direction:column;}
+  .cdss-sidebar{width:100%;height:auto;position:relative;top:0;}
+  .cdss-tab-scroll{display:flex;overflow-x:auto;flex-direction:row;padding:10px 16px;}
+  .sidebar-nav{display:flex;flex-direction:row;padding:0;overflow-x:auto;}
+  .sidebar-group-lbl{display:none;}
+  .sidebar-hdr{display:none;}
+  .sidebar-footer{display:none;}
+  .sidebar-link{flex-direction:column;text-align:center;gap:4px;padding:8px 12px;
+    border-left:none;border-bottom:3px solid transparent;white-space:nowrap;min-width:90px;}
+  .sidebar-link.active{border-bottom-color:#7ecac5;border-left:none;}
+  .sb-arrow{display:none;}
+  .cdss-content{padding:24px 20px 48px;}
   .modules-grid{grid-template-columns:1fr 1fr;}
   .intro-grid{grid-template-columns:1fr;}
-  .cdss-nav-wrap{padding:14px 20px;}
-  .cdss-panels{padding:0 20px 60px;}
-  .cdss-split{gap:28px;}
+  .stats-row{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:768px){
   .navbar,.hero-banner,.main-section,.modules-section,.cta-section,.footer{padding-left:20px;padding-right:20px;}
-  .hero-banner{flex-direction:column;gap:20px;text-align:center;}
-  .modules-grid{grid-template-columns:1fr 1fr;}
-  .stats-row{grid-template-columns:1fr 1fr;}
-  .brand-name{font-size:2.2em;}
+  .hero-banner{flex-direction:column;gap:18px;text-align:center;}
+  .brand-name{font-size:2.6em;}
+  .cdss-col-left,.cdss-col-right{transform:none !important;}
 }
 @media(max-width:480px){
   .modules-grid{grid-template-columns:1fr;}
-  .stats-row{grid-template-columns:1fr 1fr;}
   .intro-btns{flex-direction:column;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <img src="/public/logo.png" alt="Diacora" class="nav-logo">
+    <div>
+      <div class="nav-brand-name">Diacora</div>
+      <div class="nav-brand-health">HEALTH</div>
+    </div>
+  </div>
   <div class="nav-links">
     <a href="#hakkinda">Hakkında</a>
     <a href="#ozellikler">Modüller</a>
-    <a href="#cdss-detail">CDSS</a>
+    <a href="#cdss-section">Takip Ekranları</a>
     <a href="#iletisim">İletişim</a>
   </div>
   <div class="nav-btns">
@@ -311,7 +357,6 @@ table.data-grid tbody tr:hover td{background:#f0f7ff;}
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero-banner" id="hakkinda">
   <div class="hero-left-brand reveal">
     <img src="/public/logo.png" alt="Diacora Logo" class="hero-logo">
@@ -324,7 +369,6 @@ table.data-grid tbody tr:hover td{background:#f0f7ff;}
   <div class="hero-right-text reveal reveal-right">Ai.Sağlık İzleme Sistemi</div>
 </div>
 
-<!-- MAIN SECTION -->
 <div class="main-section">
   <div class="quote-wrap reveal">
     <p class="quote-text">Sağlık, sayılardan ibaret değildir.<br><span style="color:var(--blue);">Ama doğru sayılar yaşamı değiştirir.</span></p>
@@ -334,621 +378,730 @@ table.data-grid tbody tr:hover td{background:#f0f7ff;}
       <h2 class="intro-heading">Metabolik Verilerinizi Anlamlandırın,<br>Hekiminizle Güçlü İletişim Kurun</h2>
       <p>Diacora Health; şeker, tansiyon, insülin ve egzersiz döngülerinizi yapay zeka destekli analitik filtrelerden geçirerek karmaşık biyometrik verileri düzenli raporlar haline getirir. Platformumuz, <strong>tedavi planınızı belirlemez veya değiştirmez;</strong> ancak klinisyeninizin takibini kolaylaştıracak <strong>kanıta dayalı veri eğilimleri</strong> sunar.</p>
       <div class="intro-btns">
-        <a href="#cdss-detail" class="btn-basla">CDSS Sistemini Keşfet →</a>
-        <a href="#ozellikler" class="btn-kesfet">Modüllere Bak</a>
+        <a href="#cdss-section" class="btn-basla">Sağlık Takip Ekranları →</a>
+        <a href="#ozellikler" class="btn-kesfet">Modülleri İncele</a>
       </div>
     </div>
     <div class="phone-wrap reveal-right">
       <div class="phone-float">
-        <div class="phone-outer">
-          <div class="phone-inner">
-            <div class="phone-top">
-              <div class="phone-checkbox"></div>
-              <span class="phone-top-label">Diacora Health CDSS</span>
-            </div>
-            <div class="ph-card-main">
-              <div class="ph-card-label">Kan Şekeri — TIR Analizi</div>
-              <div class="ph-card-value">112 <small>mg/dL</small></div>
-              <div class="ph-card-sub">→ Hedef Aralık: %78 TIR</div>
-            </div>
-            <div class="ph-row">
-              <div class="ph-card-small">
-                <div class="ph-card-label"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Nabız</div>
-                <div class="ph-card-value" style="color:#7ecac5">72 <small style="font-size:0.45em;color:rgba(255,255,255,0.5)">bpm</small></div>
-              </div>
-              <div class="ph-card-small">
-                <div class="ph-card-label"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tansiyon</div>
-                <div class="ph-card-value" style="font-size:1em;color:#7ecac5">118/76</div>
-              </div>
-            </div>
-            <div class="ph-progress-card">
-              <div class="ph-progress-label">HbA1c Tahmini (eAG)</div>
-              <div class="ph-bar-bg"><div class="ph-bar-fill" id="progressBar"></div></div>
-              <div class="ph-progress-val">6.8% / 7.0 Hedef</div>
-            </div>
-            <div class="ph-cta">📋 CDSS Raporu Oluştur</div>
+        <div class="phone-outer"><div class="phone-inner">
+          <div class="phone-top"><div class="phone-checkbox"></div><span class="phone-top-label">Diacora Health</span></div>
+          <div class="ph-card-main">
+            <div class="ph-card-label">Günlük Şeker Özeti</div>
+            <div class="ph-card-value">112 <small>mg/dL</small></div>
+            <div class="ph-card-sub">→ Güvenli bölgede: %78</div>
           </div>
-        </div>
+          <div class="ph-row">
+            <div class="ph-card-small">
+              <div class="ph-card-label"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Nabız</div>
+              <div class="ph-card-value" style="color:#7ecac5">72 <small style="font-size:.45em;color:rgba(255,255,255,.5)">bpm</small></div>
+            </div>
+            <div class="ph-card-small">
+              <div class="ph-card-label"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tansiyon</div>
+              <div class="ph-card-value" style="font-size:1em;color:#7ecac5">118/76</div>
+            </div>
+          </div>
+          <div class="ph-progress-card">
+            <div class="ph-progress-label">3 Aylık Şeker Tahmini (HbA1c)</div>
+            <div class="ph-bar-bg"><div class="ph-bar-fill" id="progressBar"></div></div>
+            <div class="ph-progress-val">6.8% → Hedef: 7.0%</div>
+          </div>
+          <div class="ph-cta">📋 Muayene Raporu Oluştur</div>
+        </div></div>
       </div>
       <div class="phone-shadow"></div>
     </div>
   </div>
-
-  <!-- STATS -->
   <div class="stats-row" id="statsRow">
-    <div class="stat-col reveal reveal-delay-1">
-      <span class="stat-num" data-target="10" data-suffix="">0</span>
-      <span class="stat-lbl">Klinik Modül</span>
-    </div>
-    <div class="stat-col reveal reveal-delay-2">
-      <span class="stat-num" style="color:var(--blue)">7/24</span>
-      <span class="stat-lbl">Anlık İzleme</span>
-    </div>
-    <div class="stat-col reveal reveal-delay-3">
-      <span class="stat-num" style="color:var(--blue)">FHIR</span>
-      <span class="stat-lbl">HL7 Uyumlu</span>
-    </div>
-    <div class="stat-col reveal reveal-delay-4">
-      <span class="stat-num" style="color:var(--blue)">AGP</span>
-      <span class="stat-lbl">Standart Rapor</span>
-    </div>
+    <div class="stat-col reveal reveal-delay-1"><span class="stat-num" data-target="10">0</span><span class="stat-lbl">Takip Modülü</span></div>
+    <div class="stat-col reveal reveal-delay-2"><span class="stat-num" style="color:var(--blue)">7/24</span><span class="stat-lbl">Anlık İzleme</span></div>
+    <div class="stat-col reveal reveal-delay-3"><span class="stat-num" style="color:var(--blue)">PDF</span><span class="stat-lbl">Otomatik Rapor</span></div>
+    <div class="stat-col reveal reveal-delay-4"><span class="stat-num" style="color:var(--blue)">FHIR</span><span class="stat-lbl">Güvenli Paylaşım</span></div>
   </div>
-
-  <!-- DISCLAIMER -->
   <div class="disclaimer-box reveal">
-    <div class="disclaimer-icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    </div>
+    <div class="disclaimer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
     <div>
-      <p class="disclaimer-title">Önemli Bilgilendirme / Medical Disclaimer</p>
-      <p class="disclaimer-text">Diacora Health bir <strong>veri analiz ve raporlama platformudur</strong>; tıbbi tanı, tedavi veya ilaç reçetesi işlevleri içermez. Platform tarafından sunulan tüm veriler, eğilimler ve raporlar yalnızca <strong>hekim gözetiminde</strong> değerlendirilmek üzere tasarlanmıştır. Sağlık kararlarınız her zaman lisanslı bir sağlık profesyoneli tarafından alınmalıdır.</p>
+      <p class="disclaimer-title">Önemli Bilgilendirme</p>
+      <p class="disclaimer-text">Diacora Health bir <strong>veri analiz ve raporlama platformudur</strong>; tıbbi tanı, tedavi veya ilaç reçetesi işlevleri içermez. Platform tarafından sunulan tüm veriler ve raporlar yalnızca <strong>hekim gözetiminde</strong> değerlendirilmek üzere tasarlanmıştır.</p>
     </div>
   </div>
 </div>
 
-<!-- MODULES OVERVIEW -->
 <div class="modules-section" id="ozellikler">
   <div class="modules-header reveal">
-    <div class="modules-title">Diacora Health — 10 Klinik CDSS Modülü</div>
-    <div class="modules-sub">Hasta odaklı, tıp standartlarında 10 entegre klinik takip sistemi · Detaylı görünümler için aşağıdaki CDSS paneline geçin</div>
+    <div class="modules-title">10 Sağlık Takip Modülü</div>
+    <div class="modules-sub">Her modülün detaylı ekranına geçmek için "Takip Ekranına Git" butonunu kullanın</div>
   </div>
   <div class="modules-grid">
 
     <div class="mod-card reveal reveal-delay-1">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,12 6,8 10,14 14,9 18,13 22,9"/><line x1="2" y1="20" x2="22" y2="20" stroke="rgba(255,255,255,0.3)"/><rect x="9" y="4" width="6" height="4" rx="1" stroke="#7ecac5"/></svg></div>
-        <div class="mod-tag">MODÜL 01 — GLİKOZ</div>
+        <div class="mod-icon">🩸</div>
+        <div class="mod-tag">MODÜL 01</div>
       </div>
-      <h3>Şeker Takibi</h3>
-      <p>Günlük kan şekeri ölçümlerinizi dijital günlük altyapımızla takip edin. Postprandiyal glisemik yanıtlarınızı ve ADA uyumlu Time-in-Range analizlerinizi görselleştirin.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Diacora Health aktif bir tıbbi yönlendirme, tanı veya tedavi sunmaz. Glikoz trend analizleri klinik karar destek aracıdır. Tüm tedavi kararları doktorunuza aittir.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(1)">Detay Görünümü →</a>
+      <h3>Şeker Takibi — Günlük Şeker Dengeniz</h3>
+      <p>Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve gün...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(1)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-2">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><polyline points="2,12 6,9 9,15 13,8 16,12 20,10" stroke="#7ecac5" stroke-width="1.4"/></svg></div>
-        <div class="mod-tag">MODÜL 02 — KARDİYOVASKÜLER</div>
+        <div class="mod-icon">❤️</div>
+        <div class="mod-tag">MODÜL 02</div>
       </div>
-      <h3>Tansiyon Takibi</h3>
-      <p>Sistolik ve diyastolik kan basıncı ölçümleriniz ile nabız basıncı ve kalp atım hızınızı zaman damgalı grafiklerle izleyin. Kardiyovasküler biyometri trendlerinizi görselleştirin.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Bu modül bir tansiyon ölçüm cihazı veya otomatik teşhis mekanizması değildir. Hipertansiyon evrelemesi ve tedavi yönetimi kişiye özel olup klinisyen kararına aittir.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(2)">Detay Görünümü →</a>
+      <h3>Tansiyon Takibi — Kalp ve Kan Basıncı Düzeniniz</h3>
+      <p>Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlı...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(2)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-1">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" stroke="#7ecac5"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/></svg></div>
-        <div class="mod-tag">MODÜL 03 — BESLENME</div>
+        <div class="mod-icon">🥗</div>
+        <div class="mod-tag">MODÜL 03</div>
       </div>
-      <h3>Diyet & Kalori</h3>
-      <p>Makro besin öğelerinizi ve glisemik yük parametrelerinizi kayıt altına alın. Besin tercihlerinizin metabolik parametreleriniz üzerindeki etkilerini ve glisemik yanıt korelasyonlarını izleyin.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Diacora Health size özel bir diyet programı veya kalori kısıtlaması sunmaz. Tüm beslenme planlamaları uzman bir hekim ve diyetisyen kontrolünde yürütülmelidir.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(3)">Detay Görünümü →</a>
+      <h3>Beslenme Takibi — Yemeklerin Şekere Etkisi</h3>
+      <p>Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımın...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(3)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-2">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v5l3 3"/><path d="M7 20l2-5 3 2 3-2 2 5"/><line x1="3" y1="11" x2="21" y2="11" stroke="#7ecac5" stroke-width="1.2" stroke-dasharray="3,3"/></svg></div>
-        <div class="mod-tag">MODÜL 04 — AKTİVİTE</div>
+        <div class="mod-icon">🏃</div>
+        <div class="mod-tag">MODÜL 04</div>
       </div>
-      <h3>Egzersiz Takibi</h3>
-      <p>Fiziksel aktivitelerinizin türü, süresi ve METs değerini kayıt altına alın. Egzersizin glukoz stabilitesi ve kardiyovasküler esneklik üzerindeki olumlu trendlerini grafiklerle ortaya koyun.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Bu modül tıbbi bir egzersiz reçetesi sunmaz. Kronik hastalıklarda egzersiz yoğunluğu klinik parametreleri etkilediğinden, aktivite planlamaları doktorunuzun onayladığı sınırlar içinde yapılmalıdır.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(4)">Detay Görünümü →</a>
+      <h3>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h3>
+      <p>Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net g...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(4)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-1">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 6H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4"/><line x1="12" y1="11" x2="12" y2="17" stroke="#7ecac5"/><line x1="9" y1="14" x2="15" y2="14" stroke="#7ecac5"/></svg></div>
-        <div class="mod-tag">MODÜL 05 — FARMAKOLOJI</div>
+        <div class="mod-icon">💊</div>
+        <div class="mod-tag">MODÜL 05</div>
       </div>
-      <h3>İlaç Takibi</h3>
-      <p>Oral antidiyabetikler, antihipertansifler ve hekim reçeteli ilaçlarınız için düzenli dozaj kayıtları oluşturun. PDC uyum katsayısı hesabı ile klinisyen vizitlerinizi optimize edin.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Diacora Health ilaç reçete etmez, doz önermez veya mevcut tedavinizi değiştirmez. Sistem yalnızca ilaç uyumunuzu izlemek ve hekiminize kanıta dayalı veri sunmak içindir.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(5)">Detay Görünümü →</a>
+      <h3>İlaç Takibi — Düzenli İlaç Kullanımı</h3>
+      <p>Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağla...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(5)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-2">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2C12 2 15 5 15 9C15 11.2 13.7 13 12 13C10.3 13 9 11.2 9 9C9 5 12 2 12 2Z" stroke="#7ecac5"/><line x1="12" y1="13" x2="12" y2="22"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
-        <div class="mod-tag">MODÜL 06 — İNSÜLİN</div>
+        <div class="mod-icon">💉</div>
+        <div class="mod-tag">MODÜL 06</div>
       </div>
-      <h3>İnsülin Yönetimi</h3>
-      <p>Bazal ve bolus insülin dozlarını, enjeksiyon saatlerini ve uygulama bölgelerini eksiksiz takip edin. İnsülin doz döngülerinizi kan şekeri trendlerinizle ilişkilendirin.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Diacora Health aktif bir karbonhidrat sayımı veya doz hesaplaması yapmaz. Sistem yalnızca geriye dönük doz uyumunu incelemek için bir dijital günlüktür. Tüm doz ayarlamaları doktorunuza aittir.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(6)">Detay Görünümü →</a>
+      <h3>İnsülin Takibi — Doz ve Bölge Günlüğü</h3>
+      <p>Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin. Sistemimiz, yaptığınız insülinlerin kan şekeri...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(6)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-1">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="#7ecac5"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#7ecac5"/></svg></div>
-        <div class="mod-tag">MODÜL 07 — KLİNİSYEN PORTALÜ</div>
+        <div class="mod-icon">👨‍⚕️</div>
+        <div class="mod-tag">MODÜL 07</div>
       </div>
-      <h3>Sağlık Personeli Ekranı</h3>
-      <p>Hekim ve hemşirenizin, paylaştığınız metabolik verileri, glisemik varyabilite analizlerini ve kardiyovasküler trendleri tek ekranda incelemesini sağlayan profesyonel CDSS paneli.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Sağlık Personeli Ekranı bir uzaktan teşhis sistemi veya acil tıbbi müdahale/alarm paneli değildir. Bu arayüz yalnızca hastanın paylaştığı verileri hekimin değerlendirmesine sunar.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(7)">Detay Görünümü →</a>
+      <h3>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h3>
+      <p>İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz şeker, tansiyon ve ilaç verilerini kendi ekranından anlık olarak görebilir. Bu saye...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(7)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-2">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/><rect x="8" y="9" width="2" height="3" rx="1" fill="#7ecac5" stroke="none"/></svg></div>
-        <div class="mod-tag">MODÜL 08 — RAPORLAMA</div>
+        <div class="mod-icon">📋</div>
+        <div class="mod-tag">MODÜL 08</div>
       </div>
-      <h3>Otomatik Raporlama</h3>
-      <p>Tüm modüllerden gelen verileri uluslararası tıp standartlarına uygun AGP-benzeri istatistiksel raporlara dönüştürün. Tek tuşla PDF formatında doktor randevularınıza hazırlanın.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Üretilen raporlar otomatik bir tanı koymaz veya tedavi önerisi içermez. Raporların klinik analizi ve tedavi planında yapılacak değişiklikler tamamen uzman hekim kontrolünde yürütülmelidir.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(8)">Detay Görünümü →</a>
+      <h3>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h3>
+      <p>Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün. Tek tuşla cep te...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(8)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-1">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" stroke="#7ecac5" stroke-width="1.4"/></svg></div>
-        <div class="mod-tag">MODÜL 09 — LAB ANALİZİ</div>
+        <div class="mod-icon">🔬</div>
+        <div class="mod-tag">MODÜL 09</div>
       </div>
-      <h3>HbA1c & Metabolik Profil</h3>
-      <p>Aylık lab verilerinizi ve uzun dönem HbA1c trendlerinizi tek platformda konsolide edin. Lipid paneli, eGFR ve böbrek fonksiyon verilerini grafiklerle takip edin.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Diacora Health teşhis ve tedavi sunmayan bir veri yönetim asistanıdır. Laboratuvar sonuçlarının klinik değerlendirmesi ve hedef HbA1c değerlerinin belirlenmesi tamamen uzman bir hekim tarafından yapılmalıdır.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(9)">Detay Görünümü →</a>
+      <h3>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h3>
+      <p>Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile ha...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(9)">Takip Ekranına Git →</a>
     </div>
 
     <div class="mod-card reveal reveal-delay-2">
       <div class="mod-card-top">
-        <div class="mod-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 20 2 20"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="#f59e0b" stroke-width="2.5"/><line x1="6" y1="20" x2="18" y2="20" stroke="#f59e0b" stroke-width="1.2"/></svg></div>
-        <div class="mod-tag">MODÜL 10 — HİPOGLİSEMİ</div>
+        <div class="mod-icon">⚠️</div>
+        <div class="mod-tag">MODÜL 10</div>
       </div>
-      <h3>Hipoglisemi Riski Analizi</h3>
-      <p>Glikoz verilerini geriye dönük analiz ederek hipoglisemi eğilimlerini ve risk profillerini görselleştirin. Gece hipoglisemisi ve Somogyi Etkisi veri taraması yapın.</p>
-      <div class="mod-card-disclaimer">⚠ <strong>Kritik Uyarı:</strong> Diacora Health aktif bir tıbbi teşhis, gerçek zamanlı alarm veya acil müdahale sistemi değildir. Akut hipoglisemi durumlarında hekiminizin önerdiği acil protokolleri uygulayınız.</div>
-      <a href="#cdss-detail" class="mod-explore-btn" onclick="activateCdssTab(10)">Detay Görünümü →</a>
+      <h3>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h3>
+      <p>Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır. Sistemimiz, şekerinizin özellikle siz uykudayken ...</p>
+      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(10)">Takip Ekranına Git →</a>
     </div>
 
   </div>
-  <div class="modules-master-disclaimer reveal">
-    <span class="modules-master-disclaimer-icon">⚖️</span>
-    <p><strong>Yasal Bilgilendirme (Master Disclaimer):</strong> Diacora Health platformu, bir tıbbi tanı, tedavi veya ilaç reçetesi aracı değildir. Yukarıda yer alan tüm modüller; veri kayıt, analiz ve klinisyen iletişim desteği amacıyla tasarlanmış olup, sunulan hiçbir veri, grafik veya trend analizi tıbbi tavsiye niteliği taşımaz. Tüm klinik kararlar, tedavi değişiklikleri ve doz ayarlamaları yalnızca lisanslı bir sağlık profesyoneli (hekim) tarafından alınmalıdır.</p>
+  <div class="mod-master-disc reveal">
+    <span class="mod-master-disc-icon">⚖️</span>
+    <p><strong>Yasal Bilgilendirme:</strong> Diacora Health platformu, bir tıbbi tanı, tedavi veya ilaç reçetesi aracı değildir. Tüm modüller; veri kayıt, analiz ve doktor iletişim desteği amacıyla tasarlanmıştır. Sunulan hiçbir veri veya grafik tıbbi tavsiye niteliği taşımaz. Tüm kararlar yalnızca lisanslı bir sağlık uzmanı tarafından alınmalıdır.</p>
   </div>
 </div>
 
-<!-- CDSS DETAIL SECTION -->
-<div class="cdss-section" id="cdss-detail">
-  <div class="cdss-section-hdr reveal">
-    <span class="cdss-pretag">CDSS — KLİNİK KARAR DESTEK SİSTEMİ</span>
-    <h2>10 Modül Detay Görünümleri & Veritabanı Şema Mimarisi</h2>
-    <p>Her modülün klinik veri mimarisi, PostgreSQL şema tanımları ve örnek veri gridleri. Modüller arasında geçiş yapmak için sekmeleri kullanın.</p>
+<div class="cdss-section-intro reveal" id="cdss-section">
+  <span class="cdss-pre-tag">CDSS — KLİNİK KARAR DESTEK SİSTEMİ</span>
+  <h2>Kişisel Sağlık Takip Ekranlarınız</h2>
+  <p>Sol menüden modül seçin. Her ekranda takip edilen veriler, veri tabanı yapısı ve örnek kayıtlar yer alır.</p>
+</div>
+<div class="cdss-wrapper">
+  <aside class="cdss-sidebar" id="cdssSidebar">
+  <div class="sidebar-hdr">
+    <div class="sidebar-hdr-tag">Diacora Health</div>
+    <div class="sidebar-hdr-title">Sağlık Takip Ekranları</div>
+    <div class="sidebar-hdr-sub">10 modül · Veri &amp; Analiz</div>
   </div>
-  <div class="cdss-nav-wrap" id="cdssNav">
-    <div class="cdss-tab-scroll">
-      <button class="cdss-tab active" data-panel="1" onclick="switchCdss(1)">01 Şeker Takibi</button>
-<button class="cdss-tab" data-panel="2" onclick="switchCdss(2)">02 Tansiyon</button>
-<button class="cdss-tab" data-panel="3" onclick="switchCdss(3)">03 Diyet & Kalori</button>
-<button class="cdss-tab" data-panel="4" onclick="switchCdss(4)">04 Egzersiz</button>
-<button class="cdss-tab" data-panel="5" onclick="switchCdss(5)">05 İlaç Takibi</button>
-<button class="cdss-tab" data-panel="6" onclick="switchCdss(6)">06 İnsülin</button>
-<button class="cdss-tab" data-panel="7" onclick="switchCdss(7)">07 Personel Ekranı</button>
-<button class="cdss-tab" data-panel="8" onclick="switchCdss(8)">08 Raporlama</button>
-<button class="cdss-tab" data-panel="9" onclick="switchCdss(9)">09 HbA1c & Lab</button>
-<button class="cdss-tab" data-panel="10" onclick="switchCdss(10)">10 Hipoglisemi</button>
-    </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-group-lbl">Metabolik Glikoz</div>
+    <button class="sidebar-link active" data-mod="1" onclick="switchModule(1)">
+      <span class="sb-num">01</span>
+      <span class="sb-icon">🩸</span>
+      <span class="sb-label">Şeker Takibi</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <button class="sidebar-link" data-mod="10" onclick="switchModule(10)">
+      <span class="sb-num">10</span>
+      <span class="sb-icon">⚠️</span>
+      <span class="sb-label">Şeker Düşmesi</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <div class="sidebar-group-lbl">Kardiyovasküler & İlaç</div>
+    <button class="sidebar-link" data-mod="2" onclick="switchModule(2)">
+      <span class="sb-num">02</span>
+      <span class="sb-icon">❤️</span>
+      <span class="sb-label">Tansiyon Takibi</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <button class="sidebar-link" data-mod="5" onclick="switchModule(5)">
+      <span class="sb-num">05</span>
+      <span class="sb-icon">💊</span>
+      <span class="sb-label">İlaç Takibi</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <button class="sidebar-link" data-mod="6" onclick="switchModule(6)">
+      <span class="sb-num">06</span>
+      <span class="sb-icon">💉</span>
+      <span class="sb-label">İnsülin Takibi</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <div class="sidebar-group-lbl">Yaşam Tarzı</div>
+    <button class="sidebar-link" data-mod="3" onclick="switchModule(3)">
+      <span class="sb-num">03</span>
+      <span class="sb-icon">🥗</span>
+      <span class="sb-label">Beslenme Takibi</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <button class="sidebar-link" data-mod="4" onclick="switchModule(4)">
+      <span class="sb-num">04</span>
+      <span class="sb-icon">🏃</span>
+      <span class="sb-label">Egzersiz Takibi</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <div class="sidebar-group-lbl">Paylaşım & Raporlar</div>
+    <button class="sidebar-link" data-mod="7" onclick="switchModule(7)">
+      <span class="sb-num">07</span>
+      <span class="sb-icon">👨‍⚕️</span>
+      <span class="sb-label">Doktor Ekranı</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <button class="sidebar-link" data-mod="8" onclick="switchModule(8)">
+      <span class="sb-num">08</span>
+      <span class="sb-icon">📋</span>
+      <span class="sb-label">Otomatik Raporlama</span>
+      <span class="sb-arrow">›</span>
+    </button>
+    <button class="sidebar-link" data-mod="9" onclick="switchModule(9)">
+      <span class="sb-num">09</span>
+      <span class="sb-icon">🔬</span>
+      <span class="sb-label">Tahlil Sonuçları</span>
+      <span class="sb-arrow">›</span>
+    </button>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-text">Diacora Health v3.0<br>© 2025 Tüm hakları saklıdır</div>
   </div>
-  <div class="cdss-panels">
-    
-<div class="cdss-panel active" id="cdss-panel-1">
+</aside>
+
+  <div class="cdss-content">
+
+<div class="cdss-panel active" id="panel-1">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 1 — METABOLİK GLİKOZ SİSTEMİ</span>
-      <h3>Şeker Takibi — Glikoz Dinamikleri ve Hedef Aralık Yönetimi</h3>
-      <p>Günlük kan şekeri ölçümlerinizi dijital günlük altyapımızla kolayca takip edin. Sistemimiz, öğün sonrası (postprandiyal) şeker yanıtlarınızı ve metabolik döngülerinizi analiz ederek 'Hedef Aralıkta Kalma' (Time-in-Range) eğilimlerinizi görselleştirir. Böylece karmaşık biyometrik veriler, doktorunuzla birlikte inceleyebileceğiniz anlaşılır raporlara dönüşür.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Dijital günlük ile anlık glikoz kaydı ve CSV aktarımı</li><li><span class="cdss-bullet-icon">◆</span> Öğün sonrası (postprandiyal) 1. ve 2. saat glisemik yanıt analizi</li><li><span class="cdss-bullet-icon">◆</span> ADA uyumlu Hedef Aralıkta Kalma (Time-in-Range) yüzdesel analizi</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Diacora Health aktif bir tıbbi yönlendirme, tanı veya tedavi sunmaz. Sistemdeki glikoz trend analizleri, yaşam tarzınızın etkilerini görmeniz ve klinisyeninizle güçlü bir iletişim kurmanız amacıyla tasarlanmış bir klinik karar destek aracıdır. Tüm tedavi kararları doktorunuza aittir.</div>
+    <div class="cdss-col-left" id="left-1">
+      <div class="cdss-module-num">MODÜL 01 — Metabolik Glikoz</div>
+      <h2>Şeker Takibi — Günlük Şeker Dengeniz</h2>
+      <p class="cdss-desc">Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve günün ne kadarını güvenli bölgede geçirdiğinizi anlaşılır grafiklerle size gösterir.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Günlük şeker dalgalanmalarınızın kolay takibi</li><li><span class="cb-dot">◆</span> Şekerinizin ne kadar süre normal sınırlarda kaldığının analizi</li><li><span class="cb-dot">◆</span> Yemekten sonraki vücut şeker tepkilerinizin takibi</li><li><span class="cb-dot">◆</span> Doktorunuzun veya diyetisyeninizin verdiği özel ölçüm saatlerini sisteme kolayca uygulama özelliği</li><li><span class="cb-dot">◆</span> Uzmanınızın çizelgesine uygun gelişmiş şeker analiz raporları hazırlama</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Diacora Health her zaman yanınızdaki bir yardımcıdır, ancak bir doktor değildir. Şeker sonuçlarınıza bakarak kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Her zaman kendi doktorunuzun tavsiyelerine uyunuz.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-1">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">glucose_readings</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">glucose_readings</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>timestamp</code></td><td><span class="stype ts">TS</span></td><td>Ölçüm zamanı (UTC+3)</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>measurement_type</code></td><td><span class="stype en">EN</span></td><td>Preprandiyal · Postprandiyal 1h/2h · Nocturnal · Acute</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>glucose_value</code></td><td><span class="stype float">FLOAT</span></td><td>Glikoz değeri (mg/dL)</td><td style="font-size:0.75em;color:#64748b">CHECK (30–600)</td></tr><tr><td><code>cv_percent</code></td><td><span class="stype float">FLOAT</span></td><td>Varyasyon Katsayısı — CV%</td><td style="font-size:0.75em;color:#64748b">GENERATED / CALC</td></tr><tr><td><code>tir_bucket</code></td><td><span class="stype en">EN</span></td><td>&lt;70 · 70–180 · &gt;180 mg/dL</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Ölçüm zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">measurement_type</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Açlık · Tokluk 1s · Tokluk 2s · Gece · Acil</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">glucose_value</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Kan şekeri değeri (mg/dL)</td><td style="font-size:.73em;color:#64748b">CHECK (30–600)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">cv_percent</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Varyasyon Katsayısı CV%</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">tir_bucket</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">&lt;70 · 70–180 · &gt;180 mg/dL</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>🩸 Örnek Veri Kaydı — Glikoz Dinamikleri</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>🩸 Günlük Şeker Ölçüm Kaydı</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Zaman</th><th>Ölçüm Tipi</th><th>Glikoz (mg/dL)</th><th>CV%</th><th>TIR Aralığı</th></tr></thead><tbody><tr><td>2025-06-18 07:45</td><td>Preprandiyal</td><td><b>92</b></td><td>14.2%</td><td><span class='dg ok'>70–180 ✓</span></td></tr><tr><td>2025-06-18 09:30</td><td>Postprandiyal 1h</td><td><b>156</b></td><td>14.2%</td><td><span class='dg ok'>70–180 ✓</span></td></tr><tr><td>2025-06-18 11:00</td><td>Postprandiyal 2h</td><td><b>128</b></td><td>14.2%</td><td><span class='dg ok'>70–180 ✓</span></td></tr><tr><td>2025-06-18 22:30</td><td>Nocturnal</td><td><b>66</b></td><td>18.6%</td><td><span class='dg lo'>&lt;70 ⚠</span></td></tr><tr><td>2025-06-19 08:00</td><td>Preprandiyal</td><td><b>98</b></td><td>11.8%</td><td><span class='dg ok'>70–180 ✓</span></td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Zaman</th><th>Ölçüm Türü</th><th>Şeker (mg/dL)</th><th>CV%</th><th>Güvenli Alan</th></tr></thead><tbody><tr><td>07:45</td><td>Açlık</td><td><b>92</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>09:30</td><td>Tokluk 1. Saat</td><td><b>156</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>11:00</td><td>Tokluk 2. Saat</td><td><b>128</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>22:30</td><td>Gece</td><td><b>66</b></td><td>18.6%</td><td><span class='dg lo'>⚠ Düşük</span></td></tr><tr><td>08:00</td><td>Açlık (Ertesi)</td><td><b>98</b></td><td>11.8%</td><td><span class='dg ok'>✓ Normal</span></td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-2">
+<div class="cdss-panel" id="panel-2">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 2 — KARDİYOVASKÜLER & FARMAKOLOJİ</span>
-      <h3>Tansiyon Takibi — Arteriyel Kan Basıncı ve Kardiyovasküler Biyometri</h3>
-      <p>Sistolik (büyük) ve diyastolik (küçük) kan basıncı ölçümleriniz ile nabız verilerinizi düzenli olarak sisteme işleyin. Diacora Health, bu verileri zaman damgalı grafiklere dönüştürerek arteriyel basınç trendlerinizi görselleştirir ve hekim vizitlerinizde kardiyovasküler biyometrilerinizi anlamlandırmanıza yardımcı olur.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Sistolik ve diyastolik kan basıncı takibi ile nabız basıncı hesabı</li><li><span class="cdss-bullet-icon">◆</span> Sabah ve akşam ölçümleri arası diurnal/sirkadiyen ritim varyasyonları</li><li><span class="cdss-bullet-icon">◆</span> Kardiyovasküler biyometri ve dinlenme anı kalp atım hızı takibi</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Bu modül bir tansiyon ölçüm cihazı veya otomatik teşhis mekanizması değildir. Hipertansiyon evrelemesi ve antihipertansif ilaç yönetimi kişiye özel olup, buradaki trend analizleri yalnızca klinisyeninizin tedavi sürecindeki klinik kararlarına destek sunmak amacıyla saklanır.</div>
+    <div class="cdss-col-left" id="left-2">
+      <div class="cdss-module-num">MODÜL 02 — Kardiyovasküler</div>
+      <h2>Tansiyon Takibi — Kalp ve Kan Basıncı Düzeniniz</h2>
+      <p class="cdss-desc">Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlığınızın genel gidişatını görmenizi sağlar.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Sabah ve akşam tansiyonu arasındaki farkların takibi</li><li><span class="cb-dot">◆</span> Büyük ve küçük tansiyon arasındaki dengenin izlenmesi</li><li><span class="cb-dot">◆</span> Dinlenme anındaki kalp atış hızınızın takibi</li><li><span class="cb-dot">◆</span> Uzman sağlık personelinin size özel hazırladığı tansiyon ölçüm takvimini sisteme kolayca girme seçeneği</li><li><span class="cb-dot">◆</span> Doktorunuz için özel kalp ve kan basıncı analiz tabloları üretme</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Bu modül bir tansiyon ölçüm cihazı değildir. Yüksek tansiyon takibiniz ve ilaçlarınızla ilgili tüm kararları doktorunuza danışarak almalısınız.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-2">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">blood_pressure_readings</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">blood_pressure_readings</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>timestamp</code></td><td><span class="stype ts">TS</span></td><td>Ölçüm zamanı (UTC+3)</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>systolic_mmhg</code></td><td><span class="stype int">INT</span></td><td>Sistolik kan basıncı (mmHg)</td><td style="font-size:0.75em;color:#64748b">CHECK (60–300)</td></tr><tr><td><code>diastolic_mmhg</code></td><td><span class="stype int">INT</span></td><td>Diyastolik kan basıncı (mmHg)</td><td style="font-size:0.75em;color:#64748b">CHECK (30–200)</td></tr><tr><td><code>pulse_pressure</code></td><td><span class="stype int">INT</span></td><td>Nabız Basıncı = Sistolik − Diyastolik</td><td style="font-size:0.75em;color:#64748b">GENERATED</td></tr><tr><td><code>heart_rate_bpm</code></td><td><span class="stype int">INT</span></td><td>Kalp atım hızı (bpm)</td><td style="font-size:0.75em;color:#64748b">CHECK (20–250)</td></tr><tr><td><code>posture_flag</code></td><td><span class="stype en">EN</span></td><td>Sitting · Standing · Supine</td><td style="font-size:0.75em;color:#64748b">DEFAULT 'Sitting'</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Ölçüm zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">systolic_mmhg</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Büyük tansiyon — sistolik (mmHg)</td><td style="font-size:.73em;color:#64748b">CHECK (60–300)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">diastolic_mmhg</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Küçük tansiyon — diyastolik (mmHg)</td><td style="font-size:.73em;color:#64748b">CHECK (30–200)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">pulse_pressure</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Nabız basıncı = Sistolik − Diyastolik</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">heart_rate_bpm</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Kalp atış hızı (bpm)</td><td style="font-size:.73em;color:#64748b">CHECK (20–250)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">posture_flag</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Otururken · Ayaktayken · Yatarken</td><td style="font-size:.73em;color:#64748b">DEFAULT 'Otururken'</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>❤️ Örnek Veri Kaydı — Arteriyel Biyometri</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>❤️ Tansiyon ve Nabız Ölçüm Kaydı</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Zaman</th><th>Sistolik</th><th>Diyastolik</th><th>Nabız Bas.</th><th>HR (bpm)</th><th>Postür</th></tr></thead><tbody><tr><td>2025-06-18 08:00</td><td><b>118</b></td><td><b>76</b></td><td>42 mmHg</td><td>72</td><td><span class='dg teal'>Sitting</span></td></tr><tr><td>2025-06-18 12:00</td><td><b>134</b></td><td><b>86</b></td><td>48 mmHg</td><td>80</td><td><span class='dg warn'>Yüksek ▲</span></td></tr><tr><td>2025-06-18 16:00</td><td><b>122</b></td><td><b>80</b></td><td>42 mmHg</td><td>75</td><td><span class='dg ok'>Normal</span></td></tr><tr><td>2025-06-18 20:00</td><td><b>128</b></td><td><b>82</b></td><td>46 mmHg</td><td>78</td><td><span class='dg ok'>Normal</span></td></tr><tr><td>2025-06-19 08:00</td><td><b>116</b></td><td><b>74</b></td><td>42 mmHg</td><td>70</td><td><span class='dg ok'>Normal</span></td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Zaman</th><th>Büyük (mmHg)</th><th>Küçük (mmHg)</th><th>Nabız Bas.</th><th>Kalp Atışı</th><th>Durum</th></tr></thead><tbody><tr><td>08:00</td><td><b>118</b></td><td><b>76</b></td><td>42 mmHg</td><td>72 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>12:00</td><td><b>134</b></td><td><b>86</b></td><td>48 mmHg</td><td>80 bpm</td><td><span class='dg warn'>⚠ Yüksek</span></td></tr><tr><td>16:00</td><td><b>122</b></td><td><b>80</b></td><td>42 mmHg</td><td>75 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>20:00</td><td><b>128</b></td><td><b>82</b></td><td>46 mmHg</td><td>78 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>08:00</td><td><b>116</b></td><td><b>74</b></td><td>42 mmHg</td><td>70 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-3">
+<div class="cdss-panel" id="panel-3">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 3 — YAŞAM TARZI & METABOLİK YÜK</span>
-      <h3>Diyet & Beslenme — Glisemik Yük ve Nutrasötik Takip</h3>
-      <p>Günlük beslenme eğilimlerinizi, makro besin öğelerinizi ve glisemik yük parametrelerinizi kayıt altına alın. Dijital günlüğümüz, besin tercihlerinizin metabolik parametreleriniz (kan şekeri ve kan basıncı) üzerindeki dolaylı etkilerini ve glisemik yanıt korelasyonlarını gözlemlemenizi kolaylaştırır.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Makro besin (karbonhidrat, protein, yağ, lif) takibi ve porsiyon hesabı</li><li><span class="cdss-bullet-icon">◆</span> Harvard veri bankası uyumlu besin bazlı Net Glisemik Yük (GL) hesaplaması</li><li><span class="cdss-bullet-icon">◆</span> Hipertansiyon takibi için günlük mikro besin (Sodyum/Potasyum) dengesi</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Diacora Health size özel bir diyet programı veya kalori kısıtlaması sunmaz. Beslenme planlamaları akut metabolik dalgalanmalara yol açabileceğinden, her türlü yaşam tarzı değişikliği uzman bir hekim ve diyetisyen kontrolünde yürütülmelidir.</div>
+    <div class="cdss-col-left" id="left-3">
+      <div class="cdss-module-num">MODÜL 03 — Yaşam Tarzı</div>
+      <h2>Beslenme Takibi — Yemeklerin Şekere Etkisi</h2>
+      <p class="cdss-desc">Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımınızı takip etmenizi kolaylaştırır.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Yediğiniz yemeklerin içerdiği karbonhidrat ve liflerin takibi</li><li><span class="cb-dot">◆</span> Yiyeceklerin kan şekerini ani yükseltme gücünün izlenmesi</li><li><span class="cb-dot">◆</span> Sağlığınızı korumak için günlük tuz ve potasyum dengesi</li><li><span class="cb-dot">◆</span> Diyetisyeninizin size özel yazdığı beslenme aralıklarını ve yemek saatlerini sisteme birebir uygulama kolaylığı</li><li><span class="cb-dot">◆</span> Beslenme düzeninizin şeker ve tansiyona etkisini gösteren özel diyet analiz raporları</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Bu modül size özel bir diyet listesi vermez. Beslenme düzeninizdeki büyük değişiklikleri her zaman doktorunuza veya diyetisyeninize danışarak yapmalısınız.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-3">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">meal_nutrition_logs</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">meal_nutrition_logs</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>meal_timestamp</code></td><td><span class="stype ts">TS</span></td><td>Öğün zamanı (UTC+3)</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>carbohydrates_g</code></td><td><span class="stype float">FLOAT</span></td><td>Karbonhidrat miktarı (gram)</td><td style="font-size:0.75em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code>proteins_g</code></td><td><span class="stype float">FLOAT</span></td><td>Protein miktarı (gram)</td><td style="font-size:0.75em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code>fats_g</code></td><td><span class="stype float">FLOAT</span></td><td>Yağ miktarı (gram)</td><td style="font-size:0.75em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code>dietary_fiber_g</code></td><td><span class="stype float">FLOAT</span></td><td>Diyet lifi (gram)</td><td style="font-size:0.75em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code>glycemic_index</code></td><td><span class="stype int">INT</span></td><td>Besin Glisemik İndeksi (GI)</td><td style="font-size:0.75em;color:#64748b">CHECK (0–100)</td></tr><tr><td><code>net_glycemic_load</code></td><td><span class="stype float">FLOAT</span></td><td>Net Glisemik Yük (GL) = (GI×CHO)/100</td><td style="font-size:0.75em;color:#64748b">GENERATED</td></tr><tr><td><code>sodium_potassium_ratio</code></td><td><span class="stype float">FLOAT</span></td><td>Sodyum/Potasyum mikro besin oranı</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">meal_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Öğün zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">carbohydrates_g</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Karbonhidrat (gram)</td><td style="font-size:.73em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">dietary_fiber_g</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Diyet lifi (gram)</td><td style="font-size:.73em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">glycemic_index</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Glisemik İndeks (GI) 0–100</td><td style="font-size:.73em;color:#64748b">CHECK (0–100)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">net_glycemic_load</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Net Glisemik Yük = (GI×KH)/100</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">sodium_mg</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Günlük sodyum (tuz) alımı (mg)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">potassium_mg</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Günlük potasyum alımı (mg)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>🥗 Örnek Veri Kaydı — Nutrasötik Profil</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>🥗 Günlük Beslenme Kaydı</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Öğün Zamanı</th><th>Karbonhidrat</th><th>Protein</th><th>Yağ</th><th>Lif</th><th>GI</th><th>Net GL</th></tr></thead><tbody><tr><td>2025-06-18 08:30</td><td><b>45g</b></td><td>22g</td><td>12g</td><td>8g</td><td>52</td><td><span class='dg ok'>23.4</span></td></tr><tr><td>2025-06-18 13:00</td><td><b>62g</b></td><td>35g</td><td>18g</td><td>6g</td><td>65</td><td><span class='dg warn'>40.3</span></td></tr><tr><td>2025-06-18 16:00</td><td><b>28g</b></td><td>10g</td><td>8g</td><td>3g</td><td>43</td><td><span class='dg ok'>12.0</span></td></tr><tr><td>2025-06-18 19:30</td><td><b>55g</b></td><td>40g</td><td>20g</td><td>9g</td><td>48</td><td><span class='dg ok'>26.4</span></td></tr><tr><td>2025-06-19 08:30</td><td><b>40g</b></td><td>25g</td><td>10g</td><td>10g</td><td>45</td><td><span class='dg ok'>18.0</span></td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Öğün</th><th>Karbonhidrat</th><th>Lif</th><th>GI</th><th>Net GL</th><th>Sodyum</th></tr></thead><tbody><tr><td>Kahvaltı 08:30</td><td><b>45g</b></td><td>8g</td><td>52</td><td><span class='dg ok'>23.4</span></td><td>580 mg</td></tr><tr><td>Öğle 13:00</td><td><b>62g</b></td><td>6g</td><td>65</td><td><span class='dg warn'>40.3</span></td><td>920 mg</td></tr><tr><td>Ara Öğün 16:00</td><td><b>28g</b></td><td>3g</td><td>43</td><td><span class='dg ok'>12.0</span></td><td>210 mg</td></tr><tr><td>Akşam 19:30</td><td><b>55g</b></td><td>9g</td><td>48</td><td><span class='dg ok'>26.4</span></td><td>740 mg</td></tr><tr><td>Gece Atıştırma 22:00</td><td><b>18g</b></td><td>4g</td><td>35</td><td><span class='dg ok'>6.3</span></td><td>120 mg</td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-4">
+<div class="cdss-panel" id="panel-4">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 3 — YAŞAM TARZI & METABOLİK YÜK</span>
-      <h3>Egzersiz Takibi — Metabolik Etkinlik ve Glisemik Yanıt Yönetimi</h3>
-      <p>Koşu, yürüyüş, fitness ve diğer fiziksel aktivitelerinizin süresini, türünü ve yoğunluğunu sisteme işleyin. Algoritmalarımız, aktif yaşam tarzınızın glukoz stabilitesi ve kardiyovasküler esneklik üzerindeki olumlu trendlerini grafiklerle ortaya koyarak motivasyonunuzu ve farkındalığınızı artırır.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Aerobik ve anaerobik aktivitelerin METs (Metabolik Eşdeğerlik) hesabı</li><li><span class="cdss-bullet-icon">◆</span> Fiziksel aktivite sonrası kas dokularındaki insülin duyarlılığı analizi</li><li><span class="cdss-bullet-icon">◆</span> Egzersizin uzun vadeli glisemik stabilizasyon ve bazal nabız üzerindeki etkileri</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Bu modül tıbbi bir egzersiz reçetesi veya tedavi programı sunmaz. Kronik hastalıklarda (diyabet, hipertansiyon) egzersiz yoğunluğu klinik parametreleri doğrudan etkilediğinden, aktivite planlamaları her zaman doktorunuzun onayladığı sınırlar içinde yapılmalıdır.</div>
+    <div class="cdss-col-left" id="left-4">
+      <div class="cdss-module-num">MODÜL 04 — Yaşam Tarzı</div>
+      <h2>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h2>
+      <p class="cdss-desc">Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net grafiklerle size gösterir.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Yaptığınız hareketlerin harcadığı enerji seviyesinin takibi</li><li><span class="cb-dot">◆</span> Egzersiz sonrası kan şekerinizin ne kadar sürede düzene girdiğinin takibi</li><li><span class="cb-dot">◆</span> Hareket ettikçe kalbinizin kazandığı dayanıklılık trendi</li><li><span class="cb-dot">◆</span> Uzmanınızın kontrolünde hazırlanan hareket ve aktivite zaman çizelgelerini sisteme rahatça ekleme imkanı</li><li><span class="cb-dot">◆</span> Egzersizlerin vücudunuza faydasını gösteren haftalık aktivite analiz tabloları</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Bu panel size bir spor programı yazmaz. Kronik rahatsızlıklarda ağır egzersizler riskli olabileceğinden, hareket temponuzu doktorunuzun izin verdiği sınırlarda tutun.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-4">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">exercise_activity_logs</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">exercise_activity_logs</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>activity_id</code></td><td><span class="stype uuid">UUID</span></td><td>Aktivite kaydı benzersiz kimliği</td><td style="font-size:0.75em;color:#64748b">PK, AUTO</td></tr><tr><td><code>activity_timestamp</code></td><td><span class="stype ts">TS</span></td><td>Egzersiz başlangıç zamanı</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>activity_type</code></td><td><span class="stype en">EN</span></td><td>Aerobic · Anaerobic · Mixed · Recovery</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>duration_minutes</code></td><td><span class="stype int">INT</span></td><td>Aktivite süresi (dakika)</td><td style="font-size:0.75em;color:#64748b">CHECK (1–600)</td></tr><tr><td><code>mets_value</code></td><td><span class="stype float">FLOAT</span></td><td>Metabolik Eşdeğerlik (METs)</td><td style="font-size:0.75em;color:#64748b">CHECK (0.5–20)</td></tr><tr><td><code>post_exercise_glucose_delta</code></td><td><span class="stype float">FLOAT</span></td><td>Egzersiz sonrası Δ glikoz (mg/dL)</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">activity_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Aktivite kaydı benzersiz kimliği</td><td style="font-size:.73em;color:#64748b">PK · AUTO</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">activity_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Hareket başlangıç zamanı</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">activity_type</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Aerobik · Anaerobik · Karma · Toparlanma</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">duration_minutes</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Hareket süresi (dakika)</td><td style="font-size:.73em;color:#64748b">CHECK (1–600)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">mets_value</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Metabolik Eşdeğerlik (METs)</td><td style="font-size:.73em;color:#64748b">CHECK (0.5–20)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">post_exercise_glucose_delta</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Egzersiz sonrası Δ şeker (mg/dL)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>🏃 Örnek Veri Kaydı — Metabolik Aktivite</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>🏃 Haftalık Hareket Kaydı</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Zaman</th><th>Aktivite</th><th>Tür</th><th>Süre</th><th>METs</th><th>Δ Glikoz</th></tr></thead><tbody><tr><td>2025-06-18 07:00</td><td>Koşu</td><td><span class='dg info'>Aerobik</span></td><td>32 dk</td><td>8.5 METs</td><td><span class='dg teal'>-18 mg/dL</span></td></tr><tr><td>2025-06-18 18:00</td><td>Fitness</td><td><span class='dg purple'>Anaerobik</span></td><td>45 dk</td><td>5.0 METs</td><td><span class='dg teal'>-12 mg/dL</span></td></tr><tr><td>2025-06-17 07:30</td><td>Yürüyüş</td><td><span class='dg info'>Aerobik</span></td><td>50 dk</td><td>3.5 METs</td><td><span class='dg teal'>-8 mg/dL</span></td></tr><tr><td>2025-06-17 19:00</td><td>Yoga</td><td><span class='dg gray'>Recovery</span></td><td>30 dk</td><td>2.5 METs</td><td><span class='dg gray'>-3 mg/dL</span></td></tr><tr><td>2025-06-16 08:00</td><td>Bisiklet</td><td><span class='dg info'>Aerobik</span></td><td>40 dk</td><td>7.0 METs</td><td><span class='dg teal'>-15 mg/dL</span></td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Zaman</th><th>Aktivite</th><th>Tür</th><th>Süre</th><th>METs</th><th>Δ Şeker</th></tr></thead><tbody><tr><td>Pzt 07:00</td><td>Koşu</td><td><span class='dg info'>Aerobik</span></td><td>32 dk</td><td>8.5</td><td><span class='dg teal'>-18 mg/dL</span></td></tr><tr><td>Pzt 18:00</td><td>Fitness</td><td><span class='dg purple'>Anaerobik</span></td><td>45 dk</td><td>5.0</td><td><span class='dg teal'>-12 mg/dL</span></td></tr><tr><td>Sal 07:30</td><td>Yürüyüş</td><td><span class='dg info'>Aerobik</span></td><td>50 dk</td><td>3.5</td><td><span class='dg teal'>-8 mg/dL</span></td></tr><tr><td>Çar 19:00</td><td>Yoga</td><td><span class='dg gray'>Toparlanma</span></td><td>30 dk</td><td>2.5</td><td><span class='dg gray'>-3 mg/dL</span></td></tr><tr><td>Per 08:00</td><td>Bisiklet</td><td><span class='dg info'>Aerobik</span></td><td>40 dk</td><td>7.0</td><td><span class='dg teal'>-15 mg/dL</span></td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-5">
+<div class="cdss-panel" id="panel-5">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 2 — KARDİYOVASKÜLER & FARMAKOLOJİ</span>
-      <h3>İlaç Takibi — Farmakolojik Uyum ve Tedavi Yönetimi</h3>
-      <p>Oral antidiyabetikler, antihipertansifler ve diğer hekim reçeteli ilaçlarınız için düzenli saat ve dozaj kayıtları oluşturun. Akıllı hatırlatıcı ve takip altyapımız, tedavi uyum analizinizi (medication adherence) raporlayarak klinisyen vizitlerinizde tedavi etkinliğinin ölçülmesini kolaylaştırır.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Etken madde bazlı farmakolojik tedavi ve akıllı doz hatırlatıcıları</li><li><span class="cdss-bullet-icon">◆</span> Küresel standartlarda PDC (Proportion of Days Covered) uyum katsayısı hesabı</li><li><span class="cdss-bullet-icon">◆</span> Farmakolojik uyumsuzluk ile akut tansiyon/şeker atakları ilişkilendirmesi</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Diacora Health ilaç reçete etmez, doz önermez veya mevcut tedavinizi değiştirmez. Sistem yalnızca ilaç uyumunuzu izlemek ve hekiminize kanıta dayalı veri sunmak içindir. Tedavi yönetimi tamamen doktorunuzun sorumluluğundadır.</div>
+    <div class="cdss-col-left" id="left-5">
+      <div class="cdss-module-num">MODÜL 05 — İlaç & İnsülin</div>
+      <h2>İlaç Takibi — Düzenli İlaç Kullanımı</h2>
+      <p class="cdss-desc">Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağlarız.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> İlaç saatleriniz için akıllı ve düzenli hatırlatıcılar</li><li><span class="cb-dot">◆</span> İlaçlarınızı aylık olarak ne kadar düzenli içtiğinizin başarı oranı</li><li><span class="cb-dot">◆</span> Unutulan ilaçların tansiyon ve şeker dalgalanmalarıyla olan ilişkisi</li><li><span class="cb-dot">◆</span> Doktorunuzun size özel belirlediği ilaç saatlerini ve tedavi takvimini sisteme kolayca işleme kolaylığı</li><li><span class="cb-dot">◆</span> Hekiminizin doz takibini rahatça yapabilmesi için özel ilaç uyum analiz raporları</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Diacora Health size ilaç önermez veya tedavinizi değiştirmez. İlaç düzeninizi tamamen kendi doktorunuzun reçete ettiği şekilde sürdürmelisiniz.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-5">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">pharmacological_adherence</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">pharmacological_adherence</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>active_ingredient_code</code></td><td><span class="stype txt">TXT</span></td><td>Etken madde kodu (ATC sınıflandırma)</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>dosage_schedule</code></td><td><span class="stype json">JSON</span></td><td>Planlanan doz ve saat takvimi (JSON)</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>half_life_hours</code></td><td><span class="stype float">FLOAT</span></td><td>İlacın yarı ömrü (saat) — referans değer</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr><tr><td><code>pdc_percent</code></td><td><span class="stype float">FLOAT</span></td><td>PDC — Proportion of Days Covered (%)</td><td style="font-size:0.75em;color:#64748b">GENERATED</td></tr><tr><td><code>missed_dose_count</code></td><td><span class="stype int">INT</span></td><td>Son 30 günde atlanan doz sayısı</td><td style="font-size:0.75em;color:#64748b">DEFAULT 0</td></tr><tr><td><code>missed_dose_log</code></td><td><span class="stype json">JSON</span></td><td>Atlanan dozların zaman damgalı kaydı</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">active_ingredient_code</code></td><td><span class="stype TEXT">TEXT</span></td><td style="font-size:.78em">İlacın etken madde kodu (ATC)</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">dosage_schedule</code></td><td><span class="stype JSON">JSON</span></td><td style="font-size:.78em">Planlanan saat ve doz takvimi</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">half_life_hours</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">İlacın vücutta kalış süresi (saat)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">pdc_percent</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Aylık ilaç uyum başarı oranı PDC%</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">missed_dose_count</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Son 30 günde atlanan doz sayısı</td><td style="font-size:.73em;color:#64748b">DEFAULT 0</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>💊 Örnek Veri Kaydı — Farmakolojik Uyum</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>💊 İlaç Uyum Takip Kaydı</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Etken Madde</th><th>Planlanan Saat</th><th>Yarı Ömür</th><th>PDC%</th><th>Atlanan Doz</th></tr></thead><tbody><tr><td>Metformin 850mg</td><td>08:00 / 20:00</td><td>6.5 saat</td><td><span class='dg ok'>94.2%</span></td><td>2 kez</td></tr><tr><td>Lisinopril 10mg</td><td>09:00</td><td>12 saat</td><td><span class='dg ok'>96.7%</span></td><td>1 kez</td></tr><tr><td>Atorvastatin 20mg</td><td>21:00</td><td>14 saat</td><td><span class='dg warn'>82.1%</span></td><td>5 kez</td></tr><tr><td>Empagliflozin 10mg</td><td>08:00</td><td>12.4 saat</td><td><span class='dg ok'>98.3%</span></td><td>0 kez</td></tr><tr><td>Amlodipine 5mg</td><td>09:00</td><td>35–50 saat</td><td><span class='dg ok'>91.8%</span></td><td>2 kez</td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>İlaç Adı</th><th>Planlanan Saat</th><th>Kalış Süresi</th><th>Uyum Oranı</th><th>Atlanan Doz</th></tr></thead><tbody><tr><td>Metformin 850mg</td><td>08:00 / 20:00</td><td>6.5 saat</td><td><span class='dg ok'>94.2%</span></td><td>2 kez</td></tr><tr><td>Lisinopril 10mg</td><td>09:00</td><td>12 saat</td><td><span class='dg ok'>96.7%</span></td><td>1 kez</td></tr><tr><td>Atorvastatin 20mg</td><td>21:00</td><td>14 saat</td><td><span class='dg warn'>82.1%</span></td><td>5 kez</td></tr><tr><td>Empagliflozin 10mg</td><td>08:00</td><td>12.4 saat</td><td><span class='dg ok'>98.3%</span></td><td>0 kez</td></tr><tr><td>Amlodipin 5mg</td><td>09:00</td><td>35–50 saat</td><td><span class='dg ok'>91.8%</span></td><td>2 kez</td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-6">
+<div class="cdss-panel" id="panel-6">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 1 — METABOLİK GLİKOZ SİSTEMİ</span>
-      <h3>İnsülin Yönetimi — Bazal, Bolus ve Doz Takip Günlüğü</h3>
-      <p>Hekiminizin size özel reçete ettiği bazal ve bolus insülin dozlarını, enjeksiyon saatlerini ve uygulama bölgelerini eksiksiz takip edin. Sistemimiz, insülin doz döngülerinizi kan şekeri trendlerinizle ilişkilendirerek geriye dönük klinik karar destek sürecini hızlandırır.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Bazal / bolus ayrımı ve hassas doz kayıt matrisi</li><li><span class="cdss-bullet-icon">◆</span> Lipohipertrofi riskini azaltmak için enjeksiyon saati ve bölge rotasyon takibi</li><li><span class="cdss-bullet-icon">◆</span> Geriye dönük kan şekeri — insülin dozu korelasyon eğrileri</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Diacora Health aktif bir karbonhidrat sayımı veya değişken doz/bolus hesaplaması yapmaz. Sistem, yalnızca sizin ve klinisyeninizin geriye dönük doz uyumunu inceleyebilmesi amacıyla bir dijital günlük işlevi görür. Tüm doz ayarlamaları doktorunuza aittir.</div>
+    <div class="cdss-col-left" id="left-6">
+      <div class="cdss-module-num">MODÜL 06 — İlaç & İnsülin</div>
+      <h2>İnsülin Takibi — Doz ve Bölge Günlüğü</h2>
+      <p class="cdss-desc">Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin. Sistemimiz, yaptığınız insülinlerin kan şekerinizi nasıl etkilediğini geriye dönük olarak eşleştirir.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Vücudunuzda hâlâ etkisi devam eden aktif insülin miktarının takibi</li><li><span class="cb-dot">◆</span> Aynı yere üst üste yapıp dokuyu sertleştirmemek için enjeksiyon bölgesi takibi</li><li><span class="cb-dot">◆</span> Yediğiniz karbonhidrata karşılık yaptığınız insülinin izlenmesi</li><li><span class="cb-dot">◆</span> Uzmanınızın size verdiği özel insülin doz saatlerini ve zaman çizelgelerini sisteme birebir uygulama imkanı</li><li><span class="cb-dot">◆</span> Doktor vizitleriniz için geriye dönük insülin doz reaksiyon raporları hazırlama</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Bu modül sizin yerinize insülin dozu hesaplamaz. Sistem sadece geçmişte yaptığınız dozları unutmamanız ve hekiminize göstermeniz için bir günlük tutar.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-6">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">insulin_dose_logs</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">insulin_dose_logs</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>timestamp</code></td><td><span class="stype ts">TS</span></td><td>Enjeksiyon zamanı (UTC+3)</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>insulin_type</code></td><td><span class="stype en">EN</span></td><td>Rapid-acting/Bolus · Long-acting/Bazal · Premix</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>injection_site_map_id</code></td><td><span class="stype int">INT</span></td><td>Enjeksiyon bölge haritası kimliği (1–16)</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>dosage_units</code></td><td><span class="stype float">FLOAT</span></td><td>Uygulanan insülin dozu (Ünite — Ü)</td><td style="font-size:0.75em;color:#64748b">CHECK (0–200)</td></tr><tr><td><code>insulin_on_board</code></td><td><span class="stype float">FLOAT</span></td><td>Vücuttaki aktif insülin miktarı (IOB)</td><td style="font-size:0.75em;color:#64748b">CALCULATED</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Enjeksiyon zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">insulin_type</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Uzun Etkili · Kısa Etkili · Karışım</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">injection_site_id</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Enjeksiyon bölge haritası (1–16)</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">dosage_units</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Uygulanan doz (Ünite)</td><td style="font-size:.73em;color:#64748b">CHECK (0–200)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">insulin_on_board</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Vücuttaki aktif insülin miktarı (IOB)</td><td style="font-size:.73em;color:#64748b">CALCULATED</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>💉 Örnek Veri Kaydı — İnsülin Doz Günlüğü</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>💉 İnsülin Doz ve Bölge Günlüğü</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Zaman</th><th>İnsülin Tipi</th><th>Site ID</th><th>Doz (Ü)</th><th>IOB (Ü)</th></tr></thead><tbody><tr><td>2025-06-18 07:30</td><td><span class='dg info'>Bazal — Glargine</span></td><td>Site 4 (Karın)</td><td><b>20 Ü</b></td><td><span class='dg gray'>0.0</span></td></tr><tr><td>2025-06-18 08:00</td><td><span class='dg ok'>Bolus — Lispro</span></td><td>Site 7 (Kol)</td><td><b>5 Ü</b></td><td><span class='dg ok'>4.8</span></td></tr><tr><td>2025-06-18 13:00</td><td><span class='dg ok'>Bolus — Lispro</span></td><td>Site 2 (Karın)</td><td><b>7 Ü</b></td><td><span class='dg ok'>2.1</span></td></tr><tr><td>2025-06-18 15:00</td><td><span class='dg warn'>Düzeltme</span></td><td>Site 9 (Bacak)</td><td><b>2 Ü</b></td><td><span class='dg warn'>5.3</span></td></tr><tr><td>2025-06-18 19:30</td><td><span class='dg ok'>Bolus — Lispro</span></td><td>Site 5 (Kol)</td><td><b>6 Ü</b></td><td><span class='dg ok'>3.7</span></td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Zaman</th><th>İnsülin Türü</th><th>Bölge</th><th>Doz (Ü)</th><th>Aktif IOB (Ü)</th></tr></thead><tbody><tr><td>07:30</td><td><span class='dg info'>Uzun Etkili</span></td><td>Bölge 4 — Karın</td><td><b>20 Ü</b></td><td><span class='dg gray'>0.0</span></td></tr><tr><td>08:00</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 7 — Kol</td><td><b>5 Ü</b></td><td><span class='dg ok'>4.8</span></td></tr><tr><td>13:00</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 2 — Karın</td><td><b>7 Ü</b></td><td><span class='dg ok'>2.1</span></td></tr><tr><td>15:00</td><td><span class='dg warn'>Düzeltme</span></td><td>Bölge 9 — Bacak</td><td><b>2 Ü</b></td><td><span class='dg warn'>5.3</span></td></tr><tr><td>19:30</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 5 — Kol</td><td><b>6 Ü</b></td><td><span class='dg ok'>3.7</span></td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-7">
+<div class="cdss-panel" id="panel-7">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 4 — KLİNİK ENTEGRASYON ÇEKİRDEĞİ</span>
-      <h3>Sağlık Personeli Ekranı — Klinisyen Portalı ve Karar Destek Sistemi</h3>
-      <p>Hekim ve hemşirenizin, paylaştığınız geriye dönük metabolik verileri, glisemik varyabilite analizlerini ve kardiyovasküler trendleri tek bir ekranda incelemesini sağlayan profesyonel panel. Bu ekran, klinik vizitler sırasında veri inceleme sürecini optimize ederek daha sağlıklı bir iletişim kurulmasını sağlar.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> HL7 FHIR uyumlu, KVKK/HIPAA korumalı güvenli hekim bağlantı tüneli</li><li><span class="cdss-bullet-icon">◆</span> Hekim ve diyabet eğitim hemşireleri için ortak klinik not alanı</li><li><span class="cdss-bullet-icon">◆</span> Muayene süresini optimize eden tek sayfalık Klinisyen Karar Destek Kokpiti</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Sağlık Personeli Ekranı bir uzaktan teşhis sistemi veya acil tıbbi müdahale/alarm paneli değildir. Bu arayüz, yalnızca hastanın paylaştığı verileri hekimin klinik değerlendirmesine sunan bir karar destek arayüzüdür.</div>
+    <div class="cdss-col-left" id="left-7">
+      <div class="cdss-module-num">MODÜL 07 — Paylaşım & Raporlar</div>
+      <h2>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h2>
+      <p class="cdss-desc">İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz şeker, tansiyon ve ilaç verilerini kendi ekranından anlık olarak görebilir. Bu sayede muayene sırasında durumunuzu saniyeler içinde analiz edebilir.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Doktorunuz ve hemşirenizle şifreli ve güvenli veri paylaşımı</li><li><span class="cb-dot">◆</span> Sağlık ekibinizin sizin için uygulamaya yazabileceği ortak notlar</li><li><span class="cb-dot">◆</span> Doktorun tek bakışta her şeyi göreceği özet paneli</li><li><span class="cb-dot">◆</span> Uzmanınızın sistem üzerinden size doğrudan yeni ölçüm ve beslenme zaman çizelgeleri gönderebilmesi</li><li><span class="cb-dot">◆</span> Sağlık personelinin hastane dışındayken de durumunuzu takip edebileceği analiz paneli</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Bu ekran bir acil durum veya alarm paneli değildir. Kötüleştiğiniz anlarda sistemden doktorun görmesini beklemek yerine doğrudan acil sağlık kuruluşlarına başvurmalısınız.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-7">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">clinician_portal_audit</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">clinician_portal_audit</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>secure_clinician_token</code></td><td><span class="stype uuid">UUID</span></td><td>FHIR uyumlu şifreli hekim erişim tokeni</td><td style="font-size:0.75em;color:#64748b">PK, ENCRYPTED</td></tr><tr><td><code>view_timestamp</code></td><td><span class="stype ts">TS</span></td><td>Veri erişim zamanı (UTC+3 audit log)</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>audit_log_id</code></td><td><span class="stype uuid">UUID</span></td><td>KVKK/HIPAA uyumlu denetim izi kimliği</td><td style="font-size:0.75em;color:#64748b">AUTO, IMMUTABLE</td></tr><tr><td><code>physician_notes</code></td><td><span class="stype txt">TXT</span></td><td>Hekim klinik not alanı (serbest metin)</td><td style="font-size:0.75em;color:#64748b">NULLABLE, ENCRYPTED</td></tr><tr><td><code>rpm_flags</code></td><td><span class="stype json">JSON</span></td><td>Remote Patient Monitoring bayrak dizisi</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">clinician_token</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Şifreli doktor erişim kodu (FHIR)</td><td style="font-size:.73em;color:#64748b">PK · ENCRYPTED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">view_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Veri görüntüleme zamanı</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">audit_log_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">KVKK/HIPAA denetim izi</td><td style="font-size:.73em;color:#64748b">AUTO · IMMUTABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">physician_notes</code></td><td><span class="stype TEXT">TEXT</span></td><td style="font-size:.78em">Doktora özel not alanı</td><td style="font-size:.73em;color:#64748b">NULLABLE · ENCRYPTED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">rpm_flags</code></td><td><span class="stype JSON">JSON</span></td><td style="font-size:.78em">Uzaktan izleme bildirimleri</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>👨‍⚕️ Örnek Audit Trail — Klinisyen Erişim Kaydı</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>👨‍⚕️ Doktor Erişim ve Denetim Kaydı</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Erişim Zamanı</th><th>Klinisyen Token</th><th>Audit ID</th><th>RPM Bayrak</th><th>Not</th></tr></thead><tbody><tr><td>2025-06-18 10:30</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-00192</td><td><span class='dg ok'>Normal</span></td><td>Vizit öncesi inceleme</td></tr><tr><td>2025-06-15 14:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-00187</td><td><span class='dg warn'>HipoRisk</span></td><td>Gece hipoglisemi trend</td></tr><tr><td>2025-06-12 09:15</td><td><span class='dg info'>TKN-3304</span></td><td>AUD-00181</td><td><span class='dg ok'>Normal</span></td><td>Hemşire not güncelleme</td></tr><tr><td>2025-06-08 16:45</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-00174</td><td><span class='dg ok'>Normal</span></td><td>Aylık HbA1c analizi</td></tr><tr><td>2025-06-01 11:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-00161</td><td><span class='dg warn'>BP Yüksek</span></td><td>Antihipertansif güncelleme</td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Erişim Zamanı</th><th>Erişim Kodu</th><th>Denetim ID</th><th>Bildirim</th><th>Doktor Notu</th></tr></thead><tbody><tr><td>18.06 — 10:30</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-192</td><td><span class='dg ok'>Normal</span></td><td>Vizit öncesi inceleme</td></tr><tr><td>15.06 — 14:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-187</td><td><span class='dg warn'>Şeker Düşme</span></td><td>Gece trendi gözlendi</td></tr><tr><td>12.06 — 09:15</td><td><span class='dg info'>TKN-3304</span></td><td>AUD-181</td><td><span class='dg ok'>Normal</span></td><td>Hemşire notu güncellendi</td></tr><tr><td>08.06 — 16:45</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-174</td><td><span class='dg ok'>Normal</span></td><td>Aylık HbA1c analizi</td></tr><tr><td>01.06 — 11:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-161</td><td><span class='dg warn'>Tansiyon ↑</span></td><td>İlaç güncelleme önerisi</td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-8">
+<div class="cdss-panel" id="panel-8">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 4 — KLİNİK ENTEGRASYON ÇEKİRDEĞİ</span>
-      <h3>Otomatik Raporlama — Kanıta Dayalı Klinik Vizit Çıktıları</h3>
-      <p>Tüm modüllerden (şeker, tansiyon, ilaç, insülin) gelen verileri, uluslararası tıp cemiyetlerinin standartlarına uygun, hekiminizin doğrudan anlayabileceği grafiksel ve istatistiksel raporlara dönüştürün. Tek tuşla PDF formatında çıktı alarak doktor randevularınıza eksiksiz bir tıbbi veri geçmişiyle hazırlanın.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Küresel standartlarda AGP (Ambulatory Glucose Profile) benzeri veri özeti</li><li><span class="cdss-bullet-icon">◆</span> İstatistiksel standart sapma, sirkadiyen pık değerleri ve ortalama analizleri</li><li><span class="cdss-bullet-icon">◆</span> Klinisyen muayenelerine uygun, tek tuşla doğrulanabilir PDF rapor çıktısı</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Üretilen raporlar otomatik bir tanı koymaz veya tedavi önerisi içermez. Raporların klinik analizi, yorumlanması ve bu verilere dayanarak tedavi planında yapılacak tüm değişiklikler tamamen uzman hekim kontrolünde yürütülmelidir.</div>
+    <div class="cdss-col-left" id="left-8">
+      <div class="cdss-module-num">MODÜL 08 — Paylaşım & Raporlar</div>
+      <h2>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h2>
+      <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün. Tek tuşla cep telefonunuza indireceğiniz PDF raporu sayesinde randevularınıza eksiksiz hazırlanırsınız.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Dünya standartlarında grafiksel sağlık özeti</li><li><span class="cb-dot">◆</span> Şeker ve tansiyonunuzun ortalama, en yüksek ve en düşük değerlerinin dökümü</li><li><span class="cb-dot">◆</span> Doktorunuzla dijital olarak paylaşabileceğiniz güvenli rapor barkodu</li><li><span class="cb-dot">◆</span> Belirlenen ölçüm, diyet ve egzersiz çizelgelerinin rapora otomatik olarak yansıması</li><li><span class="cb-dot">◆</span> Tek tuşla uzman ekibinize gönderilebilecek detaylı sağlık durum analiz dosyası</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Bu raporlar otomatik olarak bir teşhis koymaz. Raporun incelenmesi ve tedavinizde yapılacak değişiklikler tamamen doktorunuzun kontrolündedir.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-8">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">automated_report_registry</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">automated_report_registry</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>report_id</code></td><td><span class="stype uuid">UUID</span></td><td>Rapor benzersiz kimliği</td><td style="font-size:0.75em;color:#64748b">PK, AUTO</td></tr><tr><td><code>generation_time</code></td><td><span class="stype ts">TS</span></td><td>Rapor oluşturma zamanı (UTC+3)</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>statistical_summary</code></td><td><span class="stype json">JSON</span></td><td>SD · Mean · Min/Max · Median dizi (JSON)</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>adherence_rate_pct</code></td><td><span class="stype float">FLOAT</span></td><td>Genel ilaç ve veri giriş uyum oranı (%)</td><td style="font-size:0.75em;color:#64748b">GENERATED</td></tr><tr><td><code>pdf_validation_hash</code></td><td><span class="stype txt">TXT</span></td><td>PDF doğrulama hash (SHA-256)</td><td style="font-size:0.75em;color:#64748b">IMMUTABLE</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">report_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Rapor benzersiz kimliği</td><td style="font-size:.73em;color:#64748b">PK · AUTO</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">generation_time</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Rapor oluşturma zamanı</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">statistical_summary</code></td><td><span class="stype JSON">JSON</span></td><td style="font-size:.78em">Ort · SS · Min/Max değer dizisi</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">adherence_rate_pct</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Genel takip uyum oranı (%)</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">pdf_validation_hash</code></td><td><span class="stype TEXT">TEXT</span></td><td style="font-size:.78em">PDF doğrulama kodu (SHA-256)</td><td style="font-size:.73em;color:#64748b">IMMUTABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>📋 Örnek Veri Kaydı — Rapor Arşivi</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>📋 Otomatik Rapor Arşivi</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Rapor ID</th><th>Oluşturma Zamanı</th><th>Ortalama Glikoz</th><th>Uyum Oranı</th><th>PDF Hash</th></tr></thead><tbody><tr><td>RPT-0041</td><td>2025-06-18 09:00</td><td><b>126 mg/dL</b></td><td><span class='dg ok'>92.4%</span></td><td>a3f9...c821</td></tr><tr><td>RPT-0040</td><td>2025-06-11 09:00</td><td><b>131 mg/dL</b></td><td><span class='dg ok'>89.7%</span></td><td>b7d2...e034</td></tr><tr><td>RPT-0039</td><td>2025-06-04 09:00</td><td><b>138 mg/dL</b></td><td><span class='dg warn'>78.2%</span></td><td>c1a8...f119</td></tr><tr><td>RPT-0038</td><td>2025-05-28 09:00</td><td><b>142 mg/dL</b></td><td><span class='dg warn'>74.5%</span></td><td>d4b3...0a72</td></tr><tr><td>RPT-0037</td><td>2025-05-21 09:00</td><td><b>129 mg/dL</b></td><td><span class='dg ok'>88.1%</span></td><td>e9c5...2b61</td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Rapor No</th><th>Oluşturma Zamanı</th><th>Ort. Şeker</th><th>Uyum Oranı</th><th>PDF Kodu</th></tr></thead><tbody><tr><td>RPT-0041</td><td>18.06.2025 — 09:00</td><td><b>126 mg/dL</b></td><td><span class='dg ok'>92.4%</span></td><td>a3f9...c821</td></tr><tr><td>RPT-0040</td><td>11.06.2025 — 09:00</td><td><b>131 mg/dL</b></td><td><span class='dg ok'>89.7%</span></td><td>b7d2...e034</td></tr><tr><td>RPT-0039</td><td>04.06.2025 — 09:00</td><td><b>138 mg/dL</b></td><td><span class='dg warn'>78.2%</span></td><td>c1a8...f119</td></tr><tr><td>RPT-0038</td><td>28.05.2025 — 09:00</td><td><b>142 mg/dL</b></td><td><span class='dg warn'>74.5%</span></td><td>d4b3...0a72</td></tr><tr><td>RPT-0037</td><td>21.05.2025 — 09:00</td><td><b>129 mg/dL</b></td><td><span class='dg ok'>88.1%</span></td><td>e9c5...2b61</td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-9">
+<div class="cdss-panel" id="panel-9">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 4 — KLİNİK ENTEGRASYON ÇEKİRDEĞİ</span>
-      <h3>HbA1c ve Metabolik Profili İzleme — Uzun Dönem Risk Yönetimi</h3>
-      <p>Laboratuvar ortamında yapılan aylık veya üç aylık kan tahlili sonuçlarınızı, uzun dönem HbA1c (glikozillenmiş hemoglobin) trendlerinizi tek platformda konsolide edin. Sistemimiz, metabolik profilinizi ve lipid paneli verilerini grafiklerle takip etmenizi sağlar.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Laboratuvar verileri ve lipid paneli (Kolesterol/Trigliserid) konsolidasyonu</li><li><span class="cdss-bullet-icon">◆</span> Nefropati risk yönetimi için eGFR ve böbrek fonksiyon takibi</li><li><span class="cdss-bullet-icon">◆</span> Günlük ölçümlerden yola çıkan Yapay Zeka Destekli Proaktif HbA1c Öngörü Modeli</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Diacora Health teşhis ve tedavi sunmayan bir veri yönetim asistanıdır. Laboratuvar sonuçlarının klinik değerlendirmesi, hedef HbA1c değerlerinin belirlenmesi ve tedavi planlaması tamamen uzman bir hekim tarafından yapılmalıdır.</div>
+    <div class="cdss-col-left" id="left-9">
+      <div class="cdss-module-num">MODÜL 09 — Paylaşım & Raporlar</div>
+      <h2>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h2>
+      <p class="cdss-desc">Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile hastane sonuçlarınızı birleştirerek size gelecekteki tahmini tahlil sonuçlarınızı gösterir.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Evdeki ölçümlerinizden yola çıkarak bir sonraki tahmini 3 aylık şeker tahmini</li><li><span class="cb-dot">◆</span> Kolesterol ve kan yağlarınızın zaman içindeki değişim grafiği</li><li><span class="cb-dot">◆</span> Şeker tansiyonun böbreklerinize etkisini görmek için tahlil takibi</li><li><span class="cb-dot">◆</span> Doktorunuzun tahlil dönemlerine göre sisteme ekleyeceği özel kontrol zaman çizelgeleri</li><li><span class="cb-dot">◆</span> Günlük rutinleriniz ile resmi laboratuvar sonuçlarını karşılaştıran analiz tabloları</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Sistem tahlil sonuçlarını tek başına yorumlamaz. Sonuçların risk değerlendirmesi ve hedef tahlil değerlerinizin belirlenmesi tamamen doktorunuza aittir.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-9">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">metabolic_lab_profile</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">metabolic_lab_profile</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>lab_test_date</code></td><td><span class="stype ts">TS</span></td><td>Laboratuvar tahlil tarihi</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>hba1c_percent</code></td><td><span class="stype float">FLOAT</span></td><td>HbA1c — Glikozillenmiş hemoglobin (%)</td><td style="font-size:0.75em;color:#64748b">CHECK (3.0–15.0)</td></tr><tr><td><code>eag_mg_dl</code></td><td><span class="stype float">FLOAT</span></td><td>Tahmini Ortalama Glikoz — eAG (mg/dL)</td><td style="font-size:0.75em;color:#64748b">GENERATED</td></tr><tr><td><code>lipid_tc</code></td><td><span class="stype float">FLOAT</span></td><td>Total Kolesterol (mg/dL)</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr><tr><td><code>lipid_hdl</code></td><td><span class="stype float">FLOAT</span></td><td>HDL Kolesterol (mg/dL)</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr><tr><td><code>lipid_ldl</code></td><td><span class="stype float">FLOAT</span></td><td>LDL Kolesterol (mg/dL)</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr><tr><td><code>lipid_tg</code></td><td><span class="stype float">FLOAT</span></td><td>Trigliserid (mg/dL)</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr><tr><td><code>creatinine_mg_dl</code></td><td><span class="stype float">FLOAT</span></td><td>Kreatinin (mg/dL) — böbrek fonk.</td><td style="font-size:0.75em;color:#64748b">NULLABLE</td></tr><tr><td><code>egfr_ml_min</code></td><td><span class="stype float">FLOAT</span></td><td>eGFR — Tahmini Glomerüler Filtrasyon Hızı</td><td style="font-size:0.75em;color:#64748b">GENERATED</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">lab_test_date</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Tahlil tarihi</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">hba1c_percent</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">3 Aylık Ort. Şeker — HbA1c (%)</td><td style="font-size:.73em;color:#64748b">CHECK (3.0–15.0)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">eag_mg_dl</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Tahmini Ortalama Şeker eAG (mg/dL)</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">ldl_cholesterol</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">LDL Kolesterol (mg/dL)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">triglycerides</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Trigliserid (mg/dL)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">creatinine_mg_dl</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Kreatinin — böbrek göstergesi</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">egfr_ml_min</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Böbrek filtrasyon hızı eGFR</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>🔬 Örnek Veri Kaydı — Metabolik Lab Profili</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>🔬 Laboratuvar ve Tahlil Sonuçları</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Tahlil Tarihi</th><th>HbA1c%</th><th>eAG (mg/dL)</th><th>LDL</th><th>TG</th><th>eGFR</th></tr></thead><tbody><tr><td>2025-06-01</td><td><span class='dg warn'>6.8%</span></td><td><b>148</b></td><td>95 mg/dL</td><td>142 mg/dL</td><td><span class='dg ok'>88</span></td></tr><tr><td>2025-03-01</td><td><span class='dg warn'>7.1%</span></td><td><b>157</b></td><td>102 mg/dL</td><td>158 mg/dL</td><td><span class='dg ok'>86</span></td></tr><tr><td>2024-12-01</td><td><span class='dg lo'>7.4%</span></td><td><b>165</b></td><td>110 mg/dL</td><td>172 mg/dL</td><td><span class='dg ok'>84</span></td></tr><tr><td>2024-09-01</td><td><span class='dg lo'>7.6%</span></td><td><b>171</b></td><td>118 mg/dL</td><td>185 mg/dL</td><td><span class='dg warn'>79</span></td></tr><tr><td>2024-06-01</td><td><span class='dg lo'>7.9%</span></td><td><b>179</b></td><td>124 mg/dL</td><td>196 mg/dL</td><td><span class='dg warn'>76</span></td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Tahlil Tarihi</th><th>HbA1c%</th><th>Ort. Şeker</th><th>LDL</th><th>Trigliserid</th><th>Böbrek eGFR</th></tr></thead><tbody><tr><td>Haz 2025</td><td><span class='dg warn'>6.8%</span></td><td><b>148 mg/dL</b></td><td>95 mg/dL</td><td>142 mg/dL</td><td><span class='dg ok'>88</span></td></tr><tr><td>Mar 2025</td><td><span class='dg warn'>7.1%</span></td><td><b>157 mg/dL</b></td><td>102 mg/dL</td><td>158 mg/dL</td><td><span class='dg ok'>86</span></td></tr><tr><td>Ara 2024</td><td><span class='dg lo'>7.4%</span></td><td><b>165 mg/dL</b></td><td>110 mg/dL</td><td>172 mg/dL</td><td><span class='dg ok'>84</span></td></tr><tr><td>Eyl 2024</td><td><span class='dg lo'>7.6%</span></td><td><b>171 mg/dL</b></td><td>118 mg/dL</td><td>185 mg/dL</td><td><span class='dg warn'>79</span></td></tr><tr><td>Haz 2024</td><td><span class='dg lo'>7.9%</span></td><td><b>179 mg/dL</b></td><td>124 mg/dL</td><td>196 mg/dL</td><td><span class='dg warn'>76</span></td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cdss-panel" id="cdss-panel-10">
+<div class="cdss-panel" id="panel-10">
   <div class="cdss-split">
-    <div class="cdss-left reveal-left">
-      <span class="cdss-left-tag">PART 1 — METABOLİK GLİKOZ SİSTEMİ</span>
-      <h3>Hipoglisemi Riski Analizi — Güvenli Alan ve Eğilim Yönetimi</h3>
-      <p>Sisteme girdiğiniz glikoz verilerini geriye dönük analiz ederek hipoglisemi (düşük kan şekeri) eğilimlerini ve risk profillerini görselleştirin. Algoritmalarımız, özellikle kritik dönemlerdeki tekrarlayan düşüş trendlerini fark etmenize yardımcı olur.</p>
-      <ul class="cdss-bullet-list"><li><span class="cdss-bullet-icon">◆</span> Geriye dönük glisemik çöküş ve hipoglisemi trend analizleri</li><li><span class="cdss-bullet-icon">◆</span> Kritik zaman dilimi (gece/egzersiz sonrası) sirkadiyen risk tespiti</li><li><span class="cdss-bullet-icon">◆</span> Somogyi Etkisi (rebound hiperglisemi) otomatik veri taraması</li></ul>
-      <div class="cdss-amber-box">
-        <span class="cdss-amber-icon">⚠</span>
-        <div class="cdss-amber-text"><strong>Kritik Uyarı:</strong> Diacora Health aktif bir tıbbi teşhis, gerçek zamanlı alarm veya acil müdahale sistemi değildir. Akut hipoglisemi durumlarında hekiminizin önerdiği acil durum protokollerini uygulayınız. Tüm klinik risk değerlendirmeleri doktor sorumluluğundadır.</div>
+    <div class="cdss-col-left" id="left-10">
+      <div class="cdss-module-num">MODÜL 10 — Metabolik Glikoz</div>
+      <h2>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h2>
+      <p class="cdss-desc">Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır. Sistemimiz, şekerinizin özellikle siz uykudayken gizlice düşüp düşmediğini fark etmenize yardımcı olur.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Hafif ve ciddi şeker düşmelerinin sıklık analizi</li><li><span class="cb-dot">◆</span> Şeker düşüşlerinin günün hangi saatlerinde yoğunlaştığının tespiti</li><li><span class="cb-dot">◆</span> Gece yaşanan gizli düşüşlerin, sabah neden yüksek şekerle uyandığınızla olan ilişkisi</li><li><span class="cb-dot">◆</span> Uzman ekibinizin şeker düşmesini engellemek için önereceği özel beslenme ve ölçüm saatlerinin takibi</li><li><span class="cb-dot">◆</span> Şeker düşme eğilimlerini önceden fark etmenizi sağlayacak geriye dönük analiz raporları</li></ul>
+      <div class="cdss-warn-box">
+        <span class="warn-icon">⚠</span>
+        <div class="warn-body">
+          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
+          Bu modül ani şeker düşmelerinde alarm çalan bir cihaz değildir. Şekeriniz aniden düştüğünde sistemden analiz beklememeli, doktorunuzun verdiği acil durum kurallarını uygulamalısınız.
+        </div>
       </div>
     </div>
-    <div class="cdss-right reveal-right">
+    <div class="cdss-col-right" id="right-10">
       <div class="schema-card">
-        <div class="schema-card-hdr">
+        <div class="schema-hdr">
           <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Core Database Schema — <code style="color:#7ecac5">hypoglycemia_event_log</code></span>
+          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">hypoglycemia_event_log</code></span>
           <span class="schema-hdr-badge">PostgreSQL</span>
         </div>
-        <table class="schema-def"><thead><tr><th>Alan Adı</th><th>Veri Tipi</th><th>Klinik Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code>event_id</code></td><td><span class="stype uuid">UUID</span></td><td>Hipoglisemi olayı benzersiz kimliği</td><td style="font-size:0.75em;color:#64748b">PK, AUTO</td></tr><tr><td><code>event_timestamp</code></td><td><span class="stype ts">TS</span></td><td>Olay tespit zamanı (UTC+3)</td><td style="font-size:0.75em;color:#64748b">NOT NULL, INDEX</td></tr><tr><td><code>severity_class</code></td><td><span class="stype en">EN</span></td><td>Level 1: &lt;70 mg/dL · Level 2: &lt;54 mg/dL</td><td style="font-size:0.75em;color:#64748b">NOT NULL</td></tr><tr><td><code>circadian_cluster_flag</code></td><td><span class="stype bool">BOOL</span></td><td>Gece/egzersiz sonrası sirkadiyen küme bayrağı</td><td style="font-size:0.75em;color:#64748b">DEFAULT FALSE</td></tr><tr><td><code>somogyi_counter</code></td><td><span class="stype int">INT</span></td><td>Somogyi Etkisi ardışık rebound sayacı</td><td style="font-size:0.75em;color:#64748b">DEFAULT 0</td></tr></tbody></table>
+        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">event_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Şeker düşmesi olay kimliği</td><td style="font-size:.73em;color:#64748b">PK · AUTO</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">event_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Olay tespit zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">severity_class</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Hafif: &lt;70 mg/dL · Ciddi: &lt;54 mg/dL</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">circadian_cluster_flag</code></td><td><span class="stype BOOLEAN">BOOLEAN</span></td><td style="font-size:.78em">Gece veya egzersiz sonrası bayrağı</td><td style="font-size:.73em;color:#64748b">DEFAULT FALSE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">somogyi_counter</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Rebound yüksek şeker sayacı</td><td style="font-size:.73em;color:#64748b">DEFAULT 0</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
-        <div class="data-grid-hdr">
-          <span>⚠️ Örnek Veri Kaydı — Hipoglisemi Olay Günlüğü</span>
-          <span class="dg-hdr-badge">5 Örnek Kayıt</span>
+        <div class="dg-hdr">
+          <span>⚠️ Şeker Düşmesi Olay Kaydı</span>
+          <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
-        <table class="data-grid"><thead><tr><th>Olay ID</th><th>Zaman</th><th>Glikoz</th><th>Şiddet</th><th>Sirkadiyen</th><th>Somogyi</th></tr></thead><tbody><tr><td>HYP-021</td><td>2025-06-18 03:15</td><td><b>61 mg/dL</b></td><td><span class='dg warn'>Level 1</span></td><td><span class='dg lo'>Gece ✓</span></td><td>0</td></tr><tr><td>HYP-020</td><td>2025-06-14 08:45</td><td><b>51 mg/dL</b></td><td><span class='dg lo'>Level 2</span></td><td><span class='dg info'>Egzersiz ✓</span></td><td>1</td></tr><tr><td>HYP-019</td><td>2025-06-09 22:30</td><td><b>65 mg/dL</b></td><td><span class='dg warn'>Level 1</span></td><td><span class='dg lo'>Gece ✓</span></td><td>0</td></tr><tr><td>HYP-018</td><td>2025-06-03 07:00</td><td><b>68 mg/dL</b></td><td><span class='dg warn'>Level 1</span></td><td><span class='dg gray'>Hayır</span></td><td>0</td></tr><tr><td>HYP-017</td><td>2025-05-28 03:45</td><td><b>48 mg/dL</b></td><td><span class='dg lo'>Level 2</span></td><td><span class='dg lo'>Gece ✓</span></td><td>2</td></tr></tbody></table>
+        <table class="d-grid"><thead><tr><th>Olay No</th><th>Zaman</th><th>Şeker Değeri</th><th>Şiddet</th><th>Gece mi?</th><th>Rebound</th></tr></thead><tbody><tr><td>DÜŞ-021</td><td>18.06 — 03:15</td><td><b>61 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg lo'>✓ Gece</span></td><td>0</td></tr><tr><td>DÜŞ-020</td><td>14.06 — 08:45</td><td><b>51 mg/dL</b></td><td><span class='dg lo'>Ciddi</span></td><td><span class='dg info'>Egzersiz Sonrası</span></td><td>1</td></tr><tr><td>DÜŞ-019</td><td>09.06 — 22:30</td><td><b>65 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg lo'>✓ Gece</span></td><td>0</td></tr><tr><td>DÜŞ-018</td><td>03.06 — 07:00</td><td><b>68 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg gray'>Hayır</span></td><td>0</td></tr><tr><td>DÜŞ-017</td><td>28.05 — 03:45</td><td><b>48 mg/dL</b></td><td><span class='dg lo'>Ciddi</span></td><td><span class='dg lo'>✓ Gece</span></td><td>2</td></tr></tbody></table>
       </div>
     </div>
   </div>
 </div>
-
-  </div>
 </div>
 
-<!-- CTA -->
+</div>
+
 <div class="cta-section" id="iletisim">
   <img src="/public/logo.png" alt="Diacora" class="cta-logo reveal">
   <div class="cta-title reveal">Sağlığınızın kontrolü <span>sizin elinizde.</span></div>
-  <div class="cta-sub reveal">10 klinik modül, kanıta dayalı CDSS altyapısı ve profesyonel raporlama ile hekiminizle eksiksiz iletişim kurun.</div>
+  <div class="cta-sub reveal">10 takip ekranı, otomatik raporlama ve güvenli doktor paylaşımıyla randevularınıza hazır olun.</div>
   <div class="reveal"><a href="#" class="btn-cta">Ücretsiz Başla →</a></div>
   <div class="cta-italic reveal">"Caring Today. Shaping Tomorrows."</div>
 </div>
 
 <footer class="footer">
-  <p>© 2025 Diacora Health. Tüm hakları saklıdır. · Klinik Karar Destek Sistemi v2.0</p>
+  <p>© 2025 Diacora Health. Tüm hakları saklıdır. · Sağlık Takip Sistemi v3.0</p>
 </footer>
 
 <script>
-// SCROLL REVEAL
-const reveals = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:0.1});
-reveals.forEach(el=>observer.observe(el));
+// ---- SIDEBAR MODULE SWITCHING WITH SLIDE ANIMATIONS ----
+function switchModule(n) {
+  // Hide current panel instantly
+  document.querySelectorAll('.cdss-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
 
-// RE-OBSERVE after tab switch
-function reObserve(){
-  document.querySelectorAll('.cdss-panel.active .reveal,.cdss-panel.active .reveal-left,.cdss-panel.active .reveal-right').forEach(el=>{
-    el.classList.remove('visible');
-    observer.observe(el);
-    setTimeout(()=>el.classList.add('visible'),50);
+  // Activate new panel
+  const panel = document.getElementById('panel-' + n);
+  if (!panel) return;
+  panel.classList.add('active');
+
+  // Activate sidebar link
+  document.querySelectorAll('.sidebar-link').forEach(l => {
+    if (parseInt(l.dataset.mod) === n) l.classList.add('active');
   });
+
+  // Grab columns
+  const leftCol  = document.getElementById('left-'  + n);
+  const rightCol = document.getElementById('right-' + n);
+  if (!leftCol || !rightCol) return;
+
+  // Set initial off-screen state
+  leftCol.style.transition  = 'none';
+  rightCol.style.transition = 'none';
+  leftCol.style.transform   = 'translateX(-40px)';
+  leftCol.style.opacity     = '0';
+  rightCol.style.transform  = 'translateX(40px)';
+  rightCol.style.opacity    = '0';
+
+  // Force reflow so browser registers the initial state
+  void leftCol.offsetWidth;
+  void rightCol.offsetWidth;
+
+  // Apply smooth transition to final state
+  leftCol.style.transition  = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+  rightCol.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+  leftCol.style.transform   = 'translateX(0)';
+  leftCol.style.opacity     = '1';
+  rightCol.style.transform  = 'translateX(0)';
+  rightCol.style.opacity    = '1';
 }
 
-// CDSS TAB SWITCHING
-function switchCdss(n){
-  document.querySelectorAll('.cdss-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.cdss-tab').forEach(t=>t.classList.remove('active'));
-  const panel = document.getElementById('cdss-panel-'+n);
-  if(panel){ panel.classList.add('active'); reObserve(); }
-  document.querySelectorAll('.cdss-tab').forEach(t=>{ if(t.dataset.panel==n) t.classList.add('active'); });
-}
-function activateCdssTab(n){
-  switchCdss(n);
-  document.getElementById('cdss-detail').scrollIntoView({behavior:'smooth',block:'start'});
+// Called from overview cards
+function activateModule(n) {
+  switchModule(n);
+  const el = document.getElementById('cdss-section');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// COUNTER ANIMATION
-function animateCounter(el,target){
-  let start=0; const dur=1500;
-  const step=(ts)=>{ if(!start)start=ts; const p=Math.min((ts-start)/dur,1); const e=1-Math.pow(1-p,3);
-    el.textContent=Math.floor(e*target); if(p<1)requestAnimationFrame(step); else el.textContent=target; };
+// ---- SCROLL REVEAL ----
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => observer.observe(el));
+
+// ---- COUNTER ANIMATION ----
+function animateCounter(el, target) {
+  let start = 0; const dur = 1500;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(e * target);
+    if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+  };
   requestAnimationFrame(step);
 }
-const statsObs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){
-    e.target.querySelectorAll('[data-target]').forEach(c=>animateCounter(c,parseInt(c.dataset.target)));
-    statsObs.unobserve(e.target);
-  }});
-},{threshold:0.5});
-const sr=document.getElementById('statsRow'); if(sr)statsObs.observe(sr);
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-target]').forEach(c => animateCounter(c, parseInt(c.dataset.target)));
+      statsObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+const sr = document.getElementById('statsRow'); if (sr) statsObs.observe(sr);
 
-// PROGRESS BAR
-const progressObs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ document.getElementById('progressBar').style.width='68%'; progressObs.unobserve(e.target); }});
-},{threshold:0.5});
-const pb=document.getElementById('progressBar'); if(pb)progressObs.observe(pb);
+// ---- PROGRESS BAR ----
+const pbObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { document.getElementById('progressBar').style.width = '68%'; pbObs.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+const pb = document.getElementById('progressBar'); if (pb) pbObs.observe(pb);
 
-// NAVBAR SCROLL
-window.addEventListener('scroll',()=>{ document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>30); });
+// ---- NAVBAR SCROLL ----
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+});
 
-// HERO IMMEDIATE REVEAL
-document.querySelectorAll('.hero-banner .reveal,.hero-banner .reveal-right').forEach(el=>setTimeout(()=>el.classList.add('visible'),100));
+// ---- HERO IMMEDIATE REVEAL ----
+document.querySelectorAll('.hero-banner .reveal,.hero-banner .reveal-right').forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 100);
+});
 
-// INITIAL CDSS PANEL REVEAL
-setTimeout(reObserve, 200);
+// ---- INITIAL PANEL ANIMATION (first load) ----
+setTimeout(() => {
+  const lc = document.getElementById('left-1');
+  const rc = document.getElementById('right-1');
+  if (lc && rc) {
+    lc.style.transition = 'none'; rc.style.transition = 'none';
+    lc.style.transform = 'translateX(-40px)'; lc.style.opacity = '0';
+    rc.style.transform = 'translateX(40px)';  rc.style.opacity = '0';
+    void lc.offsetWidth;
+    lc.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+    rc.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+    lc.style.transform = 'translateX(0)'; lc.style.opacity = '1';
+    rc.style.transform = 'translateX(0)'; rc.style.opacity = '1';
+  }
+}, 250);
 </script>
 </body>
 </html>
