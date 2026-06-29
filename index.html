@@ -456,6 +456,34 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
   font-weight: 400;
 }
 
+
+/* ─── CDSS PANEL FOOTER (global, all modules) ─── */
+.cdss-panel-footer {
+  background: #f5f0e8;
+  border-top: 2px solid #ddd5c0;
+  border-radius: 0 0 12px 12px;
+  padding: 20px 28px 18px;
+  margin-top: 18px;
+}
+.cdss-footer-title {
+  font-size: 0.7em;
+  font-weight: 800;
+  color: #1a3a5c;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd5c0;
+}
+.cdss-footer-body {
+  font-size: 0.79em;
+  color: #5a6878;
+  line-height: 1.65;
+  margin: 0 0 5px 0;
+}
+.cdss-footer-body:last-child { margin-bottom: 0; }
+.cdss-footer-body strong { color: #1a3a5c; }
+
 </style>
 </head>
 <body>
@@ -756,13 +784,6 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       <h2>Şeker Takibi — Günlük Şeker Dengeniz</h2>
       <p class="cdss-desc">Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve günün ne kadarını güvenli bölgede geçirdiğinizi anlaşılır grafiklerle size gösterir.</p>
       <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Günlük şeker dalgalanmalarınızın kolay takibi</li><li><span class="cb-dot">◆</span> Şekerinizin ne kadar süre normal sınırlarda kaldığının analizi</li><li><span class="cb-dot">◆</span> Yemekten sonraki vücut şeker tepkilerinizin takibi</li><li><span class="cb-dot">◆</span> Doktorunuzun veya diyetisyeninizin verdiği özel ölçüm saatlerini sisteme kolayca uygulama özelliği</li><li><span class="cb-dot">◆</span> Uzmanınızın çizelgesine uygun gelişmiş şeker analiz raporları hazırlama</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Diacora Health her zaman yanınızdaki bir yardımcıdır, ancak bir doktor değildir.
-        </div>
-      </div>
     </div>
     <div class="cdss-col-right" id="right-1">
       <div class="hero-img-card" id="hero-1">
@@ -779,12 +800,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>🩸 Günlük Şeker Ölçüm Kaydı</span>
+          <span>🩸 Kan Şekeri Örnek Ölçüm Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Zaman</th><th>Ölçüm Türü</th><th>Şeker (mg/dL)</th><th>CV%</th><th>Güvenli Alan</th></tr></thead><tbody><tr><td>07:45</td><td>Açlık</td><td><b>92</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>09:30</td><td>Tokluk 1. Saat</td><td><b>156</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>11:00</td><td>Tokluk 2. Saat</td><td><b>128</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>22:30</td><td>Gece</td><td><b>66</b></td><td>18.6%</td><td><span class='dg lo'>⚠ Düşük</span></td></tr><tr><td>08:00</td><td>Açlık (Ertesi)</td><td><b>98</b></td><td>11.8%</td><td><span class='dg ok'>✓ Normal</span></td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -795,13 +821,6 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       <h2>Tansiyon Takibi — Kalp ve Kan Basıncı Düzeniniz</h2>
       <p class="cdss-desc">Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlığınızın genel gidişatını görmenizi sağlar.</p>
       <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Sabah ve akşam tansiyonu arasındaki farkların takibi</li><li><span class="cb-dot">◆</span> Büyük ve küçük tansiyon arasındaki dengenin izlenmesi</li><li><span class="cb-dot">◆</span> Dinlenme anındaki kalp atış hızınızın takibi</li><li><span class="cb-dot">◆</span> Uzman sağlık personelinin size özel hazırladığı tansiyon ölçüm takvimini sisteme kolayca girme seçeneği</li><li><span class="cb-dot">◆</span> Doktorunuz için özel kalp ve kan basıncı analiz tabloları üretme</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu modül bir tansiyon ölçüm cihazı değildir.
-        </div>
-      </div>
     </div>
     <div class="cdss-col-right" id="right-2">
       <div class="hero-img-card" id="hero-2">
@@ -818,12 +837,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>❤️ Tansiyon ve Nabız Ölçüm Kaydı</span>
+          <span>❤️ Tansiyon & Nabız Kayıt Arşivi</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Zaman</th><th>Büyük (mmHg)</th><th>Küçük (mmHg)</th><th>Nabız Bas.</th><th>Kalp Atışı</th><th>Durum</th></tr></thead><tbody><tr><td>08:00</td><td><b>118</b></td><td><b>76</b></td><td>42 mmHg</td><td>72 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>12:00</td><td><b>134</b></td><td><b>86</b></td><td>48 mmHg</td><td>80 bpm</td><td><span class='dg warn'>⚠ Yüksek</span></td></tr><tr><td>16:00</td><td><b>122</b></td><td><b>80</b></td><td>42 mmHg</td><td>75 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>20:00</td><td><b>128</b></td><td><b>82</b></td><td>46 mmHg</td><td>78 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>08:00</td><td><b>116</b></td><td><b>74</b></td><td>42 mmHg</td><td>70 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -834,13 +858,6 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       <h2>Beslenme Takibi — Yemeklerin Şekere Etkisi</h2>
       <p class="cdss-desc">Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımınızı takip etmenizi kolaylaştırır.</p>
       <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Yediğiniz yemeklerin içerdiği karbonhidrat ve liflerin takibi</li><li><span class="cb-dot">◆</span> Yiyeceklerin kan şekerini ani yükseltme gücünün izlenmesi</li><li><span class="cb-dot">◆</span> Sağlığınızı korumak için günlük tuz ve potasyum dengesi</li><li><span class="cb-dot">◆</span> Diyetisyeninizin size özel yazdığı beslenme aralıklarını ve yemek saatlerini sisteme birebir uygulama kolaylığı</li><li><span class="cb-dot">◆</span> Beslenme düzeninizin şeker ve tansiyona etkisini gösteren özel diyet analiz raporları</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Beslenme düzeninizdeki büyük değişiklikleri her zaman doktorunuza danışarak yapmalısınız.
-        </div>
-      </div>
     </div>
     <div class="cdss-col-right" id="right-3">
       <div class="hero-img-card" id="hero-3">
@@ -857,12 +874,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>🥗 Günlük Beslenme Kaydı</span>
+          <span>🥗 Günlük Tüketilen Besinler Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Öğün</th><th>Karbonhidrat</th><th>Lif</th><th>GI</th><th>Net GL</th><th>Sodyum</th></tr></thead><tbody><tr><td>Kahvaltı 08:30</td><td><b>45g</b></td><td>8g</td><td>52</td><td><span class='dg ok'>23.4</span></td><td>580 mg</td></tr><tr><td>Öğle 13:00</td><td><b>62g</b></td><td>6g</td><td>65</td><td><span class='dg warn'>40.3</span></td><td>920 mg</td></tr><tr><td>Ara Öğün 16:00</td><td><b>28g</b></td><td>3g</td><td>43</td><td><span class='dg ok'>12.0</span></td><td>210 mg</td></tr><tr><td>Akşam 19:30</td><td><b>55g</b></td><td>9g</td><td>48</td><td><span class='dg ok'>26.4</span></td><td>740 mg</td></tr><tr><td>Gece Atıştırma 22:00</td><td><b>18g</b></td><td>4g</td><td>35</td><td><span class='dg ok'>6.3</span></td><td>120 mg</td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -873,13 +895,6 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       <h2>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h2>
       <p class="cdss-desc">Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net grafiklerle size gösterir.</p>
       <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Yaptığınız hareketlerin harcadığı enerji seviyesinin takibi</li><li><span class="cb-dot">◆</span> Egzersiz sonrası kan şekerinizin ne kadar sürede düzene girdiğinin takibi</li><li><span class="cb-dot">◆</span> Hareket ettikçe kalbinizin kazandığı dayanıklılık trendi</li><li><span class="cb-dot">◆</span> Uzmanınızın kontrolünde hazırlanan hareket ve aktivite zaman çizelgelerini sisteme rahatça ekleme imkanı</li><li><span class="cb-dot">◆</span> Egzersizlerin vücudunuza faydasını gösteren haftalık aktivite analiz tabloları</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Hareket temponuzu doktorunuzun izin verdiği sınırlarda tutun.
-        </div>
-      </div>
     </div>
     <div class="cdss-col-right" id="right-4">
       <div class="hero-img-card" id="hero-4">
@@ -896,12 +911,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>🏃 Haftalık Hareket Kaydı</span>
+          <span>🏃 Haftalık Aktivite Günlüğü</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Zaman</th><th>Aktivite</th><th>Tür</th><th>Süre</th><th>METs</th><th>Δ Şeker</th></tr></thead><tbody><tr><td>Pzt 07:00</td><td>Koşu</td><td><span class='dg info'>Aerobik</span></td><td>32 dk</td><td>8.5</td><td><span class='dg teal'>-18 mg/dL</span></td></tr><tr><td>Pzt 18:00</td><td>Fitness</td><td><span class='dg purple'>Anaerobik</span></td><td>45 dk</td><td>5.0</td><td><span class='dg teal'>-12 mg/dL</span></td></tr><tr><td>Sal 07:30</td><td>Yürüyüş</td><td><span class='dg info'>Aerobik</span></td><td>50 dk</td><td>3.5</td><td><span class='dg teal'>-8 mg/dL</span></td></tr><tr><td>Çar 19:00</td><td>Yoga</td><td><span class='dg gray'>Toparlanma</span></td><td>30 dk</td><td>2.5</td><td><span class='dg gray'>-3 mg/dL</span></td></tr><tr><td>Per 08:00</td><td>Bisiklet</td><td><span class='dg info'>Aerobik</span></td><td>40 dk</td><td>7.0</td><td><span class='dg teal'>-15 mg/dL</span></td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -912,13 +932,6 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       <h2>İlaç Takibi — Düzenli İlaç Kullanımı</h2>
       <p class="cdss-desc">Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağlarız.</p>
       <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> İlaç saatleriniz için akıllı ve düzenli hatırlatıcılar</li><li><span class="cb-dot">◆</span> İlaçlarınızı aylık olarak ne kadar düzenli içtiğinizin başarı oranı</li><li><span class="cb-dot">◆</span> Unutulan ilaçların tansiyon ve şeker dalgalanmalarıyla olan ilişkisi</li><li><span class="cb-dot">◆</span> Doktorunuzun size özel belirlediği ilaç saatlerini ve tedavi takvimini sisteme kolayca işleme kolaylığı</li><li><span class="cb-dot">◆</span> Hekiminizin doz takibini rahatça yapabilmesi için özel ilaç uyum analiz raporları</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          İlaç düzeninizi tamamen kendi doktorunuzun reçete ettiği şekilde sürdürmelisiniz.
-        </div>
-      </div>
     </div>
     <div class="cdss-col-right" id="right-5">
       <div class="hero-img-card" id="hero-5">
@@ -935,12 +948,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>💊 İlaç Uyum Takip Kaydı</span>
+          <span>💊 Aktif Kullanılan İlaç Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>İlaç Adı</th><th>Planlanan Saat</th><th>Kalış Süresi</th><th>Uyum Oranı</th><th>Atlanan Doz</th></tr></thead><tbody><tr><td>Metformin 850mg</td><td>08:00 / 20:00</td><td>6.5 saat</td><td><span class='dg ok'>94.2%</span></td><td>2 kez</td></tr><tr><td>Lisinopril 10mg</td><td>09:00</td><td>12 saat</td><td><span class='dg ok'>96.7%</span></td><td>1 kez</td></tr><tr><td>Atorvastatin 20mg</td><td>21:00</td><td>14 saat</td><td><span class='dg warn'>82.1%</span></td><td>5 kez</td></tr><tr><td>Empagliflozin 10mg</td><td>08:00</td><td>12.4 saat</td><td><span class='dg ok'>98.3%</span></td><td>0 kez</td></tr><tr><td>Amlodipin 5mg</td><td>09:00</td><td>35–50 saat</td><td><span class='dg ok'>91.8%</span></td><td>2 kez</td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -949,15 +967,8 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
     <div class="cdss-col-left" id="left-6">
       <div class="cdss-module-num">MODÜL 06 — İlaç & İnsülin</div>
       <h2>İnsülin Takibi — Doz ve Bölge Günlüğü</h2>
-      <p class="cdss-desc">Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin. Sistemimiz, yaptığınız insülinlerin kan şekerinizi nasıl etkilediğini geriye dönük olarak eşleştirir.</p>
+      <p class="cdss-desc">Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin. Sistemimiz, yediğiniz karbonhidrata karşılık yaptığınız insülinin izlenmesini sağlar.</p>
       <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Vücudunuzda hâlâ etkisi devam eden aktif insülin miktarının takibi</li><li><span class="cb-dot">◆</span> Aynı yere üst üste yapıp dokuyu sertleştirmemek için enjeksiyon bölgesi takibi</li><li><span class="cb-dot">◆</span> Yediğiniz karbonhidrata karşılık yaptığınız insülinin izlenmesi</li><li><span class="cb-dot">◆</span> Uzmanınızın size verdiği özel insülin doz saatlerini ve zaman çizelgelerini sisteme birebir uygulama imkanı</li><li><span class="cb-dot">◆</span> Doktor vizitleriniz için geriye dönük insülin doz reaksiyon raporları hazırlama</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu modül sizin yerinize insülin dozu hesaplamaz.
-        </div>
-      </div>
     </div>
     <div class="cdss-col-right" id="right-6">
       <div class="hero-img-card" id="hero-6">
@@ -974,12 +985,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>💉 İnsülin Doz ve Bölge Günlüğü</span>
+          <span>💉 Geriye Dönük İnsülin Enjeksiyon Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Zaman</th><th>İnsülin Türü</th><th>Bölge</th><th>Doz (Ü)</th><th>Aktif IOB (Ü)</th></tr></thead><tbody><tr><td>07:30</td><td><span class='dg info'>Uzun Etkili</span></td><td>Bölge 4 — Karın</td><td><b>20 Ü</b></td><td><span class='dg gray'>0.0</span></td></tr><tr><td>08:00</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 7 — Kol</td><td><b>5 Ü</b></td><td><span class='dg ok'>4.8</span></td></tr><tr><td>13:00</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 2 — Karın</td><td><b>7 Ü</b></td><td><span class='dg ok'>2.1</span></td></tr><tr><td>15:00</td><td><span class='dg warn'>Düzeltme</span></td><td>Bölge 9 — Bacak</td><td><b>2 Ü</b></td><td><span class='dg warn'>5.3</span></td></tr><tr><td>19:30</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 5 — Kol</td><td><b>6 Ü</b></td><td><span class='dg ok'>3.7</span></td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -988,15 +1004,8 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
     <div class="cdss-col-left" id="left-7">
       <div class="cdss-module-num">MODÜL 07 — Paylaşım & Raporlar</div>
       <h2>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h2>
-      <p class="cdss-desc">İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz şeker, tansiyon ve ilaç verilerini kendi ekranından anlık olarak görebilir. Bu sayede muayene sırasında durumunuzu saniyeler içinde analiz edebilir.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Doktorunuz ve hemşirenizle şifreli ve güvenli veri paylaşımı</li><li><span class="cb-dot">◆</span> Sağlık ekibinizin sizin için uygulamaya yazabileceği ortak notlar</li><li><span class="cb-dot">◆</span> Doktorun tek bakışta her şeyi göreceği özet paneli</li><li><span class="cb-dot">◆</span> Uzmanınızın sistem üzerinden size doğrudan yeni ölçüm ve beslenme zaman çizelgeleri gönderebilmesi</li><li><span class="cb-dot">◆</span> Sağlık personelinin hastane dışındayken de durumunuzu takip edebileceği analiz paneli</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Kötüleştiğiniz anlarda doğrudan acil sağlık kuruluşlarına başvurmalısınız.
-        </div>
-      </div>
+      <p class="cdss-desc">İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz verileri kendi ekranından görebilir.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Doktorunuz ve hemşirenizle şifreli ve güvenli veri paylaşımı</li><li><span class="cb-dot">◆</span> Sağlık ekibinizin sizin için uygulamaya yazabileceği ortak notlar</li><li><span class="cb-dot">◆</span> Uzmanınızın sistem üzerinden size doğrudan yeni ölçüm ve beslenme zaman çizelgeleri gönderebilmesi</li><li><span class="cb-dot">◆</span> Sağlık personelinin hastane dışındayken de durumunuzu takip edebileceği analiz paneli</li></ul>
     </div>
     <div class="cdss-col-right" id="right-7">
       <div class="hero-img-card" id="hero-7">
@@ -1013,12 +1022,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>👨‍⚕️ Doktor Erişim ve Denetim Kaydı</span>
+          <span>👨‍⚕️ Yetkilendirilmiş Doktor & Hemşire Listesi Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Erişim Zamanı</th><th>Erişim Kodu</th><th>Denetim ID</th><th>Bildirim</th><th>Doktor Notu</th></tr></thead><tbody><tr><td>18.06 — 10:30</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-192</td><td><span class='dg ok'>Normal</span></td><td>Vizit öncesi inceleme</td></tr><tr><td>15.06 — 14:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-187</td><td><span class='dg warn'>Şeker Düşme</span></td><td>Gece trendi gözlendi</td></tr><tr><td>12.06 — 09:15</td><td><span class='dg info'>TKN-3304</span></td><td>AUD-181</td><td><span class='dg ok'>Normal</span></td><td>Hemşire notu güncellendi</td></tr><tr><td>08.06 — 16:45</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-174</td><td><span class='dg ok'>Normal</span></td><td>Aylık HbA1c analizi</td></tr><tr><td>01.06 — 11:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-161</td><td><span class='dg warn'>Tansiyon ↑</span></td><td>İlaç güncelleme önerisi</td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -1027,15 +1041,8 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
     <div class="cdss-col-left" id="left-8">
       <div class="cdss-module-num">MODÜL 08 — Paylaşım & Raporlar</div>
       <h2>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h2>
-      <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün. Tek tuşla cep telefonunuza indireceğiniz PDF raporu sayesinde randevularınıza eksiksiz hazırlanırsınız.</p>
+      <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün.</p>
       <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Dünya standartlarında grafiksel sağlık özeti</li><li><span class="cb-dot">◆</span> Şeker ve tansiyonunuzun ortalama, en yüksek ve en düşük değerlerinin dökümü</li><li><span class="cb-dot">◆</span> Doktorunuzla dijital olarak paylaşabileceğiniz güvenli rapor barkodu</li><li><span class="cb-dot">◆</span> Belirlenen ölçüm, diyet ve egzersiz çizelgelerinin rapora otomatik olarak yansıması</li><li><span class="cb-dot">◆</span> Tek tuşla uzman ekibinize gönderilebilecek detaylı klinik durum analiz dosyası</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Raporun incelenmesi ve tedavinizde yapılacak değişiklikler tamamen doktorunuzun kontrolündedir.
-        </div>
-      </div>
     </div>
     <div class="cdss-col-right" id="right-8">
       <div class="mod8-hero-img-card">
@@ -1053,12 +1060,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>📋 Otomatik Rapor Arşivi</span>
+          <span>📋 Otomatik Rapor Arşivi Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Rapor No</th><th>Oluşturma Zamanı</th><th>Ort. Şeker</th><th>Uyum Oranı</th><th>PDF Kodu</th></tr></thead><tbody><tr><td>RPT-0041</td><td>18.06.2025 — 09:00</td><td><b>126 mg/dL</b></td><td><span class='dg ok'>92.4%</span></td><td>a3f9...c821</td></tr><tr><td>RPT-0040</td><td>11.06.2025 — 09:00</td><td><b>131 mg/dL</b></td><td><span class='dg ok'>89.7%</span></td><td>b7d2...e034</td></tr><tr><td>RPT-0039</td><td>04.06.2025 — 09:00</td><td><b>138 mg/dL</b></td><td><span class='dg warn'>78.2%</span></td><td>c1a8...f119</td></tr><tr><td>RPT-0038</td><td>28.05.2025 — 09:00</td><td><b>142 mg/dL</b></td><td><span class='dg warn'>74.5%</span></td><td>d4b3...0a72</td></tr><tr><td>RPT-0037</td><td>21.05.2025 — 09:00</td><td><b>129 mg/dL</b></td><td><span class='dg ok'>88.1%</span></td><td>e9c5...2b61</td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -1067,15 +1079,8 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
     <div class="cdss-col-left" id="left-9">
       <div class="cdss-module-num">MODÜL 09 — Paylaşım & Raporlar</div>
       <h2>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h2>
-      <p class="cdss-desc">Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile hastane sonuçlarınızı birleştirerek size gelecekteki tahmini tahlil sonuçlarınızı gösterir.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Evdeki ölçümlerinizden yola çıkarak bir sonraki tahmini 3 aylık şeker tahmini</li><li><span class="cb-dot">◆</span> Kolesterol ve kan yağlarınızın zaman içindeki değişim grafiği</li><li><span class="cb-dot">◆</span> Şeker ve tansiyonun böbreklerinize etkisini görmek için tahlil takibi</li><li><span class="cb-dot">◆</span> Doktorunuzun tahlil dönemlerine göre sisteme ekleyeceği özel kontrol zaman çizelgeleri</li><li><span class="cb-dot">◆</span> Günlük rutinleriniz ile resmi laboratuvar sonuçlarını karşılaştıran analiz tabloları</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Hedef tahlil değerlerinizin belirlenmesi tamamen doktorunuza aittir.
-        </div>
-      </div>
+      <p class="cdss-desc">Hastanede yaptırdığınız tahlil sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile hastane sonuçlarınızı birleştirir.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Evdeki ölçümlerinizden yola çıkarak bir sonraki tahmini 3 aylık şeker tahmini</li><li><span class="cb-dot">◆</span> Kolesterol ve kan yağlarınızın zaman içindeki değişim grafiği</li><li><span class="cb-dot">◆</span> Doktorunuzun tahlil dönemlerine göre sisteme ekleyeceği özel kontrol zaman çizelgeleri</li><li><span class="cb-dot">◆</span> Günlük rutinleriniz ile resmi laboratuvar sonuçlarını karşılaştıran analiz tabloları</li></ul>
     </div>
     <div class="cdss-col-right" id="right-9">
       <div class="hero-img-card" id="hero-9">
@@ -1092,12 +1097,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>🔬 Laboratuvar ve Tahlil Sonuçları</span>
+          <span>🔬 Resmi Laboratuvar Tahlil Geçmişi Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Tahlil Tarihi</th><th>HbA1c%</th><th>Ort. Şeker</th><th>LDL</th><th>Trigliserid</th><th>Böbrek eGFR</th></tr></thead><tbody><tr><td>Haz 2025</td><td><span class='dg warn'>6.8%</span></td><td><b>148 mg/dL</b></td><td>95 mg/dL</td><td>142 mg/dL</td><td><span class='dg ok'>88</span></td></tr><tr><td>Mar 2025</td><td><span class='dg warn'>7.1%</span></td><td><b>157 mg/dL</b></td><td>102 mg/dL</td><td>158 mg/dL</td><td><span class='dg ok'>86</span></td></tr><tr><td>Ara 2024</td><td><span class='dg lo'>7.4%</span></td><td><b>165 mg/dL</b></td><td>110 mg/dL</td><td>172 mg/dL</td><td><span class='dg ok'>84</span></td></tr><tr><td>Eyl 2024</td><td><span class='dg lo'>7.6%</span></td><td><b>171 mg/dL</b></td><td>118 mg/dL</td><td>185 mg/dL</td><td><span class='dg warn'>79</span></td></tr><tr><td>Haz 2024</td><td><span class='dg lo'>7.9%</span></td><td><b>179 mg/dL</b></td><td>124 mg/dL</td><td>196 mg/dL</td><td><span class='dg warn'>76</span></td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 
@@ -1106,15 +1116,8 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
     <div class="cdss-col-left" id="left-10">
       <div class="cdss-module-num">MODÜL 10 — Metabolik Glikoz</div>
       <h2>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h2>
-      <p class="cdss-desc">Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır. Sistemimiz, şekerinizin özellikle siz uykudayken gizlice düşüp düşmediğini fark etmenize yardımcı olur.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Hafif ve ciddi şeker düşmelerinin sıklık analizi</li><li><span class="cb-dot">◆</span> Şeker düşüşlerinin günün hangi saatlerinde yoğunlaştığının tespiti</li><li><span class="cb-dot">◆</span> Gece yaşanan gizli düşüşlerin, sabah neden yüksek şekerle uyandığınızla olan ilişkisi</li><li><span class="cb-dot">◆</span> Uzman ekibinizin şeker düşmesini engellemek için önereceği özel beslenme ve ölçüm saatlerinin takibi</li><li><span class="cb-dot">◆</span> Şeker düşme eğilimlerini önceden fark etmenizi sağlayacak geriye dönük analiz raporları</li></ul>
-      <div class="cdss-warn-box">
-        <span class="warn-icon">⚠</span>
-        <div class="warn-body">
-          <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Şekeriniz aniden düştüğünde doktorunuzun verdiği acil durum kurallarını uygulamalısınız.
-        </div>
-      </div>
+      <p class="cdss-desc">Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır.</p>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Hafif ve ciddi şeker düşmelerinin sıklık analizi</li><li><span class="cb-dot">◆</span> Şeker düşüşlerinin günün hangi saatlerinde yoğunlaştığının tespiti</li><li><span class="cb-dot">◆</span> Uzman ekibinizin şeker düşmesini engellemek için önereceği özel beslenme ve ölçüm saatlerinin takibi</li><li><span class="cb-dot">◆</span> Şeker düşme eğilimlerini önceden fark etmenizi sağlayacak geriye dönük analiz raporları</li></ul>
     </div>
     <div class="cdss-col-right" id="right-10">
       <div class="hero-img-card" id="hero-10">
@@ -1131,12 +1134,17 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
-          <span>⚠️ Şeker Düşmesi Olay Kaydı</span>
+          <span>⚠️ Hipoglisemi Vaka Kayıt Arşivi Tablosu</span>
           <span class="dg-badge">5 Örnek Kayıt</span>
         </div>
         <table class="d-grid"><thead><tr><th>Olay No</th><th>Zaman</th><th>Şeker Değeri</th><th>Şiddet</th><th>Gece mi?</th><th>Rebound</th></tr></thead><tbody><tr><td>DÜŞ-021</td><td>18.06 — 03:15</td><td><b>61 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg lo'>✓ Gece</span></td><td>0</td></tr><tr><td>DÜŞ-020</td><td>14.06 — 08:45</td><td><b>51 mg/dL</b></td><td><span class='dg lo'>Ciddi</span></td><td><span class='dg info'>Egzersiz Sonrası</span></td><td>1</td></tr><tr><td>DÜŞ-019</td><td>09.06 — 22:30</td><td><b>65 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg lo'>✓ Gece</span></td><td>0</td></tr><tr><td>DÜŞ-018</td><td>03.06 — 07:00</td><td><b>68 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg gray'>Hayır</span></td><td>0</td></tr><tr><td>DÜŞ-017</td><td>28.05 — 03:45</td><td><b>48 mg/dL</b></td><td><span class='dg lo'>Ciddi</span></td><td><span class='dg lo'>✓ Gece</span></td><td>2</td></tr></tbody></table>
       </div>
     </div>
+  <div class="cdss-panel-footer">
+    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
+    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
+    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
+    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
   </div>
 </div>
 </div>
