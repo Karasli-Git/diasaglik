@@ -333,6 +333,83 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
   .modules-grid{grid-template-columns:1fr;}
   .intro-btns{flex-direction:column;}
 }
+
+/* ---- MODULE 8 — HERO IMAGE CARD ---- */
+.mod8-hero-img-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.13);
+  transition: all 0.3s ease-in-out;
+  display: block;
+  width: 100%;
+  line-height: 0; /* kill inline gap */
+}
+.mod8-hero-img-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.mod8-hero-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  border-radius: 0; /* card already rounds */
+  filter: brightness(0.82) saturate(1.1);
+  transition: filter 0.35s ease;
+}
+.mod8-hero-img-card:hover .mod8-hero-img {
+  filter: brightness(0.72) saturate(1.2);
+}
+.mod8-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15,41,66,0.88) 0%,
+    rgba(15,41,66,0.38) 55%,
+    rgba(15,41,66,0.06) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px 22px 20px;
+}
+.mod8-img-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.mod8-img-headline {
+  font-size: 1.45em;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  font-family: Georgia, 'Times New Roman', serif;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+.mod8-img-sub {
+  font-size: 0.82em;
+  color: rgba(255,255,255,0.78);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
 </style>
 </head>
 <body>
@@ -887,13 +964,18 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       </div>
     </div>
     <div class="cdss-col-right" id="right-8">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">automated_report_registry</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="mod8-hero-img-card">
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop&q=85"
+          alt="Sağlık verileriniz tek raporda"
+          class="mod8-hero-img"
+          loading="eager"
+        >
+        <div class="mod8-img-overlay">
+          <div class="mod8-img-badge">📊 Muayene Hazırlık Çıktısı</div>
+          <div class="mod8-img-headline">Tüm verileriniz,<br>tek sayfada.</div>
+          <div class="mod8-img-sub">Dünya standartlarında, tek tuşla hazır rapor</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">report_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Rapor benzersiz kimliği</td><td style="font-size:.73em;color:#64748b">PK · AUTO</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">generation_time</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Rapor oluşturma zamanı</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">statistical_summary</code></td><td><span class="stype JSON">JSON</span></td><td style="font-size:.78em">Ort · SS · Min/Max değer dizisi</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">adherence_rate_pct</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Genel takip uyum oranı (%)</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">pdf_validation_hash</code></td><td><span class="stype TEXT">TEXT</span></td><td style="font-size:.78em">PDF doğrulama kodu (SHA-256)</td><td style="font-size:.73em;color:#64748b">IMMUTABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
