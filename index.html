@@ -410,6 +410,52 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
   letter-spacing: 0.3px;
 }
 
+
+/* ─── SHARED HERO IMAGE CARD (all modules) ─── */
+.hero-img-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  cursor: default;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-img-card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+}
+.hero-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.72);
+  transition: filter 0.3s ease;
+}
+.hero-img-card:hover .hero-img {
+  filter: brightness(0.62);
+}
+.hero-img-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 18px 20px 16px;
+  background: linear-gradient(to top, rgba(15,30,60,0.92) 0%, rgba(15,30,60,0.55) 60%, transparent 100%);
+}
+.hero-img-headline {
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.hero-img-sub {
+  font-size: 0.78em;
+  color: rgba(255,255,255,0.82);
+  font-weight: 400;
+}
+
 </style>
 </head>
 <body>
@@ -714,18 +760,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Diacora Health her zaman yanınızdaki bir yardımcıdır, ancak bir doktor değildir. Şeker sonuçlarınıza bakarak kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Her zaman kendi doktorunuzun tavsiyelerine uyunuz.
+          Diacora Health her zaman yanınızdaki bir yardımcıdır, ancak bir doktor değildir.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-1">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">glucose_readings</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-1">
+        <img
+          src="https://images.unsplash.com/photo-1550831107-1553da8c8464?w=600&auto=format&fit=crop&q=80"
+          alt="Günlük şeker takibi"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Şekeriniz kontrol altında.</div>
+          <div class="hero-img-sub">Güvenli bölgede her gün daha sağlıklı</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Ölçüm zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">measurement_type</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Açlık · Tokluk 1s · Tokluk 2s · Gece · Acil</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">glucose_value</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Kan şekeri değeri (mg/dL)</td><td style="font-size:.73em;color:#64748b">CHECK (30–600)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">cv_percent</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Varyasyon Katsayısı CV%</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">tir_bucket</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">&lt;70 · 70–180 · &gt;180 mg/dL</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -749,18 +799,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu modül bir tansiyon ölçüm cihazı değildir. Yüksek tansiyon takibiniz ve ilaçlarınızla ilgili tüm kararları doktorunuza danışarak almalısınız.
+          Bu modül bir tansiyon ölçüm cihazı değildir.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-2">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">blood_pressure_readings</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-2">
+        <img
+          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop&q=80"
+          alt="Tansiyon ve kalp sağlığı"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Kalbiniz güvende.</div>
+          <div class="hero-img-sub">Her ölçüm, daha sağlıklı bir yarın</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Ölçüm zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">systolic_mmhg</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Büyük tansiyon — sistolik (mmHg)</td><td style="font-size:.73em;color:#64748b">CHECK (60–300)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">diastolic_mmhg</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Küçük tansiyon — diyastolik (mmHg)</td><td style="font-size:.73em;color:#64748b">CHECK (30–200)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">pulse_pressure</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Nabız basıncı = Sistolik − Diyastolik</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">heart_rate_bpm</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Kalp atış hızı (bpm)</td><td style="font-size:.73em;color:#64748b">CHECK (20–250)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">posture_flag</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Otururken · Ayaktayken · Yatarken</td><td style="font-size:.73em;color:#64748b">DEFAULT 'Otururken'</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -784,18 +838,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu modül size özel bir diyet listesi vermez. Beslenme düzeninizdeki büyük değişiklikleri her zaman doktorunuza veya diyetisyeninize danışarak yapmalısınız.
+          Beslenme düzeninizdeki büyük değişiklikleri her zaman doktorunuza danışarak yapmalısınız.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-3">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">meal_nutrition_logs</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-3">
+        <img
+          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop&q=80"
+          alt="Sağlıklı beslenme"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Beslenmeniz şekerinizi şekillendirir.</div>
+          <div class="hero-img-sub">Doğru tabak, dengeli gün</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">meal_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Öğün zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">carbohydrates_g</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Karbonhidrat (gram)</td><td style="font-size:.73em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">dietary_fiber_g</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Diyet lifi (gram)</td><td style="font-size:.73em;color:#64748b">CHECK (&gt;=0)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">glycemic_index</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Glisemik İndeks (GI) 0–100</td><td style="font-size:.73em;color:#64748b">CHECK (0–100)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">net_glycemic_load</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Net Glisemik Yük = (GI×KH)/100</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">sodium_mg</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Günlük sodyum (tuz) alımı (mg)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">potassium_mg</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Günlük potasyum alımı (mg)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -819,18 +877,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu panel size bir spor programı yazmaz. Kronik rahatsızlıklarda ağır egzersizler riskli olabileceğinden, hareket temponuzu doktorunuzun izin verdiği sınırlarda tutun.
+          Hareket temponuzu doktorunuzun izin verdiği sınırlarda tutun.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-4">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">exercise_activity_logs</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-4">
+        <img
+          src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&auto=format&fit=crop&q=80"
+          alt="Egzersiz ve hareket"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Hareket sağlıktır.</div>
+          <div class="hero-img-sub">Her adım, daha güçlü bir vücut</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">activity_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Aktivite kaydı benzersiz kimliği</td><td style="font-size:.73em;color:#64748b">PK · AUTO</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">activity_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Hareket başlangıç zamanı</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">activity_type</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Aerobik · Anaerobik · Karma · Toparlanma</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">duration_minutes</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Hareket süresi (dakika)</td><td style="font-size:.73em;color:#64748b">CHECK (1–600)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">mets_value</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Metabolik Eşdeğerlik (METs)</td><td style="font-size:.73em;color:#64748b">CHECK (0.5–20)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">post_exercise_glucose_delta</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Egzersiz sonrası Δ şeker (mg/dL)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -854,18 +916,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Diacora Health size ilaç önermez veya tedavinizi değiştirmez. İlaç düzeninizi tamamen kendi doktorunuzun reçete ettiği şekilde sürdürmelisiniz.
+          İlaç düzeninizi tamamen kendi doktorunuzun reçete ettiği şekilde sürdürmelisiniz.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-5">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">pharmacological_adherence</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-5">
+        <img
+          src="https://images.unsplash.com/photo-1550572017-edd951b55104?w=600&auto=format&fit=crop&q=80"
+          alt="Düzenli ilaç takibi"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">İlaç düzeniniz, sağlık güvenceniz.</div>
+          <div class="hero-img-sub">Düzenli, eksiksiz, güvenli</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">active_ingredient_code</code></td><td><span class="stype TEXT">TEXT</span></td><td style="font-size:.78em">İlacın etken madde kodu (ATC)</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">dosage_schedule</code></td><td><span class="stype JSON">JSON</span></td><td style="font-size:.78em">Planlanan saat ve doz takvimi</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">half_life_hours</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">İlacın vücutta kalış süresi (saat)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">pdc_percent</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Aylık ilaç uyum başarı oranı PDC%</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">missed_dose_count</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Son 30 günde atlanan doz sayısı</td><td style="font-size:.73em;color:#64748b">DEFAULT 0</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -889,18 +955,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu modül sizin yerinize insülin dozu hesaplamaz. Sistem sadece geçmişte yaptığınız dozları unutmamanız ve hekiminize göstermeniz için bir günlük tutar.
+          Bu modül sizin yerinize insülin dozu hesaplamaz.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-6">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">insulin_dose_logs</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-6">
+        <img
+          src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80"
+          alt="İnsülin takibi"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Dozunuz tam, kontrolünüz eksiksiz.</div>
+          <div class="hero-img-sub">Her enjeksiyon kayıt altında</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Enjeksiyon zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">insulin_type</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Uzun Etkili · Kısa Etkili · Karışım</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">injection_site_id</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Enjeksiyon bölge haritası (1–16)</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">dosage_units</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Uygulanan doz (Ünite)</td><td style="font-size:.73em;color:#64748b">CHECK (0–200)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">insulin_on_board</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Vücuttaki aktif insülin miktarı (IOB)</td><td style="font-size:.73em;color:#64748b">CALCULATED</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -924,18 +994,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu ekran bir acil durum veya alarm paneli değildir. Kötüleştiğiniz anlarda sistemden doktorun görmesini beklemek yerine doğrudan acil sağlık kuruluşlarına başvurmalısınız.
+          Kötüleştiğiniz anlarda doğrudan acil sağlık kuruluşlarına başvurmalısınız.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-7">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">clinician_portal_audit</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-7">
+        <img
+          src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&auto=format&fit=crop&q=80"
+          alt="Doktor ve sağlık ekibi"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Ekibiniz her an yanınızda.</div>
+          <div class="hero-img-sub">Güvenli ve şifreli veri paylaşımı</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">clinician_token</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Şifreli doktor erişim kodu (FHIR)</td><td style="font-size:.73em;color:#64748b">PK · ENCRYPTED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">view_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Veri görüntüleme zamanı</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">audit_log_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">KVKK/HIPAA denetim izi</td><td style="font-size:.73em;color:#64748b">AUTO · IMMUTABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">physician_notes</code></td><td><span class="stype TEXT">TEXT</span></td><td style="font-size:.78em">Doktora özel not alanı</td><td style="font-size:.73em;color:#64748b">NULLABLE · ENCRYPTED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">rpm_flags</code></td><td><span class="stype JSON">JSON</span></td><td style="font-size:.78em">Uzaktan izleme bildirimleri</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -954,19 +1028,19 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       <div class="cdss-module-num">MODÜL 08 — Paylaşım & Raporlar</div>
       <h2>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h2>
       <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün. Tek tuşla cep telefonunuza indireceğiniz PDF raporu sayesinde randevularınıza eksiksiz hazırlanırsınız.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Dünya standartlarında grafiksel sağlık özeti</li><li><span class="cb-dot">◆</span> Şeker ve tansiyonunuzun ortalama, en yüksek ve en düşük değerlerinin dökümü</li><li><span class="cb-dot">◆</span> Doktorunuzla dijital olarak paylaşabileceğiniz güvenli rapor barkodu</li><li><span class="cb-dot">◆</span> Belirlenen ölçüm, diyet ve egzersiz çizelgelerinin rapora otomatik olarak yansıması</li><li><span class="cb-dot">◆</span> Tek tuşla uzman ekibinize gönderilebilecek detaylı sağlık durum analiz dosyası</li></ul>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Dünya standartlarında grafiksel sağlık özeti</li><li><span class="cb-dot">◆</span> Şeker ve tansiyonunuzun ortalama, en yüksek ve en düşük değerlerinin dökümü</li><li><span class="cb-dot">◆</span> Doktorunuzla dijital olarak paylaşabileceğiniz güvenli rapor barkodu</li><li><span class="cb-dot">◆</span> Belirlenen ölçüm, diyet ve egzersiz çizelgelerinin rapora otomatik olarak yansıması</li><li><span class="cb-dot">◆</span> Tek tuşla uzman ekibinize gönderilebilecek detaylı klinik durum analiz dosyası</li></ul>
       <div class="cdss-warn-box">
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu raporlar otomatik olarak bir teşhis koymaz. Raporun incelenmesi ve tedavinizde yapılacak değişiklikler tamamen doktorunuzun kontrolündedir.
+          Raporun incelenmesi ve tedavinizde yapılacak değişiklikler tamamen doktorunuzun kontrolündedir.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-8">
       <div class="mod8-hero-img-card">
         <img
-          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop&q=85"
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80"
           alt="Sağlık verileriniz tek raporda"
           class="mod8-hero-img"
           loading="eager"
@@ -994,23 +1068,27 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
       <div class="cdss-module-num">MODÜL 09 — Paylaşım & Raporlar</div>
       <h2>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h2>
       <p class="cdss-desc">Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile hastane sonuçlarınızı birleştirerek size gelecekteki tahmini tahlil sonuçlarınızı gösterir.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Evdeki ölçümlerinizden yola çıkarak bir sonraki tahmini 3 aylık şeker tahmini</li><li><span class="cb-dot">◆</span> Kolesterol ve kan yağlarınızın zaman içindeki değişim grafiği</li><li><span class="cb-dot">◆</span> Şeker tansiyonun böbreklerinize etkisini görmek için tahlil takibi</li><li><span class="cb-dot">◆</span> Doktorunuzun tahlil dönemlerine göre sisteme ekleyeceği özel kontrol zaman çizelgeleri</li><li><span class="cb-dot">◆</span> Günlük rutinleriniz ile resmi laboratuvar sonuçlarını karşılaştıran analiz tabloları</li></ul>
+      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Evdeki ölçümlerinizden yola çıkarak bir sonraki tahmini 3 aylık şeker tahmini</li><li><span class="cb-dot">◆</span> Kolesterol ve kan yağlarınızın zaman içindeki değişim grafiği</li><li><span class="cb-dot">◆</span> Şeker ve tansiyonun böbreklerinize etkisini görmek için tahlil takibi</li><li><span class="cb-dot">◆</span> Doktorunuzun tahlil dönemlerine göre sisteme ekleyeceği özel kontrol zaman çizelgeleri</li><li><span class="cb-dot">◆</span> Günlük rutinleriniz ile resmi laboratuvar sonuçlarını karşılaştıran analiz tabloları</li></ul>
       <div class="cdss-warn-box">
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Sistem tahlil sonuçlarını tek başına yorumlamaz. Sonuçların risk değerlendirmesi ve hedef tahlil değerlerinizin belirlenmesi tamamen doktorunuza aittir.
+          Hedef tahlil değerlerinizin belirlenmesi tamamen doktorunuza aittir.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-9">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">metabolic_lab_profile</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-9">
+        <img
+          src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&auto=format&fit=crop&q=80"
+          alt="Tahlil sonuçları"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Tahlilleriniz, sağlığınızın habercisi.</div>
+          <div class="hero-img-sub">Günlük takipten uzun vadeli tabloya</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">lab_test_date</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Tahlil tarihi</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">hba1c_percent</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">3 Aylık Ort. Şeker — HbA1c (%)</td><td style="font-size:.73em;color:#64748b">CHECK (3.0–15.0)</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">eag_mg_dl</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Tahmini Ortalama Şeker eAG (mg/dL)</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">ldl_cholesterol</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">LDL Kolesterol (mg/dL)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">triglycerides</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Trigliserid (mg/dL)</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">creatinine_mg_dl</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Kreatinin — böbrek göstergesi</td><td style="font-size:.73em;color:#64748b">NULLABLE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">egfr_ml_min</code></td><td><span class="stype FLOAT">FLOAT</span></td><td style="font-size:.78em">Böbrek filtrasyon hızı eGFR</td><td style="font-size:.73em;color:#64748b">GENERATED</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
@@ -1034,18 +1112,22 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
         <span class="warn-icon">⚠</span>
         <div class="warn-body">
           <span class="warn-title">Küçük Bir Sağlık Notu:</span>
-          Bu modül ani şeker düşmelerinde alarm çalan bir cihaz değildir. Şekeriniz aniden düştüğünde sistemden analiz beklememeli, doktorunuzun verdiği acil durum kurallarını uygulamalısınız.
+          Şekeriniz aniden düştüğünde doktorunuzun verdiği acil durum kurallarını uygulamalısınız.
         </div>
       </div>
     </div>
     <div class="cdss-col-right" id="right-10">
-      <div class="schema-card">
-        <div class="schema-hdr">
-          <span class="schema-hdr-icon">🗄️</span>
-          <span class="schema-hdr-title">Veri Tabanı Şeması — <code style="color:#7ecac5;font-size:.9em">hypoglycemia_event_log</code></span>
-          <span class="schema-hdr-badge">PostgreSQL</span>
+      <div class="hero-img-card" id="hero-10">
+        <img
+          src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&auto=format&fit=crop&q=80"
+          alt="Güvenli alan takibi"
+          class="hero-img"
+          loading="lazy"
+        >
+        <div class="hero-img-overlay">
+          <div class="hero-img-headline">Güvenli alanda, her zaman.</div>
+          <div class="hero-img-sub">Gece veya gündüz, şekeriniz takipte</div>
         </div>
-        <table class="s-def"><thead><tr><th>Alan</th><th>Veri Türü</th><th>Açıklama</th><th>Kısıt</th></tr></thead><tbody><tr><td><code style="font-size:.82em;color:#2980b9">event_id</code></td><td><span class="stype UUID">UUID</span></td><td style="font-size:.78em">Şeker düşmesi olay kimliği</td><td style="font-size:.73em;color:#64748b">PK · AUTO</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">event_timestamp</code></td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td style="font-size:.78em">Olay tespit zamanı (UTC+3)</td><td style="font-size:.73em;color:#64748b">NOT NULL · INDEX</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">severity_class</code></td><td><span class="stype ENUM">ENUM</span></td><td style="font-size:.78em">Hafif: &lt;70 mg/dL · Ciddi: &lt;54 mg/dL</td><td style="font-size:.73em;color:#64748b">NOT NULL</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">circadian_cluster_flag</code></td><td><span class="stype BOOLEAN">BOOLEAN</span></td><td style="font-size:.78em">Gece veya egzersiz sonrası bayrağı</td><td style="font-size:.73em;color:#64748b">DEFAULT FALSE</td></tr><tr><td><code style="font-size:.82em;color:#2980b9">somogyi_counter</code></td><td><span class="stype INTEGER">INTEGER</span></td><td style="font-size:.78em">Rebound yüksek şeker sayacı</td><td style="font-size:.73em;color:#64748b">DEFAULT 0</td></tr></tbody></table>
       </div>
       <div class="data-grid-card">
         <div class="dg-hdr">
