@@ -166,13 +166,23 @@ a{text-decoration:none;color:inherit;}
 .section-sub{font-size:.93em;color:var(--text2);max-width:500px;margin:0 auto;}
 
 /* BENTO GRID */
-.bento-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.mod-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);
-  padding:24px;transition:all .3s ease;position:relative;overflow:hidden;}
+.bento-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.mod-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:28px;position:relative;overflow:hidden;
+  opacity:0;transform:translateY(40px) scale(0.97);
+  transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1),
+             border-color .3s,box-shadow .3s;
+}
+.mod-card.card-visible{opacity:1;transform:translateY(0) scale(1);}
+/* Stagger delays */
+.mod-card:nth-child(odd){transition-delay:.05s;}
+.mod-card:nth-child(even){transition-delay:.2s;}
+/* Shimmer line on top */
 .mod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
-.mod-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.5);}
-.mod-card.span2{grid-column:span 2;}
+.mod-card.card-visible:hover{border-color:var(--border2);transform:translateY(-4px) scale(1.01);box-shadow:0 24px 64px rgba(0,0,0,.55);}
+.mod-card.span2{grid-column:span 1;}
 .mod-card.c-blue:hover{box-shadow:0 16px 48px rgba(59,130,246,.18);}
 .mod-card.c-green:hover{box-shadow:0 16px 48px rgba(34,197,94,.14);}
 .mod-card.c-amber:hover{box-shadow:0 16px 48px rgba(245,158,11,.14);}
@@ -204,7 +214,7 @@ a{text-decoration:none;color:inherit;}
 .c-teal .mod-link:hover{background:rgba(45,212,191,.2);}
 .c-purple .mod-link{color:var(--purple);background:rgba(168,85,247,.1);}
 .c-purple .mod-link:hover{background:rgba(168,85,247,.2);}
-.legal-card{grid-column:span 4;background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);
+.legal-card{grid-column:span 2;background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);
   border-radius:var(--radius);padding:18px 24px;display:flex;gap:14px;align-items:center;}
 .legal-card p{font-size:.8em;color:var(--text2);line-height:1.65;}
 .legal-card strong{color:var(--text);}
@@ -370,8 +380,8 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
 @media(max-width:1100px){
   .cdss-split{grid-template-columns:1fr;}
   .cdss-sidebar{width:220px;}
-  .bento-grid{grid-template-columns:repeat(2,1fr);}
-  .mod-card.span2{grid-column:span 2;}
+  .bento-grid{grid-template-columns:repeat(2,1fr);} /* 1100px: keep 2col */
+  .mod-card.span2{grid-column:span 1;}
   .legal-card{grid-column:span 2;}
 }
 @media(max-width:900px){
@@ -402,6 +412,7 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
 }
 @media(max-width:480px){
   .bento-grid{grid-template-columns:1fr;}
+  .legal-card{grid-column:span 1;}
   .mod-card.span2{grid-column:span 1;}
   .legal-card{grid-column:span 1;}
   .feat-grid{grid-template-columns:1fr;}
@@ -585,7 +596,7 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
     <p class="section-sub">Her modülün detaylı ekranına geçmek için butona tıklayın</p>
   </div>
   <div class="bento-grid">
-    <div class="mod-card c-blue span2 reveal d1">
+    <div class="mod-card c-blue reveal d1">
       <div class="mod-card-header"><div class="mod-icon-wrap">🩸</div><span class="mod-num">MOD 01</span></div>
       <h3 class="mod-h3">Şeker Takibi — Günlük Şeker Dengeniz</h3>
       <p class="mod-p">Açlık ve tokluk şeker ölçümlerinizi kaydedin. Yapay zeka, yemeklerin şekerinizi ne kadar dalgalandırdığını ve gün içindeki eğilimleri analiz eder.</p>
@@ -609,7 +620,7 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
       <p class="mod-p">Yürüyüş, koşu ve fiziksel aktivitelerinizin kan şekerine etkisini net görün.</p>
       <a href="#cdss-section" class="mod-link" onclick="switchModule(4)">Takip Ekranına Git →</a>
     </div>
-    <div class="mod-card c-amber span2 reveal d1">
+    <div class="mod-card c-amber reveal d1">
       <div class="mod-card-header"><div class="mod-icon-wrap">💊</div><span class="mod-num">MOD 05</span></div>
       <h3 class="mod-h3">İlaç Takibi — Düzenli İlaç Kullanımı</h3>
       <p class="mod-p">Şeker, tansiyon ve diğer haplarınızı saat ve doz olarak ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmayın, uyum oranınızı takip edin.</p>
@@ -627,7 +638,7 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
       <p class="mod-p">İzin verdiğinizde doktorunuz verilerinizi anlık görebilir.</p>
       <a href="#cdss-section" class="mod-link" onclick="switchModule(7)">Takip Ekranına Git →</a>
     </div>
-    <div class="mod-card c-purple span2 reveal d2">
+    <div class="mod-card c-purple reveal d2">
       <div class="mod-card-header"><div class="mod-icon-wrap">📋</div><span class="mod-num">MOD 08</span></div>
       <h3 class="mod-h3">Otomatik Raporlama — Muayene Hazırlık Çıktıları</h3>
       <p class="mod-p">Tüm şeker, tansiyon ve egzersiz verilerinizi dünyadaki doktorların tanıyacağı standart sağlık raporuna dönüştürün. Tek tuşla PDF olarak indirin.</p>
@@ -1090,6 +1101,17 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
 },{threshold:.12});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+
+// Module card stagger animation
+const cardObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('card-visible');
+      cardObs.unobserve(e.target);
+    }
+  });
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.mod-card').forEach(el=>cardObs.observe(el));
 const cObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
