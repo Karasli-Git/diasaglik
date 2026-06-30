@@ -406,6 +406,24 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
   .legal-card{grid-column:span 1;}
   .feat-grid{grid-template-columns:1fr;}
 }
+
+/* MOD IMAGE CARD */
+.mod-img-card{position:relative;border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);margin-bottom:16px;line-height:0;}
+.mod-img{width:100%;height:240px;object-fit:cover;display:block;
+  filter:brightness(.75) saturate(1.1);transition:filter .35s ease;}
+.mod-img-card:hover .mod-img{filter:brightness(.6) saturate(1.2);}
+.mod-img-overlay{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(12,14,18,.92) 0%,rgba(12,14,18,.3) 55%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+.mod-img-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.22);color:#fff;font-size:.72em;font-weight:700;
+  letter-spacing:.8px;text-transform:uppercase;padding:5px 13px;border-radius:20px;
+  margin-bottom:10px;width:fit-content;}
+.mod-img-title{font-size:1.3em;font-weight:800;color:#fff;line-height:1.25;
+  text-shadow:0 2px 8px rgba(0,0,0,.4);}
+
 </style>
 </head>
 <body>
@@ -672,50 +690,34 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
       <div class="cdss-split">
         <div class="cdss-col-left slide-init">
           <div class="cdss-part-tag">Modül 01</div>
-          <div class="cdss-module-num">MODUL_01 / seker_olcumleri</div>
           <h2>Şeker Takibi — Günlük Şeker Dengeniz</h2>
-          <p class="cdss-desc">Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve gün içindeki şeker eğilimlerinizi net bir şekilde gösterir.</p>
+          <p class="cdss-desc">Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve günün ne kadarını güvenli bölgede geçirdiğinizi anlaşılır grafiklerle size gösterir.</p>
           <ul class="cdss-bullets">
-            <li><span class="cb-dot">›</span>Açlık şekeri (sabah ölçümü): Hedefiniz 80–130 mg/dL</li>
-            <li><span class="cb-dot">›</span>Tokluk şekeri (2 saat sonrası): Hedefiniz 140 mg/dL altı</li>
-            <li><span class="cb-dot">›</span>3 aylık HbA1c tahmini: Hedef %7,0 altı</li>
-            <li><span class="cb-dot">›</span>Gün içi şeker patikası grafiği</li>
+            <li><span class="cb-dot">›</span>Günlük şeker dalgalanmalarınızın kolay takibi</li>
+            <li><span class="cb-dot">›</span>Şekerinizin ne kadar süre normal sınırlarda kaldığının analizi</li>
+            <li><span class="cb-dot">›</span>Yemekten sonraki vücut şeker tepkilerinizin takibi</li>
+            <li><span class="cb-dot">›</span>Doktorunuzun verdiği özel ölçüm saatlerini sisteme kolayca uygulama</li>
+            <li><span class="cb-dot">›</span>Uzmanınızın çizelgesine uygun gelişmiş şeker analiz raporları</li>
           </ul>
-          <div class="cdss-warn-box"><span class="warn-icon">⚠️</span><div class="warn-body"><span class="warn-title">Klinik Uyarı</span>Şeker değerleri 70 mg/dL altına düşerse acil şeker alınız. 250 mg/dL üstü kalıcı yükseklikte doktorunuza başvurunuz.</div></div>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Diacora Health her zaman yanınızdaki bir yardımcıdır, ancak bir doktor değildir.</div></div>
         </div>
         <div class="cdss-col-right slide-init">
-          <div class="schema-card">
-            <div class="schema-hdr"><span class="schema-hdr-icon">🗃️</span><span class="schema-hdr-title">seker_olcumleri Tablosu</span><span class="schema-hdr-badge">PostgreSQL</span></div>
-            <table class="s-def">
-              <thead><tr><th>Alan</th><th>Tip</th><th>Açıklama</th></tr></thead>
-              <tbody>
-                <tr><td>id</td><td><span class="stype UUID">UUID</span></td><td>Birincil anahtar</td></tr>
-                <tr><td>kullanici_id</td><td><span class="stype UUID">UUID</span></td><td>Kullanıcı referansı</td></tr>
-                <tr><td>olcum_tarihi</td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td>Ölçüm zamanı</td></tr>
-                <tr><td>seker_mg_dl</td><td><span class="stype FLOAT">FLOAT</span></td><td>Kan şekeri (mg/dL)</td></tr>
-                <tr><td>olcum_tipi</td><td><span class="stype ENUM">ENUM</span></td><td>ACLIK / TOKLUK / RASTGELE</td></tr>
-                <tr><td>not_metni</td><td><span class="stype TEXT">TEXT</span></td><td>Opsiyonel kullanıcı notu</td></tr>
-              </tbody>
-            </table>
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464?w=600&auto=format&fit=crop&q=80" alt="Şeker Takibi" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">🩸 Şeker Takibi</span><div class="mod-img-title">Günlük Kan Şekeri İzleme</div></div>
           </div>
           <div class="data-grid-card">
-            <div class="dg-hdr"><span>Örnek Kayıtlar — Son 5 Ölçüm</span><span class="dg-badge">Demo Veri</span></div>
+            <div class="dg-hdr"><span>Kan Şekeri Örnek Ölçüm Tablosu</span><span class="dg-badge">Son 5 Kayıt</span></div>
             <table class="d-grid">
-              <thead><tr><th>Tarih</th><th>Saat</th><th>mg/dL</th><th>Tip</th><th>Durum</th></tr></thead>
+              <thead><tr><th>Tarih</th><th>Saat</th><th>mg/dL</th><th>Ölçüm Tipi</th><th>Durum</th></tr></thead>
               <tbody>
-                <tr><td>23 May</td><td>07:15</td><td>108</td><td>Açlık</td><td><span class="dg ok">Normal</span></td></tr>
-                <tr><td>23 May</td><td>09:45</td><td>162</td><td>Tokluk</td><td><span class="dg hi">Yüksek</span></td></tr>
-                <tr><td>23 May</td><td>12:30</td><td>94</td><td>Açlık</td><td><span class="dg ok">Normal</span></td></tr>
-                <tr><td>23 May</td><td>14:50</td><td>138</td><td>Tokluk</td><td><span class="dg ok">Normal</span></td></tr>
-                <tr><td>23 May</td><td>19:00</td><td>72</td><td>Açlık</td><td><span class="dg warn">Dikkat</span></td></tr>
+                <tr><td>23 Haz</td><td>07:15</td><td><strong>108</strong></td><td>Açlık</td><td><span class="dg ok">✓ Normal</span></td></tr>
+                <tr><td>23 Haz</td><td>09:45</td><td><strong>162</strong></td><td>Tokluk</td><td><span class="dg hi">↑ Yüksek</span></td></tr>
+                <tr><td>23 Haz</td><td>12:30</td><td><strong>94</strong></td><td>Açlık</td><td><span class="dg ok">✓ Normal</span></td></tr>
+                <tr><td>23 Haz</td><td>14:50</td><td><strong>138</strong></td><td>Tokluk</td><td><span class="dg ok">✓ Normal</span></td></tr>
+                <tr><td>23 Haz</td><td>19:00</td><td><strong>72</strong></td><td>Açlık</td><td><span class="dg warn">⚠ Dikkat</span></td></tr>
               </tbody>
             </table>
-          </div>
-          <div class="cdss-panel-footer">
-            <div class="cdss-footer-title">📖 Şeker Değerleri Referans Tablosu</div>
-            <p class="cdss-footer-body"><strong>Açlık Şekeri (Normal):</strong> 70–99 mg/dL. Diyabetik hedef: 80–130 mg/dL.</p>
-            <p class="cdss-footer-body"><strong>Tokluk Şekeri (2. saat):</strong> Normal: 140 mg/dL altı. Diyabetik hedef: 180 mg/dL altı.</p>
-            <p class="cdss-footer-body"><strong>HbA1c:</strong> 3 aylık ortalama şekeri yansıtır. Diyabetik hedef genellikle %7,0 altı.</p>
           </div>
         </div>
       </div>
@@ -725,43 +727,32 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
       <div class="cdss-split">
         <div class="cdss-col-left slide-init">
           <div class="cdss-part-tag">Modül 02</div>
-          <div class="cdss-module-num">MODUL_02 / tansiyon_olcumleri</div>
           <h2>Tansiyon Takibi — Kalp ve Kan Basıncı Düzeniniz</h2>
-          <p class="cdss-desc">Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlığınızdaki eğilimleri analiz eder.</p>
+          <p class="cdss-desc">Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlığınızın genel gidişatını görmenizi sağlar.</p>
           <ul class="cdss-bullets">
-            <li><span class="cb-dot">›</span>Normal tansiyon: 120/80 mmHg altı</li>
-            <li><span class="cb-dot">›</span>Sabah ölçümü (kalkmadan 1 saat içinde): Kritik önem taşır</li>
-            <li><span class="cb-dot">›</span>Nabız değerlendirmesi: Normal 60–100 bpm</li>
-            <li><span class="cb-dot">›</span>7 günlük ortalama takibi</li>
+            <li><span class="cb-dot">›</span>Sabah ve akşam tansiyonu arasındaki farkların takibi</li>
+            <li><span class="cb-dot">›</span>Büyük ve küçük tansiyon arasındaki dengenin izlenmesi</li>
+            <li><span class="cb-dot">›</span>Dinlenme anındaki kalp atış hızınızın takibi</li>
+            <li><span class="cb-dot">›</span>Uzman sağlık personelinin size özel tansiyon ölçüm takvimini sisteme girme</li>
+            <li><span class="cb-dot">›</span>Doktorunuz için özel kalp ve kan basıncı analiz tabloları üretme</li>
           </ul>
-          <div class="cdss-warn-box"><span class="warn-icon">⚠️</span><div class="warn-body"><span class="warn-title">Klinik Uyarı</span>Sistolik tansiyon 180 mmHg üstü veya diyastolik 120 mmHg üstü hipertansif kriz belirtisidir. Derhal tıbbi yardım alınız.</div></div>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Bu modül bir tansiyon ölçüm cihazı değildir.</div></div>
         </div>
         <div class="cdss-col-right slide-init">
-          <div class="schema-card">
-            <div class="schema-hdr"><span class="schema-hdr-icon">🗃️</span><span class="schema-hdr-title">tansiyon_olcumleri Tablosu</span><span class="schema-hdr-badge">PostgreSQL</span></div>
-            <table class="s-def">
-              <thead><tr><th>Alan</th><th>Tip</th><th>Açıklama</th></tr></thead>
-              <tbody>
-                <tr><td>id</td><td><span class="stype UUID">UUID</span></td><td>Birincil anahtar</td></tr>
-                <tr><td>kullanici_id</td><td><span class="stype UUID">UUID</span></td><td>Kullanıcı referansı</td></tr>
-                <tr><td>olcum_tarihi</td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td>Ölçüm zamanı</td></tr>
-                <tr><td>sistolik_mmhg</td><td><span class="stype INTEGER">INTEGER</span></td><td>Büyük tansiyon</td></tr>
-                <tr><td>diyastolik_mmhg</td><td><span class="stype INTEGER">INTEGER</span></td><td>Küçük tansiyon</td></tr>
-                <tr><td>nabiz_bpm</td><td><span class="stype INTEGER">INTEGER</span></td><td>Nabız (atım/dk)</td></tr>
-                <tr><td>olcum_kolu</td><td><span class="stype ENUM">ENUM</span></td><td>SAG / SOL</td></tr>
-              </tbody>
-            </table>
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop&q=80" alt="Tansiyon Takibi" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">❤️ Tansiyon Takibi</span><div class="mod-img-title">Kalp ve Kan Basıncı İzleme</div></div>
           </div>
           <div class="data-grid-card">
-            <div class="dg-hdr"><span>Örnek Kayıtlar — Son 5 Ölçüm</span><span class="dg-badge">Demo Veri</span></div>
+            <div class="dg-hdr"><span>Tansiyon & Nabız Kayıt Arşivi</span><span class="dg-badge">Son 5 Kayıt</span></div>
             <table class="d-grid">
-              <thead><tr><th>Tarih</th><th>Saat</th><th>Sis/Diy</th><th>Nabız</th><th>Durum</th></tr></thead>
+              <thead><tr><th>Tarih</th><th>Saat</th><th>Sis/Diy (mmHg)</th><th>Nabız</th><th>Kol</th><th>Durum</th></tr></thead>
               <tbody>
-                <tr><td>23 May</td><td>07:10</td><td>128/82</td><td>74</td><td><span class="dg warn">Yüksek Normal</span></td></tr>
-                <tr><td>22 May</td><td>20:30</td><td>122/78</td><td>71</td><td><span class="dg ok">Normal</span></td></tr>
-                <tr><td>22 May</td><td>07:15</td><td>135/88</td><td>80</td><td><span class="dg hi">Yüksek</span></td></tr>
-                <tr><td>21 May</td><td>20:00</td><td>118/76</td><td>68</td><td><span class="dg ok">Normal</span></td></tr>
-                <tr><td>21 May</td><td>07:30</td><td>124/80</td><td>72</td><td><span class="dg ok">Normal</span></td></tr>
+                <tr><td>23 Haz</td><td>07:10</td><td><strong>128/82</strong></td><td>74 bpm</td><td>Sol</td><td><span class="dg warn">Yüksek Normal</span></td></tr>
+                <tr><td>22 Haz</td><td>20:30</td><td><strong>122/78</strong></td><td>71 bpm</td><td>Sol</td><td><span class="dg ok">✓ Normal</span></td></tr>
+                <tr><td>22 Haz</td><td>07:15</td><td><strong>135/88</strong></td><td>80 bpm</td><td>Sağ</td><td><span class="dg hi">↑ Yüksek</span></td></tr>
+                <tr><td>21 Haz</td><td>20:00</td><td><strong>118/76</strong></td><td>68 bpm</td><td>Sol</td><td><span class="dg ok">✓ Normal</span></td></tr>
+                <tr><td>21 Haz</td><td>07:30</td><td><strong>124/80</strong></td><td>72 bpm</td><td>Sol</td><td><span class="dg ok">✓ Normal</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -769,48 +760,301 @@ table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
       </div>
     </div>
 
-    <div class="cdss-panel" id="panel-3"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 03</div><h2>Beslenme Takibi — Yemeklerin Şekere Etkisi</h2><p class="cdss-desc">Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımınızı analiz eder.</p></div></div>
-    <div class="cdss-panel" id="panel-4"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 04</div><h2>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h2><p class="cdss-desc">Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net gösterir.</p></div></div>
-    <div class="cdss-panel" id="panel-5"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 05</div><h2>İlaç Takibi — Düzenli İlaç Kullanımı</h2><p class="cdss-desc">Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağlar.</p></div></div>
-    <div class="cdss-panel" id="panel-6"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 06</div><h2>İnsülin Takibi — Doz ve Bölge Günlüğü</h2><p class="cdss-desc">Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin.</p></div></div>
-    <div class="cdss-panel" id="panel-7"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 07</div><h2>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h2><p class="cdss-desc">İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz şeker, tansiyon ve ilaç verilerini kendi ekranından anlık olarak görebilir.</p></div></div>
+    <div class="cdss-panel" id="panel-3">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 03</div>
+          <h2>Beslenme Takibi — Yemeklerin Şekere Etkisi</h2>
+          <p class="cdss-desc">Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımınızı takip etmenizi kolaylaştırır.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Yediğiniz yemeklerin içerdiği karbonhidrat ve liflerin takibi</li>
+            <li><span class="cb-dot">›</span>Yiyeceklerin kan şekerini ani yükseltme gücünün izlenmesi</li>
+            <li><span class="cb-dot">›</span>Sağlığınızı korumak için günlük tuz ve potasyum dengesi</li>
+            <li><span class="cb-dot">›</span>Diyetisyeninizin size özel beslenme aralıklarını sisteme uygulama kolaylığı</li>
+            <li><span class="cb-dot">›</span>Beslenme düzeninizin şeker ve tansiyona etkisini gösteren diyet analiz raporları</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Beslenme düzeninizdeki büyük değişiklikleri her zaman doktorunuza danışarak yapmalısınız.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop&q=80" alt="Beslenme Takibi" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">🥗 Beslenme Takibi</span><div class="mod-img-title">Diyet ve Kalori İzleme</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Günlük Tüketilen Besinler Tablosu</span><span class="dg-badge">Bugün</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Öğün</th><th>Besin</th><th>Karbonhidrat</th><th>Lif</th><th>Glisemik İndeks</th><th>Tuz</th></tr></thead>
+              <tbody>
+                <tr><td>Sabah</td><td>Yulaf ezmesi</td><td>27g</td><td>4g</td><td><span class="dg ok">55 — Düşük</span></td><td>0.1g</td></tr>
+                <tr><td>Sabah</td><td>Zeytinyağlı yumurta</td><td>1g</td><td>0g</td><td><span class="dg ok">0 — Yok</span></td><td>0.3g</td></tr>
+                <tr><td>Öğle</td><td>Mercimek çorbası</td><td>20g</td><td>8g</td><td><span class="dg ok">48 — Düşük</span></td><td>0.6g</td></tr>
+                <tr><td>Öğle</td><td>Tam buğday ekmek</td><td>15g</td><td>2g</td><td><span class="dg warn">69 — Orta</span></td><td>0.4g</td></tr>
+                <tr><td>Akşam</td><td>Izgara tavuk</td><td>0g</td><td>0g</td><td><span class="dg ok">0 — Yok</span></td><td>0.5g</td></tr>
+                <tr><td>Akşam</td><td>Pirinç pilavı</td><td>45g</td><td>1g</td><td><span class="dg hi">72 — Yüksek</span></td><td>0.2g</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cdss-panel" id="panel-4">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 04</div>
+          <h2>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h2>
+          <p class="cdss-desc">Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net grafiklerle size gösterir.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Yaptığınız hareketlerin harcadığı enerji seviyesinin takibi</li>
+            <li><span class="cb-dot">›</span>Egzersiz sonrası kan şekerinizin ne kadar sürede düzene girdiğinin takibi</li>
+            <li><span class="cb-dot">›</span>Hareket ettikçe kalbinizin kazandığı dayanıklılık trendi</li>
+            <li><span class="cb-dot">›</span>Uzmanınızın hazırladığı hareket ve aktivite zaman çizelgelerini rahatça ekleme</li>
+            <li><span class="cb-dot">›</span>Egzersizlerin vücudunuza faydasını gösteren haftalık aktivite analiz tabloları</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Hareket temponuzu doktorunuzun izin verdiği sınırlarda tutun.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&auto=format&fit=crop&q=80" alt="Egzersiz Takibi" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">🏃 Egzersiz Takibi</span><div class="mod-img-title">Haftalık Aktivite İzleme</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Haftalık Aktivite Günlüğü</span><span class="dg-badge">Bu Hafta</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Gün</th><th>Aktivite</th><th>Süre</th><th>Kalori</th><th>Ort. Nabız</th><th>Şeker Etkisi</th></tr></thead>
+              <tbody>
+                <tr><td>Pazartesi</td><td>🚶 Yürüyüş</td><td>35 dk</td><td>180 kcal</td><td>98 bpm</td><td><span class="dg ok">↓ 12 mg/dL</span></td></tr>
+                <tr><td>Salı</td><td>🏊 Yüzme</td><td>45 dk</td><td>320 kcal</td><td>118 bpm</td><td><span class="dg ok">↓ 24 mg/dL</span></td></tr>
+                <tr><td>Çarşamba</td><td>— Dinlenme</td><td>—</td><td>—</td><td>—</td><td><span class="dg gray">Veri yok</span></td></tr>
+                <tr><td>Perşembe</td><td>🚴 Bisiklet</td><td>60 dk</td><td>420 kcal</td><td>128 bpm</td><td><span class="dg ok">↓ 31 mg/dL</span></td></tr>
+                <tr><td>Cuma</td><td>🚶 Yürüyüş</td><td>25 dk</td><td>130 kcal</td><td>92 bpm</td><td><span class="dg ok">↓ 9 mg/dL</span></td></tr>
+                <tr><td>Cumartesi</td><td>🧘 Yoga</td><td>40 dk</td><td>110 kcal</td><td>78 bpm</td><td><span class="dg teal">↓ 6 mg/dL</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cdss-panel" id="panel-5">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 05</div>
+          <h2>İlaç Takibi — Düzenli İlaç Kullanımı</h2>
+          <p class="cdss-desc">Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağlarız.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>İlaç saatleriniz için akıllı ve düzenli hatırlatıcılar</li>
+            <li><span class="cb-dot">›</span>İlaçlarınızı aylık olarak ne kadar düzenli içtiğinizin başarı oranı</li>
+            <li><span class="cb-dot">›</span>Unutulan ilaçların tansiyon ve şeker dalgalanmalarıyla olan ilişkisi</li>
+            <li><span class="cb-dot">›</span>Doktorunuzun belirlediği ilaç saatlerini ve tedavi takvimini sisteme kolayca işleme</li>
+            <li><span class="cb-dot">›</span>Hekiminizin doz takibini yapabilmesi için özel ilaç uyum analiz raporları</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>İlaç düzeninizi tamamen kendi doktorunuzun reçete ettiği şekilde sürdürmelisiniz.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1550572017-edd951b55104?w=600&auto=format&fit=crop&q=80" alt="İlaç Takibi" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">💊 İlaç Takibi</span><div class="mod-img-title">Düzenli İlaç Kullanım İzleme</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Aktif Kullanılan İlaç Tablosu</span><span class="dg-badge">Bugün</span></div>
+            <table class="d-grid">
+              <thead><tr><th>İlaç Adı</th><th>Doz</th><th>Saat</th><th>Aç/Tok</th><th>Alındı mı?</th><th>Uyum</th></tr></thead>
+              <tbody>
+                <tr><td>Metformin 1000mg</td><td>1 tablet</td><td>08:00</td><td>Tok</td><td><span class="dg ok">✓ Alındı</span></td><td><span class="dg ok">%96</span></td></tr>
+                <tr><td>Amlodipine 5mg</td><td>1 tablet</td><td>08:00</td><td>Aç</td><td><span class="dg ok">✓ Alındı</span></td><td><span class="dg ok">%98</span></td></tr>
+                <tr><td>Metformin 1000mg</td><td>1 tablet</td><td>20:00</td><td>Tok</td><td><span class="dg warn">⏳ Bekleniyor</span></td><td><span class="dg ok">%96</span></td></tr>
+                <tr><td>Atorvastatin 20mg</td><td>1 tablet</td><td>22:00</td><td>Fark etmez</td><td><span class="dg warn">⏳ Bekleniyor</span></td><td><span class="dg hi">%84</span></td></tr>
+                <tr><td>Coraspin 100mg</td><td>1 tablet</td><td>12:00</td><td>Tok</td><td><span class="dg lo">✗ Alınmadı</span></td><td><span class="dg hi">%79</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cdss-panel" id="panel-6">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 06</div>
+          <h2>İnsülin Takibi — Doz ve Bölge Günlüğü</h2>
+          <p class="cdss-desc">Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin. Sistemimiz, yaptığınız insülinlerin kan şekerinizi nasıl etkilediğini geriye dönük olarak eşleştirir.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Vücudunuzda hâlâ etkisi devam eden aktif insülin miktarının takibi</li>
+            <li><span class="cb-dot">›</span>Aynı yere üst üste yapıp dokuyu sertleştirmemek için enjeksiyon bölgesi takibi</li>
+            <li><span class="cb-dot">›</span>Yediğiniz karbonhidrata karşılık yaptığınız insülinin izlenmesi</li>
+            <li><span class="cb-dot">›</span>Uzmanınızın size verdiği özel insülin doz saatlerini sisteme uygulama imkanı</li>
+            <li><span class="cb-dot">›</span>Doktor vizitleriniz için geriye dönük insülin doz reaksiyon raporları</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Bu modül sizin yerinize insülin dozu hesaplamaz.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80" alt="İnsülin Takibi" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">💉 İnsülin Takibi</span><div class="mod-img-title">Doz ve Bölge Günlüğü</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Geriye Dönük İnsülin Enjeksiyon Tablosu</span><span class="dg-badge">Son 5 Kayıt</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Tarih</th><th>Saat</th><th>Tür</th><th>Ünite</th><th>Bölge</th><th>Önce / Sonra</th></tr></thead>
+              <tbody>
+                <tr><td>23 Haz</td><td>07:30</td><td><span class="dg purple">Uzun Etkili</span></td><td>20 ü</td><td>Karın — Sol</td><td>142 → <strong>108</strong> mg/dL</td></tr>
+                <tr><td>23 Haz</td><td>12:45</td><td><span class="dg info">Kısa Etkili</span></td><td>6 ü</td><td>Karın — Sağ</td><td>188 → <strong>124</strong> mg/dL</td></tr>
+                <tr><td>22 Haz</td><td>07:30</td><td><span class="dg purple">Uzun Etkili</span></td><td>20 ü</td><td>Uyluk — Sol</td><td>136 → <strong>102</strong> mg/dL</td></tr>
+                <tr><td>22 Haz</td><td>19:00</td><td><span class="dg info">Kısa Etkili</span></td><td>8 ü</td><td>Karın — Sol</td><td>210 → <strong>139</strong> mg/dL</td></tr>
+                <tr><td>21 Haz</td><td>07:30</td><td><span class="dg purple">Uzun Etkili</span></td><td>20 ü</td><td>Karın — Sağ</td><td>128 → <strong>96</strong> mg/dL</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cdss-panel" id="panel-7">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 07</div>
+          <h2>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h2>
+          <p class="cdss-desc">İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz şeker, tansiyon ve ilaç verilerini kendi ekranından anlık olarak görebilir. Bu sayede muayene sırasında durumunuzu saniyeler içinde analiz edebilir.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Doktorunuz ve hemşirenizle şifreli ve güvenli veri paylaşımı</li>
+            <li><span class="cb-dot">›</span>Sağlık ekibinizin sizin için uygulamaya yazabileceği ortak notlar</li>
+            <li><span class="cb-dot">›</span>Doktorun tek bakışta her şeyi göreceği özet paneli</li>
+            <li><span class="cb-dot">›</span>Uzmanınızın sistem üzerinden size yeni ölçüm ve beslenme çizelgeleri gönderebilmesi</li>
+            <li><span class="cb-dot">›</span>Sağlık personelinin hastane dışındayken de durumunuzu takip edebileceği analiz paneli</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Kötüleştiğiniz anlarda doğrudan acil sağlık kuruluşlarına başvurmalısınız.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&auto=format&fit=crop&q=80" alt="Doktor Ekranı" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">👨‍⚕️ Doktor Ekranı</span><div class="mod-img-title">Sağlık Ekibinizle Bağlantı</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Yetkilendirilmiş Doktor & Hemşire Listesi</span><span class="dg-badge">Aktif Erişimler</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Ad Soyad</th><th>Uzmanlık</th><th>Erişim</th><th>Son Görüntüleme</th><th>Durum</th></tr></thead>
+              <tbody>
+                <tr><td>Dr. Ahmet Yılmaz</td><td>Endokrinoloji</td><td><span class="dg ok">Tam Erişim</span></td><td>Bugün 09:42</td><td><span class="dg ok">● Aktif</span></td></tr>
+                <tr><td>Hem. Fatma Çelik</td><td>Diyabet Hemşiresi</td><td><span class="dg info">Ölçüm Görüntüleme</span></td><td>Dün 16:20</td><td><span class="dg ok">● Aktif</span></td></tr>
+                <tr><td>Dr. Ayşe Kaya</td><td>Kardiyoloji</td><td><span class="dg warn">Tansiyon Verisi</span></td><td>3 gün önce</td><td><span class="dg ok">● Aktif</span></td></tr>
+                <tr><td>Dr. Mehmet Demir</td><td>Nöroloji</td><td><span class="dg gray">Yalnızca Rapor</span></td><td>12 gün önce</td><td><span class="dg gray">○ Pasif</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="cdss-panel" id="panel-8">
       <div class="cdss-split">
         <div class="cdss-col-left slide-init">
           <div class="cdss-part-tag">Modül 08</div>
-          <div class="cdss-module-num">MODUL_08 / raporlama</div>
           <h2>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h2>
-          <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün.</p>
+          <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün. Tek tuşla cep telefonunuza indireceğiniz PDF raporu sayesinde randevularınıza eksiksiz hazırlanırsınız.</p>
           <ul class="cdss-bullets">
-            <li><span class="cb-dot">›</span>7 – 30 – 90 günlük şeker özeti ve grafikleri</li>
-            <li><span class="cb-dot">›</span>Tansiyon trend analizi</li>
-            <li><span class="cb-dot">›</span>İlaç uyum tablosu</li>
-            <li><span class="cb-dot">›</span>FHIR formatında güvenli paylaşım</li>
+            <li><span class="cb-dot">›</span>Dünya standartlarında grafiksel sağlık özeti</li>
+            <li><span class="cb-dot">›</span>Şeker ve tansiyonunuzun ortalama, en yüksek ve en düşük değerlerinin dökümü</li>
+            <li><span class="cb-dot">›</span>Doktorunuzla dijital olarak paylaşabileceğiniz güvenli rapor barkodu</li>
+            <li><span class="cb-dot">›</span>Belirlenen ölçüm, diyet ve egzersiz çizelgelerinin rapora otomatik yansıması</li>
+            <li><span class="cb-dot">›</span>Tek tuşla uzman ekibinize gönderilebilecek detaylı klinik durum analiz dosyası</li>
           </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Raporun incelenmesi ve tedavinizde yapılacak değişiklikler tamamen doktorunuzun kontrolündedir.</div></div>
         </div>
         <div class="cdss-col-right slide-init">
-          <a class="mod8-hero-img-card" href="#">
-            <img src="/public/dashboard.png" alt="Dashboard" class="mod8-hero-img">
-            <div class="mod8-img-overlay">
-              <div class="mod8-img-badge">📊 Dashboard</div>
-              <div class="mod8-img-headline">Diacora Health Dashboard</div>
-              <div class="mod8-img-sub">Tüm sağlık verileriniz tek ekranda</div>
-            </div>
-          </a>
-          <a class="hero-img-card" href="#">
-            <img src="/public/profile.png" alt="Profil" class="hero-img">
-            <div class="hero-img-overlay">
-              <div class="hero-img-headline">Kullanıcı Profili ve Rapor</div>
-              <div class="hero-img-sub">Kişiselleştirilmiş sağlık özeti</div>
-            </div>
-          </a>
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" alt="Otomatik Raporlama" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">📋 Otomatik Raporlama</span><div class="mod-img-title">Muayene Hazırlık Çıktıları</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Otomatik Rapor Arşivi</span><span class="dg-badge">Son Raporlar</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Rapor No</th><th>Oluşturma Tarihi</th><th>Kapsam</th><th>Sayfa</th><th>Durum</th><th>İndir</th></tr></thead>
+              <tbody>
+                <tr><td><strong>RPT-0041</strong></td><td>23 Haz 2025</td><td>30 Günlük Özet</td><td>8 sayfa</td><td><span class="dg ok">✓ Hazır</span></td><td><span class="dg info">⬇ PDF</span></td></tr>
+                <tr><td><strong>RPT-0040</strong></td><td>23 May 2025</td><td>30 Günlük Özet</td><td>7 sayfa</td><td><span class="dg ok">✓ Hazır</span></td><td><span class="dg info">⬇ PDF</span></td></tr>
+                <tr><td><strong>RPT-0039</strong></td><td>23 Nis 2025</td><td>90 Günlük Özet</td><td>14 sayfa</td><td><span class="dg ok">✓ Hazır</span></td><td><span class="dg info">⬇ PDF</span></td></tr>
+                <tr><td><strong>RPT-0038</strong></td><td>23 Mar 2025</td><td>30 Günlük Özet</td><td>8 sayfa</td><td><span class="dg ok">✓ Hazır</span></td><td><span class="dg info">⬇ PDF</span></td></tr>
+                <tr><td><strong>RPT-0037</strong></td><td>23 Şub 2025</td><td>7 Günlük Özet</td><td>4 sayfa</td><td><span class="dg ok">✓ Hazır</span></td><td><span class="dg info">⬇ PDF</span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="cdss-panel" id="panel-9"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 09</div><h2>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h2><p class="cdss-desc">Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin.</p></div></div>
-    <div class="cdss-panel" id="panel-10"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 10</div><h2>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h2><p class="cdss-desc">Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır.</p></div></div>
+    <div class="cdss-panel" id="panel-9">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 09</div>
+          <h2>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h2>
+          <p class="cdss-desc">Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile hastane sonuçlarınızı birleştirerek size gelecekteki tahmini tahlil sonuçlarınızı gösterir.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Evdeki ölçümlerinizden yola çıkarak bir sonraki tahmini 3 aylık şeker tahmini</li>
+            <li><span class="cb-dot">›</span>Kolesterol ve kan yağlarınızın zaman içindeki değişim grafiği</li>
+            <li><span class="cb-dot">›</span>Şeker ve tansiyonun böbreklerinize etkisini görmek için tahlil takibi</li>
+            <li><span class="cb-dot">›</span>Doktorunuzun tahlil dönemlerine göre sisteme ekleyeceği özel kontrol çizelgeleri</li>
+            <li><span class="cb-dot">›</span>Günlük rutinleriniz ile resmi laboratuvar sonuçlarını karşılaştıran analiz tabloları</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Hedef tahlil değerlerinizin belirlenmesi tamamen doktorunuza aittir.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&auto=format&fit=crop&q=80" alt="Tahlil Sonuçları" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">🔬 Tahlil Sonuçları</span><div class="mod-img-title">Uzun Vadeli Sağlık Takibi</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Resmi Laboratuvar Tahlil Geçmişi</span><span class="dg-badge">Son 4 Tahlil</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Tarih</th><th>HbA1c</th><th>LDL Kolesterol</th><th>Kreatinin</th><th>Trend</th><th>Durum</th></tr></thead>
+              <tbody>
+                <tr><td>Mar 2025</td><td><strong>6.8%</strong></td><td>112 mg/dL</td><td>0.9 mg/dL</td><td><span class="dg ok">↓ İyileşme</span></td><td><span class="dg ok">✓ Hedefte</span></td></tr>
+                <tr><td>Ara 2024</td><td><strong>7.2%</strong></td><td>128 mg/dL</td><td>1.0 mg/dL</td><td><span class="dg warn">→ Stabil</span></td><td><span class="dg warn">Dikkat</span></td></tr>
+                <tr><td>Eyl 2024</td><td><strong>7.4%</strong></td><td>134 mg/dL</td><td>1.1 mg/dL</td><td><span class="dg hi">↑ Kötüleşme</span></td><td><span class="dg hi">Yüksek</span></td></tr>
+                <tr><td>Haz 2024</td><td><strong>7.1%</strong></td><td>126 mg/dL</td><td>0.95 mg/dL</td><td><span class="dg warn">→ Stabil</span></td><td><span class="dg warn">Dikkat</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cdss-panel" id="panel-10">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 10</div>
+          <h2>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h2>
+          <p class="cdss-desc">Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır. Sistemimiz, şekerinizin özellikle siz uykudayken gizlice düşüp düşmediğini fark etmenize yardımcı olur.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Hafif ve ciddi şeker düşmelerinin sıklık analizi</li>
+            <li><span class="cb-dot">›</span>Şeker düşüşlerinin günün hangi saatlerinde yoğunlaştığının tespiti</li>
+            <li><span class="cb-dot">›</span>Gece yaşanan gizli düşüşlerin, sabah neden yüksek şekerle uyandığınızla olan ilişkisi</li>
+            <li><span class="cb-dot">›</span>Uzman ekibinizin şeker düşmesini engellemek için önereceği özel beslenme ve ölçüm saatlerinin takibi</li>
+            <li><span class="cb-dot">›</span>Şeker düşme eğilimlerini önceden fark etmenizi sağlayacak geriye dönük analiz raporları</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">💙</span><div class="warn-body"><span class="warn-title">Küçük Bir Sağlık Notu</span>Şekeriniz aniden düştüğünde doktorunuzun verdiği acil durum kurallarını uygulamalısınız.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="mod-img-card">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&auto=format&fit=crop&q=80" alt="Şeker Düşmesi" class="mod-img">
+            <div class="mod-img-overlay"><span class="mod-img-badge">⚠️ Şeker Düşmesi Analizi</span><div class="mod-img-title">Güvenli Alan Takibi</div></div>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Hipoglisemi Vaka Kayıt Arşivi</span><span class="dg-badge">Son 5 Vaka</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Tarih</th><th>Saat</th><th>Düşen Değer</th><th>Süre</th><th>Olası Neden</th><th>Toparlanma</th></tr></thead>
+              <tbody>
+                <tr><td>20 Haz</td><td>03:15</td><td><strong style="color:#FCA5A5">52 mg/dL</strong></td><td>~25 dk</td><td>Gece insülini fazla</td><td><span class="dg ok">✓ Meyve suyu</span></td></tr>
+                <tr><td>17 Haz</td><td>11:40</td><td><strong style="color:#FCD34D">64 mg/dL</strong></td><td>~15 dk</td><td>Öğün atlandı</td><td><span class="dg ok">✓ Şekerli içecek</span></td></tr>
+                <tr><td>14 Haz</td><td>16:20</td><td><strong style="color:#FCA5A5">48 mg/dL</strong></td><td>~35 dk</td><td>Uzun yürüyüş</td><td><span class="dg ok">✓ Bisküvi + meyve</span></td></tr>
+                <tr><td>10 Haz</td><td>02:50</td><td><strong style="color:#FCA5A5">55 mg/dL</strong></td><td>~20 dk</td><td>Akşam yemeği az</td><td><span class="dg ok">✓ Bal + su</span></td></tr>
+                <tr><td>06 Haz</td><td>09:15</td><td><strong style="color:#FCD34D">61 mg/dL</strong></td><td>~10 dk</td><td>İnsülin + egzersiz</td><td><span class="dg ok">✓ Şekerli içecek</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
