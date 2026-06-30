@@ -3,487 +3,409 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diacora Health — Sağlık Takip Sistemi</title>
+<title>Diacora Health — Yapay Zeka Destekli Sağlık Takip Sistemi</title>
+<meta name="description" content="Şeker, tansiyon, insülin ve beslenme verilerinizi yapay zeka ile analiz eden kişisel sağlık platformu.">
 <link rel="icon" href="/public/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --navy:#1a3a5c; --navy2:#0f2942;
-  --blue:#2980b9; --blue2:#3498db; --blue3:#5dade2;
-  --teal:#7ecac5; --teal2:#06b6d4;
-  --white:#fff; --gray1:#f8fafc; --gray2:#f0f4f8;
-  --gray3:#e2e8f0; --gray4:#94a3b8; --gray5:#64748b;
-  --text:#1e293b; --amber:#f59e0b; --amberDk:#92400e; --amberBg:#fffbeb;
+  --bg:#0C0E12; --bg2:#141720; --bg3:#1C2130;
+  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
+  --blue:#3B82F6; --blue2:#60A5FA; --blue-glow:rgba(59,130,246,0.25);
+  --green:#22C55E; --green-glow:rgba(34,197,94,0.25);
+  --amber:#F59E0B; --red:#EF4444; --teal:#2DD4BF; --purple:#A855F7;
+  --text:#F9FAFB; --text2:#9CA3AF; --text3:#6B7280;
+  --radius:16px; --radius-lg:24px; --mono:'DM Mono',monospace;
 }
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;overflow-x:hidden;}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 a{text-decoration:none;color:inherit;}
 
-/* ---- SCROLL REVEAL ---- */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .75s ease,transform .75s ease;}
 .reveal-left.visible{opacity:1;transform:translateX(0);}
-.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .75s ease,transform .75s ease;}
 .reveal-right.visible{opacity:1;transform:translateX(0);}
-.reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}
-.reveal-delay-3{transition-delay:.3s;}.reveal-delay-4{transition-delay:.4s;}
+.d1{transition-delay:.1s;} .d2{transition-delay:.2s;} .d3{transition-delay:.3s;} .d4{transition-delay:.4s;}
 
-/* ---- NAVBAR ---- */
-.navbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:12px 48px;
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 48px;
   display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:1000;transition:box-shadow .3s;}
-.navbar.scrolled{box-shadow:0 2px 16px rgba(0,0,0,0.09);}
+  background:rgba(12,14,18,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);transition:all .3s;}
+.navbar.scrolled{background:rgba(12,14,18,0.95);}
 .nav-brand{display:flex;align-items:center;gap:10px;}
-.nav-logo{width:34px;height:34px;border-radius:8px;object-fit:cover;}
-.nav-brand-name{font-size:1.05em;font-weight:800;color:var(--navy);font-family:Georgia,serif;}
-.nav-brand-health{font-size:0.7em;color:var(--teal2);letter-spacing:3px;font-weight:600;}
-.nav-links{display:flex;gap:28px;}
-.nav-links a{font-size:0.88em;color:#374151;font-weight:500;transition:color .2s;}
-.nav-links a:hover{color:var(--blue);}
-.nav-btns{display:flex;gap:10px;}
-.btn-login{border:1.5px solid #d1d5db;color:#374151;padding:7px 20px;border-radius:20px;
-  font-size:0.86em;font-weight:600;background:#fff;cursor:pointer;transition:all .2s;}
-.btn-login:hover{border-color:var(--blue);color:var(--blue);}
-.btn-kayit{background:var(--blue);color:#fff;padding:7px 20px;border-radius:20px;
-  font-size:0.86em;font-weight:600;border:none;cursor:pointer;transition:all .2s;}
-.btn-kayit:hover{background:var(--navy);}
+.nav-logo{width:32px;height:32px;border-radius:8px;object-fit:cover;}
+.nav-brand-name{font-size:1em;font-weight:800;color:var(--text);letter-spacing:-.3px;}
+.nav-brand-sub{font-size:.6em;color:var(--blue2);letter-spacing:3px;font-weight:600;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:.875em;color:var(--text2);font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-btns{display:flex;gap:8px;align-items:center;}
+.btn-nav-ghost{padding:7px 18px;border-radius:20px;font-size:.85em;font-weight:600;
+  border:1px solid var(--border2);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s;}
+.btn-nav-ghost:hover{color:var(--text);}
+.btn-nav-primary{padding:7px 20px;border-radius:20px;font-size:.85em;font-weight:600;
+  background:var(--blue);color:#fff;border:none;cursor:pointer;transition:all .2s;}
+.btn-nav-primary:hover{background:#2563EB;box-shadow:0 0 20px var(--blue-glow);}
 
-/* ---- HERO ---- */
-.hero-banner{background:linear-gradient(135deg,#1a3a5c 0%,#2980b9 60%,#5dade2 100%);
-  padding:40px 56px;display:flex;align-items:center;justify-content:space-between;min-height:210px;}
-.hero-left-brand{display:flex;align-items:center;gap:36px;}
-.hero-logo{width:200px;height:200px;border-radius:22px;object-fit:cover;
-  box-shadow:0 6px 28px rgba(0,0,0,0.4);flex-shrink:0;}
-.brand-name{font-size:3.8em;font-weight:800;color:#fff;line-height:1.05;font-family:Georgia,serif;}
-.brand-health{font-size:1.5em;font-weight:400;color:#7ecac5;letter-spacing:12px;margin-top:6px;}
-.brand-tag{font-size:0.76em;color:rgba(255,255,255,0.78);margin-top:8px;letter-spacing:2px;text-transform:uppercase;}
-.hero-right-text{font-size:1.4em;font-weight:600;color:#fff;letter-spacing:1px;opacity:.95;}
+/* HERO */
+.hero{min-height:100vh;padding:120px 48px 80px;display:flex;align-items:center;
+  justify-content:space-between;position:relative;overflow:hidden;gap:48px;}
+.hero::before{content:'';position:absolute;top:-30%;left:-10%;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.15) 0%,transparent 70%);
+  animation:orbFloat 8s ease-in-out infinite;pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-20%;right:-5%;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(34,197,94,.1) 0%,transparent 70%);
+  animation:orbFloat 10s ease-in-out infinite reverse;pointer-events:none;}
+@keyframes orbFloat{0%,100%{transform:translate(0,0);}33%{transform:translate(30px,-40px);}66%{transform:translate(-20px,20px);}}
+.hero-content{flex:1;max-width:600px;position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;
+  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);
+  font-size:.78em;font-weight:600;color:var(--blue2);margin-bottom:28px;letter-spacing:.5px;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+.hero-h1{font-size:clamp(2.2em,4.5vw,3.8em);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--text);margin-bottom:20px;}
+.gradient-text{background:linear-gradient(135deg,var(--blue2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1em;color:var(--text2);line-height:1.75;margin-bottom:36px;max-width:500px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:12px;
+  font-size:.93em;font-weight:600;background:var(--blue);color:#fff;transition:all .25s;cursor:pointer;border:none;}
+.btn-primary:hover{background:#2563EB;transform:translateY(-2px);box-shadow:0 8px 32px var(--blue-glow);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:12px;
+  font-size:.93em;font-weight:500;background:transparent;color:var(--text);border:1px solid var(--border2);transition:all .25s;cursor:pointer;}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
 
-/* ---- MAIN SECTION ---- */
-.main-section{background:#fff;padding:52px 48px 0;}
-.quote-wrap{text-align:center;margin-bottom:48px;}
-.quote-text{font-size:1.85em;font-weight:700;color:var(--text);line-height:1.4;font-family:Georgia,serif;}
-.intro-heading{font-size:1.35em;font-weight:700;color:var(--text);line-height:1.4;margin:0 0 14px;font-family:Georgia,serif;}
-.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.intro-text p{font-size:0.93em;color:var(--gray5);line-height:1.8;}
-.intro-text p strong{color:var(--text);}
-.intro-btns{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;}
-.btn-basla{background:var(--blue);color:#fff;padding:11px 26px;border-radius:50px;
-  font-weight:600;font-size:0.93em;transition:all .25s;display:inline-flex;align-items:center;gap:6px;}
-.btn-basla:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 6px 20px rgba(41,128,185,.35);}
-.btn-kesfet{border:1.5px solid var(--gray3);color:var(--text);padding:11px 26px;
-  border-radius:50px;font-weight:500;font-size:0.93em;transition:all .25s;}
-.btn-kesfet:hover{border-color:var(--blue);color:var(--blue);}
-
-/* Phone mockup */
-.phone-wrap{display:flex;justify-content:center;position:relative;}
-.phone-shadow{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
-  width:200px;height:20px;background:radial-gradient(ellipse,rgba(0,0,0,0.18),transparent 70%);}
-.phone-float{animation:phoneFloat 4s ease-in-out infinite;}
-@keyframes phoneFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-.phone-outer{width:258px;background:#1e3a5f;border-radius:36px;padding:13px 10px;
-  box-shadow:0 24px 60px rgba(0,0,0,0.22),0 0 0 1px rgba(255,255,255,0.06);}
-.phone-inner{background:#0f2942;border-radius:28px;overflow:hidden;padding:14px;}
-.phone-top{display:flex;align-items:center;gap:8px;background:#1a3a5c;border-radius:10px;padding:8px 12px;margin-bottom:12px;}
-.phone-checkbox{width:16px;height:16px;border:2px solid rgba(255,255,255,0.45);border-radius:3px;background:rgba(255,255,255,0.1);}
-.phone-top-label{color:#fff;font-size:0.8em;font-weight:600;}
-.ph-card-main{background:var(--blue);border-radius:14px;padding:13px 15px;margin-bottom:10px;}
-.ph-card-label{font-size:0.7em;color:rgba(255,255,255,0.82);margin-bottom:5px;}
-.ph-card-value{font-size:1.8em;font-weight:900;color:#fff;line-height:1;}
-.ph-card-value small{font-size:0.38em;font-weight:400;}
-.ph-card-sub{font-size:0.7em;color:rgba(255,255,255,0.78);margin-top:4px;}
+/* PHONE */
+.hero-visual{position:relative;z-index:2;flex-shrink:0;}
+.phone-float-wrap{animation:phoneFloat2 5s ease-in-out infinite;}
+@keyframes phoneFloat2{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+.phone-frame{width:270px;background:linear-gradient(145deg,#1E2430,#141820);border-radius:44px;
+  padding:12px;border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 40px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);}
+.phone-screen{background:#0A0D14;border-radius:34px;overflow:hidden;padding:18px 14px;}
+.phone-notch{width:80px;height:22px;background:#000;border-radius:11px;margin:0 auto 14px;}
+.phone-greeting{font-size:.68em;color:var(--text3);margin-bottom:4px;}
+.phone-title{font-size:.85em;font-weight:700;color:var(--text);margin-bottom:14px;}
+.ph-metric-main{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(45,212,191,.1));
+  border:1px solid rgba(59,130,246,.2);border-radius:14px;padding:14px;margin-bottom:10px;position:relative;overflow:hidden;}
+.ph-label{font-size:.62em;color:var(--text3);margin-bottom:4px;font-weight:500;}
+.ph-value{font-size:2em;font-weight:800;color:var(--text);font-family:var(--mono);line-height:1;}
+.ph-value small{font-size:.35em;font-weight:400;color:var(--text2);}
+.ph-status{font-size:.62em;color:var(--green);margin-top:4px;font-weight:600;}
 .ph-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
-.ph-card-small{background:#1e3a5f;border-radius:12px;padding:10px 12px;}
-.ph-card-small .ph-card-label{display:flex;align-items:center;gap:4px;font-size:0.67em;color:rgba(255,255,255,0.58);}
-.ph-card-small .ph-card-label svg{width:11px;height:11px;stroke:var(--teal);fill:none;}
-.ph-card-small .ph-card-value{font-size:1.05em;font-weight:800;}
-.ph-progress-card{background:#1e3a5f;border-radius:12px;padding:10px 12px;margin-bottom:10px;}
-.ph-progress-label{font-size:0.68em;color:rgba(255,255,255,0.58);margin-bottom:6px;}
-.ph-bar-bg{background:rgba(255,255,255,0.14);border-radius:4px;height:5px;}
-.ph-bar-fill{background:linear-gradient(90deg,var(--blue),var(--teal));height:5px;border-radius:4px;width:0%;transition:width 1.5s ease .5s;}
-.ph-progress-val{font-size:0.66em;color:rgba(255,255,255,0.58);text-align:right;margin-top:4px;}
-.ph-cta{background:var(--blue);border-radius:10px;padding:10px 13px;text-align:center;
-  color:#fff;font-size:0.78em;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
+.ph-mini{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:10px;}
+.ph-mini .ph-label{font-size:.58em;}
+.ph-mini .ph-value{font-size:1.1em;color:var(--teal);}
+.ph-bar-wrap{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:10px;}
+.ph-bar-label{font-size:.58em;color:var(--text3);margin-bottom:6px;}
+.ph-bar-track{height:5px;background:rgba(255,255,255,.08);border-radius:3px;}
+.ph-bar-fill{height:5px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:3px;width:0;transition:width 1.8s ease .6s;}
+.ph-bar-val{font-size:.58em;color:var(--text3);text-align:right;margin-top:4px;}
+.ph-btn{background:linear-gradient(135deg,var(--blue),rgba(45,212,191,.8));border-radius:10px;
+  padding:10px;text-align:center;font-size:.72em;font-weight:600;color:#fff;
+  display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;}
+.phone-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);
+  width:180px;height:40px;background:radial-gradient(ellipse,rgba(59,130,246,.3),transparent 70%);filter:blur(12px);}
 
-/* Stats */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gray3);padding:28px 0 0;margin-top:44px;}
-.stat-col{text-align:center;padding:18px;}
-.stat-num{font-size:1.9em;font-weight:900;color:var(--blue);display:block;line-height:1;}
-.stat-lbl{font-size:0.8em;color:var(--gray4);margin-top:6px;display:block;}
-.disclaimer-box{display:flex;align-items:flex-start;gap:16px;background:#f0f7ff;
-  border:1.5px solid #b8d8f0;border-left:5px solid var(--blue);border-radius:12px;
-  padding:18px 26px;margin:44px 0 0;}
+/* TRUST STRIP */
+.trust-strip{padding:28px 48px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:.82em;color:var(--text3);font-weight:500;}
+.trust-item svg{color:var(--blue);flex-shrink:0;}
+.trust-divider{width:1px;height:20px;background:var(--border);}
+
+/* QUOTE */
+.quote-section{padding:80px 48px;text-align:center;}
+.quote-text{font-size:clamp(1.4em,3vw,2.2em);font-weight:700;line-height:1.4;color:var(--text);max-width:700px;margin:0 auto;}
+.accent{color:var(--blue2);}
+
+/* INTRO */
+.intro-section{padding:0 48px 80px;}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.intro-badge{display:inline-block;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
+  color:var(--green);font-size:.72em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;margin-bottom:18px;}
+.intro-h2{font-size:clamp(1.4em,2.5vw,1.9em);font-weight:800;line-height:1.3;color:var(--text);letter-spacing:-.02em;margin-bottom:18px;}
+.intro-p{font-size:.93em;color:var(--text2);line-height:1.82;margin-bottom:28px;}
+.intro-p strong{color:var(--text);}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.feat-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px;}
+.feat-icon{font-size:1.5em;margin-bottom:10px;}
+.feat-title{font-size:.88em;font-weight:700;color:var(--text);margin-bottom:6px;}
+.feat-desc{font-size:.78em;color:var(--text2);line-height:1.6;}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:0 48px 80px;}
+.stat-item{padding:32px 24px;background:var(--bg2);text-align:center;}
+.stat-num{font-size:2.2em;font-weight:900;font-family:var(--mono);
+  background:linear-gradient(135deg,var(--blue2),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;}
+.stat-label{font-size:.8em;color:var(--text3);margin-top:8px;display:block;font-weight:500;}
+
+/* DISCLAIMER */
+.disclaimer{margin:0 48px 80px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.15);
+  border-left:4px solid var(--blue);border-radius:var(--radius);padding:20px 28px;display:flex;gap:16px;align-items:flex-start;}
 .disclaimer-icon{color:var(--blue);flex-shrink:0;margin-top:2px;}
-.disclaimer-title{font-size:0.8em;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin:0 0 5px;}
-.disclaimer-text{font-size:0.86em;color:#4a5568;line-height:1.62;margin:0;}
-.disclaimer-text strong{color:var(--navy);}
+.disclaimer-title{font-size:.75em;font-weight:700;color:var(--blue2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.disclaimer-text{font-size:.875em;color:var(--text2);line-height:1.65;}
+.disclaimer-text strong{color:var(--text);}
 
-/* Modules overview grid */
-.modules-section{background:linear-gradient(160deg,#1a3a5c 0%,#2785C0 100%);padding:60px 48px;}
-.modules-header{text-align:center;margin-bottom:42px;}
-.modules-title{font-size:1.9em;font-weight:800;color:#fff;margin-bottom:8px;}
-.modules-sub{font-size:0.92em;color:rgba(255,255,255,0.78);}
-.modules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.mod-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.13);
-  border-radius:20px;padding:24px 22px;transition:all 0.3s ease-in-out;cursor:default;}
-.mod-card:hover{transform:scale(1.05);background:rgba(255,255,255,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.28);}
-.mod-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.mod-tag{font-size:0.65em;color:rgba(255,255,255,0.48);font-weight:700;letter-spacing:2px;text-transform:uppercase;}
-.mod-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.14);
-  display:flex;align-items:center;justify-content:center;font-size:1.2em;}
-.mod-card h3{font-size:0.97em;font-weight:700;margin-bottom:7px;color:#fff;line-height:1.3;}
-.mod-card p{font-size:0.78em;color:rgba(255,255,255,0.72);line-height:1.58;margin-bottom:10px;}
-.mod-explore-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.16);
-  border:1px solid rgba(255,255,255,0.22);color:#fff;font-size:0.74em;font-weight:600;
-  padding:5px 13px;border-radius:12px;cursor:pointer;transition:all 0.2s;margin-top:8px;text-decoration:none;}
-.mod-explore-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-1px);}
-.mod-master-disc{margin-top:36px;background:rgba(0,0,0,0.2);
-  border:1px solid rgba(255,255,255,0.14);border-left:5px solid var(--teal);
-  border-radius:12px;padding:16px 22px;display:flex;gap:13px;align-items:flex-start;}
-.mod-master-disc-icon{color:var(--teal);font-size:1.1em;flex-shrink:0;margin-top:1px;}
-.mod-master-disc p{font-size:0.76em;color:rgba(255,255,255,0.68);line-height:1.62;margin:0;}
-.mod-master-disc strong{color:#fff;}
+/* MODULES */
+.modules-section{padding:80px 48px;}
+.section-header{text-align:center;margin-bottom:56px;}
+.section-pre{display:inline-block;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);
+  color:var(--purple);font-size:.72em;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 16px;border-radius:20px;margin-bottom:16px;}
+.section-h2{font-size:clamp(1.6em,3vw,2.4em);font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:10px;}
+.section-sub{font-size:.93em;color:var(--text2);max-width:500px;margin:0 auto;}
 
-/* ==================================================
-   CDSS WRAPPER — Left Sidebar + Content
-================================================== */
-.cdss-section-intro{background:var(--gray2);padding:48px 48px 0;text-align:center;}
-.cdss-pre-tag{display:inline-block;background:var(--navy);color:var(--teal);
-  font-size:0.7em;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  padding:5px 15px;border-radius:20px;margin-bottom:16px;}
-.cdss-section-intro h2{font-size:1.9em;font-weight:800;color:var(--navy);
-  margin-bottom:10px;font-family:Georgia,serif;line-height:1.3;}
-.cdss-section-intro p{font-size:0.91em;color:var(--gray5);max-width:600px;margin:0 auto 32px;}
+/* BENTO GRID */
+.bento-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.mod-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:24px;transition:all .3s ease;position:relative;overflow:hidden;}
+.mod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
+.mod-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.mod-card.span2{grid-column:span 2;}
+.mod-card.c-blue:hover{box-shadow:0 16px 48px rgba(59,130,246,.18);}
+.mod-card.c-green:hover{box-shadow:0 16px 48px rgba(34,197,94,.14);}
+.mod-card.c-amber:hover{box-shadow:0 16px 48px rgba(245,158,11,.14);}
+.mod-card.c-red:hover{box-shadow:0 16px 48px rgba(239,68,68,.14);}
+.mod-card.c-teal:hover{box-shadow:0 16px 48px rgba(45,212,191,.14);}
+.mod-card.c-purple:hover{box-shadow:0 16px 48px rgba(168,85,247,.14);}
+.mod-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;}
+.mod-icon-wrap{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3em;}
+.c-blue .mod-icon-wrap{background:rgba(59,130,246,.15);}
+.c-green .mod-icon-wrap{background:rgba(34,197,94,.15);}
+.c-amber .mod-icon-wrap{background:rgba(245,158,11,.15);}
+.c-red .mod-icon-wrap{background:rgba(239,68,68,.15);}
+.c-teal .mod-icon-wrap{background:rgba(45,212,191,.15);}
+.c-purple .mod-icon-wrap{background:rgba(168,85,247,.15);}
+.mod-num{font-size:.65em;color:var(--text3);font-weight:700;letter-spacing:1px;font-family:var(--mono);}
+.mod-h3{font-size:.92em;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:8px;}
+.mod-p{font-size:.78em;color:var(--text2);line-height:1.6;margin-bottom:14px;}
+.mod-link{display:inline-flex;align-items:center;gap:5px;font-size:.75em;font-weight:600;
+  padding:5px 12px;border-radius:8px;transition:all .2s;cursor:pointer;text-decoration:none;}
+.c-blue .mod-link{color:var(--blue2);background:rgba(59,130,246,.1);}
+.c-blue .mod-link:hover{background:rgba(59,130,246,.2);}
+.c-green .mod-link{color:var(--green);background:rgba(34,197,94,.1);}
+.c-green .mod-link:hover{background:rgba(34,197,94,.2);}
+.c-amber .mod-link{color:var(--amber);background:rgba(245,158,11,.1);}
+.c-amber .mod-link:hover{background:rgba(245,158,11,.2);}
+.c-red .mod-link{color:var(--red);background:rgba(239,68,68,.1);}
+.c-red .mod-link:hover{background:rgba(239,68,68,.2);}
+.c-teal .mod-link{color:var(--teal);background:rgba(45,212,191,.1);}
+.c-teal .mod-link:hover{background:rgba(45,212,191,.2);}
+.c-purple .mod-link{color:var(--purple);background:rgba(168,85,247,.1);}
+.c-purple .mod-link:hover{background:rgba(168,85,247,.2);}
+.legal-card{grid-column:span 4;background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);
+  border-radius:var(--radius);padding:18px 24px;display:flex;gap:14px;align-items:center;}
+.legal-card p{font-size:.8em;color:var(--text2);line-height:1.65;}
+.legal-card strong{color:var(--text);}
 
-.cdss-wrapper{display:flex;align-items:stretch;background:var(--gray2);min-height:calc(100vh - 61px);}
+/* CDSS */
+.cdss-intro{padding:80px 48px 0;text-align:center;}
+.cdss-intro-pre{display:inline-block;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.2);
+  color:var(--teal);font-size:.72em;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 16px;border-radius:20px;margin-bottom:16px;}
+.cdss-intro h2{font-size:clamp(1.6em,3vw,2.2em);font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:10px;}
+.cdss-intro p{font-size:.93em;color:var(--text2);max-width:540px;margin:0 auto 40px;}
+.cdss-wrapper{display:flex;min-height:calc(100vh - 61px);background:var(--bg);}
 
-/* ---- LEFT SIDEBAR ---- */
-.cdss-sidebar{
-  width:258px;flex-shrink:0;
-  background:linear-gradient(180deg,#1a3a5c 0%,#0f2942 100%);
-  position:sticky;top:61px;height:calc(100vh - 61px);
-  overflow-y:auto;display:flex;flex-direction:column;
-  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.2) transparent;
-}
-.cdss-sidebar::-webkit-scrollbar{width:4px;}
-.cdss-sidebar::-webkit-scrollbar-track{background:transparent;}
-.cdss-sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:2px;}
-.sidebar-hdr{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.1);}
-.sidebar-hdr-tag{font-size:0.66em;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
-  color:rgba(255,255,255,0.42);margin-bottom:3px;}
-.sidebar-hdr-title{font-size:0.9em;font-weight:700;color:#fff;}
-.sidebar-hdr-sub{font-size:0.74em;color:rgba(255,255,255,0.55);margin-top:3px;}
-.sidebar-nav{padding:10px 0;flex:1;}
-.sidebar-group-lbl{font-size:0.62em;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
-  color:rgba(255,255,255,0.32);padding:12px 16px 5px;}
-.sidebar-link{display:flex;align-items:center;gap:9px;width:100%;padding:9px 14px 9px 16px;
-  background:none;border:none;border-left:3px solid transparent;color:rgba(255,255,255,0.62);
-  cursor:pointer;transition:all 0.2s;text-align:left;font-family:'Inter',sans-serif;}
-.sidebar-link:hover{background:rgba(255,255,255,0.08);color:#fff;border-left-color:rgba(255,255,255,0.28);}
-.sidebar-link.active{background:rgba(255,255,255,0.14);color:#fff;border-left-color:#7ecac5;}
-.sb-num{font-size:0.67em;font-weight:700;color:rgba(255,255,255,0.38);width:18px;flex-shrink:0;font-family:monospace;}
-.sidebar-link.active .sb-num{color:#7ecac5;}
-.sb-icon{font-size:1.05em;flex-shrink:0;line-height:1;}
-.sb-label{font-size:0.82em;font-weight:500;line-height:1.3;flex:1;}
-.sb-arrow{font-size:0.7em;color:rgba(255,255,255,0.28);flex-shrink:0;transition:transform .2s;}
-.sidebar-link.active .sb-arrow{color:var(--teal);transform:translateX(2px);}
-.sidebar-footer{padding:14px 16px;border-top:1px solid rgba(255,255,255,0.1);margin-top:auto;}
-.sidebar-footer-text{font-size:0.7em;color:rgba(255,255,255,0.3);line-height:1.5;}
+/* SIDEBAR */
+.cdss-sidebar{width:260px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border);
+  position:sticky;top:61px;height:calc(100vh - 61px);overflow-y:auto;display:flex;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent;}
+.cdss-sidebar::-webkit-scrollbar{width:3px;}
+.cdss-sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+.sidebar-hdr{padding:20px 16px 16px;border-bottom:1px solid var(--border);}
+.sidebar-hdr-tag{font-size:.62em;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+.sidebar-hdr-title{font-size:.9em;font-weight:700;color:var(--text);}
+.sidebar-hdr-sub{font-size:.72em;color:var(--text3);margin-top:2px;}
+.sidebar-nav{padding:8px 0;flex:1;}
+.sidebar-group{font-size:.6em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);padding:14px 16px 5px;}
+.sidebar-link{display:flex;align-items:center;gap:10px;width:100%;padding:9px 16px;
+  background:none;border:none;border-left:2px solid transparent;color:var(--text2);
+  cursor:pointer;transition:all .2s;text-align:left;font-family:'Inter',sans-serif;}
+.sidebar-link:hover{background:rgba(255,255,255,.04);color:var(--text);border-left-color:rgba(255,255,255,.15);}
+.sidebar-link.active{background:rgba(59,130,246,.08);color:var(--text);border-left-color:var(--blue);}
+.sb-num{font-size:.64em;font-weight:700;color:var(--text3);width:18px;flex-shrink:0;font-family:var(--mono);}
+.sidebar-link.active .sb-num{color:var(--blue2);}
+.sb-icon{font-size:1em;flex-shrink:0;}
+.sb-label{font-size:.82em;font-weight:500;flex:1;}
+.sb-arrow{font-size:.7em;color:var(--text3);transition:transform .2s;}
+.sidebar-link.active .sb-arrow{color:var(--blue2);transform:translateX(2px);}
+.sidebar-footer{padding:14px 16px;border-top:1px solid var(--border);margin-top:auto;}
+.sidebar-footer-text{font-size:.68em;color:var(--text3);line-height:1.5;}
 
-/* ---- CDSS CONTENT AREA ---- */
-.cdss-content{flex:1;min-width:0;padding:36px 44px 64px;background:var(--gray2);}
+/* CDSS CONTENT */
+.cdss-content{flex:1;min-width:0;padding:36px 44px 64px;}
 .cdss-panel{display:none;}
 .cdss-panel.active{display:block;}
+.cdss-split{display:grid;grid-template-columns:42% 1fr;gap:32px;align-items:start;}
+.cdss-col-left{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;
+  transition:transform .5s ease,opacity .5s ease;}
+.cdss-col-left.slide-init{transform:translateX(-32px);opacity:0;}
+.cdss-part-tag{display:inline-block;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);
+  color:var(--blue2);font-size:.68em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:10px;margin-bottom:14px;}
+.cdss-module-num{font-size:.7em;font-weight:700;color:var(--text3);letter-spacing:1px;margin-bottom:4px;font-family:var(--mono);}
+.cdss-col-left h2{font-size:1.25em;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:14px;}
+.cdss-desc{font-size:.88em;color:var(--text2);line-height:1.82;margin-bottom:20px;}
+.cdss-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+.cdss-bullets li{display:flex;align-items:flex-start;gap:8px;font-size:.86em;color:var(--text2);line-height:1.55;}
+.cb-dot{color:var(--blue2);font-weight:900;flex-shrink:0;margin-top:2px;}
+.cdss-warn-box{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);
+  border-left:4px solid var(--amber);border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;}
+.warn-icon{font-size:1em;flex-shrink:0;margin-top:1px;}
+.warn-body{font-size:.82em;color:var(--text2);line-height:1.6;}
+.warn-title{font-weight:700;color:var(--amber);display:block;margin-bottom:3px;}
+.cdss-col-right{display:flex;flex-direction:column;gap:16px;transition:transform .5s ease,opacity .5s ease;}
+.cdss-col-right.slide-init{transform:translateX(32px);opacity:0;}
 
-/* ---- SPLIT SCREEN ---- */
-.cdss-split{display:grid;grid-template-columns:44% 1fr;gap:36px;align-items:start;}
-
-/* ---- LEFT COLUMN (Text) ---- */
-.cdss-col-left{
-  background:#fff;border-radius:18px;padding:30px 28px;
-  box-shadow:0 2px 16px rgba(0,0,0,0.07);
-  transform:translateX(0);opacity:1;
-  transition:transform 0.5s ease-out,opacity 0.5s ease-out;
-}
-.cdss-col-left.slide-init{transform:translateX(-40px);opacity:0;}
-.cdss-part-tag{display:inline-block;background:var(--navy);color:var(--teal);
-  font-size:0.68em;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 12px;border-radius:12px;margin-bottom:14px;}
-.cdss-module-num{font-size:0.72em;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:4px;}
-.cdss-col-left h2{font-size:1.28em;font-weight:800;color:var(--navy);line-height:1.35;
-  margin-bottom:13px;font-family:Georgia,serif;}
-.cdss-desc{font-size:0.875em;color:#4a5568;line-height:1.82;margin-bottom:20px;}
-.cdss-bullets{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
-.cdss-bullets li{display:flex;align-items:flex-start;gap:8px;font-size:0.855em;color:#374151;line-height:1.55;}
-.cb-dot{color:var(--blue);font-weight:900;flex-shrink:0;margin-top:3px;font-size:0.9em;}
-/* Warning box */
-.cdss-warn-box{background:var(--amberBg);border:1px solid #fde68a;border-left:5px solid var(--amber);
-  border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;margin-top:4px;}
-.warn-icon{font-size:1.05em;flex-shrink:0;margin-top:1px;}
-.warn-body{font-size:0.82em;color:#78350f;line-height:1.62;}
-.warn-title{font-weight:700;color:var(--amberDk);display:block;margin-bottom:3px;}
-
-/* ---- RIGHT COLUMN (Tables) ---- */
-.cdss-col-right{
-  display:flex;flex-direction:column;gap:18px;
-  transform:translateX(0);opacity:1;
-  transition:transform 0.5s ease-out,opacity 0.5s ease-out;
-}
-.cdss-col-right.slide-init{transform:translateX(40px);opacity:0;}
-
-/* Schema card */
-.schema-card{background:#fff;border-radius:16px;overflow:hidden;
-  box-shadow:0 2px 16px rgba(0,0,0,0.07);transition:all 0.3s ease-in-out;}
-.schema-card:hover{transform:scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.12);}
-.schema-hdr{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);
-  padding:12px 18px;display:flex;align-items:center;gap:10px;}
-.schema-hdr-icon{font-size:1.1em;}
-.schema-hdr-title{font-size:0.86em;font-weight:700;color:#fff;flex:1;}
-.schema-hdr-badge{background:rgba(255,255,255,0.2);color:#fff;font-size:0.68em;font-weight:700;
-  letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:9px;white-space:nowrap;}
+/* SCHEMA / TABLES */
+.schema-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;}
+.schema-card:hover{border-color:var(--border2);}
+.schema-hdr{background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(45,212,191,.06));
+  border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;gap:10px;}
+.schema-hdr-icon{font-size:1em;}
+.schema-hdr-title{font-size:.86em;font-weight:700;color:var(--text);flex:1;}
+.schema-hdr-badge{background:rgba(255,255,255,.08);color:var(--text2);font-size:.66em;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:8px;white-space:nowrap;}
 table.s-def{width:100%;border-collapse:collapse;}
-table.s-def thead th{background:var(--navy);color:rgba(255,255,255,0.88);padding:8px 13px;
-  text-align:left;font-size:0.73em;font-weight:700;letter-spacing:.3px;}
-table.s-def tbody td{padding:8px 13px;font-size:0.78em;color:#374151;border-bottom:1px solid #edf2f7;vertical-align:top;line-height:1.42;}
+table.s-def thead th{background:rgba(255,255,255,.03);color:var(--text3);padding:8px 13px;
+  text-align:left;font-size:.72em;font-weight:700;letter-spacing:.3px;}
+table.s-def tbody td{padding:8px 13px;font-size:.78em;color:var(--text2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.42;}
 table.s-def tbody tr:last-child td{border-bottom:none;}
-table.s-def tbody tr{transition:background .14s;}
-table.s-def tbody tr:hover td{background:#f0f7ff;}
-.stype{display:inline-block;padding:1px 7px;border-radius:4px;font-size:0.78em;font-weight:700;font-family:monospace;white-space:nowrap;}
-.stype.TIMESTAMP{background:#f0fdf4;color:#166534;}
-.stype.FLOAT{background:#fef9c3;color:#854d0e;}
-.stype.ENUM{background:#fdf2f8;color:#9d174d;}
-.stype.INTEGER{background:#eff6ff;color:#1d4ed8;}
-.stype.TEXT{background:#f5f3ff;color:#5b21b6;}
-.stype.UUID{background:#f8f8f8;color:#374151;}
-.stype.JSON{background:#ecfdf5;color:#065f46;}
-.stype.BOOLEAN{background:#f0fdf4;color:#166534;}
-
-/* Data grid card */
-.data-grid-card{background:#fff;border-radius:16px;overflow:hidden;
-  box-shadow:0 2px 16px rgba(0,0,0,0.07);transition:all 0.3s ease-in-out;}
-.data-grid-card:hover{transform:scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.12);}
-.dg-hdr{background:linear-gradient(135deg,var(--blue) 0%,var(--blue3) 100%);
-  padding:11px 17px;display:flex;align-items:center;gap:9px;}
-.dg-hdr>span:first-child{font-size:0.85em;font-weight:700;color:#fff;flex:1;}
-.dg-badge{background:rgba(255,255,255,0.24);color:#fff;font-size:0.68em;font-weight:700;padding:2px 8px;border-radius:8px;white-space:nowrap;}
+table.s-def tbody tr:hover td{background:rgba(255,255,255,.02);}
+.stype{display:inline-block;padding:1px 7px;border-radius:4px;font-size:.77em;font-weight:700;font-family:var(--mono);white-space:nowrap;}
+.stype.TIMESTAMP{background:rgba(34,197,94,.1);color:#4ADE80;}
+.stype.FLOAT{background:rgba(245,158,11,.1);color:#FCD34D;}
+.stype.ENUM{background:rgba(168,85,247,.1);color:#C084FC;}
+.stype.INTEGER{background:rgba(59,130,246,.1);color:#93C5FD;}
+.stype.TEXT{background:rgba(45,212,191,.1);color:#5EEAD4;}
+.stype.UUID{background:rgba(255,255,255,.06);color:var(--text2);}
+.stype.JSON{background:rgba(34,197,94,.1);color:#4ADE80;}
+.stype.BOOLEAN{background:rgba(34,197,94,.1);color:#4ADE80;}
+.data-grid-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;}
+.data-grid-card:hover{border-color:var(--border2);}
+.dg-hdr{background:linear-gradient(135deg,rgba(45,212,191,.1),rgba(59,130,246,.06));
+  border-bottom:1px solid var(--border);padding:10px 17px;display:flex;align-items:center;gap:9px;}
+.dg-hdr>span:first-child{font-size:.85em;font-weight:700;color:var(--text);flex:1;}
+.dg-badge{background:rgba(255,255,255,.08);color:var(--text2);font-size:.66em;font-weight:700;padding:2px 8px;border-radius:7px;white-space:nowrap;}
 table.d-grid{width:100%;border-collapse:collapse;}
-table.d-grid thead th{background:#f8fafc;padding:8px 12px;text-align:left;font-size:0.72em;
-  font-weight:700;color:#475569;border-bottom:1px solid var(--gray3);white-space:nowrap;}
-table.d-grid tbody td{padding:8px 12px;font-size:0.78em;color:var(--text);border-bottom:1px solid #f1f5f9;}
+table.d-grid thead th{background:rgba(255,255,255,.02);padding:8px 12px;text-align:left;font-size:.71em;
+  font-weight:700;color:var(--text3);border-bottom:1px solid var(--border);white-space:nowrap;}
+table.d-grid tbody td{padding:8px 12px;font-size:.78em;color:var(--text2);border-bottom:1px solid var(--border);}
 table.d-grid tbody tr:last-child td{border-bottom:none;}
-table.d-grid tbody tr{transition:background .14s;}
-table.d-grid tbody tr:hover td{background:#f0f7ff;}
-.dg{display:inline-block;padding:2px 8px;border-radius:9px;font-size:0.78em;font-weight:600;white-space:nowrap;}
-.dg.ok{background:#dcfce7;color:#166534;}
-.dg.hi{background:#fef9c3;color:#854d0e;}
-.dg.lo{background:#fef2f2;color:#991b1b;}
-.dg.warn{background:#fff7ed;color:#9a3412;}
-.dg.info{background:#eff6ff;color:#1e40af;}
-.dg.teal{background:#ecfdf5;color:#065f46;}
-.dg.gray{background:#f1f5f9;color:#475569;}
-.dg.purple{background:#f5f3ff;color:#5b21b6;}
+table.d-grid tbody tr:hover td{background:rgba(255,255,255,.02);}
+.dg{display:inline-block;padding:2px 8px;border-radius:8px;font-size:.77em;font-weight:600;white-space:nowrap;}
+.dg.ok{background:rgba(34,197,94,.12);color:#4ADE80;}
+.dg.hi{background:rgba(245,158,11,.12);color:#FCD34D;}
+.dg.lo{background:rgba(239,68,68,.12);color:#FCA5A5;}
+.dg.warn{background:rgba(245,158,11,.12);color:#FCD34D;}
+.dg.info{background:rgba(59,130,246,.12);color:#93C5FD;}
+.dg.teal{background:rgba(45,212,191,.12);color:#5EEAD4;}
+.dg.gray{background:rgba(255,255,255,.06);color:var(--text2);}
+.dg.purple{background:rgba(168,85,247,.12);color:#C084FC;}
+.cdss-panel-footer{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-top:16px;}
+.cdss-footer-title{font-size:.7em;font-weight:800;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.cdss-footer-body{font-size:.8em;color:var(--text2);line-height:1.65;margin:0 0 5px;}
+.cdss-footer-body:last-child{margin-bottom:0;}
+.cdss-footer-body strong{color:var(--text);}
+
+/* IMAGE CARDS */
+.mod8-hero-img-card{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4);transition:all .3s;display:block;line-height:0;}
+.mod8-hero-img-card:hover{transform:scale(1.02);}
+.mod8-hero-img{width:100%;height:240px;object-fit:cover;object-position:center 40%;display:block;filter:brightness(.75);transition:filter .3s;}
+.mod8-hero-img-card:hover .mod8-hero-img{filter:brightness(.6);}
+.mod8-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,14,18,.9) 0%,rgba(12,14,18,.35) 55%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+.mod8-img-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);
+  backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.7em;
+  font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;width:fit-content;}
+.mod8-img-headline{font-size:1.4em;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px;}
+.mod8-img-sub{font-size:.82em;color:rgba(255,255,255,.75);}
+.hero-img-card{position:relative;border-radius:12px;overflow:hidden;margin-bottom:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .3s,box-shadow .3s;}
+.hero-img-card:hover{transform:scale(1.015);}
+.hero-img{width:100%;height:220px;object-fit:cover;display:block;filter:brightness(.68);transition:filter .3s;}
+.hero-img-card:hover .hero-img{filter:brightness(.55);}
+.hero-img-overlay{position:absolute;bottom:0;left:0;right:0;padding:18px 20px 16px;
+  background:linear-gradient(to top,rgba(12,14,18,.95) 0%,rgba(12,14,18,.5) 60%,transparent 100%);}
+.hero-img-headline{font-size:1.15em;font-weight:700;color:#fff;line-height:1.3;margin-bottom:4px;}
+.hero-img-sub{font-size:.78em;color:rgba(255,255,255,.75);}
 
 /* CTA */
-.cta-section{padding:72px 48px;text-align:center;background:#fff;}
-.cta-logo{width:56px;height:56px;border-radius:12px;object-fit:cover;margin:0 auto 22px;}
-.cta-title{font-size:2em;font-weight:800;color:var(--text);margin-bottom:12px;}
-.cta-title span{color:var(--blue);}
-.cta-sub{font-size:0.92em;color:var(--gray5);margin-bottom:28px;}
-.btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;
-  padding:13px 34px;border-radius:50px;font-weight:700;font-size:0.97em;transition:all .3s;margin-bottom:18px;}
-.btn-cta:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 8px 24px rgba(41,128,185,.4);}
-.cta-italic{font-size:0.86em;color:var(--gray4);font-style:italic;}
+.cta-section{padding:80px 48px;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:800px;height:400px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(59,130,246,.08) 0%,transparent 70%);pointer-events:none;}
+.cta-logo{width:56px;height:56px;border-radius:14px;object-fit:cover;margin:0 auto 24px;
+  display:block;box-shadow:0 0 32px var(--blue-glow);}
+.cta-h2{font-size:clamp(1.8em,3vw,2.6em);font-weight:800;color:var(--text);letter-spacing:-.03em;margin-bottom:14px;}
+.cta-h2 span{background:linear-gradient(135deg,var(--blue2),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta-sub{font-size:.93em;color:var(--text2);margin-bottom:36px;max-width:450px;margin-left:auto;margin-right:auto;}
+.cta-italic{font-size:.84em;color:var(--text3);font-style:italic;margin-top:16px;}
 
-/* Footer */
-.footer{background:#0f172a;padding:20px 48px;text-align:center;}
-.footer p{font-size:0.83em;color:rgba(255,255,255,0.33);}
+/* FOOTER */
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 48px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-brand{display:flex;align-items:center;gap:10px;}
+.footer-brand-name{font-size:.9em;font-weight:700;color:var(--text);}
+.footer-brand-sub{font-size:.55em;color:var(--blue2);letter-spacing:3px;font-weight:600;}
+.footer-p{font-size:.78em;color:var(--text3);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:.78em;color:var(--text3);transition:color .2s;}
+.footer-links a:hover{color:var(--text);}
 
 /* RESPONSIVE */
 @media(max-width:1100px){
   .cdss-split{grid-template-columns:1fr;}
   .cdss-sidebar{width:220px;}
+  .bento-grid{grid-template-columns:repeat(2,1fr);}
+  .mod-card.span2{grid-column:span 2;}
+  .legal-card{grid-column:span 2;}
 }
 @media(max-width:900px){
   .cdss-wrapper{flex-direction:column;}
   .cdss-sidebar{width:100%;height:auto;position:relative;top:0;}
-  .cdss-tab-scroll{display:flex;overflow-x:auto;flex-direction:row;padding:10px 16px;}
-  .sidebar-nav{display:flex;flex-direction:row;padding:0;overflow-x:auto;}
-  .sidebar-group-lbl{display:none;}
-  .sidebar-hdr{display:none;}
-  .sidebar-footer{display:none;}
-  .sidebar-link{flex-direction:column;text-align:center;gap:4px;padding:8px 12px;
-    border-left:none;border-bottom:3px solid transparent;white-space:nowrap;min-width:90px;}
-  .sidebar-link.active{border-bottom-color:#7ecac5;border-left:none;}
+  .sidebar-nav{display:flex;flex-direction:row;overflow-x:auto;padding:0;}
+  .sidebar-group{display:none;}
+  .sidebar-hdr,.sidebar-footer{display:none;}
+  .sidebar-link{flex-direction:column;text-align:center;gap:4px;padding:10px 12px;
+    border-left:none;border-bottom:2px solid transparent;white-space:nowrap;min-width:90px;}
+  .sidebar-link.active{border-bottom-color:var(--blue);border-left:none;}
   .sb-arrow{display:none;}
   .cdss-content{padding:24px 20px 48px;}
-  .modules-grid{grid-template-columns:1fr 1fr;}
   .intro-grid{grid-template-columns:1fr;}
-  .stats-row{grid-template-columns:1fr 1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:768px){
-  .navbar,.hero-banner,.main-section,.modules-section,.cta-section,.footer{padding-left:20px;padding-right:20px;}
-  .hero-banner{flex-direction:column;gap:18px;text-align:center;}
-  .brand-name{font-size:2.6em;}
-  .cdss-col-left,.cdss-col-right{transform:none !important;}
+  .navbar{padding:12px 20px;}
+  .nav-links{display:none;}
+  .hero{flex-direction:column;padding:100px 20px 60px;text-align:center;}
+  .hero-btns{justify-content:center;}
+  .hero-visual{display:none;}
+  .trust-strip{padding:20px;gap:20px;}
+  .trust-divider{display:none;}
+  .quote-section,.intro-section,.modules-section,.cta-section{padding-left:20px;padding-right:20px;}
+  .stats-grid,.disclaimer{margin-left:20px;margin-right:20px;}
+  .footer{padding:20px;flex-direction:column;text-align:center;}
 }
 @media(max-width:480px){
-  .modules-grid{grid-template-columns:1fr;}
-  .intro-btns{flex-direction:column;}
+  .bento-grid{grid-template-columns:1fr;}
+  .mod-card.span2{grid-column:span 1;}
+  .legal-card{grid-column:span 1;}
+  .feat-grid{grid-template-columns:1fr;}
 }
-
-/* ---- MODULE 8 — HERO IMAGE CARD ---- */
-.mod8-hero-img-card {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 28px rgba(0,0,0,0.13);
-  transition: all 0.3s ease-in-out;
-  display: block;
-  width: 100%;
-  line-height: 0; /* kill inline gap */
-}
-.mod8-hero-img-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-}
-.mod8-hero-img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  object-position: center 40%;
-  display: block;
-  border-radius: 0; /* card already rounds */
-  filter: brightness(0.82) saturate(1.1);
-  transition: filter 0.35s ease;
-}
-.mod8-hero-img-card:hover .mod8-hero-img {
-  filter: brightness(0.72) saturate(1.2);
-}
-.mod8-img-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(15,41,66,0.88) 0%,
-    rgba(15,41,66,0.38) 55%,
-    rgba(15,41,66,0.06) 100%
-  );
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 22px 22px 20px;
-}
-.mod8-img-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
-  font-size: 0.72em;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  width: fit-content;
-}
-.mod8-img-headline {
-  font-size: 1.45em;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.25;
-  font-family: Georgia, 'Times New Roman', serif;
-  margin-bottom: 6px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
-}
-.mod8-img-sub {
-  font-size: 0.82em;
-  color: rgba(255,255,255,0.78);
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-
-
-/* ─── SHARED HERO IMAGE CARD (all modules) ─── */
-.hero-img-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-  cursor: default;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.hero-img-card:hover {
-  transform: scale(1.015);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
-}
-.hero-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.72);
-  transition: filter 0.3s ease;
-}
-.hero-img-card:hover .hero-img {
-  filter: brightness(0.62);
-}
-.hero-img-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 18px 20px 16px;
-  background: linear-gradient(to top, rgba(15,30,60,0.92) 0%, rgba(15,30,60,0.55) 60%, transparent 100%);
-}
-.hero-img-headline {
-  font-size: 1.18em;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.3;
-  margin-bottom: 4px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-.hero-img-sub {
-  font-size: 0.78em;
-  color: rgba(255,255,255,0.82);
-  font-weight: 400;
-}
-
-
-/* ─── CDSS PANEL FOOTER (global, all modules) ─── */
-.cdss-panel-footer {
-  background: #f5f0e8;
-  border-top: 2px solid #ddd5c0;
-  border-radius: 0 0 12px 12px;
-  padding: 20px 28px 18px;
-  margin-top: 18px;
-}
-.cdss-footer-title {
-  font-size: 0.7em;
-  font-weight: 800;
-  color: #1a3a5c;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ddd5c0;
-}
-.cdss-footer-body {
-  font-size: 0.79em;
-  color: #5a6878;
-  line-height: 1.65;
-  margin: 0 0 5px 0;
-}
-.cdss-footer-body:last-child { margin-bottom: 0; }
-.cdss-footer-body strong { color: #1a3a5c; }
-
 </style>
 </head>
 <body>
@@ -493,7 +415,7 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
     <img src="/public/logo.png" alt="Diacora" class="nav-logo">
     <div>
       <div class="nav-brand-name">Diacora</div>
-      <div class="nav-brand-health">HEALTH</div>
+      <div class="nav-brand-sub">HEALTH</div>
     </div>
   </div>
   <div class="nav-links">
@@ -503,777 +425,456 @@ table.d-grid tbody tr:hover td{background:#f0f7ff;}
     <a href="#iletisim">İletişim</a>
   </div>
   <div class="nav-btns">
-    <button class="btn-login">Giriş Yap</button>
-    <button class="btn-kayit">Kayıt Ol</button>
+    <button class="btn-nav-ghost">Giriş Yap</button>
+    <button class="btn-nav-primary">Kayıt Ol</button>
   </div>
 </nav>
 
-<div class="hero-banner" id="hakkinda">
-  <div class="hero-left-brand reveal">
-    <img src="/public/logo.png" alt="Diacora Logo" class="hero-logo">
-    <div>
-      <div class="brand-name">Diacora</div>
-      <div class="brand-health">HEALTH</div>
-      <div class="brand-tag">CARING TODAY. SHAPING TOMORROWS.</div>
+<section class="hero" id="hakkinda">
+  <div class="hero-content reveal">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Yapay Zeka Destekli Sağlık Platformu
+    </div>
+    <h1 class="hero-h1">Sağlığınızı <span class="gradient-text">Verilerle</span> Yönetin</h1>
+    <p class="hero-sub">Şeker, tansiyon, insülin ve egzersiz döngülerinizi yapay zeka destekli analizlerle anlamlandırın. Doktorunuzla güçlü, kanıta dayalı iletişim kurun.</p>
+    <div class="hero-btns">
+      <a href="#cdss-section" class="btn-primary">Takip Ekranları →</a>
+      <a href="#ozellikler" class="btn-ghost">Modülleri İncele</a>
     </div>
   </div>
-  <div class="hero-right-text reveal reveal-right">Ai.Sağlık İzleme Sistemi</div>
-</div>
-
-<div class="main-section">
-  <div class="quote-wrap reveal">
-    <p class="quote-text">Sağlık, sayılardan ibaret değildir.<br><span style="color:var(--blue);">Ama doğru sayılar yaşamı değiştirir.</span></p>
-  </div>
-  <div class="intro-grid">
-    <div class="intro-text reveal-left">
-      <h2 class="intro-heading">Metabolik Verilerinizi Anlamlandırın,<br>Hekiminizle Güçlü İletişim Kurun</h2>
-      <p>Diacora Health; şeker, tansiyon, insülin ve egzersiz döngülerinizi yapay zeka destekli analitik filtrelerden geçirerek karmaşık biyometrik verileri düzenli raporlar haline getirir. Platformumuz, <strong>tedavi planınızı belirlemez veya değiştirmez;</strong> ancak klinisyeninizin takibini kolaylaştıracak <strong>kanıta dayalı veri eğilimleri</strong> sunar.</p>
-      <div class="intro-btns">
-        <a href="#cdss-section" class="btn-basla">Sağlık Takip Ekranları →</a>
-        <a href="#ozellikler" class="btn-kesfet">Modülleri İncele</a>
-      </div>
-    </div>
-    <div class="phone-wrap reveal-right">
-      <div class="phone-float">
-        <div class="phone-outer"><div class="phone-inner">
-          <div class="phone-top"><div class="phone-checkbox"></div><span class="phone-top-label">Diacora Health</span></div>
-          <div class="ph-card-main">
-            <div class="ph-card-label">Günlük Şeker Özeti</div>
-            <div class="ph-card-value">112 <small>mg/dL</small></div>
-            <div class="ph-card-sub">→ Güvenli bölgede: %78</div>
+  <div class="hero-visual reveal-right">
+    <div class="phone-float-wrap">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <div class="phone-greeting">Günaydın 👋</div>
+          <div class="phone-title">Diacora Health</div>
+          <div class="ph-metric-main">
+            <div class="ph-label">Günlük Şeker Özeti</div>
+            <div class="ph-value">112 <small>mg/dL</small></div>
+            <div class="ph-status">✓ Güvenli bölgede · %78</div>
           </div>
           <div class="ph-row">
-            <div class="ph-card-small">
-              <div class="ph-card-label"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Nabız</div>
-              <div class="ph-card-value" style="color:#7ecac5">72 <small style="font-size:.45em;color:rgba(255,255,255,.5)">bpm</small></div>
+            <div class="ph-mini">
+              <div class="ph-label">Nabız</div>
+              <div class="ph-value">72 <small style="font-size:.45em;color:var(--text3)">bpm</small></div>
             </div>
-            <div class="ph-card-small">
-              <div class="ph-card-label"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tansiyon</div>
-              <div class="ph-card-value" style="font-size:1em;color:#7ecac5">118/76</div>
+            <div class="ph-mini">
+              <div class="ph-label">Tansiyon</div>
+              <div class="ph-value" style="font-size:1.05em">118/76</div>
             </div>
           </div>
-          <div class="ph-progress-card">
-            <div class="ph-progress-label">3 Aylık Şeker Tahmini (HbA1c)</div>
-            <div class="ph-bar-bg"><div class="ph-bar-fill" id="progressBar"></div></div>
-            <div class="ph-progress-val">6.8% → Hedef: 7.0%</div>
+          <div class="ph-bar-wrap">
+            <div class="ph-bar-label">3 Aylık Şeker (HbA1c)</div>
+            <div class="ph-bar-track"><div class="ph-bar-fill" id="progressBar"></div></div>
+            <div class="ph-bar-val">6.8% → Hedef: 7.0%</div>
           </div>
-          <div class="ph-cta">📋 Muayene Raporu Oluştur</div>
-        </div></div>
+          <div class="ph-btn">📋 Muayene Raporu Oluştur</div>
+        </div>
       </div>
-      <div class="phone-shadow"></div>
     </div>
+    <div class="phone-glow"></div>
   </div>
-  <div class="stats-row" id="statsRow">
-    <div class="stat-col reveal reveal-delay-1"><span class="stat-num" data-target="10">0</span><span class="stat-lbl">Takip Modülü</span></div>
-    <div class="stat-col reveal reveal-delay-2"><span class="stat-num" style="color:var(--blue)">7/24</span><span class="stat-lbl">Anlık İzleme</span></div>
-    <div class="stat-col reveal reveal-delay-3"><span class="stat-num" style="color:var(--blue)">PDF</span><span class="stat-lbl">Otomatik Rapor</span></div>
-    <div class="stat-col reveal reveal-delay-4"><span class="stat-num" style="color:var(--blue)">FHIR</span><span class="stat-lbl">Güvenli Paylaşım</span></div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    10 Takip Modülü
   </div>
-  <div class="disclaimer-box reveal">
-    <div class="disclaimer-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-    <div>
-      <p class="disclaimer-title">Önemli Bilgilendirme</p>
-      <p class="disclaimer-text">Diacora Health bir <strong>veri analiz ve raporlama platformudur</strong>; tıbbi tanı, tedavi veya ilaç reçetesi işlevleri içermez. Platform tarafından sunulan tüm veriler ve raporlar yalnızca <strong>hekim gözetiminde</strong> değerlendirilmek üzere tasarlanmıştır.</p>
-    </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    7/24 Anlık İzleme
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    PDF Otomatik Rapor
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    FHIR Güvenli Paylaşım
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Klinik Standartlar
   </div>
 </div>
 
-<div class="modules-section" id="ozellikler">
-  <div class="modules-header reveal">
-    <div class="modules-title">10 Sağlık Takip Modülü</div>
-    <div class="modules-sub">Her modülün detaylı ekranına geçmek için "Takip Ekranına Git" butonunu kullanın</div>
+<section class="quote-section reveal">
+  <p class="quote-text">Sağlık, sayılardan ibaret değildir.<br><span class="accent">Ama doğru sayılar yaşamı değiştirir.</span></p>
+</section>
+
+<section class="intro-section">
+  <div class="intro-grid">
+    <div class="reveal-left">
+      <div class="intro-badge">Yapay Zeka Analitik</div>
+      <h2 class="intro-h2">Metabolik Verilerinizi Anlamlandırın,<br>Hekiminizle Güçlü İletişim Kurun</h2>
+      <p class="intro-p">Diacora Health; şeker, tansiyon, insülin ve egzersiz döngülerinizi yapay zeka destekli analitik filtrelerden geçirerek karmaşık biyometrik verileri düzenli raporlar haline getirir. Platformumuz, <strong>tedavi planınızı belirlemez veya değiştirmez;</strong> ancak klinisyeninizin takibini kolaylaştıracak <strong>kanıta dayalı veri eğilimleri</strong> sunar.</p>
+      <div class="hero-btns">
+        <a href="#cdss-section" class="btn-primary">Sağlık Takip Ekranları →</a>
+        <a href="#ozellikler" class="btn-ghost">Modülleri İncele</a>
+      </div>
+    </div>
+    <div class="feat-grid reveal-right">
+      <div class="feat-card">
+        <div class="feat-icon">🩸</div>
+        <div class="feat-title">Şeker Takibi</div>
+        <div class="feat-desc">Açlık/tokluk ölçümleri, HbA1c trend analizi</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">❤️</div>
+        <div class="feat-title">Tansiyon İzleme</div>
+        <div class="feat-desc">Sabah/akşam ölçüm karşılaştırması</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">💊</div>
+        <div class="feat-title">İlaç Takibi</div>
+        <div class="feat-desc">Doz, saat ve uyum takibi</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📋</div>
+        <div class="feat-title">Otomatik Rapor</div>
+        <div class="feat-desc">Tek tuşla PDF muayene raporu</div>
+      </div>
+    </div>
   </div>
-  <div class="modules-grid">
+</section>
 
-    <div class="mod-card reveal reveal-delay-1">
-      <div class="mod-card-top">
-        <div class="mod-icon">🩸</div>
-        <div class="mod-tag">MODÜL 01</div>
-      </div>
-      <h3>Şeker Takibi — Günlük Şeker Dengeniz</h3>
-      <p>Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve gün...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(1)">Takip Ekranına Git →</a>
-    </div>
+<div class="stats-grid" id="statsRow">
+  <div class="stat-item reveal d1"><span class="stat-num" data-target="10">0</span><span class="stat-label">Takip Modülü</span></div>
+  <div class="stat-item reveal d2"><span class="stat-num">7/24</span><span class="stat-label">Anlık İzleme</span></div>
+  <div class="stat-item reveal d3"><span class="stat-num">PDF</span><span class="stat-label">Otomatik Rapor</span></div>
+  <div class="stat-item reveal d4"><span class="stat-num">FHIR</span><span class="stat-label">Güvenli Paylaşım</span></div>
+</div>
 
-    <div class="mod-card reveal reveal-delay-2">
-      <div class="mod-card-top">
-        <div class="mod-icon">❤️</div>
-        <div class="mod-tag">MODÜL 02</div>
-      </div>
-      <h3>Tansiyon Takibi — Kalp ve Kan Basıncı Düzeniniz</h3>
-      <p>Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlı...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(2)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-1">
-      <div class="mod-card-top">
-        <div class="mod-icon">🥗</div>
-        <div class="mod-tag">MODÜL 03</div>
-      </div>
-      <h3>Beslenme Takibi — Yemeklerin Şekere Etkisi</h3>
-      <p>Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımın...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(3)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-2">
-      <div class="mod-card-top">
-        <div class="mod-icon">🏃</div>
-        <div class="mod-tag">MODÜL 04</div>
-      </div>
-      <h3>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h3>
-      <p>Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net g...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(4)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-1">
-      <div class="mod-card-top">
-        <div class="mod-icon">💊</div>
-        <div class="mod-tag">MODÜL 05</div>
-      </div>
-      <h3>İlaç Takibi — Düzenli İlaç Kullanımı</h3>
-      <p>Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağla...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(5)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-2">
-      <div class="mod-card-top">
-        <div class="mod-icon">💉</div>
-        <div class="mod-tag">MODÜL 06</div>
-      </div>
-      <h3>İnsülin Takibi — Doz ve Bölge Günlüğü</h3>
-      <p>Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin. Sistemimiz, yaptığınız insülinlerin kan şekeri...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(6)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-1">
-      <div class="mod-card-top">
-        <div class="mod-icon">👨‍⚕️</div>
-        <div class="mod-tag">MODÜL 07</div>
-      </div>
-      <h3>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h3>
-      <p>İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz şeker, tansiyon ve ilaç verilerini kendi ekranından anlık olarak görebilir. Bu saye...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(7)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-2">
-      <div class="mod-card-top">
-        <div class="mod-icon">📋</div>
-        <div class="mod-tag">MODÜL 08</div>
-      </div>
-      <h3>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h3>
-      <p>Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün. Tek tuşla cep te...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(8)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-1">
-      <div class="mod-card-top">
-        <div class="mod-icon">🔬</div>
-        <div class="mod-tag">MODÜL 09</div>
-      </div>
-      <h3>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h3>
-      <p>Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile ha...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(9)">Takip Ekranına Git →</a>
-    </div>
-
-    <div class="mod-card reveal reveal-delay-2">
-      <div class="mod-card-top">
-        <div class="mod-icon">⚠️</div>
-        <div class="mod-tag">MODÜL 10</div>
-      </div>
-      <h3>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h3>
-      <p>Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır. Sistemimiz, şekerinizin özellikle siz uykudayken ...</p>
-      <a href="#cdss-section" class="mod-explore-btn" onclick="switchModule(10)">Takip Ekranına Git →</a>
-    </div>
-
-  </div>
-  <div class="mod-master-disc reveal">
-    <span class="mod-master-disc-icon">⚖️</span>
-    <p><strong>Yasal Bilgilendirme:</strong> Diacora Health platformu, bir tıbbi tanı, tedavi veya ilaç reçetesi aracı değildir. Tüm modüller; veri kayıt, analiz ve doktor iletişim desteği amacıyla tasarlanmıştır. Sunulan hiçbir veri veya grafik tıbbi tavsiye niteliği taşımaz. Tüm kararlar yalnızca lisanslı bir sağlık uzmanı tarafından alınmalıdır.</p>
+<div class="disclaimer reveal">
+  <div class="disclaimer-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+  <div>
+    <p class="disclaimer-title">Önemli Bilgilendirme</p>
+    <p class="disclaimer-text">Diacora Health bir <strong>veri analiz ve raporlama platformudur;</strong> tıbbi tanı, tedavi veya ilaç reçetesi işlevleri içermez. Platform tarafından sunulan tüm veriler ve raporlar yalnızca <strong>hekim gözetiminde</strong> değerlendirilmek üzere tasarlanmıştır.</p>
   </div>
 </div>
 
-<div class="cdss-section-intro reveal" id="cdss-section">
-  <span class="cdss-pre-tag">CDSS — KLİNİK KARAR DESTEK SİSTEMİ</span>
+<section class="modules-section" id="ozellikler">
+  <div class="section-header reveal">
+    <div class="section-pre">Platform Modülleri</div>
+    <h2 class="section-h2">10 Sağlık Takip Modülü</h2>
+    <p class="section-sub">Her modülün detaylı ekranına geçmek için butona tıklayın</p>
+  </div>
+  <div class="bento-grid">
+    <div class="mod-card c-blue span2 reveal d1">
+      <div class="mod-card-header"><div class="mod-icon-wrap">🩸</div><span class="mod-num">MOD 01</span></div>
+      <h3 class="mod-h3">Şeker Takibi — Günlük Şeker Dengeniz</h3>
+      <p class="mod-p">Açlık ve tokluk şeker ölçümlerinizi kaydedin. Yapay zeka, yemeklerin şekerinizi ne kadar dalgalandırdığını ve gün içindeki eğilimleri analiz eder.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(1)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-red reveal d2">
+      <div class="mod-card-header"><div class="mod-icon-wrap">❤️</div><span class="mod-num">MOD 02</span></div>
+      <h3 class="mod-h3">Tansiyon Takibi</h3>
+      <p class="mod-p">Büyük/küçük tansiyonunuzu ve nabzınızı düzenli kaydedin. Sabah-akşam farkları analiz edilir.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(2)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-green reveal d1">
+      <div class="mod-card-header"><div class="mod-icon-wrap">🥗</div><span class="mod-num">MOD 03</span></div>
+      <h3 class="mod-h3">Beslenme Takibi</h3>
+      <p class="mod-p">Öğün günlüğünüz, kan şekerinizi nasıl etkilediğini ve tuz alımını takip eder.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(3)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-green reveal d2">
+      <div class="mod-card-header"><div class="mod-icon-wrap">🏃</div><span class="mod-num">MOD 04</span></div>
+      <h3 class="mod-h3">Egzersiz Takibi</h3>
+      <p class="mod-p">Yürüyüş, koşu ve fiziksel aktivitelerinizin kan şekerine etkisini net görün.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(4)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-amber span2 reveal d1">
+      <div class="mod-card-header"><div class="mod-icon-wrap">💊</div><span class="mod-num">MOD 05</span></div>
+      <h3 class="mod-h3">İlaç Takibi — Düzenli İlaç Kullanımı</h3>
+      <p class="mod-p">Şeker, tansiyon ve diğer haplarınızı saat ve doz olarak ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmayın, uyum oranınızı takip edin.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(5)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-blue reveal d2">
+      <div class="mod-card-header"><div class="mod-icon-wrap">💉</div><span class="mod-num">MOD 06</span></div>
+      <h3 class="mod-h3">İnsülin Takibi</h3>
+      <p class="mod-p">Uzun ve kısa etkili insülin miktarlarınızı ve enjeksiyon bölgelerinizi kaydedin.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(6)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-teal reveal d1">
+      <div class="mod-card-header"><div class="mod-icon-wrap">👨‍⚕️</div><span class="mod-num">MOD 07</span></div>
+      <h3 class="mod-h3">Doktor Ekranı</h3>
+      <p class="mod-p">İzin verdiğinizde doktorunuz verilerinizi anlık görebilir.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(7)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-purple span2 reveal d2">
+      <div class="mod-card-header"><div class="mod-icon-wrap">📋</div><span class="mod-num">MOD 08</span></div>
+      <h3 class="mod-h3">Otomatik Raporlama — Muayene Hazırlık Çıktıları</h3>
+      <p class="mod-p">Tüm şeker, tansiyon ve egzersiz verilerinizi dünyadaki doktorların tanıyacağı standart sağlık raporuna dönüştürün. Tek tuşla PDF olarak indirin.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(8)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-teal reveal d1">
+      <div class="mod-card-header"><div class="mod-icon-wrap">🔬</div><span class="mod-num">MOD 09</span></div>
+      <h3 class="mod-h3">Tahlil Sonuçları</h3>
+      <p class="mod-p">HbA1c, kolesterol ve böbrek tahlillerinizi kaydedin. Uzun vadeli sağlık takibi.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(9)">Takip Ekranına Git →</a>
+    </div>
+    <div class="mod-card c-red reveal d2">
+      <div class="mod-card-header"><div class="mod-icon-wrap">⚠️</div><span class="mod-num">MOD 10</span></div>
+      <h3 class="mod-h3">Şeker Düşmesi Analizi</h3>
+      <p class="mod-p">Tehlikeli düşüşlerin nedenlerini araştırın. Gece hipoglisemi tespiti.</p>
+      <a href="#cdss-section" class="mod-link" onclick="switchModule(10)">Takip Ekranına Git →</a>
+    </div>
+    <div class="legal-card reveal">
+      <span style="font-size:1.2em;flex-shrink:0;">⚖️</span>
+      <p><strong>Yasal Bilgilendirme:</strong> Diacora Health platformu bir tıbbi tanı, tedavi veya ilaç reçetesi aracı değildir. Tüm modüller; veri kayıt, analiz ve doktor iletişim desteği amacıyla tasarlanmıştır. Sunulan hiçbir veri tıbbi tavsiye niteliği taşımaz.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cdss-intro reveal" id="cdss-section">
+  <span class="cdss-intro-pre">CDSS — Klinik Karar Destek Sistemi</span>
   <h2>Kişisel Sağlık Takip Ekranlarınız</h2>
   <p>Sol menüden modül seçin. Her ekranda takip edilen veriler, veri tabanı yapısı ve örnek kayıtlar yer alır.</p>
 </div>
+
 <div class="cdss-wrapper">
-  <aside class="cdss-sidebar" id="cdssSidebar">
-  <div class="sidebar-hdr">
-    <div class="sidebar-hdr-tag">Diacora Health</div>
-    <div class="sidebar-hdr-title">Sağlık Takip Ekranları</div>
-    <div class="sidebar-hdr-sub">10 modül · Veri &amp; Analiz</div>
-  </div>
-  <nav class="sidebar-nav">
-    <div class="sidebar-group-lbl">Metabolik Glikoz</div>
-    <button class="sidebar-link active" data-mod="1" onclick="switchModule(1)">
-      <span class="sb-num">01</span>
-      <span class="sb-icon">🩸</span>
-      <span class="sb-label">Şeker Takibi</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <button class="sidebar-link" data-mod="10" onclick="switchModule(10)">
-      <span class="sb-num">10</span>
-      <span class="sb-icon">⚠️</span>
-      <span class="sb-label">Şeker Düşmesi</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <div class="sidebar-group-lbl">Kardiyovasküler & İlaç</div>
-    <button class="sidebar-link" data-mod="2" onclick="switchModule(2)">
-      <span class="sb-num">02</span>
-      <span class="sb-icon">❤️</span>
-      <span class="sb-label">Tansiyon Takibi</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <button class="sidebar-link" data-mod="5" onclick="switchModule(5)">
-      <span class="sb-num">05</span>
-      <span class="sb-icon">💊</span>
-      <span class="sb-label">İlaç Takibi</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <button class="sidebar-link" data-mod="6" onclick="switchModule(6)">
-      <span class="sb-num">06</span>
-      <span class="sb-icon">💉</span>
-      <span class="sb-label">İnsülin Takibi</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <div class="sidebar-group-lbl">Yaşam Tarzı</div>
-    <button class="sidebar-link" data-mod="3" onclick="switchModule(3)">
-      <span class="sb-num">03</span>
-      <span class="sb-icon">🥗</span>
-      <span class="sb-label">Beslenme Takibi</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <button class="sidebar-link" data-mod="4" onclick="switchModule(4)">
-      <span class="sb-num">04</span>
-      <span class="sb-icon">🏃</span>
-      <span class="sb-label">Egzersiz Takibi</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <div class="sidebar-group-lbl">Paylaşım & Raporlar</div>
-    <button class="sidebar-link" data-mod="7" onclick="switchModule(7)">
-      <span class="sb-num">07</span>
-      <span class="sb-icon">👨‍⚕️</span>
-      <span class="sb-label">Doktor Ekranı</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <button class="sidebar-link" data-mod="8" onclick="switchModule(8)">
-      <span class="sb-num">08</span>
-      <span class="sb-icon">📋</span>
-      <span class="sb-label">Otomatik Raporlama</span>
-      <span class="sb-arrow">›</span>
-    </button>
-    <button class="sidebar-link" data-mod="9" onclick="switchModule(9)">
-      <span class="sb-num">09</span>
-      <span class="sb-icon">🔬</span>
-      <span class="sb-label">Tahlil Sonuçları</span>
-      <span class="sb-arrow">›</span>
-    </button>
+  <nav class="cdss-sidebar">
+    <div class="sidebar-hdr">
+      <div class="sidebar-hdr-tag">Platform</div>
+      <div class="sidebar-hdr-title">Diacora Health</div>
+      <div class="sidebar-hdr-sub">10 Takip Modülü</div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-group">Metabolik</div>
+      <button class="sidebar-link active" onclick="switchModule(1)"><span class="sb-num">01</span><span class="sb-icon">🩸</span><span class="sb-label">Şeker Takibi</span><span class="sb-arrow">›</span></button>
+      <button class="sidebar-link" onclick="switchModule(2)"><span class="sb-num">02</span><span class="sb-icon">❤️</span><span class="sb-label">Tansiyon</span><span class="sb-arrow">›</span></button>
+      <button class="sidebar-link" onclick="switchModule(3)"><span class="sb-num">03</span><span class="sb-icon">🥗</span><span class="sb-label">Beslenme</span><span class="sb-arrow">›</span></button>
+      <button class="sidebar-link" onclick="switchModule(4)"><span class="sb-num">04</span><span class="sb-icon">🏃</span><span class="sb-label">Egzersiz</span><span class="sb-arrow">›</span></button>
+      <div class="sidebar-group">İlaç</div>
+      <button class="sidebar-link" onclick="switchModule(5)"><span class="sb-num">05</span><span class="sb-icon">💊</span><span class="sb-label">İlaç Takibi</span><span class="sb-arrow">›</span></button>
+      <button class="sidebar-link" onclick="switchModule(6)"><span class="sb-num">06</span><span class="sb-icon">💉</span><span class="sb-label">İnsülin</span><span class="sb-arrow">›</span></button>
+      <div class="sidebar-group">Raporlama</div>
+      <button class="sidebar-link" onclick="switchModule(7)"><span class="sb-num">07</span><span class="sb-icon">👨‍⚕️</span><span class="sb-label">Doktor Ekranı</span><span class="sb-arrow">›</span></button>
+      <button class="sidebar-link" onclick="switchModule(8)"><span class="sb-num">08</span><span class="sb-icon">📋</span><span class="sb-label">Otomatik Rapor</span><span class="sb-arrow">›</span></button>
+      <button class="sidebar-link" onclick="switchModule(9)"><span class="sb-num">09</span><span class="sb-icon">🔬</span><span class="sb-label">Tahlil Sonuçları</span><span class="sb-arrow">›</span></button>
+      <button class="sidebar-link" onclick="switchModule(10)"><span class="sb-num">10</span><span class="sb-icon">⚠️</span><span class="sb-label">Şeker Düşmesi</span><span class="sb-arrow">›</span></button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">Diacora Health v2.0<br>© 2025 Tüm hakları saklıdır</div>
+    </div>
   </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-footer-text">Diacora Health v3.0<br>© 2025 Tüm hakları saklıdır</div>
-  </div>
-</aside>
 
-  <div class="cdss-content">
+  <div class="cdss-content" id="cdssContent">
+    <div class="cdss-panel active" id="panel-1">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 01</div>
+          <div class="cdss-module-num">MODUL_01 / seker_olcumleri</div>
+          <h2>Şeker Takibi — Günlük Şeker Dengeniz</h2>
+          <p class="cdss-desc">Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve gün içindeki şeker eğilimlerinizi net bir şekilde gösterir.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Açlık şekeri (sabah ölçümü): Hedefiniz 80–130 mg/dL</li>
+            <li><span class="cb-dot">›</span>Tokluk şekeri (2 saat sonrası): Hedefiniz 140 mg/dL altı</li>
+            <li><span class="cb-dot">›</span>3 aylık HbA1c tahmini: Hedef %7,0 altı</li>
+            <li><span class="cb-dot">›</span>Gün içi şeker patikası grafiği</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">⚠️</span><div class="warn-body"><span class="warn-title">Klinik Uyarı</span>Şeker değerleri 70 mg/dL altına düşerse acil şeker alınız. 250 mg/dL üstü kalıcı yükseklikte doktorunuza başvurunuz.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="schema-card">
+            <div class="schema-hdr"><span class="schema-hdr-icon">🗃️</span><span class="schema-hdr-title">seker_olcumleri Tablosu</span><span class="schema-hdr-badge">PostgreSQL</span></div>
+            <table class="s-def">
+              <thead><tr><th>Alan</th><th>Tip</th><th>Açıklama</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td><span class="stype UUID">UUID</span></td><td>Birincil anahtar</td></tr>
+                <tr><td>kullanici_id</td><td><span class="stype UUID">UUID</span></td><td>Kullanıcı referansı</td></tr>
+                <tr><td>olcum_tarihi</td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td>Ölçüm zamanı</td></tr>
+                <tr><td>seker_mg_dl</td><td><span class="stype FLOAT">FLOAT</span></td><td>Kan şekeri (mg/dL)</td></tr>
+                <tr><td>olcum_tipi</td><td><span class="stype ENUM">ENUM</span></td><td>ACLIK / TOKLUK / RASTGELE</td></tr>
+                <tr><td>not_metni</td><td><span class="stype TEXT">TEXT</span></td><td>Opsiyonel kullanıcı notu</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Örnek Kayıtlar — Son 5 Ölçüm</span><span class="dg-badge">Demo Veri</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Tarih</th><th>Saat</th><th>mg/dL</th><th>Tip</th><th>Durum</th></tr></thead>
+              <tbody>
+                <tr><td>23 May</td><td>07:15</td><td>108</td><td>Açlık</td><td><span class="dg ok">Normal</span></td></tr>
+                <tr><td>23 May</td><td>09:45</td><td>162</td><td>Tokluk</td><td><span class="dg hi">Yüksek</span></td></tr>
+                <tr><td>23 May</td><td>12:30</td><td>94</td><td>Açlık</td><td><span class="dg ok">Normal</span></td></tr>
+                <tr><td>23 May</td><td>14:50</td><td>138</td><td>Tokluk</td><td><span class="dg ok">Normal</span></td></tr>
+                <tr><td>23 May</td><td>19:00</td><td>72</td><td>Açlık</td><td><span class="dg warn">Dikkat</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="cdss-panel-footer">
+            <div class="cdss-footer-title">📖 Şeker Değerleri Referans Tablosu</div>
+            <p class="cdss-footer-body"><strong>Açlık Şekeri (Normal):</strong> 70–99 mg/dL. Diyabetik hedef: 80–130 mg/dL.</p>
+            <p class="cdss-footer-body"><strong>Tokluk Şekeri (2. saat):</strong> Normal: 140 mg/dL altı. Diyabetik hedef: 180 mg/dL altı.</p>
+            <p class="cdss-footer-body"><strong>HbA1c:</strong> 3 aylık ortalama şekeri yansıtır. Diyabetik hedef genellikle %7,0 altı.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="cdss-panel active" id="panel-1">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-1">
-      <div class="cdss-module-num">MODÜL 01 — Metabolik Glikoz</div>
-      <h2>Şeker Takibi — Günlük Şeker Dengeniz</h2>
-      <p class="cdss-desc">Gün içinde yaptığınız açlık ve tokluk şeker ölçümlerinizi buraya kolayca kaydedin. Sistemimiz, yediğiniz yemeklerin şekerinizi ne kadar dalgalandırdığını ve günün ne kadarını güvenli bölgede geçirdiğinizi anlaşılır grafiklerle size gösterir.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Günlük şeker dalgalanmalarınızın kolay takibi</li><li><span class="cb-dot">◆</span> Şekerinizin ne kadar süre normal sınırlarda kaldığının analizi</li><li><span class="cb-dot">◆</span> Yemekten sonraki vücut şeker tepkilerinizin takibi</li><li><span class="cb-dot">◆</span> Doktorunuzun veya diyetisyeninizin verdiği özel ölçüm saatlerini sisteme kolayca uygulama özelliği</li><li><span class="cb-dot">◆</span> Uzmanınızın çizelgesine uygun gelişmiş şeker analiz raporları hazırlama</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-1">
-      <div class="hero-img-card" id="hero-1">
-        <img
-          src="https://images.unsplash.com/photo-1550831107-1553da8c8464?w=600&auto=format&fit=crop&q=80"
-          alt="Günlük şeker takibi"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Şekeriniz kontrol altında.</div>
-          <div class="hero-img-sub">Güvenli bölgede her gün daha sağlıklı</div>
+    <div class="cdss-panel" id="panel-2">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 02</div>
+          <div class="cdss-module-num">MODUL_02 / tansiyon_olcumleri</div>
+          <h2>Tansiyon Takibi — Kalp ve Kan Basıncı Düzeniniz</h2>
+          <p class="cdss-desc">Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlığınızdaki eğilimleri analiz eder.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>Normal tansiyon: 120/80 mmHg altı</li>
+            <li><span class="cb-dot">›</span>Sabah ölçümü (kalkmadan 1 saat içinde): Kritik önem taşır</li>
+            <li><span class="cb-dot">›</span>Nabız değerlendirmesi: Normal 60–100 bpm</li>
+            <li><span class="cb-dot">›</span>7 günlük ortalama takibi</li>
+          </ul>
+          <div class="cdss-warn-box"><span class="warn-icon">⚠️</span><div class="warn-body"><span class="warn-title">Klinik Uyarı</span>Sistolik tansiyon 180 mmHg üstü veya diyastolik 120 mmHg üstü hipertansif kriz belirtisidir. Derhal tıbbi yardım alınız.</div></div>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <div class="schema-card">
+            <div class="schema-hdr"><span class="schema-hdr-icon">🗃️</span><span class="schema-hdr-title">tansiyon_olcumleri Tablosu</span><span class="schema-hdr-badge">PostgreSQL</span></div>
+            <table class="s-def">
+              <thead><tr><th>Alan</th><th>Tip</th><th>Açıklama</th></tr></thead>
+              <tbody>
+                <tr><td>id</td><td><span class="stype UUID">UUID</span></td><td>Birincil anahtar</td></tr>
+                <tr><td>kullanici_id</td><td><span class="stype UUID">UUID</span></td><td>Kullanıcı referansı</td></tr>
+                <tr><td>olcum_tarihi</td><td><span class="stype TIMESTAMP">TIMESTAMP</span></td><td>Ölçüm zamanı</td></tr>
+                <tr><td>sistolik_mmhg</td><td><span class="stype INTEGER">INTEGER</span></td><td>Büyük tansiyon</td></tr>
+                <tr><td>diyastolik_mmhg</td><td><span class="stype INTEGER">INTEGER</span></td><td>Küçük tansiyon</td></tr>
+                <tr><td>nabiz_bpm</td><td><span class="stype INTEGER">INTEGER</span></td><td>Nabız (atım/dk)</td></tr>
+                <tr><td>olcum_kolu</td><td><span class="stype ENUM">ENUM</span></td><td>SAG / SOL</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="data-grid-card">
+            <div class="dg-hdr"><span>Örnek Kayıtlar — Son 5 Ölçüm</span><span class="dg-badge">Demo Veri</span></div>
+            <table class="d-grid">
+              <thead><tr><th>Tarih</th><th>Saat</th><th>Sis/Diy</th><th>Nabız</th><th>Durum</th></tr></thead>
+              <tbody>
+                <tr><td>23 May</td><td>07:10</td><td>128/82</td><td>74</td><td><span class="dg warn">Yüksek Normal</span></td></tr>
+                <tr><td>22 May</td><td>20:30</td><td>122/78</td><td>71</td><td><span class="dg ok">Normal</span></td></tr>
+                <tr><td>22 May</td><td>07:15</td><td>135/88</td><td>80</td><td><span class="dg hi">Yüksek</span></td></tr>
+                <tr><td>21 May</td><td>20:00</td><td>118/76</td><td>68</td><td><span class="dg ok">Normal</span></td></tr>
+                <tr><td>21 May</td><td>07:30</td><td>124/80</td><td>72</td><td><span class="dg ok">Normal</span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>🩸 Kan Şekeri Örnek Ölçüm Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Zaman</th><th>Ölçüm Türü</th><th>Şeker (mg/dL)</th><th>CV%</th><th>Güvenli Alan</th></tr></thead><tbody><tr><td>07:45</td><td>Açlık</td><td><b>92</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>09:30</td><td>Tokluk 1. Saat</td><td><b>156</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>11:00</td><td>Tokluk 2. Saat</td><td><b>128</b></td><td>14.2%</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>22:30</td><td>Gece</td><td><b>66</b></td><td>18.6%</td><td><span class='dg lo'>⚠ Düşük</span></td></tr><tr><td>08:00</td><td>Açlık (Ertesi)</td><td><b>98</b></td><td>11.8%</td><td><span class='dg ok'>✓ Normal</span></td></tr></tbody></table>
-      </div>
     </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
 
-<div class="cdss-panel" id="panel-2">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-2">
-      <div class="cdss-module-num">MODÜL 02 — Kardiyovasküler</div>
-      <h2>Tansiyon Takibi — Kalp ve Kan Basıncı Düzeniniz</h2>
-      <p class="cdss-desc">Büyük ve küçük tansiyonunuz ile nabzınızı düzenli olarak buraya işleyin. Diacora Health, sabah ve akşam ölçümleriniz arasındaki farkları takip ederek kalp sağlığınızın genel gidişatını görmenizi sağlar.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Sabah ve akşam tansiyonu arasındaki farkların takibi</li><li><span class="cb-dot">◆</span> Büyük ve küçük tansiyon arasındaki dengenin izlenmesi</li><li><span class="cb-dot">◆</span> Dinlenme anındaki kalp atış hızınızın takibi</li><li><span class="cb-dot">◆</span> Uzman sağlık personelinin size özel hazırladığı tansiyon ölçüm takvimini sisteme kolayca girme seçeneği</li><li><span class="cb-dot">◆</span> Doktorunuz için özel kalp ve kan basıncı analiz tabloları üretme</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-2">
-      <div class="hero-img-card" id="hero-2">
-        <img
-          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop&q=80"
-          alt="Tansiyon ve kalp sağlığı"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Kalbiniz güvende.</div>
-          <div class="hero-img-sub">Her ölçüm, daha sağlıklı bir yarın</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>❤️ Tansiyon & Nabız Kayıt Arşivi</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Zaman</th><th>Büyük (mmHg)</th><th>Küçük (mmHg)</th><th>Nabız Bas.</th><th>Kalp Atışı</th><th>Durum</th></tr></thead><tbody><tr><td>08:00</td><td><b>118</b></td><td><b>76</b></td><td>42 mmHg</td><td>72 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>12:00</td><td><b>134</b></td><td><b>86</b></td><td>48 mmHg</td><td>80 bpm</td><td><span class='dg warn'>⚠ Yüksek</span></td></tr><tr><td>16:00</td><td><b>122</b></td><td><b>80</b></td><td>42 mmHg</td><td>75 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>20:00</td><td><b>128</b></td><td><b>82</b></td><td>46 mmHg</td><td>78 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr><tr><td>08:00</td><td><b>116</b></td><td><b>74</b></td><td>42 mmHg</td><td>70 bpm</td><td><span class='dg ok'>✓ Normal</span></td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
+    <div class="cdss-panel" id="panel-3"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 03</div><h2>Beslenme Takibi — Yemeklerin Şekere Etkisi</h2><p class="cdss-desc">Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımınızı analiz eder.</p></div></div>
+    <div class="cdss-panel" id="panel-4"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 04</div><h2>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h2><p class="cdss-desc">Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net gösterir.</p></div></div>
+    <div class="cdss-panel" id="panel-5"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 05</div><h2>İlaç Takibi — Düzenli İlaç Kullanımı</h2><p class="cdss-desc">Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağlar.</p></div></div>
+    <div class="cdss-panel" id="panel-6"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 06</div><h2>İnsülin Takibi — Doz ve Bölge Günlüğü</h2><p class="cdss-desc">Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin.</p></div></div>
+    <div class="cdss-panel" id="panel-7"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 07</div><h2>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h2><p class="cdss-desc">İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz şeker, tansiyon ve ilaç verilerini kendi ekranından anlık olarak görebilir.</p></div></div>
 
-<div class="cdss-panel" id="panel-3">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-3">
-      <div class="cdss-module-num">MODÜL 03 — Yaşam Tarzı</div>
-      <h2>Beslenme Takibi — Yemeklerin Şekere Etkisi</h2>
-      <p class="cdss-desc">Gün içinde ne yediğinizi ve porsiyonlarınızı kaydedin. Yemek günlüğümüz, yediğiniz yiyeceklerin kan şekerinizi ne kadar hızlı yükselttiğini ve günlük tuz alımınızı takip etmenizi kolaylaştırır.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Yediğiniz yemeklerin içerdiği karbonhidrat ve liflerin takibi</li><li><span class="cb-dot">◆</span> Yiyeceklerin kan şekerini ani yükseltme gücünün izlenmesi</li><li><span class="cb-dot">◆</span> Sağlığınızı korumak için günlük tuz ve potasyum dengesi</li><li><span class="cb-dot">◆</span> Diyetisyeninizin size özel yazdığı beslenme aralıklarını ve yemek saatlerini sisteme birebir uygulama kolaylığı</li><li><span class="cb-dot">◆</span> Beslenme düzeninizin şeker ve tansiyona etkisini gösteren özel diyet analiz raporları</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-3">
-      <div class="hero-img-card" id="hero-3">
-        <img
-          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop&q=80"
-          alt="Sağlıklı beslenme"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Beslenmeniz şekerinizi şekillendirir.</div>
-          <div class="hero-img-sub">Doğru tabak, dengeli gün</div>
+    <div class="cdss-panel" id="panel-8">
+      <div class="cdss-split">
+        <div class="cdss-col-left slide-init">
+          <div class="cdss-part-tag">Modül 08</div>
+          <div class="cdss-module-num">MODUL_08 / raporlama</div>
+          <h2>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h2>
+          <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün.</p>
+          <ul class="cdss-bullets">
+            <li><span class="cb-dot">›</span>7 – 30 – 90 günlük şeker özeti ve grafikleri</li>
+            <li><span class="cb-dot">›</span>Tansiyon trend analizi</li>
+            <li><span class="cb-dot">›</span>İlaç uyum tablosu</li>
+            <li><span class="cb-dot">›</span>FHIR formatında güvenli paylaşım</li>
+          </ul>
+        </div>
+        <div class="cdss-col-right slide-init">
+          <a class="mod8-hero-img-card" href="#">
+            <img src="/public/dashboard.png" alt="Dashboard" class="mod8-hero-img">
+            <div class="mod8-img-overlay">
+              <div class="mod8-img-badge">📊 Dashboard</div>
+              <div class="mod8-img-headline">Diacora Health Dashboard</div>
+              <div class="mod8-img-sub">Tüm sağlık verileriniz tek ekranda</div>
+            </div>
+          </a>
+          <a class="hero-img-card" href="#">
+            <img src="/public/profile.png" alt="Profil" class="hero-img">
+            <div class="hero-img-overlay">
+              <div class="hero-img-headline">Kullanıcı Profili ve Rapor</div>
+              <div class="hero-img-sub">Kişiselleştirilmiş sağlık özeti</div>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>🥗 Günlük Tüketilen Besinler Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Öğün</th><th>Karbonhidrat</th><th>Lif</th><th>GI</th><th>Net GL</th><th>Sodyum</th></tr></thead><tbody><tr><td>Kahvaltı 08:30</td><td><b>45g</b></td><td>8g</td><td>52</td><td><span class='dg ok'>23.4</span></td><td>580 mg</td></tr><tr><td>Öğle 13:00</td><td><b>62g</b></td><td>6g</td><td>65</td><td><span class='dg warn'>40.3</span></td><td>920 mg</td></tr><tr><td>Ara Öğün 16:00</td><td><b>28g</b></td><td>3g</td><td>43</td><td><span class='dg ok'>12.0</span></td><td>210 mg</td></tr><tr><td>Akşam 19:30</td><td><b>55g</b></td><td>9g</td><td>48</td><td><span class='dg ok'>26.4</span></td><td>740 mg</td></tr><tr><td>Gece Atıştırma 22:00</td><td><b>18g</b></td><td>4g</td><td>35</td><td><span class='dg ok'>6.3</span></td><td>120 mg</td></tr></tbody></table>
-      </div>
     </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
 
-<div class="cdss-panel" id="panel-4">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-4">
-      <div class="cdss-module-num">MODÜL 04 — Yaşam Tarzı</div>
-      <h2>Egzersiz Takibi — Hareketin Sağlığa Etkisi</h2>
-      <p class="cdss-desc">Yürüyüş, koşu veya yaptığınız diğer fiziksel aktiviteleri süresiyle birlikte buraya girin. Sistemimiz, hareket etmenin kan şekerinizi dengelemedeki gücünü net grafiklerle size gösterir.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Yaptığınız hareketlerin harcadığı enerji seviyesinin takibi</li><li><span class="cb-dot">◆</span> Egzersiz sonrası kan şekerinizin ne kadar sürede düzene girdiğinin takibi</li><li><span class="cb-dot">◆</span> Hareket ettikçe kalbinizin kazandığı dayanıklılık trendi</li><li><span class="cb-dot">◆</span> Uzmanınızın kontrolünde hazırlanan hareket ve aktivite zaman çizelgelerini sisteme rahatça ekleme imkanı</li><li><span class="cb-dot">◆</span> Egzersizlerin vücudunuza faydasını gösteren haftalık aktivite analiz tabloları</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-4">
-      <div class="hero-img-card" id="hero-4">
-        <img
-          src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&auto=format&fit=crop&q=80"
-          alt="Egzersiz ve hareket"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Hareket sağlıktır.</div>
-          <div class="hero-img-sub">Her adım, daha güçlü bir vücut</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>🏃 Haftalık Aktivite Günlüğü</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Zaman</th><th>Aktivite</th><th>Tür</th><th>Süre</th><th>METs</th><th>Δ Şeker</th></tr></thead><tbody><tr><td>Pzt 07:00</td><td>Koşu</td><td><span class='dg info'>Aerobik</span></td><td>32 dk</td><td>8.5</td><td><span class='dg teal'>-18 mg/dL</span></td></tr><tr><td>Pzt 18:00</td><td>Fitness</td><td><span class='dg purple'>Anaerobik</span></td><td>45 dk</td><td>5.0</td><td><span class='dg teal'>-12 mg/dL</span></td></tr><tr><td>Sal 07:30</td><td>Yürüyüş</td><td><span class='dg info'>Aerobik</span></td><td>50 dk</td><td>3.5</td><td><span class='dg teal'>-8 mg/dL</span></td></tr><tr><td>Çar 19:00</td><td>Yoga</td><td><span class='dg gray'>Toparlanma</span></td><td>30 dk</td><td>2.5</td><td><span class='dg gray'>-3 mg/dL</span></td></tr><tr><td>Per 08:00</td><td>Bisiklet</td><td><span class='dg info'>Aerobik</span></td><td>40 dk</td><td>7.0</td><td><span class='dg teal'>-15 mg/dL</span></td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
+    <div class="cdss-panel" id="panel-9"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 09</div><h2>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h2><p class="cdss-desc">Hastanede yaptırdığınız 3 aylık ortalama şeker (HbA1c), kolesterol ve böbrek tahlili sonuçlarınızı buraya işleyin.</p></div></div>
+    <div class="cdss-panel" id="panel-10"><div class="cdss-col-left" style="max-width:640px"><div class="cdss-part-tag">Modül 10</div><h2>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h2><p class="cdss-desc">Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır.</p></div></div>
   </div>
 </div>
 
-<div class="cdss-panel" id="panel-5">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-5">
-      <div class="cdss-module-num">MODÜL 05 — İlaç & İnsülin</div>
-      <h2>İlaç Takibi — Düzenli İlaç Kullanımı</h2>
-      <p class="cdss-desc">Doktorunuzun yazdığı şeker, tansiyon ve diğer haplarınızı saat ve doz olarak buraya ekleyin. Akıllı hatırlatıcılarımız sayesinde ilaçlarınızı unutmamanızı sağlarız.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> İlaç saatleriniz için akıllı ve düzenli hatırlatıcılar</li><li><span class="cb-dot">◆</span> İlaçlarınızı aylık olarak ne kadar düzenli içtiğinizin başarı oranı</li><li><span class="cb-dot">◆</span> Unutulan ilaçların tansiyon ve şeker dalgalanmalarıyla olan ilişkisi</li><li><span class="cb-dot">◆</span> Doktorunuzun size özel belirlediği ilaç saatlerini ve tedavi takvimini sisteme kolayca işleme kolaylığı</li><li><span class="cb-dot">◆</span> Hekiminizin doz takibini rahatça yapabilmesi için özel ilaç uyum analiz raporları</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-5">
-      <div class="hero-img-card" id="hero-5">
-        <img
-          src="https://images.unsplash.com/photo-1550572017-edd951b55104?w=600&auto=format&fit=crop&q=80"
-          alt="Düzenli ilaç takibi"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">İlaç düzeniniz, sağlık güvenceniz.</div>
-          <div class="hero-img-sub">Düzenli, eksiksiz, güvenli</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>💊 Aktif Kullanılan İlaç Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>İlaç Adı</th><th>Planlanan Saat</th><th>Kalış Süresi</th><th>Uyum Oranı</th><th>Atlanan Doz</th></tr></thead><tbody><tr><td>Metformin 850mg</td><td>08:00 / 20:00</td><td>6.5 saat</td><td><span class='dg ok'>94.2%</span></td><td>2 kez</td></tr><tr><td>Lisinopril 10mg</td><td>09:00</td><td>12 saat</td><td><span class='dg ok'>96.7%</span></td><td>1 kez</td></tr><tr><td>Atorvastatin 20mg</td><td>21:00</td><td>14 saat</td><td><span class='dg warn'>82.1%</span></td><td>5 kez</td></tr><tr><td>Empagliflozin 10mg</td><td>08:00</td><td>12.4 saat</td><td><span class='dg ok'>98.3%</span></td><td>0 kez</td></tr><tr><td>Amlodipin 5mg</td><td>09:00</td><td>35–50 saat</td><td><span class='dg ok'>91.8%</span></td><td>2 kez</td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
-
-<div class="cdss-panel" id="panel-6">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-6">
-      <div class="cdss-module-num">MODÜL 06 — İlaç & İnsülin</div>
-      <h2>İnsülin Takibi — Doz ve Bölge Günlüğü</h2>
-      <p class="cdss-desc">Kullandığınız uzun etkili ve kısa etkili insülin miktarlarını ve enjeksiyon yaptığınız bölgeleri buraya kaydedin. Sistemimiz, yediğiniz karbonhidrata karşılık yaptığınız insülinin izlenmesini sağlar.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Vücudunuzda hâlâ etkisi devam eden aktif insülin miktarının takibi</li><li><span class="cb-dot">◆</span> Aynı yere üst üste yapıp dokuyu sertleştirmemek için enjeksiyon bölgesi takibi</li><li><span class="cb-dot">◆</span> Yediğiniz karbonhidrata karşılık yaptığınız insülinin izlenmesi</li><li><span class="cb-dot">◆</span> Uzmanınızın size verdiği özel insülin doz saatlerini ve zaman çizelgelerini sisteme birebir uygulama imkanı</li><li><span class="cb-dot">◆</span> Doktor vizitleriniz için geriye dönük insülin doz reaksiyon raporları hazırlama</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-6">
-      <div class="hero-img-card" id="hero-6">
-        <img
-          src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80"
-          alt="İnsülin takibi"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Dozunuz tam, kontrolünüz eksiksiz.</div>
-          <div class="hero-img-sub">Her enjeksiyon kayıt altında</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>💉 Geriye Dönük İnsülin Enjeksiyon Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Zaman</th><th>İnsülin Türü</th><th>Bölge</th><th>Doz (Ü)</th><th>Aktif IOB (Ü)</th></tr></thead><tbody><tr><td>07:30</td><td><span class='dg info'>Uzun Etkili</span></td><td>Bölge 4 — Karın</td><td><b>20 Ü</b></td><td><span class='dg gray'>0.0</span></td></tr><tr><td>08:00</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 7 — Kol</td><td><b>5 Ü</b></td><td><span class='dg ok'>4.8</span></td></tr><tr><td>13:00</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 2 — Karın</td><td><b>7 Ü</b></td><td><span class='dg ok'>2.1</span></td></tr><tr><td>15:00</td><td><span class='dg warn'>Düzeltme</span></td><td>Bölge 9 — Bacak</td><td><b>2 Ü</b></td><td><span class='dg warn'>5.3</span></td></tr><tr><td>19:30</td><td><span class='dg ok'>Kısa Etkili</span></td><td>Bölge 5 — Kol</td><td><b>6 Ü</b></td><td><span class='dg ok'>3.7</span></td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
-
-<div class="cdss-panel" id="panel-7">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-7">
-      <div class="cdss-module-num">MODÜL 07 — Paylaşım & Raporlar</div>
-      <h2>Doktor Ekranı — Sağlık Ekibinizle Bağlantı</h2>
-      <p class="cdss-desc">İzin verdiğiniz takdirde, doktorunuz veya diyabet hemşireniz evde girdiğiniz verileri kendi ekranından görebilir.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Doktorunuz ve hemşirenizle şifreli ve güvenli veri paylaşımı</li><li><span class="cb-dot">◆</span> Sağlık ekibinizin sizin için uygulamaya yazabileceği ortak notlar</li><li><span class="cb-dot">◆</span> Uzmanınızın sistem üzerinden size doğrudan yeni ölçüm ve beslenme zaman çizelgeleri gönderebilmesi</li><li><span class="cb-dot">◆</span> Sağlık personelinin hastane dışındayken de durumunuzu takip edebileceği analiz paneli</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-7">
-      <div class="hero-img-card" id="hero-7">
-        <img
-          src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&auto=format&fit=crop&q=80"
-          alt="Doktor ve sağlık ekibi"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Ekibiniz her an yanınızda.</div>
-          <div class="hero-img-sub">Güvenli ve şifreli veri paylaşımı</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>👨‍⚕️ Yetkilendirilmiş Doktor & Hemşire Listesi Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Erişim Zamanı</th><th>Erişim Kodu</th><th>Denetim ID</th><th>Bildirim</th><th>Doktor Notu</th></tr></thead><tbody><tr><td>18.06 — 10:30</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-192</td><td><span class='dg ok'>Normal</span></td><td>Vizit öncesi inceleme</td></tr><tr><td>15.06 — 14:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-187</td><td><span class='dg warn'>Şeker Düşme</span></td><td>Gece trendi gözlendi</td></tr><tr><td>12.06 — 09:15</td><td><span class='dg info'>TKN-3304</span></td><td>AUD-181</td><td><span class='dg ok'>Normal</span></td><td>Hemşire notu güncellendi</td></tr><tr><td>08.06 — 16:45</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-174</td><td><span class='dg ok'>Normal</span></td><td>Aylık HbA1c analizi</td></tr><tr><td>01.06 — 11:00</td><td><span class='dg teal'>TKN-4821</span></td><td>AUD-161</td><td><span class='dg warn'>Tansiyon ↑</span></td><td>İlaç güncelleme önerisi</td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
-
-<div class="cdss-panel" id="panel-8">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-8">
-      <div class="cdss-module-num">MODÜL 08 — Paylaşım & Raporlar</div>
-      <h2>Otomatik Raporlama — Muayene Hazırlık Çıktıları</h2>
-      <p class="cdss-desc">Evde girdiğiniz tüm şeker, tansiyon ve egzersiz verilerini, dünyadaki tüm doktorların hemen tanıyacağı standart bir sağlık raporuna dönüştürün.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Dünya standartlarında grafiksel sağlık özeti</li><li><span class="cb-dot">◆</span> Şeker ve tansiyonunuzun ortalama, en yüksek ve en düşük değerlerinin dökümü</li><li><span class="cb-dot">◆</span> Doktorunuzla dijital olarak paylaşabileceğiniz güvenli rapor barkodu</li><li><span class="cb-dot">◆</span> Belirlenen ölçüm, diyet ve egzersiz çizelgelerinin rapora otomatik olarak yansıması</li><li><span class="cb-dot">◆</span> Tek tuşla uzman ekibinize gönderilebilecek detaylı klinik durum analiz dosyası</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-8">
-      <div class="mod8-hero-img-card">
-        <img
-          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80"
-          alt="Sağlık verileriniz tek raporda"
-          class="mod8-hero-img"
-          loading="eager"
-        >
-        <div class="mod8-img-overlay">
-          <div class="mod8-img-badge">📊 Muayene Hazırlık Çıktısı</div>
-          <div class="mod8-img-headline">Tüm verileriniz,<br>tek sayfada.</div>
-          <div class="mod8-img-sub">Dünya standartlarında, tek tuşla hazır rapor</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>📋 Otomatik Rapor Arşivi Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Rapor No</th><th>Oluşturma Zamanı</th><th>Ort. Şeker</th><th>Uyum Oranı</th><th>PDF Kodu</th></tr></thead><tbody><tr><td>RPT-0041</td><td>18.06.2025 — 09:00</td><td><b>126 mg/dL</b></td><td><span class='dg ok'>92.4%</span></td><td>a3f9...c821</td></tr><tr><td>RPT-0040</td><td>11.06.2025 — 09:00</td><td><b>131 mg/dL</b></td><td><span class='dg ok'>89.7%</span></td><td>b7d2...e034</td></tr><tr><td>RPT-0039</td><td>04.06.2025 — 09:00</td><td><b>138 mg/dL</b></td><td><span class='dg warn'>78.2%</span></td><td>c1a8...f119</td></tr><tr><td>RPT-0038</td><td>28.05.2025 — 09:00</td><td><b>142 mg/dL</b></td><td><span class='dg warn'>74.5%</span></td><td>d4b3...0a72</td></tr><tr><td>RPT-0037</td><td>21.05.2025 — 09:00</td><td><b>129 mg/dL</b></td><td><span class='dg ok'>88.1%</span></td><td>e9c5...2b61</td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
-
-<div class="cdss-panel" id="panel-9">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-9">
-      <div class="cdss-module-num">MODÜL 09 — Paylaşım & Raporlar</div>
-      <h2>Tahlil Sonuçları — Uzun Vadeli Sağlık Takibi</h2>
-      <p class="cdss-desc">Hastanede yaptırdığınız tahlil sonuçlarınızı buraya işleyin. Sistemimiz, evdeki günlük ölçümleriniz ile hastane sonuçlarınızı birleştirir.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Evdeki ölçümlerinizden yola çıkarak bir sonraki tahmini 3 aylık şeker tahmini</li><li><span class="cb-dot">◆</span> Kolesterol ve kan yağlarınızın zaman içindeki değişim grafiği</li><li><span class="cb-dot">◆</span> Doktorunuzun tahlil dönemlerine göre sisteme ekleyeceği özel kontrol zaman çizelgeleri</li><li><span class="cb-dot">◆</span> Günlük rutinleriniz ile resmi laboratuvar sonuçlarını karşılaştıran analiz tabloları</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-9">
-      <div class="hero-img-card" id="hero-9">
-        <img
-          src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&auto=format&fit=crop&q=80"
-          alt="Tahlil sonuçları"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Tahlilleriniz, sağlığınızın habercisi.</div>
-          <div class="hero-img-sub">Günlük takipten uzun vadeli tabloya</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>🔬 Resmi Laboratuvar Tahlil Geçmişi Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Tahlil Tarihi</th><th>HbA1c%</th><th>Ort. Şeker</th><th>LDL</th><th>Trigliserid</th><th>Böbrek eGFR</th></tr></thead><tbody><tr><td>Haz 2025</td><td><span class='dg warn'>6.8%</span></td><td><b>148 mg/dL</b></td><td>95 mg/dL</td><td>142 mg/dL</td><td><span class='dg ok'>88</span></td></tr><tr><td>Mar 2025</td><td><span class='dg warn'>7.1%</span></td><td><b>157 mg/dL</b></td><td>102 mg/dL</td><td>158 mg/dL</td><td><span class='dg ok'>86</span></td></tr><tr><td>Ara 2024</td><td><span class='dg lo'>7.4%</span></td><td><b>165 mg/dL</b></td><td>110 mg/dL</td><td>172 mg/dL</td><td><span class='dg ok'>84</span></td></tr><tr><td>Eyl 2024</td><td><span class='dg lo'>7.6%</span></td><td><b>171 mg/dL</b></td><td>118 mg/dL</td><td>185 mg/dL</td><td><span class='dg warn'>79</span></td></tr><tr><td>Haz 2024</td><td><span class='dg lo'>7.9%</span></td><td><b>179 mg/dL</b></td><td>124 mg/dL</td><td>196 mg/dL</td><td><span class='dg warn'>76</span></td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
-
-<div class="cdss-panel" id="panel-10">
-  <div class="cdss-split">
-    <div class="cdss-col-left" id="left-10">
-      <div class="cdss-module-num">MODÜL 10 — Metabolik Glikoz</div>
-      <h2>Şeker Düşmesi Analizi — Güvenli Alan Takibi</h2>
-      <p class="cdss-desc">Kan şekerinizin tehlikeli şekilde düştüğü anları geriye dönük inceleyerek bu düşüşlerin nedenlerini araştırır.</p>
-      <ul class="cdss-bullets"><li><span class="cb-dot">◆</span> Hafif ve ciddi şeker düşmelerinin sıklık analizi</li><li><span class="cb-dot">◆</span> Şeker düşüşlerinin günün hangi saatlerinde yoğunlaştığının tespiti</li><li><span class="cb-dot">◆</span> Uzman ekibinizin şeker düşmesini engellemek için önereceği özel beslenme ve ölçüm saatlerinin takibi</li><li><span class="cb-dot">◆</span> Şeker düşme eğilimlerini önceden fark etmenizi sağlayacak geriye dönük analiz raporları</li></ul>
-    </div>
-    <div class="cdss-col-right" id="right-10">
-      <div class="hero-img-card" id="hero-10">
-        <img
-          src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&auto=format&fit=crop&q=80"
-          alt="Güvenli alan takibi"
-          class="hero-img"
-          loading="lazy"
-        >
-        <div class="hero-img-overlay">
-          <div class="hero-img-headline">Güvenli alanda, her zaman.</div>
-          <div class="hero-img-sub">Gece veya gündüz, şekeriniz takipte</div>
-        </div>
-      </div>
-      <div class="data-grid-card">
-        <div class="dg-hdr">
-          <span>⚠️ Hipoglisemi Vaka Kayıt Arşivi Tablosu</span>
-          <span class="dg-badge">5 Örnek Kayıt</span>
-        </div>
-        <table class="d-grid"><thead><tr><th>Olay No</th><th>Zaman</th><th>Şeker Değeri</th><th>Şiddet</th><th>Gece mi?</th><th>Rebound</th></tr></thead><tbody><tr><td>DÜŞ-021</td><td>18.06 — 03:15</td><td><b>61 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg lo'>✓ Gece</span></td><td>0</td></tr><tr><td>DÜŞ-020</td><td>14.06 — 08:45</td><td><b>51 mg/dL</b></td><td><span class='dg lo'>Ciddi</span></td><td><span class='dg info'>Egzersiz Sonrası</span></td><td>1</td></tr><tr><td>DÜŞ-019</td><td>09.06 — 22:30</td><td><b>65 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg lo'>✓ Gece</span></td><td>0</td></tr><tr><td>DÜŞ-018</td><td>03.06 — 07:00</td><td><b>68 mg/dL</b></td><td><span class='dg warn'>Hafif</span></td><td><span class='dg gray'>Hayır</span></td><td>0</td></tr><tr><td>DÜŞ-017</td><td>28.05 — 03:45</td><td><b>48 mg/dL</b></td><td><span class='dg lo'>Ciddi</span></td><td><span class='dg lo'>✓ Gece</span></td><td>2</td></tr></tbody></table>
-      </div>
-    </div>
-  <div class="cdss-panel-footer">
-    <div class="cdss-footer-title">CDSS — KLİNİK KARAR DESTEK SİSTEMİ NEDİR?</div>
-    <p class="cdss-footer-body">Diacora Health yanınızdaki akıllı yardımcıdır, ancak bir doktor değildir. Bu bir Klinik Karar Destek Sistemidir (CDSS). Evde kendi kendinize girdiğiniz şeker, tansiyon, yemek ve hareket verilerinizi analiz eden bir sağlık asistanıdır.</p>
-    <p class="cdss-footer-body"><strong>Amacı:</strong> Verilerinizi düzenli raporlara dönüştürerek, doktorunuzun sizin için en doğru tedavi kararlarını almasını kolaylaştırmaktır.</p>
-    <p class="cdss-footer-body"><strong>Önemli Not:</strong> Kendi kendinize ilaç veya insülin dozunuzu değiştirmeyiniz. Tüm kararlar hekiminize aittir.</p>
-  </div>
-</div>
-</div>
-
-</div>
-
-<div class="cta-section" id="iletisim">
-  <img src="/public/logo.png" alt="Diacora" class="cta-logo reveal">
-  <div class="cta-title reveal">Sağlığınızın kontrolü <span>sizin elinizde.</span></div>
-  <div class="cta-sub reveal">10 takip ekranı, otomatik raporlama ve güvenli doktor paylaşımıyla randevularınıza hazır olun.</div>
-  <div class="reveal"><a href="#" class="btn-cta">Ücretsiz Başla →</a></div>
-  <div class="cta-italic reveal">"Caring Today. Shaping Tomorrows."</div>
-</div>
+<section class="cta-section reveal" id="iletisim">
+  <img src="/public/logo.png" alt="Diacora" class="cta-logo">
+  <h2 class="cta-h2">Sağlığınızı <span>Diacora ile</span> Takip Edin</h2>
+  <p class="cta-sub">Yapay zeka destekli kişisel sağlık platformunuza bugün ücretsiz başlayın.</p>
+  <a href="#" class="btn-primary" style="font-size:1em;padding:15px 36px;">Ücretsiz Başla →</a>
+  <p class="cta-italic">Kredi kartı gerekmez · Kurulum gerektirmez</p>
+</section>
 
 <footer class="footer">
-  <p>© 2025 Diacora Health. Tüm hakları saklıdır. · Sağlık Takip Sistemi v3.0</p>
+  <div class="footer-brand">
+    <img src="/public/logo.png" alt="Diacora" style="width:28px;height:28px;border-radius:7px;object-fit:cover;">
+    <div>
+      <div class="footer-brand-name">Diacora</div>
+      <div class="footer-brand-sub">HEALTH</div>
+    </div>
+  </div>
+  <p class="footer-p">© 2025 Diacora Health. Tüm hakları saklıdır. · Veri analiz platformudur, tıbbi tavsiye vermez.</p>
+  <div class="footer-links">
+    <a href="#">Gizlilik</a>
+    <a href="#">Şartlar</a>
+    <a href="#">İletişim</a>
+  </div>
 </footer>
 
 <script>
-// ---- SIDEBAR MODULE SWITCHING WITH SLIDE ANIMATIONS ----
-function switchModule(n) {
-  // Hide current panel instantly
-  document.querySelectorAll('.cdss-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-
-  // Activate new panel
-  const panel = document.getElementById('panel-' + n);
-  if (!panel) return;
-  panel.classList.add('active');
-
-  // Activate sidebar link
-  document.querySelectorAll('.sidebar-link').forEach(l => {
-    if (parseInt(l.dataset.mod) === n) l.classList.add('active');
-  });
-
-  // Grab columns
-  const leftCol  = document.getElementById('left-'  + n);
-  const rightCol = document.getElementById('right-' + n);
-  if (!leftCol || !rightCol) return;
-
-  // Set initial off-screen state
-  leftCol.style.transition  = 'none';
-  rightCol.style.transition = 'none';
-  leftCol.style.transform   = 'translateX(-40px)';
-  leftCol.style.opacity     = '0';
-  rightCol.style.transform  = 'translateX(40px)';
-  rightCol.style.opacity    = '0';
-
-  // Force reflow so browser registers the initial state
-  void leftCol.offsetWidth;
-  void rightCol.offsetWidth;
-
-  // Apply smooth transition to final state
-  leftCol.style.transition  = 'transform 0.5s ease-out, opacity 0.5s ease-out';
-  rightCol.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
-  leftCol.style.transform   = 'translateX(0)';
-  leftCol.style.opacity     = '1';
-  rightCol.style.transform  = 'translateX(0)';
-  rightCol.style.opacity    = '1';
-}
-
-// Called from overview cards
-function activateModule(n) {
-  switchModule(n);
-  const el = document.getElementById('cdss-section');
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ---- SCROLL REVEAL ----
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => observer.observe(el));
-
-// ---- COUNTER ANIMATION ----
-function animateCounter(el, target) {
-  let start = 0; const dur = 1500;
-  const step = ts => {
-    if (!start) start = ts;
-    const p = Math.min((ts - start) / dur, 1);
-    const e = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.floor(e * target);
-    if (p < 1) requestAnimationFrame(step); else el.textContent = target;
-  };
-  requestAnimationFrame(step);
-}
-const statsObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('[data-target]').forEach(c => animateCounter(c, parseInt(c.dataset.target)));
-      statsObs.unobserve(e.target);
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40);
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,target=+el.dataset.target;let cur=0;
+      const t=setInterval(()=>{cur=Math.min(cur+1,target);el.textContent=cur;if(cur>=target)clearInterval(t);},60);
+      cObs.unobserve(el);
     }
   });
-}, { threshold: 0.5 });
-const sr = document.getElementById('statsRow'); if (sr) statsObs.observe(sr);
-
-// ---- PROGRESS BAR ----
-const pbObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { document.getElementById('progressBar').style.width = '68%'; pbObs.unobserve(e.target); }
-  });
-}, { threshold: 0.5 });
-const pb = document.getElementById('progressBar'); if (pb) pbObs.observe(pb);
-
-// ---- NAVBAR SCROLL ----
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
-});
-
-// ---- HERO IMMEDIATE REVEAL ----
-document.querySelectorAll('.hero-banner .reveal,.hero-banner .reveal-right').forEach(el => {
-  setTimeout(() => el.classList.add('visible'), 100);
-});
-
-// ---- INITIAL PANEL ANIMATION (first load) ----
-setTimeout(() => {
-  const lc = document.getElementById('left-1');
-  const rc = document.getElementById('right-1');
-  if (lc && rc) {
-    lc.style.transition = 'none'; rc.style.transition = 'none';
-    lc.style.transform = 'translateX(-40px)'; lc.style.opacity = '0';
-    rc.style.transform = 'translateX(40px)';  rc.style.opacity = '0';
-    void lc.offsetWidth;
-    lc.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
-    rc.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
-    lc.style.transform = 'translateX(0)'; lc.style.opacity = '1';
-    rc.style.transform = 'translateX(0)'; rc.style.opacity = '1';
+},{threshold:.5});
+document.querySelectorAll('.stat-num[data-target]').forEach(el=>cObs.observe(el));
+const pObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){document.getElementById('progressBar').style.width='71%';pObs.disconnect();}});
+},{threshold:.3});
+if(document.getElementById('progressBar'))pObs.observe(document.getElementById('progressBar'));
+function switchModule(n){
+  document.querySelectorAll('.cdss-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
+  const panel=document.getElementById('panel-'+n);
+  if(panel){
+    panel.classList.add('active');
+    panel.querySelectorAll('.cdss-col-left,.cdss-col-right').forEach(c=>{
+      c.classList.add('slide-init');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.remove('slide-init')));
+    });
   }
-}, 250);
+  const links=document.querySelectorAll('.sidebar-link');
+  if(links[n-1])links[n-1].classList.add('active');
+  document.getElementById('cdss-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
 </script>
 </body>
 </html>
